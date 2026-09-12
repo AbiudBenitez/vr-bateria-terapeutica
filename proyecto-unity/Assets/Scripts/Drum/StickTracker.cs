@@ -1,0 +1,103 @@
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.XR;
+
+/// Sigue la punta de una baqueta y emite DrumHit al cruzar el plano armado de un pad.
+/// La matemática vive en CrossSolver; esto lee hardware y orquesta.
+public sealed class StickTracker : MonoBehaviour
+{
+    [SerializeField] XRNode      hand = XRNode.RightHand;
+    [SerializeField] Transform   xrOrigin;    // el XR Origin de la escena
+    [SerializeField] Transform   controller;  // GameObject con el TrackedPoseDriver de esta mano
+    [SerializeField] Transform   tip;         // punta de la baqueta, hija de controller
+    [SerializeField] DrumPad[]   pads;
+    [SerializeField] DrumHitSink sink;
+
+    [SerializeField, Tooltip("Corrección constante entre el reloj de pose y el de audio, en segundos. " +
+                             "Se determina midiendo, en el capítulo 6. No se adivina.")]
+    float poseToAudioOffset = 0f;
+
+    InputDevice device;
+    Vector3     prevTip;
+    double      prevDsp;
+    bool        primed;
+
+    readonly Dictionary<DrumPad, bool> armed = new();
+
+    void OnEnable()
+    {
+        device = InputDevices.GetDeviceAtXRNode(hand);
+        primed = false;
+        armed.Clear();
+        foreach (var p in pads) armed[p] = true;
+    }
+
+    void Update()
+    {
+        if (!device.isValid)
+        {
+            device = InputDevices.GetDeviceAtXRNode(hand);
+            if (!device.isValid) return;
+        }
+
+        // Lectura ÚNICA del reloj DSP por frame. Regla del proyecto: nunca Time.time.
+        double  dspNow = AudioSettings.dspTime + poseToAudioOffset;
+        Vector3 tipNow = tip.position;
+
+        if (!primed)
+        {
+            prevTip = tipNow;
+            prevDsp = dspNow;
+            primed  = true;
+            return;
+        }
+
+        Vector3 vTip = ReadTipVelocity();
+
+        for (int i = 0; i < pads.Length; i++)
+            Evaluate(pads[i], tipNow, vTip, dspNow);
+
+        prevTip = tipNow;
+        prevDsp = dspNow;
+    }
+
+    /// CUIDADO CON LOS ESPACIOS: deviceVelocity y deviceAngularVelocity vienen en el espacio del
+    /// XR Origin, mientras que tip.position y pad.Normal están en mundo. Mezclarlos da magnitudes
+    /// correctas con direcciones equivocadas en cuanto el jugador gira.
+    Vector3 ReadTipVelocity()
+    {
+        device.TryGetFeatureValue(CommonUsages.deviceVelocity,        out Vector3 v);
+        device.TryGetFeatureValue(CommonUsages.deviceAngularVelocity, out Vector3 w);
+
+        return CrossSolver.TipVelocity(
+            xrOrigin.TransformVector(v),
+            xrOrigin.TransformVector(w),
+            tip.position - controller.position);
+    }
+
+    void Evaluate(DrumPad pad, Vector3 tipNow, Vector3 vTip, double dspNow)
+    {
+        float dPrev = pad.SignedDistanceToArmPlane(prevTip);
+        float dNow  = pad.SignedDistanceToArmPlane(tipNow);
+
+        // Rearme POR POSICIÓN, no por tiempo: el pad revive cuando la baqueta vuelve a salir.
+        // Un cooldown temporal destruiría los redobles.
+        if (dNow > 0f && dPrev <= 0f) { armed[pad] = true; return; }
+
+        if (!armed[pad]) return;
+        if (!(dPrev > 0f && dNow <= 0f)) return;              // no cruzó hacia adentro
+
+        float vNormal = CrossSolver.NormalSpeed(vTip, pad.Normal);
+        if (vNormal < pad.MinVelocity) return;
+
+        float   t01        = CrossSolver.Fraction(dPrev, dNow);
+        Vector3 crossPoint = Vector3.Lerp(prevTip, tipNow, t01);
+        if (!pad.WithinRadius(crossPoint)) return;
+
+        double dspCross  = prevDsp + (dspNow - prevDsp) * t01;
+        double dspImpact = CrossSolver.ImpactDsp(dspCross, pad.ArmDistance, vNormal);
+
+        armed[pad] = false;
+        sink.Handle(new DrumHit(pad, vNormal, dspImpact, crossPoint, hand));
+    }
+}
