@@ -108,8 +108,8 @@ Mac ARM (Unity 6)  ──play mode──>  Meta XR Simulator   [lógica, UI, flu
        └──build APK + adb──────>   Quest 3S            [latencia, sensación de golpe, háptico]
 ```
 
-**Meta XR Simulator sí corre en Mac Apple Silicon** (requiere Unity OpenXR Plugin 1.13+ y Meta
-XR SDK v66+; Mac Intel no está soportado). Da play mode en el editor con visor y controles
+**Meta XR Simulator sí corre en Mac Apple Silicon** (requiere Unity OpenXR Plugin 1.13.0+; Mac
+Intel no está soportado). Se instala como aplicación del sistema, no como paquete de Unity. Da play mode en el editor con visor y controles
 simulados por mouse y teclado. Cubre el grueso del trabajo diario: máquina de estados, UI,
 flujo de sesión. **No sustituye al visor** para velocidad real de mano, latencia real ni háptico.
 
@@ -131,8 +131,12 @@ es una de las formas más caras de perder una semana.
 - Módulos: Android Build Support, OpenJDK, Android SDK & NDK Tools
 - Plantilla de proyecto: **Universal 3D (URP)**. No Built-in: URP es lo que habilita single-pass
   instanced y foveated rendering en Quest
-- Paquetes: `com.unity.xr.openxr` (1.13 o superior), `com.unity.xr.interaction.toolkit` (3.x),
-  `com.meta.xr.simulator`
+- Paquetes UPM: `com.unity.xr.openxr` (1.13 o superior), `com.unity.xr.interaction.toolkit` (3.x)
+- **Meta XR Simulator: aplicación independiente, NO paquete de Unity.** El paquete
+  `com.meta.xr.simulator` del Asset Store está deprecado. Se descarga de
+  `developers.meta.com/horizon/downloads/package/meta-xr-simulator-mac-arm/` y el editor lo
+  detecta solo. Se activa con el ícono junto a Play, o
+  `Window → Meta → Meta XR Simulator → Activate`
 
 **XR Plug-in Management**
 
@@ -150,8 +154,13 @@ es una de las formas más caras de perder una semana.
 | Minimum API Level | Android 12L (API 32) |
 | Texture compression | ASTC |
 | Color Space | Linear |
-| Stereo Rendering Mode | Single Pass Instanced |
 | Active Input Handling | Input System (New) |
+
+**XR Plug-in Management → OpenXR**
+
+| Ajuste | Valor | Nota |
+|---|---|---|
+| Render Mode | **Single Pass Instanced** | Con OpenXR el control vive aquí, **no** en Player Settings. El `Stereo Rendering Mode` de `Player Settings → XR Settings` es el camino heredado del VR integrado de Unity y no aplica a un proyecto OpenXR |
 
 **Project Settings → Audio** — el ajuste de mayor impacto en latencia de todo el proyecto
 

@@ -183,16 +183,21 @@ El interruptor vive en el celular, no en el visor ni en la Mac.
 
 1. Instalar **Meta Horizon** en el celular (iOS o Android) e iniciar sesión con la misma cuenta.
 2. Encender el Quest 3S y emparejarlo con la app si no lo está.
-3. Abrir el visor en la app y entrar a sus ajustes de dispositivo.
-4. Activar **Developer Mode / Modo desarrollador**. <!-- VERIFICAR --> La ruta exacta dentro de la app
-   (Menú → Dispositivos → seleccionar el visor → Ajustes del visor → Modo desarrollador) cambia con
-   las actualizaciones de Meta Horizon; verificar contra la app instalada.
+3. Tocar el **ícono del visor** en la barra de herramientas de la app. El visor emparejado aparece
+   arriba, con su modelo y estado.
+4. Tocar el visor → **Headset Settings / Ajustes del visor** → **Developer Mode / Modo desarrollador**
+   → activar el interruptor.
 5. **Reiniciar el visor.** El cambio no surte efecto hasta el reinicio.
-6. Conectar el visor a la Mac por cable USB-C. Ponérselo: aparece un diálogo **"Permitir depuración
+6. Ya con el visor puesto: **Quick Settings → Settings → Developer** y activar **MTP Notification**.
+   Sin esto el diálogo de depuración por USB puede no aparecer.
+7. Conectar el visor a la Mac por cable USB-C. Ponérselo: aparece un diálogo **"Permitir depuración
    por USB"**. Aceptar, y marcar "permitir siempre desde esta computadora".
 
 Ese diálogo es la causa número uno de que `adb devices` muestre `unauthorized` en el paso 1.10.
 Hay que tener el visor puesto para verlo.
+
+**Requisito previo:** hay que ser desarrollador registrado de Meta, con cuenta verificada y mayoría
+de edad. Eso es lo que se resolvió en 1.2; sin ello el interruptor de modo desarrollador no aparece.
 
 ## 1.4 Crear el proyecto — plantilla Universal 3D (URP)
 
@@ -212,30 +217,37 @@ entenderlos es el punto.
 
 ## 1.5 Paquetes
 
-`Window → Package Manager`. Con el botón **+** de la barra superior, opción **Install package by
-name**, instalar en este orden: <!-- VERIFICAR --> el rótulo exacto de esa opción en el Package
-Manager de Unity 6 puede diferir ("Install package by name…" / "Add package by name"); es el mismo
-flujo.
+`Window → Package Manager`. Con el botón **+** de la barra superior, **Install package by name**,
+instalar en este orden:
 
 | Paquete | Nombre exacto | Versión |
 |---|---|---|
 | OpenXR Plugin | `com.unity.xr.openxr` | 1.13 o superior |
 | XR Interaction Toolkit | `com.unity.xr.interaction.toolkit` | 3.x |
-| Meta XR Simulator | `com.meta.xr.simulator` | la que corresponda al SDK v66 o superior |
+
+Son dos, no tres. **El Meta XR Simulator ya no se instala como paquete de Unity** — ver abajo.
 
 Notas que ahorran tiempo:
 
 - El XR Interaction Toolkit 3.x **arrastra el Input System** como dependencia. Unity pedirá
   reiniciar el editor para habilitarlo; aceptar. Ese reinicio es el que deja `Active Input Handling`
   en `Input System (New)`, el valor que la lista de 1.7 exige.
-- El **Meta XR Simulator** es lo que permite play mode con visor y controles simulados por mouse y
-  teclado dentro del editor en la Mac. Requiere **OpenXR Plugin 1.13+** y **Meta XR SDK v66+**;
-  corre en Apple Silicon, no en Mac Intel. Cubre lógica, UI y flujo de sesión. **No sustituye al
-  visor** para velocidad real de mano, latencia real ni háptico: esos tres solo se validan en el
-  Quest 3S.
-- Si `com.meta.xr.simulator` no aparece por nombre, se instala desde el registro de Meta con el
-  Meta XR SDK. <!-- VERIFICAR --> El registro con alcance (`scoped registry`) de Meta y su URL deben
-  confirmarse contra la documentación vigente de Meta XR Simulator.
+
+### Meta XR Simulator — aplicación aparte, no paquete
+
+**El paquete `com.meta.xr.simulator` del Asset Store está deprecado.** Meta distribuye ahora el
+simulador como **aplicación independiente** que se descarga de su portal:
+
+- macOS Apple Silicon: `developers.meta.com/horizon/downloads/package/meta-xr-simulator-mac-arm/`
+- Requisitos: **macOS ARM únicamente** (Mac Intel no está soportado) y **Unity OpenXR Plugin 1.13.0
+  o posterior**, que es justo el que instalaste arriba.
+
+Se instala una vez en el sistema; el editor lo detecta solo. No hay registro con alcance que
+configurar ni paquete que añadir al `manifest.json`.
+
+El simulador es lo que permite play mode con visor y controles simulados por mouse y teclado dentro
+del editor en la Mac. Cubre lógica, UI y flujo de sesión. **No sustituye al visor** para velocidad
+real de mano, latencia real ni háptico: esos tres solo se validan en el Quest 3S.
 
 ## 1.6 XR Plug-in Management
 
@@ -286,11 +298,13 @@ Apuntes de dónde vive cada uno y qué pasa si falta:
 - **Texture compression = ASTC** en `Player Settings → Android`. Si el perfil de build también
   expone un selector de compresión de texturas, dejar ASTC en los dos: el que se aplica es el del
   build, y una discrepancia entre ambos se manifiesta como texturas ETC2 en el APK sin aviso alguno.
-- **Stereo Rendering Mode = Single Pass Instanced** en `Player Settings → Android`. Si en esta
-  instalación el control no aparece ahí, está como **Render Mode** dentro de
-  `XR Plug-in Management → OpenXR` <!-- VERIFICAR -->; el valor exigido es el mismo y debe quedar en
-  Single Pass Instanced esté donde esté el interruptor. Es lo que evita renderizar la escena dos
-  veces, una por ojo, y por lo tanto es parte del presupuesto de latencia.
+- **Single Pass Instanced** vive en `Edit → Project Settings → XR Plug-in Management → OpenXR`, en
+  el desplegable **Render Mode**. **No** en Player Settings. El `Stereo Rendering Mode` de
+  `Player Settings → XR Settings` es el camino heredado del VR integrado de Unity, exige marcar
+  "Virtual Reality Supported" y no aplica a un proyecto con OpenXR: buscarlo ahí es perder la tarde.
+  Cada proveedor de XR expone su propio control, y con OpenXR el control es Render Mode.
+  Es lo que evita renderizar la escena dos veces, una por ojo, y por lo tanto es parte del
+  presupuesto de latencia.
 - **Color Space = Linear** es requisito de URP. En Gamma, la iluminación se ve mal y algunos efectos
   de URP directamente no funcionan.
 
@@ -322,10 +336,13 @@ delante, para comparar el efecto real de cada uno. Aquí se ponen y se dejan.
 1. `File → New Scene`, plantilla básica de URP, y guardarla como `Assets/Scenes/Cap01_Cubo.unity`.
 2. `GameObject → 3D Object → Cube`. Dejarlo en `(0, 1, -2)` para que quede a la altura de la vista y
    por delante del origen, que es donde nace el `XR Origin`.
-3. Crear el script: en el Project, `Assets/Scripts/`, clic derecho → `Create → MonoBehaviour Script`
-   con el nombre `CuboQueGira`. <!-- VERIFICAR --> En Unity 6 el rótulo del menú de creación de
-   scripts cambió respecto de `Create → C# Script`; el nombre del archivo debe coincidir exactamente
-   con el de la clase, se llame como se llame la opción.
+3. Crear el script: en el Project, `Assets/Scripts/`, clic derecho →
+   `Create → Scripting → MonoBehaviour Script`, con el nombre `CuboQueGira`. En Unity 6 la creación
+   de scripts se movió a un submenú **Scripting**; el `Create → C# Script` suelto que aparece en
+   tutoriales viejos ya no está en la raíz del menú.
+
+   **El nombre del archivo debe coincidir exactamente con el de la clase.** Unity no compila un
+   `MonoBehaviour` cuyo archivo se llame distinto, y el error que da no lo dice claramente.
 4. Pegar exactamente esto:
 
 ```csharp
@@ -351,18 +368,20 @@ cosas visuales como este giro. **Nunca para nada rítmico**: a partir del capít
 `AudioSettings.dspTime`, leído una sola vez por frame, porque el tiempo de frame es irregular y
 acumula deriva a lo largo de una sesión de doce minutos.
 
-7. Pulsar **Play**. Con el Meta XR Simulator activo debe aparecer la ventana del simulador con el
-   cubo girando, navegable con mouse y teclado. <!-- VERIFICAR --> El punto de activación del
-   simulador (un menú propio del paquete de Meta dentro del editor) debe confirmarse contra la
-   documentación de Meta XR Simulator para la versión instalada.
+7. Activar el simulador: **ícono del simulador junto al botón Play** en la barra de herramientas, o
+   `Window → Meta → Meta XR Simulator → Activate`. La consola imprime
+   `[Meta XR Simulator is activated]`. Para apagarlo, `Deactivate` en el mismo menú; `Status` dice
+   en qué estado está.
+
+8. Pulsar **Play**. Debe abrirse la ventana del simulador con el cubo girando, navegable con mouse
+   y teclado.
 
 Que funcione en el simulador **no cierra el capítulo**. Falta el visor.
 
 ## 1.10 Build y despliegue con adb
 
-Abrir el perfil de build de Android <!-- VERIFICAR --> (`File → Build Profiles` en Unity 6; en
-versiones anteriores era `File → Build Settings`), seleccionar **Android** y pulsar **Switch
-Platform**. El primer cambio de plataforma reimporta todos los assets con compresión ASTC y tarda
+Abrir `File → Build Profiles` (en Unity 6 reemplazó a `File → Build Settings`, que es como lo
+nombran los tutoriales viejos), seleccionar **Android** y pulsar **Switch Platform**. El primer cambio de plataforma reimporta todos los assets con compresión ASTC y tarda
 varios minutos.
 
 Agregar la escena a la lista de escenas del build, y construir a `Builds/bateria.apk`. El primer
