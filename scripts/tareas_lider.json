@@ -1,0 +1,1801 @@
+[
+[
+"DP.1",
+"Crear el proyecto base en Unity y definir la versión que utilizará todo el equipo",
+"Desarrollo VR y batería",
+"3 horas",
+"Sin dependencia"
+],
+[
+"DP.2",
+"Configurar repositorio y estructura inicial de carpetas del proyecto",
+"Desarrollo VR y batería",
+"3 horas",
+"DP.1"
+],
+[
+"DP.3",
+"Configurar control de versiones y reglas para evitar conflictos entre desarrolladores",
+"Desarrollo VR y batería",
+"4 horas",
+"DP.2"
+],
+[
+"DX.1",
+"Instalar y configurar paquetes XR necesarios para realidad virtual",
+"Desarrollo VR y batería",
+"5 horas",
+"DP.1"
+],
+[
+"DX.2",
+"Configurar OpenXR y compatibilidad con el visor VR seleccionado",
+"Desarrollo VR y batería",
+"5 horas",
+"DX.1"
+],
+[
+"DX.3",
+"Crear escena técnica inicial para realizar pruebas de VR",
+"Desarrollo VR y batería",
+"3 horas",
+"DX.2"
+],
+[
+"DX.4",
+"Configurar XR Origin, cámara y seguimiento de cabeza",
+"Desarrollo VR y batería",
+"4 horas",
+"DX.3"
+],
+[
+"DX.5",
+"Configurar seguimiento de los controles derecho e izquierdo",
+"Desarrollo VR y batería",
+"4 horas",
+"DX.4"
+],
+[
+"DX.6",
+"Comprobar escala, altura y posición del jugador dentro del entorno VR",
+"Desarrollo VR y batería",
+"4 horas",
+"DX.4"
+],
+[
+"DO",
+"Implementar sistema para agarrar y soltar objetos con los controles",
+"Desarrollo VR y batería",
+"1 día",
+"DX.5"
+],
+[
+"DB.1",
+"Crear versión provisional de las baquetas para pruebas",
+"Desarrollo VR y batería",
+"3 horas",
+"DX.3"
+],
+[
+"DB.2",
+"Configurar las baquetas como objetos interactuables",
+"Desarrollo VR y batería",
+"5 horas",
+"DO, DB.1"
+],
+[
+"DB.3",
+"Ajustar posición de agarre de cada baqueta en los controles VR",
+"Desarrollo VR y batería",
+"4 horas",
+"DB.2"
+],
+[
+"DT.1",
+"Crear batería provisional con objetos simples para comenzar pruebas",
+"Desarrollo VR y batería",
+"5 horas",
+"DX.3"
+],
+[
+"DT.2",
+"Definir todos los componentes interactivos de la batería: snare, kick, toms, hi-hat, crash y ride",
+"Desarrollo VR y batería",
+"4 horas",
+"DT.1"
+],
+[
+"DT.3",
+"Configurar colliders para cada componente de la batería",
+"Desarrollo VR y batería",
+"1 día",
+"DT.2"
+],
+[
+"DG.1",
+"Crear sistema general de detección de golpe entre baqueta y batería",
+"Desarrollo VR y batería",
+"1 día",
+"DB.2, DT.3"
+],
+[
+"DG.2",
+"Identificar automáticamente qué pieza de la batería fue golpeada",
+"Desarrollo VR y batería",
+"1 día",
+"DG.1"
+],
+[
+"DG.3",
+"Detectar velocidad de movimiento de la baqueta antes del impacto",
+"Desarrollo VR y batería",
+"1 día",
+"DG.1"
+],
+[
+"DG.4",
+"Convertir la velocidad de la baqueta en un valor de intensidad de golpe",
+"Desarrollo VR y batería",
+"1 día",
+"DG.3"
+],
+[
+"DG.5",
+"Establecer niveles de intensidad suave, media y fuerte",
+"Desarrollo VR y batería",
+"5 horas",
+"DG.4"
+],
+[
+"DG.6",
+"Implementar sistema para evitar golpes duplicados provocados por una misma colisión",
+"Desarrollo VR y batería",
+"1 día",
+"DG.1"
+],
+[
+"DH.1",
+"Configurar vibración háptica del controlador al golpear la batería",
+"Desarrollo VR y batería",
+"5 horas",
+"DG.1"
+],
+[
+"DH.2",
+"Ajustar la intensidad háptica de acuerdo con la fuerza del golpe",
+"Desarrollo VR y batería",
+"4 horas",
+"DG.4, DH.1"
+],
+[
+"DG.7",
+"Crear evento general DrumHit que informe instrumento, intensidad y tiempo del golpe",
+"Desarrollo VR y batería",
+"1 día",
+"DG.2, DG.4"
+],
+[
+"DG.8",
+"Implementar soporte independiente para golpe con baqueta izquierda y derecha",
+"Desarrollo VR y batería",
+"5 horas",
+"DG.7"
+],
+[
+"DB.4",
+"Ajustar física de las baquetas para evitar vibraciones o movimientos extraños",
+"Desarrollo VR y batería",
+"1 día",
+"DG.1"
+],
+[
+"DG.9",
+"Ajustar sensibilidad de las colisiones de batería",
+"Desarrollo VR y batería",
+"1 día",
+"DB.4"
+],
+[
+"DT.4",
+"Incorporar modelo 3D definitivo de la batería",
+"Desarrollo VR y batería",
+"1 día",
+"AB.4, DG.9"
+],
+[
+"DT.5",
+"Reconfigurar colliders utilizando el modelo definitivo",
+"Desarrollo VR y batería",
+"1 día",
+"DT.4"
+],
+[
+"DT.6",
+"Ajustar posición y dimensiones de batería para una postura cómoda en VR",
+"Desarrollo VR y batería",
+"5 horas",
+"DT.5, EG.1"
+],
+[
+"DR.1",
+"Realizar primera prueba completa de interacción física de la batería",
+"Desarrollo VR y batería",
+"1 día",
+"DT.6"
+],
+[
+"DR.2",
+"Corregir errores detectados durante la primera prueba de batería",
+"Desarrollo VR y batería",
+"1 a 2 días",
+"DR.1"
+],
+[
+"JA.1",
+"Definir técnicamente cómo funcionará el juego de ritmo",
+"Juego de ritmo",
+"1 día",
+"Sin dependencia"
+],
+[
+"JA.2",
+"Definir los datos necesarios para representar una nota musical dentro del juego",
+"Juego de ritmo",
+"5 horas",
+"JA.1"
+],
+[
+"JA.3",
+"Diseñar estructura de datos para canciones y beatmaps",
+"Juego de ritmo",
+"1 día",
+"JA.2"
+],
+[
+"JT.1",
+"Crear sistema de reloj musical independiente de los FPS",
+"Juego de ritmo",
+"1 día",
+"JA.1"
+],
+[
+"JT.2",
+"Implementar cálculo de BPM y duración de cada beat",
+"Juego de ritmo",
+"5 horas",
+"JT.1"
+],
+[
+"JT.3",
+"Implementar cálculo de compases y subdivisiones rítmicas",
+"Juego de ritmo",
+"5 horas",
+"JT.2"
+],
+[
+"JK",
+"Crear sistema provisional de golpes utilizando teclado para desarrollar sin depender del VR",
+"Juego de ritmo",
+"5 horas",
+"JA.2"
+],
+[
+"JB.1",
+"Crear prototipo de beatmap manual",
+"Juego de ritmo",
+"1 día",
+"JA.3"
+],
+[
+"JB.2",
+"Crear sistema que cargue un beatmap",
+"Juego de ritmo",
+"1 día",
+"JA.3"
+],
+[
+"JB.3",
+"Sincronizar beatmap con reproducción de música",
+"Juego de ritmo",
+"1 a 2 días",
+"JT.1, JB.2"
+],
+[
+"JN.1",
+"Crear representación visual provisional de las notas",
+"Juego de ritmo",
+"1 día",
+"JB.3"
+],
+[
+"JN.2",
+"Crear sistema que indique qué componente de la batería debe golpearse",
+"Juego de ritmo",
+"1 día",
+"JN.1"
+],
+[
+"JW.1",
+"Definir ventanas temporales Perfect, Good y Miss",
+"Juego de ritmo",
+"5 horas",
+"JB.3"
+],
+[
+"JW.2",
+"Programar detección de golpes correctos",
+"Juego de ritmo",
+"1 día",
+"JW.1"
+],
+[
+"JW.3",
+"Programar detección de golpes anticipados",
+"Juego de ritmo",
+"5 horas",
+"JW.2"
+],
+[
+"JW.4",
+"Programar detección de golpes atrasados",
+"Juego de ritmo",
+"5 horas",
+"JW.2"
+],
+[
+"JW.5",
+"Programar detección de notas no golpeadas",
+"Juego de ritmo",
+"5 horas",
+"JW.2"
+],
+[
+"JP.1",
+"Crear sistema básico de puntuación",
+"Juego de ritmo",
+"1 día",
+"JW.2"
+],
+[
+"JP.2",
+"Crear sistema de combo o golpes consecutivos",
+"Juego de ritmo",
+"5 horas",
+"JP.1"
+],
+[
+"JP.3",
+"Crear cálculo de precisión porcentual del usuario",
+"Juego de ritmo",
+"5 horas",
+"JP.1"
+],
+[
+"JP.4",
+"Crear resumen de resultados al terminar una canción",
+"Juego de ritmo",
+"1 día",
+"JP.1, IS.6"
+],
+[
+"JI.1",
+"Integrar evento DrumHit de la batería VR con el juego de ritmo",
+"Juego de ritmo",
+"1 día",
+"DG.7, JW.2"
+],
+[
+"JI.2",
+"Sustituir controles provisionales de teclado por interacción VR",
+"Juego de ritmo",
+"5 horas",
+"JI.1"
+],
+[
+"JI.3",
+"Implementar detección de intensidad del golpe dentro del juego",
+"Juego de ritmo",
+"1 día",
+"DG.4, JI.1"
+],
+[
+"JI.4",
+"Diseñar mecánicas en las que determinados golpes requieran distinta intensidad",
+"Juego de ritmo",
+"1 día",
+"JI.3, MB.2"
+],
+[
+"JF.1",
+"Crear feedback visual inmediato de acierto o error",
+"Juego de ritmo",
+"1 día",
+"JW.2, IG.1"
+],
+[
+"JF.2",
+"Crear feedback auditivo para aciertos, errores e interacción",
+"Juego de ritmo",
+"5 horas",
+"SU, JW.2"
+],
+[
+"JC.1",
+"Implementar cuenta regresiva antes de iniciar una canción",
+"Juego de ritmo",
+"5 horas",
+"JB.3"
+],
+[
+"JC.2",
+"Crear sistema de pausa y reanudación",
+"Juego de ritmo",
+"1 día",
+"JB.3, IS.4"
+],
+[
+"JC.3",
+"Crear sistema para reiniciar una actividad",
+"Juego de ritmo",
+"5 horas",
+"JC.2"
+],
+[
+"JC.4",
+"Crear sistema para abandonar una actividad y regresar al menú",
+"Juego de ritmo",
+"5 horas",
+"JC.2"
+],
+[
+"JL.1",
+"Crear diferentes niveles de dificultad",
+"Juego de ritmo",
+"1 a 2 días",
+"MB.3, JP.1"
+],
+[
+"JL.2",
+"Programar selección de dificultad antes de iniciar",
+"Juego de ritmo",
+"5 horas",
+"JL.1, IS.1"
+],
+[
+"JM.1",
+"Crear modo libre sin puntuación ni notas obligatorias",
+"Juego de ritmo",
+"1 día",
+"DG.7"
+],
+[
+"JM.2",
+"Permitir seleccionar música de fondo en modo libre",
+"Juego de ritmo",
+"5 horas",
+"JM.1, MA.2"
+],
+[
+"JM.3",
+"Permitir tocar sin música en modo libre",
+"Juego de ritmo",
+"3 horas",
+"JM.1"
+],
+[
+"JY",
+"Crear sistema de calibración de latencia entre golpe y música",
+"Juego de ritmo",
+"1 a 2 días",
+"JI.1, SI.4"
+],
+[
+"JW.6",
+"Ajustar ventanas de precisión después de pruebas de usuarios",
+"Juego de ritmo",
+"1 día",
+"QT.8"
+],
+[
+"JI.5",
+"Integrar juego de ritmo completo con flujo general de la experiencia",
+"Juego de ritmo",
+"2 días",
+"JL.2, EI, IT.4"
+],
+[
+"EO.1",
+"Definir objetivo general de la experiencia emocional",
+"Experiencia emocional",
+"4 horas",
+"Sin dependencia"
+],
+[
+"EO.2",
+"Definir alcance y límites del proyecto respecto al concepto de terapia",
+"Experiencia emocional",
+"4 horas",
+"EO.1"
+],
+[
+"EB.1",
+"Buscar bibliografía científica sobre música y regulación emocional",
+"Experiencia emocional",
+"2 días",
+"Sin dependencia"
+],
+[
+"EB.2",
+"Buscar bibliografía científica sobre percusión y expresión emocional",
+"Experiencia emocional",
+"2 días",
+"Sin dependencia"
+],
+[
+"EB.3",
+"Buscar investigaciones sobre juegos de ritmo relacionados con bienestar y expresión emocional",
+"Experiencia emocional",
+"1 día",
+"Sin dependencia"
+],
+[
+"EB.4",
+"Seleccionar estudios científicos que realmente sustentarán el proyecto",
+"Experiencia emocional",
+"1 día",
+"EB.1, EB.2, EB.3"
+],
+[
+"EB.5",
+"Crear matriz bibliográfica de artículos, objetivo, metodología y resultados",
+"Experiencia emocional",
+"2 días",
+"EB.4"
+],
+[
+"EE.1",
+"Definir qué emociones serán abordadas dentro de la simulación",
+"Experiencia emocional",
+"1 día",
+"EB.4"
+],
+[
+"EE.2",
+"Definir qué actividades se relacionarán con cada emoción",
+"Experiencia emocional",
+"1 a 2 días",
+"EE.1"
+],
+[
+"EE.3",
+"Determinar duración aproximada de una sesión",
+"Experiencia emocional",
+"5 horas",
+"EE.2"
+],
+[
+"ER",
+"Investigar postura, comodidad y ergonomía durante actividades de percusión VR",
+"Experiencia emocional",
+"1 día",
+"EB.4"
+],
+[
+"EG.1",
+"Redactar el guion de introducción general de la terapia",
+"Experiencia emocional",
+"1 día",
+"EO.2, EE.1"
+],
+[
+"EG.2",
+"Redactar las instrucciones específicas de la actividad terapéutica",
+"Experiencia emocional",
+"1 día",
+"EE.2, EG.1"
+],
+[
+"EF",
+"Diseñar flujo completo de experiencia desde ingreso hasta finalización",
+"Experiencia emocional",
+"2 días",
+"EE.2, EG.1, EG.2"
+],
+[
+"EG.3",
+"Redactar el guion del tutorial introductorio",
+"Experiencia emocional",
+"1 día",
+"EG.2, EF"
+],
+[
+"EI",
+"Definir cómo se utilizarán el ritmo y la intensidad de los golpes para expresar las emociones seleccionadas",
+"Experiencia emocional",
+"1 día",
+"EE.1, EE.2"
+],
+[
+"EG.4",
+"Redactar el guion de cierre de la experiencia terapéutica",
+"Experiencia emocional",
+"5 horas",
+"EF"
+],
+[
+"ET.1",
+"Redactar la fundamentación teórica de la propuesta terapéutica",
+"Experiencia emocional",
+"3 días",
+"EB.5, EI"
+],
+[
+"ET.2",
+"Revisar y actualizar la fundamentación según el funcionamiento final del prototipo",
+"Experiencia emocional",
+"1 día",
+"ET.1, QT.8"
+],
+[
+"MR.1",
+"Investigar características musicales adecuadas para la experiencia planteada",
+"Música",
+"2 días",
+"EB.5"
+],
+[
+"MR.2",
+"Analizar BPM utilizados en las referencias encontradas",
+"Música",
+"1 día",
+"MR.1"
+],
+[
+"MR.3",
+"Analizar compases y patrones rítmicos apropiados para principiantes",
+"Música",
+"1 día",
+"MR.1"
+],
+[
+"MR.4",
+"Definir estilos musicales que utilizará el proyecto",
+"Música",
+"1 día",
+"MR.1"
+],
+[
+"MR.5",
+"Definir duración de las pistas musicales",
+"Música",
+"5 horas",
+"ER, MR.4"
+],
+[
+"ML.1",
+"Determinar si se utilizará música original, libre de derechos o licenciada",
+"Música",
+"4 horas",
+"Sin dependencia"
+],
+[
+"ML.2",
+"Investigar licencias de las pistas o recursos musicales considerados",
+"Música",
+"1 día",
+"ML.1"
+],
+[
+"MP.1",
+"Crear o seleccionar primera pista musical de prueba",
+"Música",
+"2 días",
+"MR.4, ML.1"
+],
+[
+"MP.2",
+"Determinar BPM exacto de la primera pista",
+"Música",
+"3 horas",
+"MP.1"
+],
+[
+"MP.3",
+"Identificar estructura musical de la primera pista",
+"Música",
+"5 horas",
+"MP.1"
+],
+[
+"MB.1",
+"Crear patrón básico de batería para la primera pista",
+"Música",
+"1 día",
+"MP.3"
+],
+[
+"MB.2",
+"Definir momentos donde se utilizarán golpes suaves, medios o fuertes",
+"Música",
+"1 día",
+"MB.1"
+],
+[
+"MB.3",
+"Crear versiones de dificultad Tutorial, Fácil e Intermedio del patrón",
+"Música",
+"2 días",
+"MB.1"
+],
+[
+"MB.4",
+"Convertir patrón rítmico en información utilizable para el beatmap",
+"Música",
+"1 día",
+"MB.3"
+],
+[
+"MB.5",
+"Probar primer beatmap junto con el desarrollador",
+"Música",
+"1 día",
+"JB.3, MB.4"
+],
+[
+"MB.6",
+"Corregir patrones que resulten poco cómodos o confusos",
+"Música",
+"1 día",
+"MB.5"
+],
+[
+"MA.1",
+"Crear o seleccionar pistas adicionales",
+"Música",
+"3 a 5 días",
+"MB.6"
+],
+[
+"MA.2",
+"Preparar pistas para modo libre",
+"Música",
+"1 día",
+"MA.1"
+],
+[
+"MN.1",
+"Normalizar formato, frecuencia de muestreo y volumen de todas las pistas",
+"Música",
+"1 día",
+"MA.1"
+],
+[
+"MN.2",
+"Documentar BPM, duración, compás y finalidad de cada pista",
+"Música",
+"1 día",
+"MN.1"
+],
+[
+"SP.1",
+"Crear lista de todos los sonidos necesarios para el proyecto",
+"Sonido",
+"5 horas",
+"Sin dependencia"
+],
+[
+"SP.2",
+"Investigar bancos de sonidos compatibles con la licencia del proyecto",
+"Sonido",
+"1 día",
+"SP.1"
+],
+[
+"SB.1",
+"Buscar sonido de kick",
+"Sonido",
+"3 horas",
+"SP.2"
+],
+[
+"SB.2",
+"Buscar sonido de snare",
+"Sonido",
+"3 horas",
+"SP.2"
+],
+[
+"SB.3",
+"Buscar sonidos de toms",
+"Sonido",
+"4 horas",
+"SP.2"
+],
+[
+"SB.4",
+"Buscar sonidos de hi-hat abierto y cerrado",
+"Sonido",
+"4 horas",
+"SP.2"
+],
+[
+"SB.5",
+"Buscar sonidos de crash y ride",
+"Sonido",
+"4 horas",
+"SP.2"
+],
+[
+"SB.6",
+"Seleccionar tres niveles de intensidad para cada componente principal",
+"Sonido",
+"2 días",
+"SB.1, SB.2, SB.3, SB.4, SB.5"
+],
+[
+"SE.1",
+"Editar inicio y final de cada muestra para evitar retrasos",
+"Sonido",
+"1 día",
+"SB.6"
+],
+[
+"SE.2",
+"Eliminar ruidos innecesarios de las muestras",
+"Sonido",
+"1 día",
+"SB.6"
+],
+[
+"SE.3",
+"Normalizar volumen de las muestras de batería",
+"Sonido",
+"1 día",
+"SE.1"
+],
+[
+"SE.4",
+"Exportar sonidos en formato apropiado para Unity",
+"Sonido",
+"5 horas",
+"SE.3"
+],
+[
+"SM.1",
+"Crear Audio Mixer dentro de Unity",
+"Sonido",
+"5 horas",
+"SE.4"
+],
+[
+"SM.2",
+"Separar canales de batería, música, ambiente e interfaz",
+"Sonido",
+"5 horas",
+"SM.1"
+],
+[
+"SI.1",
+"Integrar sonidos de batería con sistema DrumHit",
+"Sonido",
+"1 día",
+"DG.7, SE.4"
+],
+[
+"SI.2",
+"Asignar sonidos diferentes según intensidad del golpe",
+"Sonido",
+"1 día",
+"DG.5, SI.1"
+],
+[
+"SI.3",
+"Configurar volumen espacial de la batería dentro del entorno VR",
+"Sonido",
+"1 día",
+"SI.1"
+],
+[
+"SI.4",
+"Medir retraso perceptible entre impacto y reproducción del sonido",
+"Sonido",
+"1 día",
+"SI.1"
+],
+[
+"SU",
+"Buscar y preparar sonidos para botones, aciertos y errores",
+"Sonido",
+"1 día",
+"SP.2"
+],
+[
+"SA.1",
+"Buscar o producir sonidos ambientales para el escenario",
+"Sonido",
+"1 día",
+"AA.1"
+],
+[
+"SA.2",
+"Integrar ambiente sonoro con escenario final",
+"Sonido",
+"1 día",
+"SA.1, AP.2"
+],
+[
+"SC.1",
+"Crear controles independientes de volumen para música, batería y ambiente",
+"Sonido",
+"1 día",
+"SM.2, IS.3"
+],
+[
+"SC.2",
+"Realizar mezcla general de audio",
+"Sonido",
+"1 a 2 días",
+"SA.2, SC.1"
+],
+[
+"IM.1",
+"Definir mapa completo de pantallas de la aplicación",
+"Interfaz / UX/UI",
+"1 día",
+"EI"
+],
+[
+"IM.2",
+"Definir navegación entre menú, experiencia guiada, juego y modo libre",
+"Interfaz / UX/UI",
+"1 día",
+"IM.1"
+],
+[
+"IW.1",
+"Crear wireframe del menú principal",
+"Interfaz / UX/UI",
+"5 horas",
+"IM.2"
+],
+[
+"IW.2",
+"Crear wireframe de selección de modo",
+"Interfaz / UX/UI",
+"4 horas",
+"IM.2"
+],
+[
+"IW.3",
+"Crear wireframe de selección emocional",
+"Interfaz / UX/UI",
+"5 horas",
+"EG.2, IM.2"
+],
+[
+"IW.4",
+"Crear wireframe del tutorial",
+"Interfaz / UX/UI",
+"1 día",
+"EF, IM.2"
+],
+[
+"IW.5",
+"Crear wireframe de pantalla previa al juego",
+"Interfaz / UX/UI",
+"4 horas",
+"IM.2"
+],
+[
+"IW.6",
+"Crear wireframe de resultados",
+"Interfaz / UX/UI",
+"4 horas",
+"IM.2"
+],
+[
+"IS.1",
+"Crear interfaz para selección de canción y dificultad",
+"Interfaz / UX/UI",
+"1 día",
+"MB.3, IW.1"
+],
+[
+"IS.2",
+"Diseñar menú de configuración",
+"Interfaz / UX/UI",
+"1 día",
+"IW.1"
+],
+[
+"IS.3",
+"Diseñar controles para volumen de música, batería y ambiente",
+"Interfaz / UX/UI",
+"5 horas",
+"IS.2"
+],
+[
+"IS.4",
+"Diseñar menú de pausa",
+"Interfaz / UX/UI",
+"5 horas",
+"IW.1"
+],
+[
+"IS.5",
+"Diseñar pantalla de confirmación para salir o reiniciar",
+"Interfaz / UX/UI",
+"4 horas",
+"IS.4"
+],
+[
+"IS.6",
+"Diseñar presentación de resultados finales",
+"Interfaz / UX/UI",
+"1 día",
+"IW.6"
+],
+[
+"IE",
+"Definir estilo visual general de la interfaz",
+"Interfaz / UX/UI",
+"1 día",
+"AE.3"
+],
+[
+"IG.1",
+"Diseñar indicadores visuales de Perfect, Good y Miss",
+"Interfaz / UX/UI",
+"1 día",
+"IE, JW.1"
+],
+[
+"IG.2",
+"Diseñar representación definitiva de las notas del juego",
+"Interfaz / UX/UI",
+"1 a 2 días",
+"IE, JN.1"
+],
+[
+"IG.3",
+"Diseñar indicadores para señalar el tambor que debe golpearse",
+"Interfaz / UX/UI",
+"1 día",
+"IG.2"
+],
+[
+"IT.1",
+"Diseñar tutorial visual sobre cómo sujetar las baquetas",
+"Interfaz / UX/UI",
+"1 día",
+"DB.2"
+],
+[
+"IT.2",
+"Diseñar tutorial para explicar cómo seguir el ritmo",
+"Interfaz / UX/UI",
+"1 día",
+"JW.2"
+],
+[
+"IT.3",
+"Diseñar tutorial para explicar la intensidad de los golpes",
+"Interfaz / UX/UI",
+"1 día",
+"DG.5"
+],
+[
+"IT.4",
+"Implementar flujo del tutorial completo",
+"Interfaz / UX/UI",
+"2 días",
+"IT.1, IT.2, IT.3"
+],
+[
+"II.1",
+"Importar recursos gráficos de Canva/Figma a Unity",
+"Interfaz / UX/UI",
+"1 día",
+"IE"
+],
+[
+"II.2",
+"Implementar menú principal dentro de Unity",
+"Interfaz / UX/UI",
+"1 día",
+"II.1"
+],
+[
+"II.3",
+"Implementar interacción con botones utilizando controlador VR",
+"Interfaz / UX/UI",
+"1 día",
+"DX.5, II.2"
+],
+[
+"II.4",
+"Implementar configuración de volumen",
+"Interfaz / UX/UI",
+"1 día",
+"SC.1, II.3"
+],
+[
+"II.5",
+"Implementar menú de pausa",
+"Interfaz / UX/UI",
+"1 día",
+"IS.4, II.3"
+],
+[
+"II.6",
+"Implementar pantalla de resultados",
+"Interfaz / UX/UI",
+"1 día",
+"JP.4, IS.6"
+],
+[
+"IR.1",
+"Revisar legibilidad de textos dentro del visor VR",
+"Interfaz / UX/UI",
+"1 día",
+"II.3"
+],
+[
+"IR.2",
+"Revisar tamaño, distancia y posición de paneles",
+"Interfaz / UX/UI",
+"1 día",
+"IR.1"
+],
+[
+"IR.3",
+"Corregir problemas de navegación encontrados en pruebas",
+"Interfaz / UX/UI",
+"1 a 2 días",
+"QT.8"
+],
+[
+"AE.1",
+"Investigar qué tipo de entorno puede favorecer la experiencia propuesta",
+"Entorno 3D y assets",
+"2 días",
+"EB.5"
+],
+[
+"AE.2",
+"Comparar posibles ambientes: naturaleza, estudio musical, espacio minimalista y otros",
+"Entorno 3D y assets",
+"1 día",
+"AE.1"
+],
+[
+"AE.3",
+"Definir dirección artística general del escenario",
+"Entorno 3D y assets",
+"1 día",
+"AE.2"
+],
+[
+"AC.1",
+"Investigar teoría del color y su relación con la percepción emocional, concentración y confort visual dentro de entornos virtuales",
+"Entorno 3D y assets",
+"1 día",
+"EB.4"
+],
+[
+"AC.2",
+"Definir paleta de colores y criterios para aplicarla en los modelos 3D y el entorno según la experiencia emocional propuesta",
+"Entorno 3D y assets",
+"5 horas",
+"AE.3, AC.1, EE.1"
+],
+[
+"AC.3",
+"Crear moodboard visual del escenario incorporando la dirección artística y la paleta de colores seleccionada",
+"Entorno 3D y assets",
+"1 día",
+"AE.3, AC.2"
+],
+[
+"AA.1",
+"Crear lista de todos los assets 3D necesarios",
+"Entorno 3D y assets",
+"5 horas",
+"AC.3"
+],
+[
+"AA.2",
+"Definir límites de polígonos y rendimiento adecuados para VR",
+"Entorno 3D y assets",
+"1 día",
+"DX.2"
+],
+[
+"AA.3",
+"Buscar assets de entorno compatibles con el estilo elegido",
+"Entorno 3D y assets",
+"2 días",
+"AA.1, AA.2"
+],
+[
+"AA.4",
+"Revisar licencias de los assets seleccionados",
+"Entorno 3D y assets",
+"1 día",
+"AA.3"
+],
+[
+"AB.1",
+"Buscar modelo de batería adecuado",
+"Entorno 3D y assets",
+"1 día",
+"AA.1"
+],
+[
+"AB.2",
+"Revisar licencia del modelo de batería",
+"Entorno 3D y assets",
+"3 horas",
+"AB.1"
+],
+[
+"AB.3",
+"Buscar o crear modelos definitivos de baquetas",
+"Entorno 3D y assets",
+"5 horas",
+"AA.1"
+],
+[
+"AB.4",
+"Optimizar modelo de batería para VR",
+"Entorno 3D y assets",
+"1 día",
+"AB.1"
+],
+[
+"AB.5",
+"Optimizar materiales y texturas de la batería considerando la paleta de colores establecida",
+"Entorno 3D y assets",
+"1 día",
+"AB.4, AC.2"
+],
+[
+"AB.6",
+"Preparar batería definitiva para integración en Unity",
+"Entorno 3D y assets",
+"5 horas",
+"AB.5"
+],
+[
+"AP.1",
+"Crear primera composición del escenario en Unity",
+"Entorno 3D y assets",
+"2 días",
+"AA.3"
+],
+[
+"AP.2",
+"Determinar posición del jugador y batería dentro del escenario",
+"Entorno 3D y assets",
+"1 día",
+"AP.1, ER"
+],
+[
+"AP.3",
+"Aplicar la paleta de colores seleccionada a modelos, materiales y elementos principales del escenario",
+"Entorno 3D y assets",
+"1 día",
+"AC.2, AP.1"
+],
+[
+"AL.1",
+"Configurar iluminación inicial considerando la paleta de colores establecida",
+"Entorno 3D y assets",
+"1 día",
+"AP.1, AP.3"
+],
+[
+"AL.2",
+"Configurar iluminación definitiva y ambiente visual",
+"Entorno 3D y assets",
+"1 a 2 días",
+"AL.1"
+],
+[
+"AD.1",
+"Añadir elementos ambientales secundarios",
+"Entorno 3D y assets",
+"1 a 2 días",
+"AL.2"
+],
+[
+"AD.2",
+"Reducir objetos que puedan distraer al usuario",
+"Entorno 3D y assets",
+"5 horas",
+"AD.1"
+],
+[
+"AS",
+"Crear límites visuales de seguridad del espacio de interacción",
+"Entorno 3D y assets",
+"1 día",
+"AP.2"
+],
+[
+"AO.1",
+"Optimizar texturas del escenario para VR",
+"Entorno 3D y assets",
+"1 día",
+"AD.1"
+],
+[
+"AO.2",
+"Configurar LOD en objetos que lo requieran",
+"Entorno 3D y assets",
+"1 día",
+"AO.1"
+],
+[
+"AO.3",
+"Revisar cantidad de luces en tiempo real",
+"Entorno 3D y assets",
+"5 horas",
+"AL.2"
+],
+[
+"AO.4",
+"Preparar iluminación horneada cuando sea conveniente",
+"Entorno 3D y assets",
+"1 día",
+"AO.3"
+],
+[
+"AO.5",
+"Evaluar FPS del escenario en el visor objetivo",
+"Entorno 3D y assets",
+"1 día",
+"AO.4"
+],
+[
+"AO.6",
+"Optimizar escenario hasta cumplir rendimiento esperado",
+"Entorno 3D y assets",
+"1 a 3 días",
+"AO.5"
+],
+[
+"AR.1",
+"Revisar ambiente visual con el responsable de experiencia emocional para comprobar que colores, iluminación y escenario sean coherentes con la experiencia propuesta",
+"Entorno 3D y assets",
+"5 horas",
+"AL.2, EF, EI"
+],
+[
+"AR.2",
+"Realizar ajustes finales de ambientación",
+"Entorno 3D y assets",
+"1 día",
+"AR.1"
+],
+[
+"QP.1",
+"Definir alcance general del proyecto",
+"QA, documentación y gestión",
+"1 día",
+"Sin dependencia"
+],
+[
+"QP.2",
+"Definir objetivos generales y específicos",
+"QA, documentación y gestión",
+"1 día",
+"QP.1"
+],
+[
+"QP.3",
+"Identificar entregables principales del proyecto",
+"QA, documentación y gestión",
+"5 horas",
+"QP.1"
+],
+[
+"QP.4",
+"Elaborar EDT/WBS completa de tareas",
+"QA, documentación y gestión",
+"2 días",
+"QP.3"
+],
+[
+"QP.5",
+"Asignar responsables principales para cada tarea",
+"QA, documentación y gestión",
+"1 día",
+"QP.4"
+],
+[
+"QP.6",
+"Establecer dependencias entre tareas",
+"QA, documentación y gestión",
+"1 día",
+"QP.4"
+],
+[
+"QP.7",
+"Crear cronograma inicial del proyecto",
+"QA, documentación y gestión",
+"1 a 2 días",
+"QP.4, QP.6"
+],
+[
+"QP.8",
+"Crear diagrama de Gantt",
+"QA, documentación y gestión",
+"1 día",
+"QP.7"
+],
+[
+"QP.9",
+"Identificar ruta crítica del proyecto",
+"QA, documentación y gestión",
+"1 día",
+"QP.8"
+],
+[
+"QG.1",
+"Crear lista de riesgos técnicos, académicos y de tiempo",
+"QA, documentación y gestión",
+"1 día",
+"QP.7"
+],
+[
+"QG.2",
+"Definir acciones de mitigación para cada riesgo",
+"QA, documentación y gestión",
+"1 día",
+"QG.1"
+],
+[
+"QR.1",
+"Definir requisitos funcionales de la simulación",
+"QA, documentación y gestión",
+"2 días",
+"QP.1"
+],
+[
+"QR.2",
+"Definir requisitos no funcionales",
+"QA, documentación y gestión",
+"1 día",
+"QR.1"
+],
+[
+"QR.3",
+"Crear criterios de aceptación para cada requisito",
+"QA, documentación y gestión",
+"2 días",
+"QR.1, QR.2"
+],
+[
+"QR.4",
+"Crear matriz de trazabilidad entre requisitos y funcionalidades",
+"QA, documentación y gestión",
+"1 día",
+"QR.3"
+],
+[
+"QE.1",
+"Establecer formato para documentar errores",
+"QA, documentación y gestión",
+"5 horas",
+"Sin dependencia"
+],
+[
+"QT.1",
+"Crear plan de pruebas de batería VR",
+"QA, documentación y gestión",
+"1 día",
+"DT.2"
+],
+[
+"QT.2",
+"Crear plan de pruebas del juego de ritmo",
+"QA, documentación y gestión",
+"1 día",
+"JA.1"
+],
+[
+"QT.3",
+"Crear plan de pruebas de interfaz",
+"QA, documentación y gestión",
+"1 día",
+"IM.1"
+],
+[
+"QT.4",
+"Crear plan de pruebas de audio",
+"QA, documentación y gestión",
+"5 horas",
+"SP.1"
+],
+[
+"QT.5",
+"Crear plan de pruebas de rendimiento VR",
+"QA, documentación y gestión",
+"1 día",
+"AC.3"
+],
+[
+"QT.6",
+"Realizar pruebas unitarias de batería",
+"QA, documentación y gestión",
+"1 a 2 días",
+"DR.1"
+],
+[
+"QT.7",
+"Realizar pruebas del sistema de ritmo",
+"QA, documentación y gestión",
+"1 a 2 días",
+"JI.5"
+],
+[
+"QT.8",
+"Realizar pruebas con usuarios del prototipo integrado",
+"QA, documentación y gestión",
+"2 a 3 días",
+"JI.5, IR.2, AO.5"
+],
+[
+"QE.2",
+"Registrar errores, observaciones y sugerencias de usuarios",
+"QA, documentación y gestión",
+"1 día",
+"QT.8"
+],
+[
+"QE.3",
+"Clasificar errores por gravedad y prioridad",
+"QA, documentación y gestión",
+"5 horas",
+"QE.2"
+],
+[
+"QE.4",
+"Asignar errores a las áreas correspondientes",
+"QA, documentación y gestión",
+"3 horas",
+"QE.3"
+],
+[
+"QE.5",
+"Verificar corrección de errores críticos",
+"QA, documentación y gestión",
+"1 a 2 días",
+"QE.4"
+],
+[
+"QV.1",
+"Realizar prueba completa desde inicio hasta final de una sesión",
+"QA, documentación y gestión",
+"1 día",
+"QE.5"
+],
+[
+"QV.2",
+"Evaluar estabilidad y presencia de cierres inesperados",
+"QA, documentación y gestión",
+"1 día",
+"QV.1"
+],
+[
+"QV.3",
+"Medir FPS del proyecto en el visor objetivo",
+"QA, documentación y gestión",
+"5 horas",
+"AO.3, QV.1"
+],
+[
+"QV.4",
+"Evaluar latencia entre golpe físico, sonido y detección",
+"QA, documentación y gestión",
+"1 día",
+"DR.2, SI.4, JY"
+],
+[
+"QV.5",
+"Evaluar comodidad de la experiencia VR",
+"QA, documentación y gestión",
+"1 día",
+"QT.8"
+],
+[
+"QC.1",
+"Registrar versiones importantes del proyecto",
+"QA, documentación y gestión",
+"Durante todo el proyecto",
+"DP.2"
+],
+[
+"QC.2",
+"Documentar avances semanales",
+"QA, documentación y gestión",
+"2 horas por semana",
+"Sin dependencia"
+],
+[
+"QC.3",
+"Mantener actualizada la bibliografía del proyecto",
+"QA, documentación y gestión",
+"2 horas por semana",
+"EB.1"
+],
+[
+"QC.4",
+"Mantener registro de assets y sus licencias",
+"QA, documentación y gestión",
+"3 horas por semana",
+"AA.2"
+],
+[
+"QC.5",
+"Mantener registro de música y licencias utilizadas",
+"QA, documentación y gestión",
+"2 horas por semana",
+"ML.2"
+],
+[
+"QD.1",
+"Crear documentación de arquitectura del software",
+"QA, documentación y gestión",
+"2 días",
+"DG.7, JI.5"
+],
+[
+"QD.2",
+"Crear diagrama del flujo general de la aplicación",
+"QA, documentación y gestión",
+"1 día",
+"EI, IM.2"
+],
+[
+"QD.3",
+"Documentar funcionamiento del sistema de detección de golpes",
+"QA, documentación y gestión",
+"1 día",
+"DG.7"
+],
+[
+"QD.4",
+"Documentar funcionamiento del juego de ritmo",
+"QA, documentación y gestión",
+"1 día",
+"JI.5"
+],
+[
+"QD.5",
+"Documentar sistema de intensidad de los golpes",
+"QA, documentación y gestión",
+"5 horas",
+"DG.4, SI.2"
+],
+[
+"QD.6",
+"Documentar selección y fundamentación del entorno virtual",
+"QA, documentación y gestión",
+"1 día",
+"AO.5"
+],
+[
+"QD.7",
+"Documentar fundamentación de la música utilizada",
+"QA, documentación y gestión",
+"1 día",
+"MN.2"
+],
+[
+"QD.8",
+"Documentar diseño y funcionamiento de la interfaz",
+"QA, documentación y gestión",
+"1 día",
+"IR.2"
+],
+[
+"QM.1",
+"Elaborar manual básico de usuario",
+"QA, documentación y gestión",
+"2 días",
+"QV.1"
+],
+[
+"QM.2",
+"Elaborar manual técnico de instalación y ejecución",
+"QA, documentación y gestión",
+"1 día",
+"QV.1"
+],
+[
+"QF.1",
+"Preparar capturas de pantalla del proyecto",
+"QA, documentación y gestión",
+"5 horas",
+"QV.1"
+],
+[
+"QF.2",
+"Grabar evidencia en video del funcionamiento",
+"QA, documentación y gestión",
+"1 día",
+"QV.1"
+],
+[
+"QI.1",
+"Analizar resultados obtenidos durante las pruebas",
+"QA, documentación y gestión",
+"2 días",
+"QT.8, QE.2"
+],
+[
+"QI.2",
+"Redactar apartado de resultados del proyecto",
+"QA, documentación y gestión",
+"2 días",
+"QI.1"
+],
+[
+"QI.3",
+"Redactar conclusiones y limitaciones",
+"QA, documentación y gestión",
+"1 día",
+"QI.2"
+],
+[
+"QI.4",
+"Integrar todas las secciones del informe final",
+"QA, documentación y gestión",
+"2 días",
+"ET.1, QD.1, QI.2, QI.3"
+],
+[
+"QI.5",
+"Revisar redacción, ortografía, referencias y formato",
+"QA, documentación y gestión",
+"2 días",
+"QI.4"
+],
+[
+"QB.1",
+"Generar build candidata a versión final",
+"QA, documentación y gestión",
+"1 día",
+"QE.5"
+],
+[
+"QB.2",
+"Probar build final en el visor VR objetivo",
+"QA, documentación y gestión",
+"1 día",
+"QB.1"
+],
+[
+"QB.3",
+"Corregir errores críticos encontrados en build final",
+"QA, documentación y gestión",
+"1 a 3 días",
+"QB.2"
+],
+[
+"QB.4",
+"Generar versión definitiva del videojuego",
+"QA, documentación y gestión",
+"1 día",
+"QB.3"
+],
+[
+"QX",
+"Preparar presentación y demostración final del proyecto",
+"QA, documentación y gestión",
+"2 días",
+"QI.4, QB.4"
+]
+]
