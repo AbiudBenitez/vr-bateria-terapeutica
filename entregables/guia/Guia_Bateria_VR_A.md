@@ -685,13 +685,21 @@ Origin; cuando el juego teletransporta al usuario, lo que se mueve es el Origin.
 la raíz de la trampa de espacios de coordenadas del capítulo 4: todo lo que el hardware reporta
 está expresado **respecto al Origin**, no respecto al mundo.
 
-El prefab del `XR Origin (VR)` trae ya, colgando de un `Camera Offset`, la cámara y un objeto por
-cada mano con su `TrackedPoseDriver` configurado. Los nombres exactos de esos hijos cambian entre
-versiones del XR Interaction Toolkit — en 3.x suelen ser `Left Controller` y `Right Controller`
-bajo `XR Origin (XR Rig) → Camera Offset`. <!-- VERIFICAR: nombres exactos de los hijos del prefab XR Origin (VR) en la versión de XRI 3.x instalada -->
-Lo que importa no es el nombre sino **cuál de esos objetos tiene el componente `Tracked Pose Driver`
-de la mano derecha**: ése es el que en el capítulo 4 se arrastra al campo `Controller` del
-`StickTracker`.
+El prefab del `XR Origin (VR)` trae ya la cámara y un objeto por cada mano con su
+`TrackedPoseDriver` configurado. La jerarquía en XRI 3.x es:
+
+```
+XR Origin (XR Rig)          <- este es el que va al campo xrOrigin del StickTracker
+└── Camera Offset
+    ├── Main Camera
+    ├── Left Controller
+    └── Right Controller    <- este va al campo controller, y de él cuelga la baqueta
+```
+
+Aun así, **no te fíes del nombre, fíate del componente.** Lo que decide cuál objeto arrastrar en el
+capítulo 4 es cuál tiene el `Tracked Pose Driver` de la mano derecha. Si tu versión los nombra
+distinto, selecciónalos y míralo en el inspector: el nombre es decoración, el componente es el
+contrato.
 
 ## 3.2 El `TrackedPoseDriver` y la pose predicha
 
