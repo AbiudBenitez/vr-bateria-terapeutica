@@ -320,8 +320,10 @@ Apuntes de dónde vive cada uno y qué pasa si falta:
 
 **Advertencia: `DSP Buffer Size` en "Best Latency" es el ajuste de mayor impacto en latencia de
 todo el proyecto.** Un solo desplegable decide alrededor de 6 ms del presupuesto, y el presupuesto
-completo es de ~26 ms contra un umbral de 30 ms. Dejarlo en el valor por defecto consume de golpe
-la quinta parte del margen disponible, antes de escribir una línea de código de percusión.
+completo es de ~26 ms. El acta fija el umbral en 30 ms; esta guía trabaja contra **+25 ms** para
+dejar margen, y el criterio completo del capítulo 5 es **−10 ms ≤ Δ(p90) ≤ +25 ms**. Dejar el
+buffer en su valor por defecto consume de golpe casi una cuarta parte de ese margen, antes de
+escribir una línea de código de percusión.
 
 `System Sample Rate` en 48000 elimina el remuestreo: el Quest reproduce a 48 kHz de forma nativa y
 cualquier otra tasa obliga al runtime a convertir, lo que añade trabajo y retardo por cada voz.
@@ -1693,7 +1695,9 @@ contacto a partir de la velocidad.
 
 Por eso el criterio de aceptación es **asimétrico**:
 
-$$-10\text{ ms} \le \Delta(p_{90}) \le +25\text{ ms}$$
+```
+-10 ms  ≤  Δ(p90)  ≤  +25 ms
+```
 
 El oído perdona alrededor de 10 ms de adelanto —lo integra como simultáneo— y castiga con dureza
 el retraso. Un sonido 20 ms tarde se percibe como un eco despegado del gesto; un sonido 8 ms
