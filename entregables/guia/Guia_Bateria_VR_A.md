@@ -20,7 +20,7 @@ aislar.
 |---|---|---|---|
 | 0 | Traducción de lo deprecado | Tabla de equivalencias del tutorial viejo | **Escrito** |
 | 1 | Cadena completa hasta el visor | Cubo gris girando dentro del Quest 3S | **Escrito** |
-| 2 | Apéndice: C# para quien viene de Java | Diferencias que muerden, no fundamentos | Pendiente |
+| 2 | Apéndice: C# para quien viene de Java | Diferencias que muerden, no fundamentos | **Escrito** |
 | 3 | Manos que se mueven y vibran | `XR Origin`, pose, `deviceVelocity`, `SendHapticImpulse` | Pendiente |
 | 4 | El pad suena al golpearlo | Plano armado, cruce, predicción, `PlayScheduled` | Pendiente |
 | 5 | Número de latencia real, en ms | El hito Go/No-Go del acta | Pendiente |
@@ -431,3 +431,229 @@ instaladas por `adb` no aparecen en la biblioteca normal).
 
 **Criterio de término: un cubo gris girando dentro del Quest 3S, desplegado desde la Mac. Sin esto
 no se avanza.**
+
+---
+
+# Capítulo 2 — Apéndice: C# para quien viene de Java
+
+Esto no es un curso de C#. C# y Java comparten sintaxis, tipado estático, recolección de basura,
+clases, interfaces, genéricos y herencia simple con interfaces múltiples. Quien escribió Java
+escribe C# el primer día. Lo que muerde son diez diferencias concretas, y todas aparecen en el
+código de este proyecto. Este capítulo es una tabla de consulta: se lee de corrido una vez y se
+vuelve a él cuando algo no compila o se comporta raro.
+
+Los ejemplos de C# están tomados de `proyecto-unity/Assets/Scripts/Drum/`.
+
+## 2.1 `struct` frente a `class` — semántica de valor
+
+En Java todo objeto es referencia. En C# un `struct` es un **tipo por valor**: se copia al
+asignarlo y al pasarlo, vive en la pila cuando es local y **no genera basura**.
+
+```java
+// Java: DrumHit sería una clase; cada golpe es una asignación en el heap
+final class DrumHit { final float velocity; /* ... */ }
+```
+
+```csharp
+// C#: readonly struct. Se copia, no se asigna en el heap, no alimenta al recolector.
+public readonly struct DrumHit { public readonly float Velocity; /* ... */ }
+```
+
+**Por qué `DrumHit` es struct.** Está en el camino caliente: se crea en cada golpe, dentro de
+`Update()`. Como clase, cada golpe sería una asignación en el heap, y el recolector de basura
+produce caídas de frame. Una caída de frame es latencia, que es el riesgo dominante del proyecto.
+
+## 2.2 Properties y la forma de expresión `=>`
+
+Java resuelve el encapsulamiento con métodos `getX()`. C# tiene *properties*: se usan como campos
+y se implementan como métodos.
+
+```java
+private float armDistance;
+public float getArmDistance() { return armDistance; }   // pad.getArmDistance()
+```
+
+```csharp
+[SerializeField] float armDistance = 0.06f;
+public float ArmDistance => armDistance;                 // pad.ArmDistance
+```
+
+El `=>` es la **forma de expresión**: cuerpo de una sola expresión, sin llaves ni `return`. Sirve
+también para métodos: `public static float NormalSpeed(Vector3 v, Vector3 n) => -Vector3.Dot(v, n);`
+Convención: las properties públicas van en `PascalCase`, los campos privados en `camelCase`.
+
+## 2.3 `[SerializeField]` — privado pero visible en el inspector
+
+Unity muestra en el inspector los campos **públicos** y los privados marcados con
+`[SerializeField]`. La segunda vía es la correcta.
+
+```java
+public float radius = 0.15f;      // cualquiera lo escribe desde cualquier parte
+```
+
+```csharp
+[SerializeField, Tooltip("Radio útil del pad, en metros.")]
+float radius = 0.15f;             // editable en el inspector, invisible para el resto del código
+```
+
+Hacerlo público para verlo en el inspector rompe el encapsulamiento a cambio de nada: el valor se
+ajusta igual, sin recompilar, y el código externo no puede tocarlo. `[Tooltip]`, `[Header]`,
+`[Min(1)]` y `[Range]` documentan y validan el campo en la propia interfaz del editor.
+
+## 2.4 El `null` de Unity que no es `null`
+
+**Ésta es la diferencia que más tiempo cuesta.** `Object.Destroy` no borra el objeto administrado
+de C#: lo deja marcado como destruido del lado nativo. Unity **sobrecarga el operador `==`** para
+que ese objeto se compare igual a `null` aunque la referencia siga existiendo.
+
+```java
+if (obj != null) obj.doThing();          // Java: null es null, no hay ambigüedad
+```
+
+```csharp
+if (go != null) Object.DestroyImmediate(go);   // usa el == sobrecargado: correcto
+go?.DoThing();                                 // ?. NO usa la sobrecarga: entra y revienta
+```
+
+Los operadores `?.`, `??` y `??=` están definidos por el lenguaje y **no llaman a la sobrecarga**:
+sobre un `MonoBehaviour` destruido ven una referencia no nula y ejecutan la llamada, que falla con
+`MissingReferenceException`. Regla del proyecto: sobre cualquier cosa derivada de
+`UnityEngine.Object` se compara con `!= null` explícito, nunca con `?.`. Por eso `DrumHitFanout`
+escribe `if (targets[i] != null)` y no `targets[i]?.Handle(in hit)`.
+
+## 2.5 `var`
+
+Inferencia de tipo en variables locales. Equivale al `var` de Java 10+, y en C# existe desde 2007,
+así que su uso es idiomático, no exótico.
+
+```java
+InputDevice device = InputDevices.getDeviceAtXRNode(hand);
+```
+
+```csharp
+var device = InputDevices.GetDeviceAtXRNode(hand);   // el tipo es evidente por el nombre
+var src    = pool[next];                             // AudioSource, obvio por el contexto
+```
+
+Solo vale para locales, exige inicializador, y no cambia nada en tiempo de ejecución: el tipo
+sigue siendo estático. Se usa cuando el tipo ya está escrito a la derecha; se escribe explícito
+cuando no lo está (`float dPrev = ...`).
+
+## 2.6 Eventos y `delegate` frente a las interfaces de callback de Java
+
+Java simula los callbacks con interfaces de un método (`Runnable`, `ActionListener`). C# tiene
+tipos función de primera clase: `delegate`, `Action<T>`, `Func<T>` y `event`.
+
+```java
+button.addListener(new Listener() { public void onHit(DrumHit h) { play(h); } });
+```
+
+```csharp
+public event System.Action<DrumHit> OnHit;   // declaración
+OnHit += h => Play(h);                       // suscripción
+OnHit?.Invoke(hit);                          // disparo, seguro si nadie escucha
+```
+
+**Este proyecto no los usa, a propósito.** `DrumHitSink` es una clase abstracta que hereda de
+`MonoBehaviour` porque Unity **no serializa** campos de tipo delegado ni de tipo interfaz: no se
+podrían conectar los receptores arrastrándolos en el inspector, que es justamente el flujo de
+trabajo del capítulo 4. El comentario del propio archivo lo dice: *"Clase abstracta y no interfaz,
+para poder asignarla desde el inspector"*.
+
+## 2.7 `out` y `ref`
+
+Java solo pasa por valor y devuelve un valor. C# permite pasar por referencia: `ref` para
+entrada-salida, `out` para salida pura (el método está obligado a asignarla).
+
+```java
+Vector3 v = device.getVelocity();        // o un objeto envoltorio si además hay que decir "falló"
+```
+
+```csharp
+if (device.TryGetFeatureValue(CommonUsages.deviceVelocity, out Vector3 v)) { /* v es válida */ }
+```
+
+El patrón `TryGet...` es omnipresente en la API de XR: devuelve `bool` (¿el dispositivo ofrece esa
+característica?) y entrega el dato por `out`. La variable se declara **dentro** de la llamada. Esto
+es lo que evita recibir un cero silencioso cuando un runtime no expone la velocidad, y por eso el
+capítulo 0 marcó esta API como más verbosa a propósito.
+
+## 2.8 `readonly` frente a `final`
+
+`readonly` es el `final` de campos: se asigna en la declaración o en el constructor, y después no.
+La diferencia importante es que **también se aplica a un `struct` entero**.
+
+```java
+private final List<Pending> pending = new ArrayList<>();
+```
+
+```csharp
+readonly List<Pending> pending = new(8);      // la referencia es fija; la lista sí se modifica
+public readonly struct DrumHit { }            // el struct entero es inmutable
+```
+
+Igual que `final` en Java, `readonly` congela la **referencia**, no el contenido: a esa lista se
+le siguen añadiendo elementos. La constante de compilación es `const`, no `readonly`. El `new(8)`
+sin repetir el tipo es la *target-typed new expression*, azúcar de C# 9.
+
+## 2.9 No hay excepciones verificadas
+
+C# no tiene `throws` en la firma. Ninguna excepción es verificada: nada obliga a capturar ni a
+declarar.
+
+```java
+void dump() throws IOException { Files.writeString(path, json); }   // obligatorio declararlo
+```
+
+```csharp
+void Dump() { File.WriteAllText(ruta, JsonUtility.ToJson(volcado, true)); }   // sin throws
+```
+
+Consecuencia práctica: el compilador no avisa de nada, así que los puntos de falla se identifican
+leyendo la documentación, no la firma. `LatencyProbe.Dump()` escribe a disco sin `try`: si falla,
+se pierde un archivo de diagnóstico, no una sesión. La decisión es explícita, no un olvido.
+
+## 2.10 `in` en parámetros
+
+`in` pasa un argumento **por referencia y de solo lectura**. Es la contraparte de `out`: entrada
+pura, sin copia.
+
+```java
+void handle(DrumHit hit) { }      // en Java siempre se copia la referencia, nunca el objeto
+```
+
+```csharp
+public abstract void Handle(in DrumHit hit);        // por referencia, inmodificable
+targets[i].Handle(in hit);                          // en la llamada también se escribe 'in'
+```
+
+**Por qué `DrumHitSink.Handle` lo usa.** `DrumHit` es un struct de cinco campos; pasarlo por valor
+lo copiaría una vez por receptor, y `DrumHitFanout` lo reparte a tres. `in` evita esas copias sin
+renunciar a la semántica de valor. Solo compila sobre un `readonly struct` sin efectos raros: si el
+struct fuera mutable, el compilador insertaría copias defensivas y el `in` no ahorraría nada.
+
+## 2.11 Lo que se traduce sin pensar
+
+| Java | C# |
+|---|---|
+| `package` | `namespace` |
+| `import` | `using` |
+| `final class` | `sealed class` |
+| `@Override` | `override` (obligatorio, no opcional) |
+| `String.format("%.2f", x)` | `$"{x:F2}"` (cadena interpolada) |
+| `toString()` | `ToString()` |
+| `instanceof` | `is` |
+| `List<T>` / `ArrayList<T>` | `List<T>` |
+| `Map<K,V>` / `HashMap<K,V>` | `Dictionary<K,V>` |
+| `for (Pad p : pads)` | `foreach (var p in pads)` |
+| métodos en `camelCase` | métodos y properties en `PascalCase` |
+
+Dos trampas de esa tabla: `override` es **obligatorio** en C# —omitirlo no sobrescribe, oculta el
+método del padre y el compilador solo emite una advertencia—, y el método base debe estar marcado
+`virtual` o `abstract` para poder sobrescribirse. En Java todo método es sobrescribible por
+defecto; en C# no.
+
+---
+
+**Criterio de término: ninguno. Este capítulo no produce artefacto.** Es material de consulta para
+los capítulos 3 y 4, que sí lo producen.
