@@ -23,9 +23,9 @@ aislar.
 | 2 | Apéndice: C# para quien viene de Java | Diferencias que muerden, no fundamentos | **Escrito** |
 | 3 | Manos que se mueven y vibran | `XR Origin`, pose, `deviceVelocity`, `SendHapticImpulse` | **Escrito** |
 | 4 | El pad suena al golpearlo | Plano armado, cruce, predicción, `PlayScheduled` | **Escrito** |
-| 5 | Número de latencia real, en ms | El hito Go/No-Go del acta | Pendiente |
-| 6 | Ajustes que bajan la latencia | Best Latency, 48 kHz, Vulkan, 72 vs 90 Hz, remedición | Pendiente |
-| 7 | Esbozo de la etapa B | Arquitectura de las seis piezas | Pendiente |
+| 5 | Número de latencia real, en ms | El hito Go/No-Go del acta | **Escrito** |
+| 6 | Ajustes que bajan la latencia | Best Latency, 48 kHz, Vulkan, 72 vs 90 Hz, remedición | **Escrito** |
+| 7 | Esbozo de la etapa B | Arquitectura de las seis piezas | **Escrito** |
 
 Los capítulos 4 y 5 concentran alrededor del 60% del documento final. Los demás existen para
 llegar a ellos sin tropezar.
@@ -1531,3 +1531,501 @@ Si el Test Runner aparece vacío o no lista la pestaña EditMode, falta el paque
 **Criterio de término: el pad suena al golpearlo dentro del Quest 3S, con vibración, y el volumen
 cambia según la fuerza del golpe.** En el visor físico, no en el simulador. A partir de aquí el
 sistema existe; lo que falta es saber cuántos milisegundos tarda, y eso es el capítulo 5.
+
+---
+
+# Capítulo 5 — Número de latencia real, en ms
+
+Éste es el capítulo que decide si el proyecto sigue. El acta fija la medición de latencia como
+**hito Go/No-Go en la semana 4**, no como verificación final. La razón es económica: si el golpe no
+se siente causal, las seis piezas, el round-robin, las métricas y la sesión terapéutica son trabajo
+construido sobre una base rota. Más vale saberlo en la semana 4 que en la 10.
+
+## 5.1 Por qué no contar frames de video
+
+El método que todo el mundo intenta primero es grabar en cámara lenta y contar frames entre el
+golpe y el sonido. Un celular a 240 fps da un frame cada **4.17 ms**. Con un umbral de 25 ms, eso
+es una precisión del 17% del rango que se quiere medir: suficiente para saber si estás en 100 ms o
+en 20, inútil para decidir entre 22 y 28.
+
+La grabación de audio no tiene ese problema. A 48 kHz cada muestra es **0.021 ms**. Y como resulta
+que el golpe físico *produce sonido por sí mismo*, ese sonido puede servir de referencia.
+
+## 5.2 El clic físico como verdad de referencia
+
+Se coloca un objeto real —canto de mesa, libro grueso, pad de práctica de batería— exactamente
+donde vive el pad virtual. Al golpear con el control se producen **dos** sonidos:
+
+```
+                    t0                 t1
+                    │                  │
+  ──────────────────┼──────────────────┼──────────────>  tiempo
+                    │                  │
+              clic del control    bombo virtual
+              contra la mesa      por las bocinas
+              (INSTANTE REAL      del visor
+               DEL IMPACTO)
+
+                    └────── Δ ─────────┘
+```
+
+Ambos entran por el mismo micrófono, al mismo archivo, en la misma línea de tiempo. **Δ = t1 − t0
+es la latencia punta a punta**, con precisión de muestra y sin ninguna calibración de equipo.
+
+No hace falta un micrófono bueno. El del celular sobra: lo único que importa es la posición
+relativa de dos transitorios dentro de la misma grabación, y eso es inmune a la calidad del
+micrófono, a su respuesta en frecuencia y a su ganancia.
+
+## 5.3 Montaje
+
+**1. La superficie física.** Algo rígido que produzca un clic seco. Un libro de tapa dura, el canto
+de una mesa, un pad de práctica. Evita superficies blandas: una almohada no produce transitorio y
+te quedas sin `t0`.
+
+**2. Calibrar el pad virtual sobre ella.** Para esto existe `PadCalibrator`:
+
+```csharp
+if (pressed && !prevPressed)
+{
+    pad.transform.position = tip.position;
+    pad.transform.rotation = Quaternion.identity;   // normal = Vector3.up
+    Debug.Log($"[PadCalibrator] Pad recolocado en {tip.position}");
+}
+```
+
+Apoyas la punta del control sobre la superficie física, presionas el botón primario (A o X), y el
+pad virtual salta a ese punto exacto con la normal apuntando hacia arriba. La consola confirma con
+`[PadCalibrator] Pad recolocado en (...)`.
+
+**Sin este paso la medición no significa nada.** Si el pad virtual está 3 cm por encima de la mesa,
+el sonido virtual se dispara 3 cm antes del contacto físico y estarías midiendo un error de montaje
+disfrazado de latencia negativa.
+
+**3. Audio por las bocinas del visor. Jamás por Bluetooth.** Los audífonos inalámbricos añaden
+entre 100 y 200 ms de latencia propia. Medirías el códec Bluetooth, no tu aplicación. Las bocinas
+integradas del Quest 3S sirven perfectamente y además las capta el micrófono del celular junto con
+el clic, que es justo lo que se necesita.
+
+**4. Celular a menos de 30 cm** de la mesa y del visor. El sonido recorre **34 cm por milisegundo**.
+Si el micrófono está a 1 m de la mesa y a 30 cm del visor, la diferencia de trayecto mete ~2 ms de
+sesgo en Δ. A menos de 30 cm de ambos, el error de geometría queda por debajo del ruido de la
+medición.
+
+**5. Sample de bombo, no de tarola.** No es preferencia estética: es un **requisito del
+instrumento de medición**. La herramienta distingue el clic físico del tambor virtual por centroide
+espectral, y una tarola tiene contenido espectral parecido al del clic del plástico. Si mides con
+tarola, `latencia.py` se niega a adivinar y te lo dice:
+
+```
+ValueError: Par en t=1.043s: centroides demasiado parecidos (4210 Hz y 3890 Hz, razón 1.1).
+No se puede saber cuál es el clic físico y cuál el tambor. Causa habitual: se midió con tarola
+en lugar de bombo. El protocolo exige un sample grave, porque el clic del plástico y la tarola
+tienen contenido espectral parecido.
+```
+
+El umbral está en `RAZON_CENTROIDE_MIN = 2.5` dentro de `scripts/latencia.py`. Con bombo la razón
+sale del orden de 15 a 80; con tarola, cerca de 1.
+
+**6. Grabar.** Cualquier grabadora de voz que produzca WAV. A 48 kHz si se puede elegir. Mono o
+estéreo da igual: la herramienta promedia los canales.
+
+## 5.4 Dos corridas, veinte golpes cada una
+
+**Corrida A — con predicción.** Configuración normal, `armDistance = 0.06` en el `DrumPad`.
+
+**Corrida B — sin predicción.** Pones `armDistance = 0` en el inspector del `DrumPad` y vuelves a
+compilar. Con distancia de armado cero, el plano armado coincide con la superficie del pad y
+`CrossSolver.ImpactDsp` devuelve el instante del cruce sin sumar nada: el sonido sale cuando el
+frame lo detecta, sin adelanto.
+
+**Veinte golpes por corrida.** No cinco. El número que decide es el percentil 90, y un p90 sobre
+cinco muestras no es un percentil, es el máximo con otro nombre.
+
+Ese par de números —A contra B— es la **evidencia documental** de que la mitigación del plano
+armado funciona. Sin la corrida B no puedes afirmar en el informe que la predicción sirve de algo;
+solo que el resultado final entró en rango, que es una afirmación mucho más débil.
+
+## 5.5 Análisis
+
+```bash
+~/.pyenv/versions/redes/bin/python scripts/latencia.py mediciones/con_prediccion.wav \
+    --etiqueta "con predicción" --detalle
+
+~/.pyenv/versions/redes/bin/python scripts/latencia.py mediciones/sin_prediccion.wav \
+    --etiqueta "sin predicción"
+```
+
+La salida tiene esta forma:
+
+```
+Corrida: con predicción
+Archivo: mediciones/con_prediccion.wav  (48000 Hz, 9.0 s)
+Transitorios detectados: 41   Golpes emparejados: 20
+Mediana:  +11.29 ms
+p90:      +13.06 ms   <- el que decide
+Rango:     +8.23 ..  +14.56 ms
+Criterio -10 .. +25 ms  ->  APRUEBA
+```
+
+**Cómo leer el diagnóstico.** La línea de `Transitorios detectados` contra `Golpes emparejados` es
+lo primero que hay que mirar. Veinte golpes deberían producir alrededor de **40 transitorios** y
+**20 emparejados**. Si ves 20 transitorios y 10 emparejados, el detector se está perdiendo la mitad
+de los eventos. Si ves 80 transitorios, está inventando.
+
+**`--margen-db` es la perilla para eso.** El detector decide qué es un transitorio comparándolo
+contra una guarda que decae; el margen es cuántos decibelios tiene que superarla. El valor por
+defecto es 6 dB y tiene una **meseta estrecha**: a 5 dB aparecen transitorios de más, a 8 dB se
+pierde el segundo transitorio de los pares muy juntos. Sobre grabaciones reales, con ruido de sala
+y un micrófono de celular, puede hacer falta moverlo:
+
+```bash
+~/.pyenv/versions/redes/bin/python scripts/latencia.py mediciones/con_prediccion.wav --margen-db 7
+```
+
+Súbelo si detecta de más, bájalo si se pierde golpes. Y vuelve a mirar la línea de diagnóstico.
+
+## 5.6 Cómo leer un Δ negativo
+
+**Δ negativo no es un error de medición.** Significa que el bombo virtual sonó *antes* de que el
+control tocara la mesa. Con la predicción del plano armado bien calibrada, eso es exactamente lo
+que debe pasar: estás disparando el audio con 6 cm de anticipación, extrapolando el instante de
+contacto a partir de la velocidad.
+
+Por eso el criterio de aceptación es **asimétrico**:
+
+$$-10\text{ ms} \le \Delta(p_{90}) \le +25\text{ ms}$$
+
+El oído perdona alrededor de 10 ms de adelanto —lo integra como simultáneo— y castiga con dureza
+el retraso. Un sonido 20 ms tarde se percibe como un eco despegado del gesto; un sonido 8 ms
+temprano no se percibe en absoluto. **El objetivo no es Δ = 0.**
+
+**Y el p90 es el que decide, no la mediana.** El golpe que arruina la sensación no es el promedio:
+es el que llegó tarde. Una mediana de +12 ms con un p90 de +40 ms describe un sistema que se
+siente mal una de cada diez veces, y eso basta para romper la ilusión de causalidad.
+
+## 5.7 Qué hacer si no aprueba
+
+En este orden, del más barato al más caro:
+
+| # | Intervención | Ganancia típica |
+|---|---|---|
+| 1 | Verificar **DSP Buffer Size = Best Latency** y **System Sample Rate = 48000** en `Project Settings → Audio` | ~6 ms |
+| 2 | Subir `armDistance` de 0.06 a 0.08–0.10 m | Adelanta el disparo proporcionalmente |
+| 3 | Calibrar `poseToAudioOffset` (capítulo 6) | Hasta 10 ms |
+| 4 | Fijar 72 Hz en lugar de 90 Hz con caídas | Frame estable > frame corto e inestable |
+
+El paso 1 es el que más veces resuelve el problema, y es el que más veces se olvida: el valor por
+defecto de Unity en Android es 512 samples, que son ~11 ms en lugar de ~5.
+
+## 5.8 La sonda interna, y por qué no sustituye a esto
+
+`LatencyProbe` registra cada golpe dentro de la aplicación y vuelca un JSON al salir:
+
+```json
+{
+    "totalGolpes": 20,
+    "agendasTardias": 1,
+    "registros": [
+        { "dspImpacto": 1042.318, "dspAhora": 1042.303, "velocidad": 3.9, "agendaTardia": false }
+    ]
+}
+```
+
+El campo que importa es **`agendasTardias`**: cuenta cuántas veces la predicción llegó tarde y el
+audio tuvo que dispararse de inmediato en lugar de agendarse. Es tu métrica interna de calidad. Un
+porcentaje alto significa que `armDistance` es demasiado corto para la velocidad a la que golpea
+ese usuario.
+
+El archivo queda en `Application.persistentDataPath` del visor. Para sacarlo:
+
+```bash
+$ADB shell ls /sdcard/Android/data/<tu.bundle.id>/files/
+$ADB pull /sdcard/Android/data/<tu.bundle.id>/files/latencia_20260925_143012.json mediciones/
+```
+
+**Limitación declarada, y es importante:** la sonda mide **solo el tramo de audio**. Conoce el
+instante en que la aplicación decidió disparar y el instante en que lo agendó, pero no sabe nada de
+la latencia del tracking ni de la presentación. Un sistema con 40 ms de latencia de tracking puede
+mostrar cero agendas tardías y sentirse horrible.
+
+**La medición externa de §5.2 es la que vale para el Go/No-Go.** La sonda es diagnóstico
+complementario, no sustituto.
+
+## 5.9 Registrar el resultado
+
+El hito exige dejar constancia. Anota, con fecha:
+
+| | Con predicción | Sin predicción |
+|---|---|---|
+| Golpes | 20 | 20 |
+| Mediana | | |
+| p90 | | |
+| Rango | | |
+| Veredicto | | |
+
+Y la configuración con la que se midió: versión de Unity, DSP Buffer Size, sample rate, tasa de
+refresco, `armDistance`, `poseToAudioOffset`. Sin eso el número no es reproducible y no sirve como
+evidencia.
+
+**Criterio de término del capítulo 5: dos números de latencia con mediana y p90, y un veredicto.**
+
+---
+
+# Capítulo 6 — Ajustes que bajan la latencia
+
+Este capítulo no se lee, se ejecuta. Cada ajuste se aplica, **se vuelve a medir con el protocolo
+del capítulo 5**, y se anota. Al final tienes una tabla con números tuyos, no con estimaciones de
+una guía.
+
+## 6.1 El presupuesto de latencia
+
+De dónde salen los milisegundos:
+
+| Fuente | Estimado |
+|---|---|
+| Tracking del controlador | ~10 ms |
+| Un frame a 90 Hz | ~11 ms |
+| Buffer de audio a 256 samples / 48 kHz (Best Latency) | ~5 ms |
+| **Total** | **~26 ms** |
+
+Con el valor por defecto de Unity en Android (512 samples) el total sube a **~32 ms**, que ya es
+claramente perceptible.
+
+Fíjate en algo: 26 ms ya está por encima del criterio de +25. **La predicción del plano armado es
+lo que hace que el sistema pase.** No es una optimización opcional que se añade al final; es la
+pieza que convierte un presupuesto de 26 ms en una latencia percibida cercana a cero, adelantando
+el disparo del audio unos 15 ms a velocidad típica de golpe. Sin ella, el proyecto no cumple.
+
+## 6.2 Los ajustes, en orden de impacto
+
+### DSP Buffer Size
+
+`Project Settings → Audio → DSP Buffer Size`. Tres opciones:
+
+| Valor | Samples | Latencia del buffer |
+|---|---|---|
+| Best performance | 1024 | ~21 ms |
+| Good latency | 512 (**defecto en Android**) | ~11 ms |
+| **Best latency** | **256** | **~5 ms** |
+
+Seis milisegundos entre el defecto y el correcto. Es el ajuste de mayor impacto de todo el
+proyecto y está a dos clics. Si el buffer es demasiado pequeño para el dispositivo aparecen
+crujidos y cortes; en el Quest 3S, 256 samples es estable.
+
+### System Sample Rate
+
+`Project Settings → Audio → System Sample Rate = 48000`. Es la tasa nativa del Quest. Cualquier
+otro valor obliga al sistema a remuestrear en tiempo real, lo que añade latencia y consume CPU sin
+darte nada. Asegúrate además de que tus samples de batería estén a 48 kHz: un WAV a 44.1 kHz se
+remuestrea igual, aunque el proyecto esté configurado a 48.
+
+### Vulkan en lugar de OpenGLES3
+
+Ya está en la lista del capítulo 1, pero vale repetir por qué importa aquí: si OpenGLES3 queda en
+la lista de Graphics APIs y Vulkan falla al arrancar, el visor cae silenciosamente al camino lento.
+La aplicación funciona, nadie ve un error, y tus mediciones de latencia dejan de describir el
+sistema que crees estar midiendo. Quita OpenGLES3 de la lista.
+
+### 72 Hz fijo frente a 90 Hz con caídas
+
+Contraintuitivo: **un frame estable de 13.9 ms (72 Hz) vence a uno inestable de 11.1 ms (90 Hz)**.
+
+La razón es que la latencia que se siente es la del peor frame, no la del promedio. A 90 Hz con
+caídas ocasionales a 45, los frames largos duran 22 ms y ésos son los que rompen la sensación de
+causalidad. A 72 Hz sostenido no hay frames largos.
+
+Empieza en 72 Hz fijo. Sube a 90 solo cuando el perfilado demuestre margen holgado, y vuelve a
+medir la latencia después de subir: si aparecen caídas, 90 Hz te está costando latencia en lugar de
+ahorrártela.
+
+### `spatialBlend = 0` y bypass de efectos
+
+Ya está en `DrumVoice`:
+
+```csharp
+src.spatialBlend          = 0f;     // 2D: sin coste de espacialización
+src.bypassEffects         = true;
+src.bypassListenerEffects = true;
+src.bypassReverbZones     = true;
+```
+
+Cada procesador en el camino del audio añade trabajo entre la decisión de reproducir y la salida
+por la bocina. La espacialización HRTF, en particular, no es gratis. Para la etapa A no aporta
+nada terapéutico y sí cuesta milisegundos. En la etapa B, si se quiere espacializar, hay que
+volver a medir.
+
+## 6.3 Calibrar `poseToAudioOffset`
+
+Éste es el único parámetro del sistema que **no se puede deducir**. Hay que medirlo.
+
+El campo está en `StickTracker`, con este tooltip:
+
+> Corrección constante entre el reloj de pose y el de audio, en segundos. Se determina midiendo,
+> en el capítulo 6. No se adivina.
+
+**Por qué existe.** La pose del controlador que Unity te entrega viene predicha al instante de
+*presentación en pantalla*, no al instante del reloj de audio. Son dos relojes distintos con un
+desfase que depende del runtime, de la tasa de refresco y del tamaño del buffer. Ese desfase es
+constante para una configuración dada, pero no hay API que lo revele.
+
+**Procedimiento.** Barrido de −10 a +10 ms en pasos de 2 ms. Para cada valor: compilas, mides 20
+golpes con el protocolo del capítulo 5, anotas el p90. Te quedas con el valor que lo minimiza en
+valor absoluto.
+
+| `poseToAudioOffset` | p90 medido |
+|---|---|
+| −0.010 | |
+| −0.008 | |
+| −0.006 | |
+| −0.004 | |
+| −0.002 | |
+| 0.000 | |
+| +0.002 | |
+| +0.004 | |
+| +0.006 | |
+| +0.008 | |
+| +0.010 | |
+
+Once compilaciones a 1–3 minutos cada una, más 20 golpes por corrida. Es una tarde de trabajo
+tediosa y es la más rentable del capítulo: recupera hasta 10 ms sin tocar una línea de código.
+
+**Atajo si vas con prisa:** mide primero en 0.000, −0.006 y +0.006. La curva es monótona a cada
+lado del mínimo, así que esos tres puntos te dicen hacia dónde ir y puedes refinar solo esa mitad.
+
+## 6.4 La tabla que produce este capítulo
+
+| Ajuste | Antes | Después | Ganancia |
+|---|---|---|---|
+| DSP Buffer 512 → 256 | | | |
+| Sample rate → 48000 | | | |
+| OpenGLES3 fuera | | | |
+| 90 Hz → 72 Hz fijo | | | |
+| `poseToAudioOffset` calibrado | | | |
+| **Total** | | | |
+
+Cada celda es un p90 sobre 20 golpes. Esta tabla es el anexo técnico del informe del hito.
+
+---
+
+# Capítulo 7 — Esbozo de la etapa B
+
+La etapa A entrega **un** pad. La B entrega el instrumento: seis piezas tocables con las dos manos,
+con dinámica y sin sonido robótico. Este capítulo no trae código; trae las decisiones de
+arquitectura y sus razones, para que cuando lo construyas no tengas que redescubrirlas.
+
+**No empieces la etapa B hasta que el capítulo 5 haya dado un veredicto de APRUEBA.**
+
+## 7.1 Seis piezas y el filtro de proximidad
+
+En la etapa A, `StickTracker` prueba un plano por mano y por frame. Con seis piezas y dos manos son
+**12 pruebas por frame**, y cada una implica dos productos punto y una proyección.
+
+La solución es el esquema híbrido: un **collider amplio** alrededor de cada pieza actúa como filtro
+de proximidad, y solo dentro de él se ejecuta la prueba de plano. El collider no detecta el golpe
+—eso seguiría teniendo el problema de tunelado y del paso de física del capítulo 4— sino que
+responde a una pregunta mucho más barata: *¿está esta baqueta cerca de esta pieza?*
+
+**Por qué en A no está.** Con un solo pad, el filtro no ahorra nada: cuesta lo mismo preguntar
+"¿estás cerca?" que hacer la prueba directamente. Meterlo en A habría sido complejidad sin
+beneficio, y además habría contaminado la medición de latencia con una capa más entre el
+movimiento y el sonido.
+
+## 7.2 Capas de velocity y round-robin
+
+Un solo sample reproducido a distinto volumen **no suena a batería**. Un bombo golpeado suave y uno
+golpeado fuerte no se diferencian en volumen: se diferencian en contenido espectral, en el ataque,
+en cuánto excita el parche. Subir el volumen de un golpe suave da un golpe suave más fuerte, no un
+golpe fuerte.
+
+De ahí las dos técnicas:
+
+- **Capas de velocity.** Tres grabaciones por pieza —suave, media, fuerte— y se elige según la
+  velocidad del golpe.
+- **Round-robin.** Dos o tres variantes por capa, alternadas. Sin esto, dos golpes seguidos
+  reproducen exactamente la misma onda y el oído lo detecta al instante como artificial. Es el
+  efecto "ametralladora" y es lo que más delata a una batería programada.
+
+Son 6 piezas × 3 capas × 2–3 variantes = **36 a 54 samples**. Conseguirlos o grabarlos es trabajo
+real y hay que planificarlo.
+
+La estructura para el mapeo ya está puesta en `DrumVoice`:
+
+```csharp
+[SerializeField] AnimationCurve velocityToGain =
+    AnimationCurve.Linear(0.4f, 0.2f, 6f, 1f);
+```
+
+Una `AnimationCurve` en el inspector se edita arrastrando puntos, **sin recompilar**. En la etapa B
+hay que extenderla a una curva que devuelva capa *y* ganancia, pero la decisión de exponer el mapeo
+como curva editable en lugar de constantes en código ya está tomada. El rango útil de velocidad es
+**0.5 a 8 m/s**.
+
+## 7.3 Dimensionar el pool de voces
+
+`DrumVoice` preinstancia N `AudioSource` en `Awake` y los reparte en círculo. Cuando se agotan, la
+voz más vieja se corta a media cola.
+
+Para dimensionarlo, el peor caso: un redoble de semicorcheas a 160 BPM son **10.6 golpes por
+segundo por mano**. Con la cola de un crash durando 3 segundos, un golpe de crash puede solaparse
+con 30 golpes posteriores. En la práctica, 8 voces por pieza bastan para tambores y 16 para
+platillos.
+
+**Lo que no se negocia es que se reserven en `Awake`.** Ni `Instantiate`, ni `AddComponent`, ni
+`new` en el camino del golpe. El recolector de basura produce caídas de frame, y en este proyecto
+una caída de frame es latencia medible.
+
+## 7.4 Anti-retrigger por posición
+
+Ya está implementado en `StickTracker` desde la etapa A:
+
+```csharp
+// Rearme POR POSICIÓN, no por tiempo: el pad revive cuando la baqueta vuelve a salir.
+// Un cooldown temporal destruiría los redobles.
+if (dNow > 0f && dPrev <= 0f) { armed[pad] = true; return; }
+```
+
+**Por qué se eligió así desde A** y no se dejó para B: el enfoque obvio —un cooldown de, digamos,
+100 ms tras cada golpe— parece funcionar en pruebas manuales y **destruye los redobles**.
+Semicorcheas a 160 BPM son 94 ms entre golpes. Un cooldown de 100 ms se comería uno de cada dos.
+
+El bug aparecería en la etapa B, al probar con alguien que sepa tocar, y sería difícil de
+diagnosticar porque en pruebas lentas todo funciona. Poner la histéresis correcta desde A cuesta
+tres líneas y evita ese descubrimiento tardío.
+
+## 7.5 Presupuesto de rendimiento
+
+Heredado del diseño técnico del proyecto, se aplica a la etapa B:
+
+- Menos de **500 draw calls**
+- Menos de **300 000 triángulos**
+- Texturas comprimidas en **ASTC**
+- Iluminación **completamente bakeada**, sin GI en tiempo real
+- **Single-pass instanced**
+- **Foveated rendering** activado
+- Objetivo **72 Hz fijo**; 90 Hz solo si el margen lo permite y se vuelve a medir la latencia
+
+## 7.6 Lo que queda fuera, y por qué
+
+| Fuera de alcance | Razón |
+|---|---|
+| Hi-hat con pedal abierto/cerrado | Requiere entrada continua y cross-fade entre estados. Complejidad alta, valor terapéutico bajo en esta etapa |
+| Audio espacializado (Meta XR Audio SDK) | Suma latencia al camino del audio. No aporta valor terapéutico medible: el usuario está frente a la batería, no rodeado de ella |
+| Baqueta con Rigidbody físico | La simulación física introduce el paso de física en el camino del golpe, que es exactamente lo que el capítulo 4 evitó |
+| Hand tracking | Descartado en el acta: no da háptico ni lectura confiable de velocidad, y ambos son esenciales |
+| `SessionDirector`, `RhythmGuide`, `MetricsLogger` completo, STAI-6 | Etapa C. Son la sesión terapéutica, no el instrumento |
+| Entorno 3D artístico | Etapa C |
+
+## 7.7 Qué sigue
+
+En este orden, sin saltarse pasos:
+
+1. **Correr las 15 pruebas EditMode.** `Window → General → Test Runner → EditMode → Run All`. No
+   necesitan visor. Si alguna falla, se arregla antes de tocar hardware.
+2. **Cumplir el capítulo 1** hasta ver el cubo girando dentro del Quest 3S.
+3. **Capítulos 3 y 4** hasta que el pad suene al golpearlo con háptico.
+4. **Capítulo 5**, hasta tener dos números y un veredicto.
+5. **Capítulo 6** si el veredicto fue NO APRUEBA, o para afinar si fue APRUEBA por poco margen.
+6. **Solo entonces**, la etapa B.
+
+El paso 4 es el hito. Todo lo anterior existe para llegar a él, y todo lo posterior depende de que
+haya salido bien.
