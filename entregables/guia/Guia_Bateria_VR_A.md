@@ -21,7 +21,7 @@ aislar.
 | 0 | Traducción de lo deprecado | Tabla de equivalencias del tutorial viejo | **Escrito** |
 | 1 | Cadena completa hasta el visor | Cubo gris girando dentro del Quest 3S | **Escrito** |
 | 2 | Apéndice: C# para quien viene de Java | Diferencias que muerden, no fundamentos | **Escrito** |
-| 3 | Manos que se mueven y vibran | `XR Origin`, pose, `deviceVelocity`, `SendHapticImpulse` | Pendiente |
+| 3 | Manos que se mueven y vibran | `XR Origin`, pose, `deviceVelocity`, `SendHapticImpulse` | **Escrito** |
 | 4 | El pad suena al golpearlo | Plano armado, cruce, predicción, `PlayScheduled` | Pendiente |
 | 5 | Número de latencia real, en ms | El hito Go/No-Go del acta | Pendiente |
 | 6 | Ajustes que bajan la latencia | Best Latency, 48 kHz, Vulkan, 72 vs 90 Hz, remedición | Pendiente |
@@ -657,3 +657,241 @@ defecto; en C# no.
 
 **Criterio de término: ninguno. Este capítulo no produce artefacto.** Es material de consulta para
 los capítulos 3 y 4, que sí lo producen.
+
+---
+
+# Capítulo 3 — Manos que se mueven y vibran
+
+El capítulo 1 demostró que la cadena llega al visor. Éste demuestra que **el visor devuelve
+datos**: posición, velocidad y velocidad angular de cada control, y vibración de vuelta. Son las
+tres entradas y la única salida táctil que el capítulo 4 necesita. Antes de escribir una línea de
+detección de golpes hay que ver esos números moverse.
+
+El orden importa: si la velocidad no llega, un golpe que no suena tiene dos explicaciones posibles
+(la detección está mal, o el dato nunca llegó) y hay que descartar una a ciegas. Aquí se descarta.
+
+## 3.1 El XR Origin en la escena
+
+1. `File → New Scene`, plantilla básica de URP, guardar como `Assets/Scenes/Cap03_Manos.unity`.
+2. `GameObject → XR → XR Origin (VR)`.
+3. Borrar la `Main Camera` que trae la escena por defecto. El `XR Origin` aporta la suya; dos
+   cámaras compiten y el resultado es impredecible.
+4. Añadir un plano o un cubo de referencia visual en el suelo. Sin nada fijo alrededor no se
+   percibe si la cabeza se mueve.
+
+**Qué es el XR Origin.** Es el objeto que representa **el suelo del jugador dentro del mundo**.
+De él cuelgan la cámara y los controles. Cuando el usuario camina, la cámara se mueve *dentro* del
+Origin; cuando el juego teletransporta al usuario, lo que se mueve es el Origin. Esa distinción es
+la raíz de la trampa de espacios de coordenadas del capítulo 4: todo lo que el hardware reporta
+está expresado **respecto al Origin**, no respecto al mundo.
+
+El prefab del `XR Origin (VR)` trae ya, colgando de un `Camera Offset`, la cámara y un objeto por
+cada mano con su `TrackedPoseDriver` configurado. Los nombres exactos de esos hijos cambian entre
+versiones del XR Interaction Toolkit — en 3.x suelen ser `Left Controller` y `Right Controller`
+bajo `XR Origin (XR Rig) → Camera Offset`. <!-- VERIFICAR: nombres exactos de los hijos del prefab XR Origin (VR) en la versión de XRI 3.x instalada -->
+Lo que importa no es el nombre sino **cuál de esos objetos tiene el componente `Tracked Pose Driver`
+de la mano derecha**: ése es el que en el capítulo 4 se arrastra al campo `Controller` del
+`StickTracker`.
+
+## 3.2 El `TrackedPoseDriver` y la pose predicha
+
+El `TrackedPoseDriver` es un componente que **escribe la pose del dispositivo en el `Transform` de
+su GameObject**, cada frame. No hay que llamarlo: se limita a copiar posición y rotación del
+control al objeto. Por eso basta con colgar la baqueta de ese objeto para que la baqueta siga la
+mano; no se escribe código de seguimiento.
+
+El dato que hay que retener para el capítulo 4 es **cuándo** vale esa pose. El runtime de OpenXR
+no entrega la posición que el control tenía cuando se preguntó: entrega la que el modelo de
+movimiento predice que tendrá **en el instante en que ese frame aparezca ante los ojos**. Esa
+predicción cubre el tiempo de render y de escaneo de la pantalla, y es la razón de que en un visor
+moderno la mano virtual no se sienta arrastrada.
+
+Tres consecuencias directas:
+
+- **La pose ya viene adelantada.** El capítulo 4 no debe volver a adelantarla por su cuenta: lo que
+  predice es el instante del *impacto*, que es otra cosa.
+- **El reloj de la pose y el reloj del audio no son el mismo.** La pose vive en el tiempo de
+  presentación del frame; `AudioSettings.dspTime` vive en el tiempo del hilo de audio. La diferencia
+  entre ambos es un desfase pequeño y **constante**, y por eso `StickTracker` expone un campo
+  `poseToAudioOffset`, con este comentario en el archivo:
+
+  > *"Corrección constante entre el reloj de pose y el de audio, en segundos. Se determina midiendo,
+  > en el capítulo 6. No se adivina."*
+
+  Se deja en `0` hasta tener una medición real delante.
+- **La velocidad reportada corresponde a esa misma pose predicha**, no a la posición cruda del
+  sensor. Es el dato coherente con la mano que el usuario ve.
+
+## 3.3 Leer el dispositivo: `devicePosition`, `deviceVelocity`, `deviceAngularVelocity`
+
+El acceso al hardware es siempre el mismo patrón de dos pasos: se obtiene el dispositivo por nodo
+(`XRNode.RightHand`, `XRNode.LeftHand`, `XRNode.Head`) y se le piden *características* con
+`TryGetFeatureValue`.
+
+```csharp
+var device = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
+device.TryGetFeatureValue(CommonUsages.devicePosition,        out Vector3 p);   // metros
+device.TryGetFeatureValue(CommonUsages.deviceVelocity,        out Vector3 v);   // m/s
+device.TryGetFeatureValue(CommonUsages.deviceAngularVelocity, out Vector3 w);   // rad/s
+```
+
+| Característica | Tipo | Unidad | Para qué sirve en este proyecto |
+|---|---|---|---|
+| `devicePosition` | `Vector3` | metros | Diagnóstico. La posición real se toma del `Transform`, que el `TrackedPoseDriver` ya actualiza |
+| `deviceVelocity` | `Vector3` | m/s | Fuerza del golpe → volumen del sample |
+| `deviceAngularVelocity` | `Vector3` | rad/s | El giro de muñeca, que en la punta de la baqueta se convierte en velocidad lineal |
+| `triggerButton` | `bool` | — | Prueba de háptico de este capítulo |
+| `primaryButton` | `bool` | — | Botón A. Lo usa `PadCalibrator` en el capítulo 5 |
+
+Tres cosas que hay que interiorizar aquí, porque reaparecen:
+
+1. **`TryGetFeatureValue` devuelve `bool`.** Es `false` si el runtime no ofrece esa característica.
+   Ignorar el retorno y usar el `out` deja un `Vector3.zero` silencioso, que en este proyecto se
+   traduce en golpes que nunca superan el umbral de velocidad y un sistema que "no funciona" sin
+   error alguno.
+2. **`device.isValid` cambia durante la sesión.** Si el control se apaga por inactividad o pierde
+   tracking, el `InputDevice` guardado deja de ser válido. Por eso `StickTracker` lo vuelve a pedir
+   cada frame cuando deja de serlo, en lugar de obtenerlo una sola vez en `Awake`.
+3. **Estos vectores vienen en el espacio del XR Origin, no en el del mundo.** Aquí no se nota
+   porque solo se imprime su magnitud. En el capítulo 4 sí se nota, y es la sección 4.5 completa.
+
+## 3.4 La baqueta: un cilindro y un `Transform` vacío en la punta
+
+La baqueta de la etapa A es geometría de mentira. No tiene física, no tiene colisionador y no
+interactúa con nada: solo hay que **verla** y saber **dónde está su punta**.
+
+1. Seleccionar el objeto del control derecho dentro del `XR Origin` (el que tiene el
+   `Tracked Pose Driver`).
+2. `GameObject → 3D Object → Cylinder`, y arrastrarlo en la jerarquía para que quede **hijo** de
+   ese objeto.
+3. En el `Transform` del cilindro: escala `(0.012, 0.16, 0.012)` — un cilindro de Unity mide 2
+   unidades de alto, de modo que `Y = 0.16` da una baqueta de 32 cm; posición `(0, 0, 0.16)` y
+   rotación `(90, 0, 0)` para que salga hacia adelante desde el puño.
+4. **Quitarle el `Capsule Collider`** que el cilindro trae por defecto. No se usa física en ningún
+   punto de este sistema, y un colisionador suelto solo puede generar eventos que nadie espera.
+5. `GameObject → Create Empty`, hijo del **cilindro**, con nombre `Tip`, en posición `(0, 1, 0)`
+   local — el extremo del cilindro, ya que mide 2 unidades y su origen está al centro.
+
+**Por qué `tip` tiene que ser hijo del controlador.** Ésta es la pieza que hace que todo lo demás
+sea simple. `Transform.position` de un hijo se calcula componiendo la jerarquía completa hasta la
+raíz: si `Tip` cuelga del cilindro y el cilindro cuelga del objeto que el `TrackedPoseDriver`
+actualiza, entonces `tip.position` es **la posición en mundo de la punta de la baqueta, ya
+resuelta, actualizada cada frame, sin una línea de código**. Es exactamente lo que consume
+`StickTracker`:
+
+```csharp
+Vector3 tipNow = tip.position;
+```
+
+Si `Tip` estuviera suelto en la escena en lugar de colgado del control, esa línea devolvería un
+punto fijo y la detección de golpes no vería moverse nada. Y `StickTracker` necesita **las dos**
+referencias, `controller` y `tip`, porque el vector entre ambas es el brazo `r` de la fórmula
+`v + ω × r` de la sección 4.4.
+
+Con ajustar los números del paso 3 se cambia el largo de la baqueta. Vale la pena hacerlo pronto:
+una baqueta larga es más fácil de golpear pero amplifica el error angular del tracking.
+
+## 3.5 Script de diagnóstico
+
+Crear `Assets/Scripts/DiagnosticoMano.cs` — recordar que el nombre del archivo debe coincidir con
+el de la clase — y pegarlo completo:
+
+```csharp
+using UnityEngine;
+using UnityEngine.XR;
+
+/// Imprime en pantalla lo que reporta el control. Sirve para confirmar que el tracking llega
+/// antes de construir nada encima.
+public sealed class DiagnosticoMano : MonoBehaviour
+{
+    [SerializeField] XRNode hand = XRNode.RightHand;
+
+    void Update()
+    {
+        var device = InputDevices.GetDeviceAtXRNode(hand);
+        if (!device.isValid) { Debug.Log("control no válido"); return; }
+
+        device.TryGetFeatureValue(CommonUsages.deviceVelocity, out Vector3 v);
+        device.TryGetFeatureValue(CommonUsages.triggerButton,  out bool gatillo);
+
+        if (gatillo && device.TryGetHapticCapabilities(out var caps) && caps.supportsImpulse)
+            device.SendHapticImpulse(0u, 0.5f, 0.05f);
+
+        Debug.Log($"velocidad {v.magnitude:F2} m/s");
+    }
+}
+```
+
+Arrastrarlo a cualquier GameObject de la escena — no necesita estar en el control, porque pide el
+dispositivo por nodo, no por jerarquía.
+
+Lectura línea por línea de lo que no es obvio:
+
+- `InputDevices.GetDeviceAtXRNode(hand)` se llama **cada frame**, no se cachea. Es deliberado: en
+  un script de diagnóstico interesa ver aparecer y desaparecer el control.
+- `SendHapticImpulse(0u, 0.5f, 0.05f)` son canal, amplitud (0 a 1) y duración en segundos. El
+  canal `0` es el único que tiene el Touch Plus. Es un **impulso con duración explícita**, no un
+  estado que haya que apagar: ésa fue la diferencia número 5 del capítulo 0.
+- La comprobación `TryGetHapticCapabilities(...) && caps.supportsImpulse` no es paranoia: llamar a
+  `SendHapticImpulse` sobre un dispositivo que no lo soporta no hace nada y tampoco avisa. Es la
+  misma guarda que usa `HapticSink` en el sistema definitivo.
+- **El háptico dispara de inmediato y no se puede agendar.** Aquí da igual; en el capítulo 4 es el
+  motivo de que `HapticSink` guarde el golpe en una lista y espere a que el reloj DSP alcance el
+  instante del impacto en lugar de vibrar al cruzar el plano.
+- `Debug.Log` **cada frame es caro**: a 72 Hz son 72 líneas por segundo cruzando a `logcat`. Se
+  tolera porque este script se borra al terminar el capítulo. Nada de esto sobrevive al capítulo 4.
+
+## 3.6 Leer la consola del visor desde la Mac
+
+`Debug.Log` dentro del Quest no tiene ventana de consola. Sale por el log de Android, y se lee por
+`adb` con la variable `ADB` que se definió en el capítulo 1:
+
+```bash
+$ADB logcat -s Unity:V
+```
+
+`-s` filtra por etiqueta —solo `Unity`, no los miles de líneas del sistema— y `V` es el nivel más
+detallado (*verbose*). Para limpiar el búfer antes de una prueba y no leer lo de la sesión
+anterior:
+
+```bash
+$ADB logcat -c
+```
+
+Funciona igual por cable o por la conexión inalámbrica de 1.10. Ésta es la herramienta de
+depuración del resto de la guía: en el visor no hay otra forma de ver qué está pasando.
+
+## 3.7 Prueba en el orden correcto
+
+1. **Play mode en la Mac, con el Meta XR Simulator activo.** Confirma que el script compila, que
+   encuentra el dispositivo y que imprime. La velocidad será la del mouse: sirve para ver que el
+   número existe, no para creerle.
+2. **Build e instalación en el Quest 3S**, `$ADB install -r Builds/bateria.apk`, y `logcat`
+   abierto en otra terminal.
+
+Cuatro cosas que verificar puestas el visor, en este orden:
+
+- La baqueta está donde la mano, y se mueve con ella sin arrastre perceptible.
+- `logcat` imprime `velocidad 0.0x m/s` con el brazo quieto — un valor pequeño y no exactamente
+  cero es lo normal: es el ruido del tracking.
+- Al agitar el brazo el número sube. Un golpe de batería normal ronda **2 a 6 m/s**; con ganas se
+  pasa de 8. Esas cifras son las que justifican el `minVelocity` de 0.4 m/s y la curva
+  `velocityToGain` que va de 0.4 a 6 m/s en `DrumVoice`.
+- Al apretar el gatillo, el control vibra.
+
+## 3.8 Problemas frecuentes
+
+| Síntoma | Causa | Qué hacer |
+|---|---|---|
+| `logcat` imprime `control no válido` sin parar | El control está dormido, o el `XRNode` del script no corresponde a la mano que se está moviendo | Apretar un botón del control para despertarlo; revisar el campo **Hand** en el inspector |
+| La velocidad siempre sale `0.00` pero la baqueta sí se mueve | El runtime no expone `deviceVelocity`, o se está mirando el play mode del simulador | Probar en el visor físico; si en el visor también sale cero, comprobar que **Oculus Touch Controller Profile** está en Interaction Profiles (1.6) |
+| La baqueta no se mueve | El cilindro no quedó hijo del objeto con el `Tracked Pose Driver`, sino hermano o hijo del `Camera Offset` | Revisar la jerarquía y reparentar |
+| La baqueta se mueve pero apunta hacia atrás o al suelo | Rotación local del cilindro | Ajustar la rotación del paso 3 de 3.4 hasta que salga del puño hacia adelante |
+| No vibra nada | El dispositivo no reporta `supportsImpulse`, o el gatillo mapeado no es `triggerButton` | Imprimir `caps.supportsImpulse` en `logcat`; probar con `primaryButton` para aislar si el problema es el botón o el háptico |
+| `logcat` no imprime nada | Se está leyendo el visor equivocado, o la app no está corriendo | `$ADB devices`, `$ADB logcat -c` y relanzar la app desde **Fuentes desconocidas** |
+
+---
+
+**Criterio de término: la baqueta sigue la mano dentro del Quest 3S, el control vibra al apretar el
+gatillo, y `logcat` muestra la velocidad subir al agitar el brazo.** Los tres, en el visor físico.
+El simulador no valida ninguno de ellos.
