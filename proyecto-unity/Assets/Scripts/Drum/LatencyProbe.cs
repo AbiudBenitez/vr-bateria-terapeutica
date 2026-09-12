@@ -27,14 +27,33 @@ public sealed class LatencyProbe : DrumHitSink
         public List<Registro> registros = new();
     }
 
+    [SerializeField, Tooltip("Golpes que caben sin que la lista tenga que crecer. Una realocación " +
+                             "en mitad de la medición produce una caída de frame que contamina " +
+                             "justo el dato que se está midiendo. 2000 cubre una sesión larga.")]
+    int capacidadGolpes = 2000;
+
     static int lateSchedules;
     public static void CountLateSchedule() => lateSchedules++;
 
     readonly Volcado volcado = new();
 
+    void Awake()
+    {
+        // Se reserva TODA la memoria aquí. A partir de este punto, Handle no asigna: List.Add
+        // sobre una lista con capacidad suficiente solo escribe en el arreglo interno.
+        volcado.registros.Capacity = capacidadGolpes;
+        lateSchedules = 0;
+    }
+
     public override void Handle(in DrumHit hit)
     {
         double now = AudioSettings.dspTime;
+
+        // Si se desborda la capacidad reservada se deja de registrar en lugar de realocar:
+        // perder una muestra de diagnóstico es preferible a falsear la medición con un
+        // tirón del recolector de basura.
+        if (volcado.registros.Count >= volcado.registros.Capacity) return;
+
         volcado.registros.Add(new Registro
         {
             dspImpacto   = hit.ImpactDsp,

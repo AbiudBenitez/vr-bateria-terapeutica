@@ -6,7 +6,11 @@ using UnityEngine;
 public sealed class DrumVoice : DrumHitSink
 {
     [SerializeField] AudioClip clip;
-    [SerializeField] int voices = 8;
+
+    [SerializeField, Min(1), Tooltip("Voces simultáneas. Dimensionar al peor redoble esperado: " +
+                                     "cuando se agotan, la voz más vieja se corta a media cola.")]
+    int voices = 8;
+
     [SerializeField] AnimationCurve velocityToGain =
         AnimationCurve.Linear(0.4f, 0.2f, 6f, 1f);
 
