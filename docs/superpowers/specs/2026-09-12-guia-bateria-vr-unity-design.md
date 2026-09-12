@@ -589,6 +589,32 @@ Se serializa a JSON en almacenamiento local del visor. Es además el primer ladr
 **Limitación declarada:** la sonda interna mide solo el tramo de audio. No incluye latencia de
 tracking ni de presentación. La medición externa del 7.1 es la que vale para el Go/No-Go.
 
+### 7.5 La herramienta, tal como quedó construida
+
+`scripts/latencia.py`, 15 pruebas en `scripts/test_latencia.py`. Tres decisiones se apartaron del
+diseño inicial, las tres por fallos encontrados al ejecutarlo:
+
+| Decisión inicial | Lo que quedó | Por qué |
+|---|---|---|
+| scipy para leer WAV y filtrar | **numpy y el `wave` de la estándar** | Los binarios de `scipy.signal` no cargan en el macOS ARM de destino: `section '__DATA/__thread_bss' has a zero-fill section type`. La herramienta tiene que correr sin pelearse con el entorno |
+| Umbral sobre envolvente RMS | **Envolvente de pico por bloques contra una guarda que decae** | El bombo barre de 150 a 50 Hz y cualquier ventana RMS corta riza sobre él: la cola cruza el umbral una y otra vez e inventa transitorios. Se probó también flujo espectral y falla por otra vía — un barrido de frecuencia genera flujo sostenido. La guarda que decae es inmune por construcción: una cola que decae no puede superarse a sí misma |
+| Corte absoluto de centroide | **Razón entre los dos centroides** | El corte absoluto dejaba pasar en silencio justo el caso que debía atrapar. `max(c_a, c_b) < corte` dispara cuando *ninguno* es brillante; medir con tarola da *ambos* brillantes y una clasificación no fiable. La razón mide lo que de verdad importa: si se parecen, no se pueden separar |
+
+Parámetros del detector, con su sensibilidad medida:
+
+- `MARGEN_DB = 6.0` — **meseta estrecha**. A 5 dB aparecen transitorios de más; a 8 dB se pierde el
+  segundo transitorio de los pares muy juntos. Expuesto como `--margen-db` en la CLI para poder
+  retocarlo sobre grabaciones reales.
+- `TAU_GUARDA_MS = 3.0` — meseta ancha, cualquier valor entre 2 y 4 da el mismo resultado.
+- `BLOQUE_MS = 3.0` — el pico por bloques de 3 ms apenas varía −3 dB a 50 Hz.
+
+Validación: 20 golpes sintéticos con jitter alrededor de +12 ms se recuperan con mediana +11.29 ms
+y p90 +13.06 ms.
+
+**Requisito que esto impone al capítulo 4:** el sample usado para medir debe ser de **bombo**. La
+clasificación separa el clic del plástico del tambor virtual por centroide espectral, y una tarola
+tiene centroide parecido al del clic. No es preferencia estética: es un requisito del instrumento.
+
 ---
 
 ## 8. Esbozo de B

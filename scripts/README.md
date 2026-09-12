@@ -156,3 +156,18 @@ figuras antes que los documentos.
 Editar `PERFIL_BASE` en `costos.py`: cada perfil apunta a un ancla de `OFICIAL` con un factor
 y su justificación. No tocar los montos a mano en el Word — las cifras aparecen en los tres
 documentos y en las cuatro figuras.
+
+## Medición de latencia
+
+| Archivo | Contiene |
+|---|---|
+| `latencia.py` | Mide la latencia golpe→sonido desde una grabación WAV. Detecta los dos transitorios (clic físico y tambor virtual), los clasifica por razón de centroides espectrales y reporta mediana, p90 y veredicto contra el criterio de −10 a +25 ms. **Solo numpy y la biblioteca estándar**: scipy no carga en el macOS ARM de esta máquina. |
+| `test_latencia.py` | 15 pruebas con WAV sintéticos de offset conocido, incluido el caso de Δ negativo y el de transitorios indistinguibles. |
+
+```bash
+~/.pyenv/versions/redes/bin/python -m pytest scripts/test_latencia.py -v
+~/.pyenv/versions/redes/bin/python scripts/latencia.py mediciones/corrida.wav --etiqueta "con predicción" --detalle
+```
+
+El entorno es pyenv `redes` (Python 3.11.9), que es el que tiene numpy. Requiere `pytest`,
+instalable con `~/.pyenv/versions/redes/bin/python -m pip install pytest`.
