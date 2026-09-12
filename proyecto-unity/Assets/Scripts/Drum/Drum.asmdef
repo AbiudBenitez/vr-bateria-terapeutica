@@ -1,0 +1,8 @@
+{
+    "name": "Drum",
+    "rootNamespace": "",
+    "references": ["Unity.XR.CoreUtils"],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "autoReferenced": true
+}
