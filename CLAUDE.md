@@ -262,6 +262,75 @@ arrancado.**
 Misael método · Benjamín tarifas · Kimberly agregación · Christian presupuesto · Javier
 escenarios · Sarai simultaneidad · María compresión · Diana calidad, riesgos y cierre.
 
+## Desarrollo del prototipo — etapa A, desde el 12-sep-2026
+
+La construcción del sistema de percusión arrancó. **Etapa A: un pad que suena al golpearlo, con
+háptico, en el visor, con la latencia medida.** Etapa B (seis piezas, capas de velocity) esbozada.
+Etapa C (sesión terapéutica, métricas, STAI-6) fuera de alcance hasta que A dé un número aceptable.
+
+| | |
+|---|---|
+| Guía | `entregables/guia/Guia_Bateria_VR_A.md` — 8 capítulos, cada uno produce algo que corre en el visor |
+| Spec | `docs/superpowers/specs/2026-09-12-guia-bateria-vr-unity-design.md` |
+| Plan | `docs/superpowers/plans/2026-09-12-bateria-vr-etapa-a.md` |
+| Código | `proyecto-unity/Assets/Scripts/Drum/` — 10 scripts, 15 pruebas EditMode en `Assets/Tests/EditMode/` |
+| Medición | `scripts/latencia.py` + `scripts/test_latencia.py`, 15 pruebas |
+| Rama | `feat/bateria-etapa-a` |
+
+### Entorno — restricciones que no se pueden saltar
+
+**Quest Link no está disponible.** Ninguna máquina del usuario tiene GPU dedicada compatible: la
+laptop Arch es una APU AMD Picasso/Raven 2 con Vega integrada, y la familiar tampoco tiene GPU
+dedicada. El ciclo de trabajo es Meta XR Simulator en play mode sobre la Mac, y build APK + `adb`
+al visor para todo lo que el simulador no puede dar: velocidad real de mano, latencia real, háptico.
+
+**Hardware:** Quest 3S de 128 GB ($6,600 MXN) para desarrollo diario. Mismo SoC y misma RAM que el
+Quest 3, así que el presupuesto de latencia es idéntico; lo que pierde (lente Fresnel, IPD de tres
+pasos, sin LiDAR) no afecta a este proyecto. El **Quest 3 de la Facultad** queda para las pruebas
+con usuarios, donde la lente pancake y el IPD continuo sí importan en sesiones de 12 minutos.
+
+**scipy está roto en el entorno pyenv `redes`:** los binarios no cargan en este macOS ARM
+(`section '__DATA/__thread_bss' has a zero-fill section type`). Por eso `latencia.py` usa solo
+numpy y el `wave` de la biblioteca estándar. No reintroducir scipy en scripts nuevos sin
+comprobar que importa.
+
+### Dos correcciones de hecho contra la documentación oficial
+
+- **El Meta XR Simulator ya no es paquete de Unity.** `com.meta.xr.simulator` del Asset Store está
+  deprecado; ahora es aplicación independiente que se descarga del portal de Meta (build de macOS
+  ARM). No hay registro con alcance que configurar.
+- **Single Pass Instanced vive en `XR Plug-in Management → OpenXR → Render Mode`**, no en Player
+  Settings. El `Stereo Rendering Mode` de `Player Settings → XR Settings` es el camino heredado del
+  VR integrado de Unity y no aplica con OpenXR.
+
+### Reglas del código que no se negocian
+
+1. `AudioSettings.dspTime` se lee **una sola vez por frame**, al inicio de `Update()`. Nunca
+   `Time.time` ni `Time.deltaTime` para nada rítmico: el tiempo de frame acumula deriva.
+2. **Cero asignaciones en el camino del golpe.** El recolector de basura produce caídas de frame y
+   una caída de frame es latencia. `AddComponent` solo en `Awake`.
+3. El rearme del pad es **por posición, no por tiempo**. Semicorcheas a 160 BPM son 94 ms entre
+   golpes; un cooldown temporal las destruye.
+4. `deviceVelocity` y `deviceAngularVelocity` vienen en espacio del **XR Origin**; `tip.position` y
+   `pad.Normal` están en **mundo**. Convertir con `xrOrigin.TransformVector()`. Mezclarlos da
+   direcciones equivocadas y solo falla cuando el jugador gira: es el bug más caro de este código.
+
+### Criterio Go/No-Go de latencia
+
+**−10 ms ≤ Δ(p90) ≤ +25 ms**, medido con el protocolo del clic físico. Δ **negativo es resultado
+válido, no error**: la predicción del plano armado adelanta el sonido, y el oído tolera ~10 ms de
+adelanto mientras castiga el retraso. El p90 decide, no la mediana. El sample de medición debe ser
+de **bombo**: la herramienta separa el clic del tambor por centroide espectral y una tarola no se
+distingue del clic del plástico.
+
+### Pendiente
+
+- Correr las 15 pruebas EditMode en Unity. Están verificadas por inspección, no compiladas.
+- Confirmar la licencia del sample de batería antes de meterlo al repositorio.
+- **Discrepancia de rol:** el acta v3.0 asigna el desarrollo VR a María Fernanda Montoya; en la
+  práctica lo ejecuta Misael. Es carga real fuera del rol formal y afecta el cálculo de
+  sobreasignación del cronograma.
+
 ## Tareas de clase entregadas
 
 | Fecha | Tarea | Carpeta |
