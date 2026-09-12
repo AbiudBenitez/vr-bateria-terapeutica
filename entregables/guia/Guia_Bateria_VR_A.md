@@ -22,7 +22,7 @@ aislar.
 | 1 | Cadena completa hasta el visor | Cubo gris girando dentro del Quest 3S | **Escrito** |
 | 2 | Apéndice: C# para quien viene de Java | Diferencias que muerden, no fundamentos | **Escrito** |
 | 3 | Manos que se mueven y vibran | `XR Origin`, pose, `deviceVelocity`, `SendHapticImpulse` | **Escrito** |
-| 4 | El pad suena al golpearlo | Plano armado, cruce, predicción, `PlayScheduled` | Pendiente |
+| 4 | El pad suena al golpearlo | Plano armado, cruce, predicción, `PlayScheduled` | **Escrito** |
 | 5 | Número de latencia real, en ms | El hito Go/No-Go del acta | Pendiente |
 | 6 | Ajustes que bajan la latencia | Best Latency, 48 kHz, Vulkan, 72 vs 90 Hz, remedición | Pendiente |
 | 7 | Esbozo de la etapa B | Arquitectura de las seis piezas | Pendiente |
@@ -838,7 +838,7 @@ Lectura línea por línea de lo que no es obvio:
 - **El háptico dispara de inmediato y no se puede agendar.** Aquí da igual; en el capítulo 4 es el
   motivo de que `HapticSink` guarde el golpe en una lista y espere a que el reloj DSP alcance el
   instante del impacto en lugar de vibrar al cruzar el plano.
-- `Debug.Log` **cada frame es caro**: a 72 Hz son 72 líneas por segundo cruzando a `logcat`. Se
+- `Debug.Log` **cada frame es caro**: son decenas de líneas por segundo cruzando a `logcat`. Se
   tolera porque este script se borra al terminar el capítulo. Nada de esto sobrevive al capítulo 4.
 
 ## 3.6 Leer la consola del visor desde la Mac
@@ -895,3 +895,631 @@ Cuatro cosas que verificar puestas el visor, en este orden:
 **Criterio de término: la baqueta sigue la mano dentro del Quest 3S, el control vibra al apretar el
 gatillo, y `logcat` muestra la velocidad subir al agitar el brazo.** Los tres, en el visor físico.
 El simulador no valida ninguno de ellos.
+
+---
+
+# Capítulo 4 — El pad suena al golpearlo
+
+Éste es el capítulo central de la guía. Al terminarlo existe el sistema de percusión completo de
+la etapa A: un pad que suena al golpearlo, con vibración, y con el volumen ligado a la fuerza del
+golpe. Todo lo anterior fue preparación y todo lo que sigue es medición y ajuste.
+
+El código ya está escrito y vive en el repositorio, bajo
+`proyecto-unity/Assets/Scripts/Drum/`. **Este capítulo no lo copia: lo explica.** Duplicar los
+archivos aquí garantizaría que la guía y el código se desincronicen en la primera corrección. Se
+pegan fragmentos cortos, y cada fragmento va acompañado de por qué está escrito así.
+
+| Archivo | Responsabilidad |
+|---|---|
+| `DrumPad.cs` | Geometría del pad: plano armado, distancia con signo, prueba de radio |
+| `DrumHit.cs` | El struct del golpe. Contrato entre la detección y sus consumidores |
+| `DrumHitSink.cs` | Clase abstracta del receptor |
+| `DrumHitFanout.cs` | Reparte un golpe a varios receptores |
+| `CrossSolver.cs` | La matemática pura: fracción de cruce, instante de impacto, velocidad de punta |
+| `StickTracker.cs` | Lee el hardware y orquesta. Una instancia por mano |
+| `DrumVoice.cs` | Pool de `AudioSource` y `PlayScheduled` |
+| `HapticSink.cs` | Vibración diferida hasta el instante del impacto |
+| `LatencyProbe.cs` | Sonda interna: registra cada golpe y cuenta las agendas tardías |
+| `PadCalibrator.cs` | Coloca el pad virtual sobre la superficie física de medición |
+
+La división responde a una sola regla: **lo que se puede probar sin visor, vive aparte de lo que
+necesita hardware.** Toda la matemática está en `CrossSolver` y en `DrumPad`, sin estado y sin
+dependencias de XR, y por eso la sección 4.9 puede verificarla en el editor de la Mac antes de que
+el Quest 3S esté siquiera encendido.
+
+## 4.1 Por qué no colliders
+
+La forma obvia de detectar un golpe en Unity es poner un colisionador en la punta de la baqueta,
+otro en el pad, marcar uno como *trigger* y escuchar `OnTriggerEnter`. Es lo que hace cualquier
+tutorial. **Para este proyecto está descartado por dos razones independientes, y cada una basta
+por sí sola.**
+
+**Razón 1: llega tarde, y llega tarde por diseño.** Los eventos de física no se emiten cuando
+ocurre el cruce: se emiten en el siguiente paso de física, que corre a su propio ritmo fijo,
+independiente del frame. Con el `Fixed Timestep` por defecto de Unity (0.02 s, 50 Hz) el paso dura
+20 ms y un cruce cae en promedio a la mitad de un paso: **unos 10 ms de retraso medio, hasta 20 en
+el peor caso**. Subiendo la física a 90 Hz el paso baja a 11 ms y el retraso medio a ~5.5 ms, a
+cambio de multiplicar el coste de CPU de la simulación en un SoC móvil donde la CPU ya es el
+cuello de botella. En el mejor de los casos son 5 ms; en la configuración por defecto son 10.
+Sobre un presupuesto total de ~26 ms contra un umbral de 30, eso es entre la quinta parte y el
+40% del margen, regalado a cambio de nada.
+
+**Razón 2: el tunelado se traga golpes enteros.** Un colisionador detecta **superposición**: para
+generar el evento, los dos volúmenes tienen que solaparse en algún instante muestreado. Un golpe
+de batería con ganas mueve la punta a 10 m/s. A 90 Hz, eso son
+
+```
+10 m/s ÷ 90 frames/s = 0.111 m = 11.1 cm por frame
+```
+
+Si el pad tiene 2 cm de grosor, la punta puede estar delante en un muestreo y detrás en el
+siguiente, **sin haberse solapado nunca**. El evento no se emite y el golpe simplemente no suena.
+Y no falla al azar: falla **en los golpes fuertes**, que son los que el usuario más espera
+escuchar. Un sistema que se come los golpes fuertes no es un instrumento.
+
+**Lo que se hace en su lugar.** La prueba de plano no pregunta "¿se están tocando?" sino **"¿el
+punto quedó de un lado del plano el frame pasado y del otro lado ahora?"**. Eso es detectar el
+*cruce*, y un cruce no se puede saltar por rápido que se vaya: si la punta terminó del otro lado,
+cruzó. El tunelado deja de existir, no se mitiga. Además el cálculo es un producto punto por pad y
+por frame, sin motor de física de por medio, y devuelve **en qué fracción del intervalo** ocurrió
+el cruce — información que el colisionador nunca da y que la sección 4.2 convierte en predicción.
+
+## 4.2 El plano armado
+
+El golpe **no** se detecta en la superficie del pad. Se detecta en un plano paralelo situado
+6 centímetros **antes**, del lado del jugador. Ese es el plano armado.
+
+```
+                    baqueta bajando
+                          │
+                          ▼   v_normal = 4 m/s
+   ─────────────────────── ● ────────────────────  plano ARMADO
+                          ▲                        (a +6 cm sobre la superficie)
+                          │                         aquí se DETECTA el cruce
+             armDistance  │  0.06 m                 y se calcula todo
+                          │
+   ═══════════════════════╪════════════════════    superficie del PAD
+                          ▼                         aquí se ESCUCHA el golpe
+                                                    15 ms después
+
+        │◄──── radius = 0.15 m ────►│
+```
+
+Al cruzar ese plano ya se conocen las dos cosas que hacen falta: **a qué distancia está la
+superficie** (un valor fijo, `armDistance`) y **a qué velocidad se acerca la punta** (`v_normal`).
+Con ambas, el instante del impacto se calcula en lugar de esperarse:
+
+```
+t_impacto = t_cruce + armDistance / v_normal
+```
+
+Ese cálculo es `CrossSolver.ImpactDsp`, de tres líneas:
+
+```csharp
+public static double ImpactDsp(double dspCross, float armDistance, float normalVelocity)
+{
+    if (normalVelocity <= 0f) return dspCross;
+    return dspCross + armDistance / normalVelocity;
+}
+```
+
+**Ejemplo numérico, el del proyecto.** A 4 m/s, que es un golpe normal:
+
+```
+0.06 m ÷ 4 m/s = 0.015 s = 15 ms en el FUTURO
+```
+
+Quince milisegundos de adelanto. Ese número es la prueba `TiempoDeImpacto_SumaElTramoQueFalta` de
+`CrossSolverTests.cs`: cruce en `dsp = 100.0` y resultado esperado `100.015`.
+
+La predicción se adapta sola a la fuerza del golpe, y hace falta que lo haga:
+
+| Velocidad normal | Adelanto disponible |
+|---|---|
+| 1 m/s (golpe suave) | 60 ms |
+| 4 m/s (golpe normal) | 15 ms |
+| 8 m/s (golpe fuerte) | 7.5 ms |
+
+Un golpe suave da 60 ms de margen, de sobra para cualquier presupuesto. Un golpe muy fuerte deja
+7.5 ms, que ya no cubre los ~26 ms del presupuesto completo: **en los golpes más fuertes el sistema
+llega tarde de todos modos**, solo que menos. Esa es la razón de que `armDistance` sea un campo
+editable en el inspector y no una constante: subirlo a 10 cm compra más adelanto, a cambio de que
+un usuario que se detenga a mitad de camino escuche un golpe que nunca dio. Seis centímetros es el
+punto de partida; el capítulo 6 lo ajusta con mediciones delante.
+
+**Qué pasa con ese instante.** Se guarda en el campo `ImpactDsp` del `DrumHit` y viaja hasta los
+tres receptores. `DrumVoice` agenda el audio con `PlayScheduled(hit.ImpactDsp)`, de modo que el
+motor de audio coloca la primera muestra del sample **exactamente en ese instante del reloj DSP**,
+con precisión de muestra, no de frame. `HapticSink` guarda el golpe en una lista y espera: el
+háptico no se puede agendar, dispara de inmediato, así que vibrar al cruzar el plano armado haría
+que el usuario **sintiera** el golpe 15 ms antes de **verse** tocar el pad. El propio archivo lo
+explica en su cabecera:
+
+> *"El háptico NO se puede agendar: SendHapticImpulse dispara de inmediato. Si se lanzara en el
+> cruce del plano armado llegaría ~15 ms antes del impacto, y el usuario sentiría la vibración
+> antes de "tocar" el pad."*
+
+Y si la predicción no alcanzó —el frame se alargó, el golpe fue durísimo— `DrumVoice` no agenda en
+el pasado, que sería silencio: dispara de inmediato y **lo anota**.
+
+```csharp
+if (hit.ImpactDsp <= AudioSettings.dspTime)
+{
+    LatencyProbe.CountLateSchedule();   // la predicción no alcanzó
+    src.Play();                          // ya vamos tarde, disparar de inmediato
+}
+else
+{
+    src.PlayScheduled(hit.ImpactDsp);
+}
+```
+
+El contador de agendas tardías es un dato de diagnóstico de primera: si sube, el margen se agotó y
+hay que subir `armDistance` o bajar el tiempo de frame. Ese número aparece en el JSON que vuelca
+`LatencyProbe` y se interpreta en el capítulo 5.
+
+## 4.3 Por qué `dspTime` y nunca `Time.deltaTime`
+
+Unity ofrece varios relojes y **solo uno sirve para ritmo**.
+
+| Reloj | Qué mide | Uso aquí |
+|---|---|---|
+| `Time.deltaTime` | Duración del frame anterior | Solo animación visual. Nunca ritmo |
+| `Time.time` | Suma acumulada de frames | Nunca |
+| `AudioSettings.dspTime` | Tiempo del hilo de audio, en segundos | **El único reloj del sistema de percusión** |
+
+`Time.deltaTime` no es una medida del tiempo: es cuánto tardó el frame anterior en dibujarse. Ese
+valor sube y baja con la carga de render, con la recolección de basura, con el termal throttling
+del visor y con cualquier hipo del sistema operativo. Acumularlo para llevar la cuenta del tiempo
+es sumar una serie de errores del mismo signo, y el resultado **deriva**. En una sesión terapéutica
+de doce minutos —que es la duración del protocolo de este proyecto— una deriva de milésimas por
+frame se convierte en un desfase audible entre el metrónomo y la mano del usuario, justo el eje
+sobre el que se mide la precisión rítmica. El instrumento de medición no puede correr sobre un
+reloj que se atrasa.
+
+`AudioSettings.dspTime` viene del hilo de audio, que avanza contando **muestras reproducidas** a
+48 000 por segundo. No depende del frame rate, no se salta con una caída de frames y es el mismo
+reloj en el que `PlayScheduled` interpreta su argumento. Agendar en un reloj y medir en otro sería
+comparar peras con manzanas.
+
+La regla operativa del proyecto es más específica que "usa `dspTime`": **se lee una sola vez por
+frame, al inicio de `Update()`**, y ese valor se usa durante todo el frame.
+
+```csharp
+// Lectura ÚNICA del reloj DSP por frame. Regla del proyecto: nunca Time.time.
+double  dspNow = AudioSettings.dspTime + poseToAudioOffset;
+Vector3 tipNow = tip.position;
+```
+
+El motivo es que `dspTime` **avanza mientras el frame se ejecuta**: es un reloj real, no un valor
+congelado. Leerlo dos veces dentro del mismo `Update()` da dos valores distintos, y si uno se usa
+para el cruce y otro para el impacto, la resta entre ambos mezcla el tiempo del golpe con el tiempo
+que tardó el código en llegar de una línea a la otra. Con dos pads y dos manos esos errores dejan
+de ser reproducibles y el sistema se vuelve imposible de depurar. Una lectura, un instante, todo el
+frame.
+
+El `+ poseToAudioOffset` es la corrección constante entre el reloj de la pose y el del audio, de la
+que habló la sección 3.2. Se queda en `0` hasta que el capítulo 6 la mida.
+
+## 4.4 Velocidad de punta contra velocidad de control
+
+`deviceVelocity` reporta la velocidad **del control**, es decir, del puño. La que importa es la de
+la **punta de la baqueta**, y no son la misma cosa: entre ambas hay una palanca.
+
+Un sólido rígido que gira mientras se traslada tiene, en cualquier punto distinto de su origen,
+una velocidad igual a la de traslación más la aportada por el giro:
+
+```
+v_punta = v_dispositivo + ω × r
+```
+
+donde `ω` es la velocidad angular (`deviceAngularVelocity`, en rad/s) y `r` es el vector que va
+del origen del control a la punta. Eso es exactamente `CrossSolver.TipVelocity`:
+
+```csharp
+public static Vector3 TipVelocity(Vector3 deviceVelocityWorld,
+                                  Vector3 angularVelocityWorld,
+                                  Vector3 controllerToTip)
+    => deviceVelocityWorld + Vector3.Cross(angularVelocityWorld, controllerToTip);
+```
+
+**Ejemplo numérico**, el de la prueba `VelocidadDePunta_IncluyeElGiroDeMuneca` de
+`CrossSolverTests.cs`: control **completamente quieto**, girando a 10 rad/s sobre el eje Z, con la
+punta a 30 cm del origen sobre +X.
+
+```
+ω × r = (0, 0, 10) × (0.3, 0, 0) = (0, 3, 0)   →   3 m/s
+```
+
+**Tres metros por segundo de puro giro de muñeca, con `deviceVelocity` valiendo exactamente cero.**
+Un sistema que usara solo `deviceVelocity` no detectaría ese golpe: `NormalSpeed` daría 0, no
+superaría el `minVelocity` de 0.4 m/s y el golpe se descartaría en silencio.
+
+Y ése es precisamente el golpe que da un baterista. La técnica de percusión real mueve poco el
+brazo y mucho la muñeca; cuanto mejor es el ejecutante, mayor es la proporción del giro. Ignorar el
+término `ω × r` produce un sistema que funciona con golpes de aficionado, torpes y de brazo
+entero, y falla justo con quien sabe tocar. Para una herramienta cuyo objetivo medible es la
+precisión motriz, eso lo descalifica.
+
+El brazo `r` se calcula solo, gracias a la jerarquía que montó la sección 3.4:
+
+```csharp
+tip.position - controller.position
+```
+
+Alargar la baqueta alarga `r` y aumenta la contribución del giro. También amplifica cualquier error
+angular del tracking: un error de medio grado en la orientación se convierte en más milímetros de
+error de posición cuanto más larga sea la baqueta. Es el compromiso que se ajusta con los números
+del paso 3 de la sección 3.4.
+
+## 4.5 La trampa de los espacios de coordenadas
+
+**Éste es el error que más caro sale de todo el proyecto**, y merece leerse dos veces. No revienta,
+no da error de compilación, no aparece en ninguna prueba y **funciona perfectamente mientras se
+mira al frente**. Se manifiesta el día de la demostración, cuando alguien se gira.
+
+Los datos que se mezclan en el cálculo del golpe vienen de dos sistemas de coordenadas distintos:
+
+| Dato | Origen | Espacio |
+|---|---|---|
+| `CommonUsages.deviceVelocity` | el runtime de XR | **espacio del XR Origin** |
+| `CommonUsages.deviceAngularVelocity` | el runtime de XR | **espacio del XR Origin** |
+| `tip.position`, `controller.position` | `Transform` de Unity | **mundo** |
+| `pad.Normal`, `pad.Center` | `Transform` de Unity | **mundo** |
+
+Mientras el `XR Origin` esté en el origen del mundo sin rotar, los dos espacios coinciden y todo
+sale bien. En cuanto el Origin rota —porque se giró al jugador, porque se recolocó el rig, porque
+se usó un sistema de recentrado— dejan de coincidir, y el producto punto de `NormalSpeed` empieza a
+comparar un vector expresado en un espacio contra una normal expresada en otro.
+
+El síntoma es característico y engañoso: **las magnitudes siguen siendo correctas.** La velocidad
+vale 4 m/s, como debe. Lo que está mal es la dirección, así que el golpe deja de superar el umbral
+cuando el jugador mira a 90 grados de la posición original, y vuelve a funcionar si se endereza.
+Quien depura eso sin saber lo que busca cambia umbrales, revisa la geometría del pad y culpa al
+tracking. La transformación es una sola línea, y va en `StickTracker.ReadTipVelocity`:
+
+```csharp
+return CrossSolver.TipVelocity(
+    xrOrigin.TransformVector(v),
+    xrOrigin.TransformVector(w),
+    tip.position - controller.position);
+```
+
+`TransformVector` lleva un vector del espacio local del `Transform` al espacio de mundo aplicando
+rotación y escala, **sin aplicar traslación**, que es lo correcto para una velocidad: una velocidad
+es una dirección con magnitud, no una posición. Usar `TransformPoint` aquí —que sí traslada— sumaría
+la posición del Origin a la velocidad y produciría números absurdos.
+
+Hecha esa conversión, las tres entradas de `TipVelocity` están en mundo, igual que `pad.Normal`, y
+el producto punto compara lo comparable. Por eso el propio archivo lleva la advertencia encima del
+método:
+
+> *"CUIDADO CON LOS ESPACIOS: deviceVelocity y deviceAngularVelocity vienen en el espacio del XR
+> Origin, mientras que tip.position y pad.Normal están en mundo. Mezclarlos da magnitudes correctas
+> con direcciones equivocadas en cuanto el jugador gira."*
+
+**Consecuencia práctica para el ensamblado:** el campo `Xr Origin` del `StickTracker` no es
+opcional ni decorativo. Si se deja vacío, el sistema lanza una excepción de referencia nula; si se
+le arrastra el objeto equivocado, no lanza nada y se hereda el fallo silencioso completo.
+
+## 4.6 Rearme por posición, no por tiempo
+
+Un cruce de plano genera un golpe. El problema es el segundo frame: mientras la punta siga del otro
+lado del plano, la condición "está pasado el plano" sigue siendo cierta, y sin una guarda el
+sistema dispararía un golpe por frame, 72 veces por segundo, mientras la baqueta descanse sobre el
+pad.
+
+La solución obvia es un *cooldown*: ignorar golpes durante N milisegundos tras cada uno. **Está
+descartada.** Un redoble de semicorcheas a 160 BPM —tempo normal para un ejercicio de coordinación,
+y perfectamente al alcance del protocolo terapéutico de este proyecto— tiene los golpes separados
+por
+
+```
+60 s/min ÷ 160 BPM ÷ 4 semicorcheas = 0.09375 s = 94 ms
+```
+
+Un cooldown de 100 ms, que suena conservador y razonable, **se comería uno de cada dos golpes del
+redoble**. Y de nuevo fallaría en el caso que más importa: la ejecución rápida y precisa, que es
+justo lo que la herramienta pretende medir. Cualquier cooldown fijo es una apuesta sobre el tempo
+máximo que el usuario va a tocar, y esa apuesta se pierde.
+
+El rearme correcto es **geométrico**: el pad queda muerto al golpearlo y **revive cuando la punta
+vuelve a salir** del plano armado hacia el lado del jugador. Son tres líneas en
+`StickTracker.Evaluate`:
+
+```csharp
+// Rearme POR POSICIÓN, no por tiempo: el pad revive cuando la baqueta vuelve a salir.
+// Un cooldown temporal destruiría los redobles.
+if (dNow > 0f && dPrev <= 0f) { armed[pad] = true; return; }
+
+if (!armed[pad]) return;
+if (!(dPrev > 0f && dNow <= 0f)) return;              // no cruzó hacia adentro
+```
+
+`dPrev` y `dNow` son la distancia con signo al plano armado en el frame anterior y en éste. La
+primera línea detecta el cruce **hacia afuera** y rearma. Las dos siguientes exigen que el pad esté
+armado y que el cruce sea **hacia adentro**. Lo que queda es un autómata de dos estados cuya
+transición depende solo de dónde está la punta.
+
+Esto no impone ningún límite de tempo: el usuario puede tocar tan rápido como sea capaz de sacar y
+meter la baqueta, y cada ciclo completo produce exactamente un golpe. También resuelve gratis el
+caso de la baqueta apoyada sobre el pad: mientras no salga, no vuelve a sonar.
+
+El estado vive en un diccionario por pad, `readonly Dictionary<DrumPad, bool> armed`, inicializado
+en `OnEnable`. Como cada mano tiene su propio `StickTracker`, cada mano lleva su propio armado: las
+dos manos pueden golpear el mismo pad de forma independiente sin bloquearse entre sí.
+
+## 4.7 Ensamblado de la escena
+
+Cinco GameObjects. Se construye en este orden, y las referencias se arrastran desde la jerarquía al
+campo correspondiente del inspector.
+
+```
+Escena Cap04_Pad
+├── XR Origin (XR Rig)
+│   └── Camera Offset
+│       ├── Main Camera            ← trae el AudioListener
+│       └── Right Controller       ← TrackedPoseDriver de la mano derecha
+│           └── Baqueta (cilindro)
+│               └── Tip            ← Transform vacío en la punta
+├── Pad                            → DrumPad
+├── Audio                          → DrumVoice
+├── Haptico                        → HapticSink
+├── Sonda                          → LatencyProbe
+├── Fanout                         → DrumHitFanout
+└── Tracker                        → StickTracker
+```
+
+### Paso 1 — `Pad`
+
+`GameObject → Create Empty`, nombre `Pad`, y añadirle el componente `DrumPad`. Opcionalmente,
+hacerle hijo un cilindro aplastado como representación visual, solo para verlo.
+
+| Campo del inspector | Valor | Nota |
+|---|---|---|
+| Radius | `0.15` | Radio útil en metros |
+| Arm Distance | `0.06` | Los 6 cm del plano armado |
+| Min Velocity | `0.4` | Velocidad normal mínima para contar como golpe, en m/s |
+
+**La orientación es lo que hay que cuidar.** `DrumPad.Normal` devuelve `transform.up`, así que con
+rotación `(0,0,0)` la normal apunta hacia arriba y el pad se golpea **desde arriba**, como una
+tarola horizontal. Rotar el objeto rota el plano y, con él, la dirección desde la que se golpea.
+Colocarlo alrededor de `(0, 0.75, 0.45)` — altura de mesa, al frente — es un punto de partida
+cómodo.
+
+Con el objeto seleccionado, `DrumPad.OnDrawGizmos` dibuja en la vista de escena **dos círculos de
+alambre**: uno amarillo en la superficie y uno cian en el plano armado, unidos por una línea. Es la
+forma de comprobar de un vistazo que la orientación y el desplazamiento son los que se creen.
+
+### Paso 2 — `Audio`
+
+`GameObject → Create Empty`, nombre `Audio`, componente `DrumVoice`.
+
+| Campo del inspector | Valor | Nota |
+|---|---|---|
+| Clip | el sample de bombo | Se obtiene en 4.8 |
+| Voices | `8` | Voces simultáneas |
+| Velocity To Gain | curva por defecto | Lineal de (0.4, 0.2) a (6, 1) |
+
+No hay que añadir ningún `AudioSource` a mano: `DrumVoice.Awake` crea los ocho con
+`gameObject.AddComponent<AudioSource>()` y los configura. Por eso `DrumVoice` va en un GameObject
+propio y no compartido — al entrar en play mode aparecerán ocho `AudioSource` en su inspector, y
+conviene que no estorben.
+
+Cuatro decisiones de ese `Awake` que valen por sí solas:
+
+- **`AddComponent` en `Awake`, nunca en runtime.** Crear componentes durante el juego asigna
+  memoria, y asignar memoria alimenta al recolector de basura, y el recolector produce caídas de
+  frame. Todo el pool se reserva antes de que empiece nada.
+- **`spatialBlend = 0f`** — sonido 2D. La espacialización cuesta CPU y no aporta nada: hay un solo
+  pad y la fuente está a medio metro de la cabeza. En la etapa B, con seis piezas, esto se
+  reconsidera.
+- **`bypassEffects`, `bypassListenerEffects`, `bypassReverbZones` en `true`** — cada efecto en la
+  cadena es proceso entre la muestra y la bocina. Nada de eso se paga en la etapa A.
+- **Asignación circular con corte.** `next = (next + 1) % pool.Length` recorre las voces; si se
+  agotan, la más vieja se corta a media cola. Ocho voces cubren cualquier redoble razonable sobre un
+  solo pad; el propio `Tooltip` del campo lo advierte: *"Dimensionar al peor redoble esperado:
+  cuando se agotan, la voz más vieja se corta a media cola."*
+
+**La curva `Velocity To Gain` es lo que hace que el golpe se sienta.** Va de 0.4 m/s (volumen 0.2) a
+6 m/s (volumen 1.0), y es editable en el inspector sin recompilar: se pulsa sobre ella y se abre el
+editor de curvas. Es el primer lugar donde tocar si el instrumento se siente plano o si todos los
+golpes suenan igual de fuertes.
+
+### Paso 3 — `Haptico`
+
+`GameObject → Create Empty`, nombre `Haptico`, componente `HapticSink`.
+
+| Campo del inspector | Valor | Nota |
+|---|---|---|
+| Velocity For Full Amplitude | `6` | Velocidad en m/s que corresponde a amplitud 1.0 |
+| Duration Seconds | `0.04` | 40 ms. Un pulso seco, no un zumbido |
+
+No tiene referencias que arrastrar: saca la mano del propio `DrumHit`, en el campo `Hand`, así que
+una sola instancia sirve para las dos manos.
+
+### Paso 4 — `Sonda`
+
+`GameObject → Create Empty`, nombre `Sonda`, componente `LatencyProbe`.
+
+| Campo del inspector | Valor | Nota |
+|---|---|---|
+| Capacidad Golpes | `2000` | Golpes que caben sin que la lista tenga que crecer |
+
+Los 2000 no son un número al azar. `Awake` reserva toda la memoria de golpe y, si se desborda,
+`Handle` **deja de registrar en lugar de realocar**. El `Tooltip` explica por qué: *"Una realocación
+en mitad de la medición produce una caída de frame que contamina justo el dato que se está
+midiendo."* Perder una muestra de diagnóstico es preferible a falsear la medición.
+
+Al salir de la aplicación o al pausarla, `LatencyProbe` vuelca un JSON a
+`Application.persistentDataPath`. Ese archivo es material del capítulo 5.
+
+### Paso 5 — `Fanout`
+
+`GameObject → Create Empty`, nombre `Fanout`, componente `DrumHitFanout`.
+
+| Campo del inspector | Qué arrastrarle |
+|---|---|
+| Targets | Tamaño **3**. Elemento 0 → `Audio`, Elemento 1 → `Haptico`, Elemento 2 → `Sonda` |
+
+Se pone el tamaño del arreglo en 3 y se arrastra cada GameObject a su ranura. Unity resuelve solo
+qué componente tomar, porque `DrumVoice`, `HapticSink` y `LatencyProbe` derivan todos de
+`DrumHitSink`, que es el tipo del campo. **Ésta es la razón concreta de que `DrumHitSink` sea una
+clase abstracta y no una interfaz**, como explicó la sección 2.6: Unity no serializa campos de tipo
+interfaz, y sin serialización no hay arrastre en el inspector.
+
+El orden de los elementos es el orden en que se reparte el golpe, pero no importa: el audio está
+agendado a un instante absoluto del reloj DSP, así que unos microsegundos de diferencia en el
+reparto no mueven nada.
+
+`DrumHitFanout` es a su vez un `DrumHitSink`, y esa es la pieza que permite que `StickTracker`
+tenga un solo campo de salida en lugar de tres.
+
+### Paso 6 — `Tracker`
+
+`GameObject → Create Empty`, nombre `Tracker`, componente `StickTracker`. **Este es el que hay que
+llenar con cuidado**: seis campos, y cinco son referencias arrastradas.
+
+| Campo del inspector | Qué arrastrarle | Qué pasa si está mal |
+|---|---|---|
+| Hand | `RightHand` (desplegable) | Se lee el control equivocado y no hay golpes |
+| Xr Origin | el GameObject raíz **`XR Origin (XR Rig)`** | Vacío: excepción de referencia nula. Equivocado: el fallo silencioso de 4.5 |
+| Controller | el objeto del control derecho, **el que tiene el `Tracked Pose Driver`** | El brazo `r` sale mal y la velocidad de punta queda falseada |
+| Tip | el `Transform` vacío `Tip` de la punta de la baqueta | Si se arrastra el cilindro, se detecta el golpe con el centro de la baqueta |
+| Pads | Tamaño **1**, Elemento 0 → `Pad` | Vacío: no hay nada que evaluar, silencio total |
+| Sink | `Fanout` | Vacío: excepción en el primer golpe |
+| Pose To Audio Offset | `0` | Se mide en el capítulo 6. **No se adivina** |
+
+Para dos manos se duplica este GameObject y se cambia `Hand` a `LeftHand`, `Controller` al control
+izquierdo y `Tip` a la punta de la baqueta izquierda. Los demás campos apuntan a lo mismo: los
+receptores se comparten.
+
+### Paso 7 — Audio del proyecto
+
+Confirmar la lista del capítulo 1, sección 1.8, antes de medir nada:
+
+| Ajuste | Valor |
+|---|---|
+| DSP Buffer Size | **Best Latency** |
+| System Sample Rate | 48000 |
+| Default Speaker Mode | Stereo |
+
+Es el ajuste de mayor impacto en latencia de todo el proyecto y no cuesta nada verificarlo otra vez.
+
+## 4.8 El sample: por qué tiene que ser de bombo
+
+Falta una sola cosa: el sonido. Y la elección **no es estética, es un requisito del instrumento de
+medición**.
+
+### La restricción
+
+La herramienta de medición del capítulo 5 (`scripts/latencia.py`) funciona grabando con un
+micrófono externo, en un mismo archivo de audio, dos golpes: **el clic físico** de la punta del
+control contra la superficie real —que marca el instante verdadero del impacto— y **el tambor
+virtual** que sale por las bocinas del visor. La diferencia entre ambos, en milisegundos, es la
+latencia. Es la única medición que incluye la cadena completa: tracking, frame, render y audio.
+
+Para eso, el programa tiene que distinguir cuál de los dos transitorios es cuál. Y **no los
+distingue por orden**, precisamente porque el signo de la latencia es lo que se está midiendo y
+puede ser negativo: la predicción del plano armado puede hacer que el sonido salga *antes* del
+contacto físico. Los clasifica por **centroide espectral**: el clic del plástico es un golpe seco y
+agudo con el centro de masa espectral alto; el bombo es grave y lo tiene bajo. El de arriba es el
+clic.
+
+El código exige que los dos centroides difieran por un factor mínimo:
+
+```python
+RAZON_CENTROIDE_MIN = 2.5
+```
+
+Y si no lo hacen, se niega a dar un número y dice exactamente por qué:
+
+> *"No se puede saber cuál es el clic físico y cuál el tambor. Causa habitual: se midió con tarola
+> en lugar de bombo. El protocolo exige un sample grave, porque el clic del plástico y la tarola
+> tienen contenido espectral parecido."*
+
+**Una tarola tiene centroide espectral parecido al del clic del plástico.** Ambos son ataques secos
+con mucha energía de alta frecuencia; el bordonero de la tarola sube todavía más el centroide. Con
+tarola, la clasificación se vuelve una moneda al aire y la medición deja de existir. Con bombo
+—que barre de unos 150 Hz a unos 50 Hz— la separación es amplia y la clasificación es robusta.
+**El sample de bombo es un requisito del hito Go/No-Go del acta**, no una preferencia.
+
+### Dónde conseguirlo
+
+| Fuente | Qué buscar | Cuidado |
+|---|---|---|
+| **Freesound.org** | `kick drum` o `bass drum`, filtrando por licencia **CC0** | Requiere cuenta gratuita. Verificar la licencia de cada archivo, no del sitio |
+| **Archive.org** | Colecciones de bancos de sonido de dominio público | Calidad muy variable |
+| **Packs gratuitos de bombo** distribuidos por revistas y fabricantes de audio | Suelen venir en WAV 44.1 o 48 kHz | Leer los términos: "gratis" no siempre es "libre de redistribuir" |
+
+<!-- VERIFICAR: confirmar la licencia concreta del archivo descargado antes de incluirlo en el repositorio del proyecto -->
+
+Para un trabajo académico basta con documentar la procedencia y la licencia del archivo usado. Si
+nada convence, un bombo sintético sirve perfectamente para medir: un seno que barra de 150 a 50 Hz
+en 120 ms con una envolvente exponencial descendente es exactamente lo que la herramienta espera.
+
+### Cómo importarlo
+
+Copiar el WAV a `Assets/Audio/` y, con el clip seleccionado, en su inspector de importación:
+
+| Ajuste | Valor | Por qué |
+|---|---|---|
+| Force To Mono | activado | `spatialBlend = 0`: el estéreo no aporta nada y duplica memoria y proceso |
+| Load Type | **Decompress On Load** | El clip queda descomprimido en RAM. Descomprimir al vuelo en el primer golpe produce un tirón justo cuando se está midiendo |
+| Compression Format | **PCM** | Sin decodificación de por medio. El clip dura menos de un segundo: el ahorro de una compresión no compensa |
+| Preload Audio Data | activado | Evita que el primer golpe de la sesión pague la carga |
+| Sample Rate Setting | Preserve Sample Rate, con el archivo ya a **48 kHz** | Cualquier otra tasa fuerza remuestreo, que es trabajo y retardo por voz |
+
+Recortar el silencio del principio del archivo es obligatorio. Un WAV con 20 ms de silencio delante
+del ataque **añade 20 ms de latencia** que ninguna optimización de la guía puede recuperar, y que
+la medición del capítulo 5 atribuirá al sistema. Se revisa en cualquier editor de audio: la primera
+muestra distinta de cero debe ser el ataque.
+
+## 4.9 Correr las pruebas EditMode
+
+Antes de construir el APK, y de hecho antes de tener el visor encendido, **la matemática del golpe
+se verifica en la Mac**. Las pruebas viven en `proyecto-unity/Assets/Tests/EditMode/`.
+
+`Window → General → Test Runner`, pestaña **EditMode**, botón **Run All**. Deben pasar **15
+pruebas**, todas en verde.
+
+| Grupo | Pruebas | Qué cubre |
+|---|---|---|
+| `DrumPadTests` | 6 | Geometría del pad: que el plano armado esté a 6 cm por delante, que la distancia con signo sea positiva del lado del jugador y negativa una vez pasado, que el radio ignore la altura sobre el plano, que un punto lejano quede fuera, y que al rotar el pad la normal siga al `Transform` |
+| `DrumHitFanoutTests` | 2 | Que un golpe llegue íntegro a todos los receptores —velocidad e instante de impacto incluidos— y que un fanout sin destinos no reviente |
+| `CrossSolverTests` | 7 | La matemática completa: fracción del intervalo en que ocurrió el cruce, instante de impacto (incluida la asimetría entre golpe lento y rápido), velocidad normal —que el movimiento lateral no cuente y que alejarse dé negativo— y la velocidad de punta con el ejemplo del giro de muñeca |
+
+**Estas pruebas corren sin visor.** No hay `XRNode`, no hay `InputDevice`, no hay audio: son
+funciones puras y `GameObject` creados en memoria. Eso es lo que compra la separación entre
+`CrossSolver` —estático, sin estado, sin hardware— y `StickTracker`, que es el único que toca el
+runtime de XR. Se puede verificar que la predicción de impacto es correcta, que la velocidad de
+punta incluye el giro de muñeca y que el pad rotado se comporta bien, **todo en la Mac, en
+segundos, mientras el Quest 3S está en su caja**.
+
+Que las 15 pasen no demuestra que el sistema suene. Demuestra algo distinto y muy útil: que si no
+suena, **el problema no está en la matemática**. Reduce el espacio de búsqueda a la configuración
+de la escena, a las referencias del inspector o al hardware, que es justo lo que la sección 4.10
+recorre.
+
+Si el Test Runner aparece vacío o no lista la pestaña EditMode, falta el paquete **Test Framework**
+(`com.unity.test-framework`) en el Package Manager.
+
+## 4.10 Problemas frecuentes
+
+| Síntoma | Causa | Qué hacer |
+|---|---|---|
+| No suena nada, ni un golpe | Algún campo del `StickTracker` vacío, o `Clip` sin asignar en `DrumVoice` | Revisar los seis campos del paso 6 y el `Clip` del paso 2. Un `Debug.Log` temporal dentro de `Evaluate` dice si el cruce se detecta |
+| Suena pero solo con golpes muy fuertes | `Min Velocity` demasiado alto, o la orientación del pad no corresponde a la dirección del golpe | Bajar `Min Velocity` a 0.2 para probar; mirar los gizmos del pad en la vista de escena |
+| Suena varias veces por golpe | Hay dos `StickTracker` apuntando a la misma mano, o el pad está en la lista `Pads` dos veces | Revisar la jerarquía. El rearme por posición impide el retrigger de una sola instancia, no de dos |
+| El volumen no cambia con la fuerza | La curva `Velocity To Gain` quedó plana | Abrir la curva en el inspector; debe subir de (0.4, 0.2) a (6, 1) |
+| Funciona mirando al frente y falla al girarse | El fallo de espacios de coordenadas de 4.5 | Verificar que `Xr Origin` apunta al GameObject raíz del rig y no a otra cosa |
+| El sonido llega claramente tarde | El sample tiene silencio al principio, o `DSP Buffer Size` no está en Best Latency | Recortar el WAV; revisar 1.8 |
+| Se siente la vibración antes del sonido | Es el comportamiento esperado si la predicción es grande: ambos se agendan al mismo `ImpactDsp`, pero el háptico del hardware tiene su propio retardo | No tocar nada todavía. Se cuantifica en el capítulo 5 |
+| Muchas agendas tardías en el JSON de `LatencyProbe` | La predicción no alcanza: frames largos o golpes muy fuertes | Subir `Arm Distance`; revisar el frame rate en el visor. Capítulo 6 |
+| El primer golpe de la sesión suena tarde y los demás bien | El clip no estaba precargado | `Preload Audio Data` y `Decompress On Load` en el inspector del clip (4.8) |
+
+---
+
+**Criterio de término: el pad suena al golpearlo dentro del Quest 3S, con vibración, y el volumen
+cambia según la fuerza del golpe.** En el visor físico, no en el simulador. A partir de aquí el
+sistema existe; lo que falta es saber cuántos milisegundos tarda, y eso es el capítulo 5.
