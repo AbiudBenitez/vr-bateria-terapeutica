@@ -718,10 +718,17 @@ XR Origin (VR)              <- este es el que va al campo xrOrigin del StickTrac
 > simulador y en el visor por igual. El síntoma no se parece en nada a la causa.
 >
 > Usa `GameObject → XR → XR Origin (VR)` del menú, que es un rig pelado. Si ya metiste el de los
-> Starter Assets y tienes la escena armada, no hace falta rehacerla: pon la rotación del
-> `XR Origin` en `(0, 0, 0)`, borra el hijo **`Locomotion`** y quita el componente
-> **`Character Controller`**. Con eso queda equivalente al rig pelado y conservas las referencias
-> ya conectadas.
+> Starter Assets y tienes la escena armada, no hace falta rehacerla:
+>
+> 1. Pon la rotación del `XR Origin` en `(0, 0, 0)`.
+> 2. Borra el hijo **`Locomotion`**. De él cuelgan *todos* los proveedores: `Move`, `Gravity`,
+>    `Turn`, `Teleportation`, `Climb`, `Grab Move`, `Jump`, más el `LocomotionMediator` y el
+>    `XRBodyTransformer`. Con borrar ese hijo se van los trece de una vez.
+> 3. Desactiva o quita el **`Character Controller`**. **Ojo: éste NO cuelga de `Locomotion`,
+>    está en el `XR Origin` raíz**, así que el paso 2 no se lo lleva. Desactivarlo basta y es
+>    reversible; un `CharacterController` apagado no colisiona ni se mueve.
+>
+> Con eso queda equivalente al rig pelado y conservas todas las referencias ya conectadas.
 
 Aun así, **no te fíes del nombre, fíate del componente.** Lo que decide cuál objeto arrastrar en el
 capítulo 4 es cuál tiene el `Tracked Pose Driver` de la mano derecha. Si tu versión los nombra

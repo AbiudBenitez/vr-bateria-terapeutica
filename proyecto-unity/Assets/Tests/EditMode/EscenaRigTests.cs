@@ -79,8 +79,15 @@ public class EscenaRigTests
         }
     }
 
+    /// El invariante real NO es "no existe un CharacterController", sino "nada puede mover el
+    /// rig". Un CharacterController desactivado no colisiona, no se mueve y no aplica gravedad,
+    /// así que cumple igual que si no estuviera. Desactivarlo además es reversible, que para
+    /// alguien aprendiendo el motor es preferible a borrarlo.
+    ///
+    /// La primera versión de esta prueba exigía la ausencia y marcaba en rojo una escena que ya
+    /// estaba correcta. Se relajó al invariante que de verdad importa.
     [TestCaseSource(nameof(EscenasExistentes))]
-    public void ElRigNoTieneCharacterController(string ruta)
+    public void ElCharacterControllerNoEstaActivo(string ruta)
     {
         var escena = EditorSceneManager.OpenScene(ruta, OpenSceneMode.Additive);
         try
@@ -88,11 +95,16 @@ public class EscenaRigTests
             Transform rig = BuscarRig(escena);
             Assert.IsNotNull(rig, $"No encontré el XR Origin en {ruta}.");
 
-            var cc = rig.GetComponentInChildren<CharacterController>(true);
-            Assert.IsNull(cc,
-                $"El rig de {ruta} conserva un CharacterController en '{(cc != null ? cc.name : "")}'. " +
-                "Sin proveedores de locomoción no lo mueve nadie, y su cápsula puede empujar " +
-                "el rig al resolver penetraciones contra los colliders de las baquetas.");
+            var activos = rig.GetComponentsInChildren<CharacterController>(true)
+                             .Where(c => c != null && c.enabled)
+                             .Select(c => c.name)
+                             .ToArray();
+
+            Assert.IsEmpty(activos,
+                $"El rig de {ruta} tiene un CharacterController ACTIVO en: {string.Join(", ", activos)}. " +
+                "Su cápsula puede empujar el rig al resolver penetraciones contra los colliders " +
+                "de las baquetas, y si vuelve a aparecer un GravityProvider reanudaría la caída. " +
+                "Desactívalo en el inspector o quítalo del GameObject.");
         }
         finally
         {
