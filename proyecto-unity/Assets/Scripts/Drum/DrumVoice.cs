@@ -19,6 +19,10 @@ public sealed class DrumVoice : DrumHitSink
 
     void Awake()
     {
+        if (clip == null)
+            Debug.LogError($"[DrumVoice] '{name}' no tiene AudioClip. Los golpes se van a " +
+                           "detectar y no va a sonar nada.", this);
+
         pool = new AudioSource[voices];
         for (int i = 0; i < voices; i++)
         {

@@ -24,6 +24,26 @@ public sealed class StickTracker : MonoBehaviour
 
     readonly Dictionary<DrumPad, bool> armed = new();
 
+    void Awake()
+    {
+        // Sin estas referencias el tracker no detecta nada y no dice por qué.
+        if (xrOrigin == null)
+            Debug.LogError($"[StickTracker] '{name}': falta xrOrigin. Sin él, la velocidad del " +
+                           "control no se puede pasar a espacio de mundo.", this);
+        if (controller == null)
+            Debug.LogError($"[StickTracker] '{name}': falta controller.", this);
+        if (tip == null)
+            Debug.LogError($"[StickTracker] '{name}': falta tip, la punta de la baqueta.", this);
+        if (sink == null)
+            Debug.LogError($"[StickTracker] '{name}': falta sink. Los golpes no van a ninguna parte.", this);
+        if (pads == null || pads.Length == 0)
+            Debug.LogError($"[StickTracker] '{name}': el array Pads está vacío. No hay nada que golpear.", this);
+        else
+            for (int i = 0; i < pads.Length; i++)
+                if (pads[i] == null)
+                    Debug.LogError($"[StickTracker] '{name}': el pad {i} está vacío.", this);
+    }
+
     void OnEnable()
     {
         device = InputDevices.GetDeviceAtXRNode(hand);

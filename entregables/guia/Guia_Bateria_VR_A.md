@@ -1548,6 +1548,58 @@ Si el Test Runner aparece vacío o no lista la pestaña EditMode, falta el paque
 
 ## 4.10 Problemas frecuentes
 
+Los tres primeros son fallos reales que ocurrieron construyendo esto, en el orden en que
+aparecieron. Los tres comparten la misma forma: **el síntoma no se parece en nada a la causa.**
+
+### Golpeo el pad y no suena absolutamente nada
+
+Mira primero el **array `Targets` del `DrumHitFanout`**. Si está vacío, el `StickTracker` detecta
+el golpe perfectamente, se lo entrega al fanout, y el fanout lo reparte a nadie. Ni audio, ni
+háptico, ni métricas.
+
+Es el fallo más desconcertante del capítulo porque **todo lo demás está bien**: las pruebas pasan,
+el tracking funciona, la detección funciona. Solo que el último eslabón no lleva a ninguna parte.
+
+Desde esta versión, `DrumHitFanout` lo grita en consola al arrancar:
+
+```
+[DrumHitFanout] 'Fanout' no tiene destinos. Los golpes se van a detectar y descartar en
+silencio. Arrastra al array Targets el DrumVoice, el HapticSink y el LatencyProbe.
+```
+
+`StickTracker` y `DrumVoice` validan igual sus referencias obligatorias. Si la consola está
+limpia al entrar en Play, el cableado está bien y el problema es otro.
+
+### El pad está lejísimos, me tengo que estirar para alcanzarlo
+
+Es geometría, y hay que mirar **dos** posiciones, no una: la del pad **y la del `XR Origin`**. La
+distancia que importa es la que las separa.
+
+Un pad en `(0, 0.75, 0.45)` está a 45 cm si el rig está en el origen, pero a **1.43 m** si el rig
+quedó en `(-1, 0, -0.57)`. Ese metro y medio es un paso y medio caminando, no un brazo extendido.
+
+Regla práctica: **deja el `XR Origin` en `(0, 0, 0)`** y coloca los pads relativos a él. Así la
+posición del pad se lee directamente como "a tantos centímetros del jugador". Altura de tarola:
+unos 0.75 m. Distancia cómoda: 0.40 a 0.55 m.
+
+Ojo también con que el cilindro visual y el GameObject que lleva el componente `DrumPad` sean dos
+objetos distintos: si los mueves por separado, el pad que suena deja de estar donde se ve.
+
+### Se me hunde el suelo / el personaje cae sin parar
+
+Ver el aviso del capítulo 3.1. Resumen: rig de los Starter Assets inclinado más de 45°, gravedad
+en espacio local, y el suelo deja de contar como piso pisable.
+
+### La consola escupe cientos de líneas por segundo
+
+El `DiagnosticoMano` del capítulo 3 imprime **en cada frame**. Con dos manos, a 72 Hz, son 144
+líneas por segundo. En el editor molesta; en el visor cuesta frames de verdad, y un frame perdido
+es latencia añadida al golpe.
+
+**Desactiva los GameObjects del `DiagnosticoMano` en cuanto el capítulo 3 esté validado.** Para el
+capítulo 5 tienen que estar apagados sí o sí, o la medición describe una app que no es la tuya.
+
+
 | Síntoma | Causa | Qué hacer |
 |---|---|---|
 | No suena nada, ni un golpe | Algún campo del `StickTracker` vacío, o `Clip` sin asignar en `DrumVoice` | Revisar los seis campos del paso 6 y el `Clip` del paso 2. Un `Debug.Log` temporal dentro de `Evaluate` dice si el cruce se detecta |
