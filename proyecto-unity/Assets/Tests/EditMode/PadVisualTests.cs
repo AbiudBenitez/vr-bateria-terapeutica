@@ -1,5 +1,6 @@
 using System.Linq;
 using NUnit.Framework;
+using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -86,6 +87,48 @@ public class PadVisualTests
         Assert.AreSame(pad.transform, visual.Piel.parent,
             "La piel no es hija del pad. Si son objetos separados pueden moverse por su cuenta y " +
             "el pad que suena deja de estar donde se ve.");
+    }
+
+    /// El capítulo 5 no se puede hacer sin calibrar, y el calibrador faltaba en la escena: se
+    /// presionaba el botón y no pasaba nada porque el componente que escucha no existía.
+    [Test]
+    public void ExisteUnCalibradorCableado()
+    {
+        var cal = escena.GetRootGameObjects()
+                        .SelectMany(g => g.GetComponentsInChildren<PadCalibrator>(true))
+                        .FirstOrDefault();
+
+        Assert.IsNotNull(cal,
+            "No hay ningún PadCalibrator en la escena. Sin él, el botón A no hace nada y la " +
+            "medición del capítulo 5 no se puede calibrar. Ejecuta " +
+            "'Batería → Reconstruir visual del pad'.");
+
+        var so = new SerializedObject(cal);
+        Assert.IsNotNull(so.FindProperty("pad").objectReferenceValue,
+            "El PadCalibrator no tiene asignado el DrumPad: el botón no movería nada.");
+        Assert.IsNotNull(so.FindProperty("tip").objectReferenceValue,
+            "El PadCalibrator no tiene asignado el Tip: no sabría a dónde mover el pad.");
+    }
+
+    [Test]
+    public void ElCalibradorUsaLaMismaPuntaQueElTracker()
+    {
+        var cal = escena.GetRootGameObjects()
+                        .SelectMany(g => g.GetComponentsInChildren<PadCalibrator>(true))
+                        .FirstOrDefault();
+        if (cal == null) Assert.Ignore("Sin calibrador; lo cubre ExisteUnCalibradorCableado.");
+
+        var tipCal = new SerializedObject(cal).FindProperty("tip").objectReferenceValue;
+
+        var tipsDeTrackers = escena.GetRootGameObjects()
+            .SelectMany(g => g.GetComponentsInChildren<StickTracker>(true))
+            .Select(t => new SerializedObject(t).FindProperty("tip").objectReferenceValue)
+            .Where(o => o != null)
+            .ToArray();
+
+        CollectionAssert.Contains(tipsDeTrackers, tipCal,
+            "El calibrador usa una punta distinta a la de cualquier StickTracker. Se calibraría " +
+            "con una punta y se golpearía con otra, y el desfase se mediría como latencia.");
     }
 
     [Test]

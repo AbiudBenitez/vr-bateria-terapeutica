@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.XR;
 
 /// Construye el visual del pad sobre la escena abierta.
 ///
@@ -49,6 +51,7 @@ public static class PadVisualBuilder
 
         BorrarCilindroViejo();
         NormalizarTip();
+        AsegurarCalibrador(pad);
 
         Undo.CollapseUndoOperations(grupo);
         EditorSceneManager.MarkSceneDirty(pad.gameObject.scene);
@@ -56,6 +59,52 @@ public static class PadVisualBuilder
         Debug.Log($"[PadVisualBuilder] Visual reconstruido sobre '{pad.name}'. " +
                   $"radius={pad.Radius:F3} m  armDistance={pad.ArmDistance:F3} m. " +
                   "Guarda la escena (Cmd+S).", pad);
+    }
+
+    /// El calibrador no estaba en la escena y el capítulo 5 lo daba por puesto: se presionaba
+    /// el botón y no pasaba nada, porque el componente que escucha no existía.
+    /// Se crea aquí para que no dependa de que alguien se acuerde de añadirlo a mano.
+    static void AsegurarCalibrador(DrumPad pad)
+    {
+        var cal = Object.FindFirstObjectByType<PadCalibrator>();
+        if (cal != null)
+        {
+            Debug.Log($"[PadVisualBuilder] Ya existe un PadCalibrator en '{cal.name}'.", cal);
+            return;
+        }
+
+        // Se cuelga del tracker de la mano derecha para heredar su Tip sin ambigüedad.
+        var tracker = Object.FindObjectsByType<StickTracker>(FindObjectsSortMode.None)
+                            .FirstOrDefault(t => t.name.Contains("Tracker") && !t.name.EndsWith("L"))
+                      ?? Object.FindFirstObjectByType<StickTracker>();
+
+        var go = new GameObject("Calibrador");
+        Undo.RegisterCreatedObjectUndo(go, "Crear Calibrador");
+        cal = Undo.AddComponent<PadCalibrator>(go);
+
+        Transform tip = tracker != null ? BuscarTip(tracker) : null;
+        var so = new SerializedObject(cal);
+        so.FindProperty("pad").objectReferenceValue = pad;
+        so.FindProperty("tip").objectReferenceValue = tip;
+        so.FindProperty("hand").intValue = (int)XRNode.RightHand;
+        so.ApplyModifiedPropertiesWithoutUndo();
+        EditorUtility.SetDirty(cal);
+
+        if (tip == null)
+            Debug.LogWarning("[PadVisualBuilder] Creé el Calibrador pero no encontré el Tip de la " +
+                             "mano derecha. Asígnalo a mano en el inspector.", cal);
+        else
+            Debug.Log($"[PadVisualBuilder] Calibrador creado. Pad='{pad.name}', Tip='{tip.name}'. " +
+                      "Apoya la punta en la mesa y presiona A: debe vibrar.", cal);
+    }
+
+    /// El Tip que usa el tracker es el mismo que debe usar el calibrador, o se calibraría con
+    /// una punta y se golpearía con otra.
+    static Transform BuscarTip(StickTracker tracker)
+    {
+        var so = new SerializedObject(tracker);
+        var prop = so.FindProperty("tip");
+        return prop != null ? prop.objectReferenceValue as Transform : null;
     }
 
     static void BorrarHijosPrevios(Transform padre)

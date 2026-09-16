@@ -1430,6 +1430,20 @@ llenar con cuidado**: seis campos, y cinco son referencias arrastradas.
 | Tip | el `Transform` vacío `Tip` de la punta de la baqueta | Si se arrastra el cilindro, se detecta el golpe con el centro de la baqueta |
 | Pads | Tamaño **1**, Elemento 0 → `Pad` | Vacío: no hay nada que evaluar, silencio total |
 | Sink | `Fanout` | Vacío: excepción en el primer golpe |
+
+### El `Calibrador` — no lo dejes para el capítulo 5
+
+Crea un GameObject vacío llamado **`Calibrador`** con el componente **`PadCalibrator`**:
+
+| Campo | Qué arrastrarle | Si se deja vacío |
+|---|---|---|
+| Pad | `Pad` | El botón no mueve nada |
+| Tip | **el mismo `Tip` que usa el `StickTracker` de esa mano** | Calibras con una punta y golpeas con otra; el desfase se mide como latencia |
+| Hand | `RightHand` | — |
+
+Se añade **aquí, en el capítulo 4**, aunque no se use hasta el 5. Dejarlo para después produce
+un fallo desconcertante: llegas a calibrar, presionas el botón y no pasa absolutamente nada,
+porque el componente que escucha no existe en la escena.
 | Pose To Audio Offset | `0` | Se mide en el capítulo 6. **No se adivina** |
 
 Para dos manos se duplica este GameObject y se cambia `Hand` a `LeftHand`, `Controller` al control
@@ -1585,6 +1599,19 @@ unos 0.75 m. Distancia cómoda: 0.40 a 0.55 m.
 Ojo también con que el cilindro visual y el GameObject que lleva el componente `DrumPad` sean dos
 objetos distintos: si los mueves por separado, el pad que suena deja de estar donde se ve.
 
+### Presiono el botón para calibrar y no pasa nada
+
+Dos causas, en este orden:
+
+1. **No hay ningún `PadCalibrator` en la escena.** Es lo más probable. El componente se añade en
+   4.7; si te lo saltaste, el botón no tiene quién lo escuche. `Batería → Reconstruir visual del
+   pad` lo crea y lo cablea.
+2. **Está pero sin referencias.** Desde esta versión avisa al arrancar con
+   `[PadCalibrator] '...': falta la referencia al DrumPad`.
+
+Si el control **vibra** al presionar, la calibración funcionó aunque no veas moverse el pad: si la
+punta ya estaba donde está el pad, el salto es de milímetros.
+
 ### Se me hunde el suelo / el personaje cae sin parar
 
 Ver el aviso del capítulo 3.1. Resumen: rig de los Starter Assets inclinado más de 45°, gravedad
@@ -1679,9 +1706,17 @@ if (pressed && !prevPressed)
 }
 ```
 
-Apoyas la punta del control sobre la superficie física, presionas el botón primario (A o X), y el
-pad virtual salta a ese punto exacto con la normal apuntando hacia arriba. La consola confirma con
-`[PadCalibrator] Pad recolocado en (...)`.
+Apoyas la punta del control sobre la superficie física, presionas el botón primario (A en el
+control derecho, X en el izquierdo), y el pad virtual salta a ese punto exacto con la normal
+apuntando hacia arriba.
+
+**Confirmación: el control vibra.** Es lo único que se percibe con el visor puesto — el
+`Debug.Log` no se ve desde dentro, y si la punta ya estaba cerca del pad el salto es
+imperceptible. Sin la vibración, presionas y parece que no pasó nada aunque haya funcionado.
+
+En la consola queda además `[PadCalibrator] Calibración #N: pad recolocado en (...)`. Si el número
+sube, el botón se está leyendo; si no sube, revisa que el `Calibrador` del capítulo 4.7 exista y
+tenga sus dos referencias puestas.
 
 **Sin este paso la medición no significa nada.** Si el pad virtual está 3 cm por encima de la mesa,
 el sonido virtual se dispara 3 cm antes del contacto físico y estarías midiendo un error de montaje
