@@ -184,152 +184,140 @@ Los diagramas se exportan en **SVG** (`svg.fonttype = "none"`, texto editable en
 PNG. Ver `scripts/README.md`.
 
 
-## Estado al 11-sep-2026 — criterio de duración alineado con el equipo
+## Estado al 14-sep-2026
 
-### CAMBIO DE CRITERIO — leer antes de tocar cualquier cifra
+### Criterio de duración (desde el 11-sep)
 
-El equipo mantiene `referencia/Hoja de control de tareas.xlsx` con las 257 tareas. Se verificó
-fila por fila: claves, duraciones, las 417 dependencias y la ruta crítica **coinciden con la
-red v2**. Cero violaciones de dependencia en las fechas.
+`rc257.py` usa **`min()`** para los rangos, alineado con la hoja de control del equipo.
+Red **38.25 días hábiles**, 7-sep → 30-oct. Esfuerzo **1,978 h**. Cadena crítica 28 actividades,
+con la cola en el **informe final** (`QI.1`–`QI.5`), no en la build.
 
-La única discrepancia era el criterio de rangos. **Se adoptó el del equipo: rangos al valor
-MENOR.** `rc257.py` usa `min()`, no `max()`.
+### MODELO DE COSTOS — leer antes de tocar cifras
 
-| | Antes (mayor) | Ahora (menor) |
-|---|---|---|
-| Duración de la red | 45.25 d | **38.25 d** |
-| Esfuerzo | 2,146 h | **1,978 h** |
-| Presupuesto | $315,034 | **$294,981** |
-| Cadena crítica | 32 act. | **28 act.** |
+El equipo son **practicantes bajo convenio escolar**, no empleados. Tarifa anclada al
+**salario mínimo nominal**: $315.04 diarios ÷ 8 h = **$39.38/h = 1 SM**.
 
-Efecto cualitativo: la cola crítica pasó de la rama de build (`QB`) a la del **informe final**
-(`QI.1`–`QI.5`). El cuello final del proyecto es documental, no técnico.
+**No dividir el mensual entre 173.33 h.** Eso da $55.25 y es el *costo patronal* de un
+trabajador de planta que cobra días de descanso. Un practicante no los cobra.
 
-### Cifras vigentes
+Cada perfil es múltiplo del SM según responsabilidad, de 1.0 (redactor) a 2.2 (director).
+Definido en `PERFIL_BASE` de `scripts/costos.py`, cada uno con su justificación.
 
 | | |
 |---|---|
-| Red | **38.25 días hábiles** · 7-sep → 30-oct |
-| Disponible 7-sep → 13-nov | 49 días hábiles · margen **10.75 d** |
-| Esfuerzo | 1,978 h · tarifa media $113.72/h |
-| Mano de obra | $224,931 |
-| **Línea base de costos** | **$280,981** |
-| **Presupuesto total** | **$294,981** |
-| Costo de la calidad | $40,403 · 18.0% |
-| Compresión | 38.25 → 34.15 d por $1,964 |
-| Carga QA (Diana) | 511 h en ventana de 306 h = **167%** |
-| Áreas sobreasignadas | **6 de 8** |
+| Tarifa media | **$52.58/h** (1.34 SM) |
+| Mano de obra | **$104,013** |
+| Costos no laborales | **Ninguno** — visores prestados, licencias libres, Unity gratuito |
+| Reserva monetaria | **Ninguna** — ningún riesgo tiene impacto en dinero |
+| Reserva de cronograma | **10.75 d** (49 disponibles − 38.25 de red) |
+| **Presupuesto** | **$104,013** |
+
+### Riesgos en días, no en pesos
+
+Como el proyecto no compra ni contrata, **ningún riesgo tiene impacto monetario**. El registro
+valora el impacto en **días hábiles** y en degradación de alcance. EMV = **9.15 días** contra
+una reserva de 10.75. Alcanza, con 17% de margen.
+
+Advertencia documentada: si R1, R2 y R5 se materializaran juntos serían 15 días y no alcanzaría.
+
+### Evolución del presupuesto — no repetir los errores
+
+| Versión | Supuesto | Presupuesto |
+|---|---|---|
+| 1ª | Tarifas de mercado sin fuente + compras | $559,891 |
+| 2ª | Observatorio Laboral (profesionistas) + equipo prestado | $294,981 |
+| **3ª vigente** | **Salario mínimo escalado (practicantes) + sin compras** | **$104,013** |
+
+Cada corrección acercó la estimación a lo que el proyecto realmente es. No volver a estimar
+tarifas sin fuente oficial.
 
 ### Entregables vigentes
 
 | Archivo | Qué es |
 |---|---|
-| `Ruta_Critica_257_Tareas_v3.docx` | Análisis con el criterio alineado. Control del documento explica el cambio. |
-| `Analisis_Costos_Calidad_Riesgos.docx` | Costeo ascendente, presupuesto, simultaneidad, compresión, calidad y riesgos. |
-| `Plan_Calidad_Plan_Riesgos.docx` | Los dos planes + certificaciones. |
-| `Cronograma_257_ProjectLibre.xml` | MS Project XML con **el avance real cargado**: 9 tareas al 100%, `QC.2` al 50%. Arranca 7-sep. |
-| `figuras257/` y `figuras_costos/` | 8 figuras, SVG editable + PNG. |
-| `docs/investigacion/analisis-hoja-de-control.md` | Verificación de la hoja y plan de migración. |
-| `docs/investigacion/reparto-exposicion-costos.md` | Guion de exposición para los 8, con cifras y preguntas probables. |
+| `Ruta_Critica_257_Tareas_v3.docx` | Red PDM completa, criterio alineado |
+| `Analisis_Costos_Calidad_Riesgos.docx` | 14 secciones + 3 anexos. Cubre **7.1 a 7.4**, incluido valor ganado |
+| `Plan_Calidad_Plan_Riesgos.docx` | Calidad (8.1–8.3), riesgos **11.1 a 11.7**, certificaciones |
+| `Entregable_Medio_Curso_21sep.docx` | Compromiso de entrega del 21-sep, derivado del cronograma |
+| `Cronograma_257_ProjectLibre.xml` | 265 tareas, 417 vínculos, **13 recursos con tarifa y costo**, avance real cargado. Total $104,013 |
+| `figuras257/` y `figuras_costos/` | 8 figuras, SVG editable + PNG |
 
-### Tarifas — NO estimar sin fuente
+Cobertura PMBOK completa: área 7 de 7.1 a 7.4, área 11 de 11.1 a 11.7.
 
-Solo fuentes oficiales mexicanas. Observatorio Laboral (STPS/ENOE-INEGI) TIC $21,697/mes y
-promedio profesionistas $19,494/mes · Data México $11,000/mes · CONASAMI $315.04/día · IMSS
-$662.80/día. Conversión: mensual ÷ 173.33 h. Factores por perfil en `PERFIL_BASE` de
-`scripts/costos.py`.
+### Corte de medio curso (cierre del 18-sep)
 
-Una versión previa usó tarifas a ojo y dio $559,891; la docente dijo que estaba muy caro y
-tenía razón.
+**117 de 257 actividades · 838 de 1,978 h · 42% del esfuerzo.**
+PV $47,562 · EV $46,097 · **SPI 0.969**.
 
-### La hoja de Excel se retira
+Titular: *prototipo jugable de batería VR con ritmo y sonido, más la planeación completa.*
 
-`Cronograma_257_ProjectLibre.xml` es el plan único. Argumento para la docente: **la columna
-«Ruta Crítica» de la hoja ya tiene 14 filas incorrectas** (9 marcadas que ya no lo son, 5
-críticas sin marcar) porque es un valor escrito a mano que no se recalcula. ProjectLibre lo
-recalcula solo.
+Sarai va con solo 2 tareas cerradas contra 27 de Misael. **No es retraso**: la interfaz arranca
+tarde por diseño de la red. Está explicado en el §5 del documento de medio curso.
 
-Defectos menores de la hoja: `EO.1` y `EB.1` tienen fecha de término anterior al inicio.
+### Pendiente de registrar
 
-### Avance real al 11-sep
+El valor ganado solo calcula PV, EV y SPI. **Falta registrar horas reales** por actividad —
+sin ese dato no hay AC ni CPI, y la mitad del método queda inutilizable. Recomendación 4 del
+documento de costos.
 
-9 completadas (`JA.1` `EO.1` `EO.2` `EB.1` `EB.2` `EB.3` `EB.4` `ML.1` `ML.2`), 1 en curso
-(`QC.2`), 12 sin empezar, 235 bloqueadas. **La rama del entorno 3D, que es la crítica, no ha
-arrancado.**
+## Prototipo — etapa A, estado al 16-sep-2026
 
-### Reparto de la exposición
+Proyecto Unity en `/Users/abiudbenitez/Documents/code/Unity/BateriaVR` (repo git propio, aparte
+de esta carpeta). Unity 6000.5.10f1 · OpenXR 1.18 · XRI 3.6.0.
 
-Misael método · Benjamín tarifas · Kimberly agregación · Christian presupuesto · Javier
-escenarios · Sarai simultaneidad · María compresión · Diana calidad, riesgos y cierre.
-
-## Desarrollo del prototipo — etapa A, desde el 12-sep-2026
-
-La construcción del sistema de percusión arrancó. **Etapa A: un pad que suena al golpearlo, con
-háptico, en el visor, con la latencia medida.** Etapa B (seis piezas, capas de velocity) esbozada.
-Etapa C (sesión terapéutica, métricas, STAI-6) fuera de alcance hasta que A dé un número aceptable.
+**Capítulo 4 cerrado: el pad suena al golpearlo, con háptico y con el volumen variando según la
+fuerza.** 21 pruebas EditMode en verde. Lo que sigue es el capítulo 5, la medición de latencia,
+que es el **hito Go/No-Go del acta, fechado en la semana 4 (25-sep)**.
 
 | | |
 |---|---|
-| Guía | `entregables/guia/Guia_Bateria_VR_A.md` — 8 capítulos, cada uno produce algo que corre en el visor |
+| Guía | `entregables/guia/Guia_Bateria_VR_A.md` — 8 capítulos |
 | Spec | `docs/superpowers/specs/2026-09-12-guia-bateria-vr-unity-design.md` |
-| Plan | `docs/superpowers/plans/2026-09-12-bateria-vr-etapa-a.md` |
-| Código | `proyecto-unity/Assets/Scripts/Drum/` — 10 scripts, 15 pruebas EditMode en `Assets/Tests/EditMode/` |
-| Medición | `scripts/latencia.py` + `scripts/test_latencia.py`, 15 pruebas |
-| Rama | `feat/bateria-etapa-a` |
+| Código espejo | `proyecto-unity/Assets/` en esta carpeta |
+| Medición | `scripts/latencia.py` + 15 pruebas. **Solo numpy**: scipy no carga en este macOS ARM |
 
-### Entorno — restricciones que no se pueden saltar
+### Entorno
 
-**Quest Link no está disponible.** Ninguna máquina del usuario tiene GPU dedicada compatible: la
-laptop Arch es una APU AMD Picasso/Raven 2 con Vega integrada, y la familiar tampoco tiene GPU
-dedicada. El ciclo de trabajo es Meta XR Simulator en play mode sobre la Mac, y build APK + `adb`
-al visor para todo lo que el simulador no puede dar: velocidad real de mano, latencia real, háptico.
+Quest 3S. **Quest Link no está disponible** — ninguna máquina tiene GPU dedicada compatible.
+Ciclo: Meta XR Simulator en la Mac, y build APK + `adb` al visor para velocidad real de mano,
+latencia y háptico.
 
-**Hardware:** Quest 3S de 128 GB ($6,600 MXN) para desarrollo diario. Mismo SoC y misma RAM que el
-Quest 3, así que el presupuesto de latencia es idéntico; lo que pierde (lente Fresnel, IPD de tres
-pasos, sin LiDAR) no afecta a este proyecto. El **Quest 3 de la Facultad** queda para las pruebas
-con usuarios, donde la lente pancake y el IPD continuo sí importan en sesiones de 12 minutos.
+### Tres bugs resueltos, con su lección
 
-**scipy está roto en el entorno pyenv `redes`:** los binarios no cargan en este macOS ARM
-(`section '__DATA/__thread_bss' has a zero-fill section type`). Por eso `latencia.py` usa solo
-numpy y el `wave` de la biblioteca estándar. No reintroducir scipy en scripts nuevos sin
-comprobar que importa.
+1. **El jugador caía sin parar.** Se usó el prefab `XR Origin (XR Rig)` de los Starter Assets
+   (el rig de demo, con locomoción completa) y había quedado inclinado 50°. Su `GravityProvider`
+   aplica gravedad en espacio **local** y el `CharacterController` trae `SlopeLimit: 45`: a 50°
+   el suelo horizontal deja de contar como piso pisable. Usar `XR Origin (VR)` del menú.
+2. **Golpeaba y no sonaba nada.** El array `Targets` del `DrumHitFanout` estaba vacío: los golpes
+   se detectaban y se descartaban sin un solo mensaje.
+3. **El pad quedaba a 1.43 m.** La distancia que importa es la que separa el pad del `XR Origin`,
+   no la posición del pad sola. **Dejar el `XR Origin` en (0,0,0)** y colocar los pads relativos.
 
-### Dos correcciones de hecho contra la documentación oficial
-
-- **El Meta XR Simulator ya no es paquete de Unity.** `com.meta.xr.simulator` del Asset Store está
-  deprecado; ahora es aplicación independiente que se descarga del portal de Meta (build de macOS
-  ARM). No hay registro con alcance que configurar.
-- **Single Pass Instanced vive en `XR Plug-in Management → OpenXR → Render Mode`**, no en Player
-  Settings. El `Stereo Rendering Mode` de `Player Settings → XR Settings` es el camino heredado del
-  VR integrado de Unity y no aplica con OpenXR.
+Los tres comparten forma: **el síntoma no se parecía a la causa.** Por eso `DrumHitFanout`,
+`StickTracker` y `DrumVoice` ahora validan sus referencias en `Awake` con `LogError`, y
+`EscenaRigTests` vigila que el rig siga derecho y sin locomoción.
 
 ### Reglas del código que no se negocian
 
-1. `AudioSettings.dspTime` se lee **una sola vez por frame**, al inicio de `Update()`. Nunca
-   `Time.time` ni `Time.deltaTime` para nada rítmico: el tiempo de frame acumula deriva.
-2. **Cero asignaciones en el camino del golpe.** El recolector de basura produce caídas de frame y
-   una caída de frame es latencia. `AddComponent` solo en `Awake`.
-3. El rearme del pad es **por posición, no por tiempo**. Semicorcheas a 160 BPM son 94 ms entre
-   golpes; un cooldown temporal las destruye.
-4. `deviceVelocity` y `deviceAngularVelocity` vienen en espacio del **XR Origin**; `tip.position` y
-   `pad.Normal` están en **mundo**. Convertir con `xrOrigin.TransformVector()`. Mezclarlos da
-   direcciones equivocadas y solo falla cuando el jugador gira: es el bug más caro de este código.
+1. `AudioSettings.dspTime` se lee **una vez por frame**. Nunca `Time.time` ni `Time.deltaTime`.
+2. **Cero asignaciones en el camino del golpe.** `AddComponent` solo en `Awake`.
+3. Rearme del pad **por posición, no por tiempo**: semicorcheas a 160 BPM son 94 ms.
+4. `deviceVelocity` viene en espacio del **XR Origin**; `pad.Normal` está en **mundo**. Convertir
+   con `xrOrigin.TransformVector()`. Mezclarlos solo falla cuando el jugador gira.
 
 ### Criterio Go/No-Go de latencia
 
-**−10 ms ≤ Δ(p90) ≤ +25 ms**, medido con el protocolo del clic físico. Δ **negativo es resultado
-válido, no error**: la predicción del plano armado adelanta el sonido, y el oído tolera ~10 ms de
-adelanto mientras castiga el retraso. El p90 decide, no la mediana. El sample de medición debe ser
-de **bombo**: la herramienta separa el clic del tambor por centroide espectral y una tarola no se
-distingue del clic del plástico.
+**−10 ms ≤ Δ(p90) ≤ +25 ms**, con el protocolo del clic físico. Δ **negativo es válido**: la
+predicción del plano armado adelanta el sonido. Decide el p90, no la mediana. El sample debe ser
+de **bombo** — ya está puesto `512175__kopreusz__kick_2.wav`.
 
-### Pendiente
+### Pendiente antes del capítulo 5
 
-- Correr las 15 pruebas EditMode en Unity. Están verificadas por inspección, no compiladas.
-- Confirmar la licencia del sample de batería antes de meterlo al repositorio.
-- **Discrepancia de rol:** el acta v3.0 asigna el desarrollo VR a María Fernanda Montoya; en la
-  práctica lo ejecuta Misael. Es carga real fuera del rol formal y afecta el cálculo de
-  sobreasignación del cronograma.
+- **Apagar los dos `DiagnosticoMano`**: imprimen cada frame, 144 líneas/s a dos manos. Cuestan
+  frames reales en el visor y contaminarían la medición.
+- Confirmar la **licencia del sample** antes de meterlo al repositorio.
+- **Discrepancia de rol:** el acta v3.0 asigna el desarrollo VR a María Fernanda; lo ejecuta
+  Misael. Es carga fuera del rol formal y mueve el cálculo de sobreasignación.
 
 ## Tareas de clase entregadas
 
