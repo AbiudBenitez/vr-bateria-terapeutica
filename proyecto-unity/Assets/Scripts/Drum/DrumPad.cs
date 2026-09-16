@@ -17,6 +17,9 @@ public sealed class DrumPad : MonoBehaviour
     [SerializeField, Tooltip("Velocidad normal mínima para contar como golpe, en m/s.")]
     float minVelocity = 0.4f;
 
+    /// El radio útil del pad. WithinRadius() responde otra pregunta y no sirve para
+    /// dimensionar el visual, que necesita el valor en sí.
+    public float   Radius      => radius;
     public float   ArmDistance => armDistance;
     public float   MinVelocity => minVelocity;
     public Vector3 Normal      => transform.up;
