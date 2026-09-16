@@ -691,12 +691,37 @@ El prefab del `XR Origin (VR)` trae ya la cámara y un objeto por cada mano con 
 `TrackedPoseDriver` configurado. La jerarquía en XRI 3.x es:
 
 ```
-XR Origin (XR Rig)          <- este es el que va al campo xrOrigin del StickTracker
+XR Origin (VR)              <- este es el que va al campo xrOrigin del StickTracker
 └── Camera Offset
     ├── Main Camera
     ├── Left Controller
     └── Right Controller    <- este va al campo controller, y de él cuelga la baqueta
 ```
+
+> ### ⚠ No uses el rig de los Starter Assets
+>
+> Si instalaste las muestras del XR Interaction Toolkit, en `Assets/Samples/.../Starter Assets/Prefabs/`
+> hay un prefab llamado **`XR Origin (XR Rig)`**. **No es ése.** Es el rig de la escena de demo y
+> trae locomoción completa: `DynamicMoveProvider`, `GravityProvider`, `SnapTurnProvider`,
+> `ContinuousTurnProvider`, `TeleportationProvider`, `ClimbProvider`, `GrabMoveProvider`,
+> `JumpProvider`, `LocomotionMediator` y un `CharacterController`.
+>
+> Este proyecto es **de pie frente a una batería** y no usa locomoción de ninguna clase. Cada uno
+> de esos componentes puede mover el rig respecto al pad, y si el rig se mueve después de calibrar,
+> la medición de latencia del capítulo 5 queda inválida **sin que nada lo avise**.
+>
+> **Y hay un modo de fallo concreto y desagradable.** El `GravityProvider` aplica la gravedad en
+> espacio **local del rig**, y el `CharacterController` trae `SlopeLimit: 45`. Si el rig queda
+> inclinado más de 45° —basta un tirón accidental del gizmo de rotación en la vista de escena— el
+> suelo horizontal pasa a tener una pendiente *aparente* mayor que el límite, deja de contar como
+> piso pisable, el personaje nunca vuelve a estar `grounded` y **cae indefinidamente**, en el
+> simulador y en el visor por igual. El síntoma no se parece en nada a la causa.
+>
+> Usa `GameObject → XR → XR Origin (VR)` del menú, que es un rig pelado. Si ya metiste el de los
+> Starter Assets y tienes la escena armada, no hace falta rehacerla: pon la rotación del
+> `XR Origin` en `(0, 0, 0)`, borra el hijo **`Locomotion`** y quita el componente
+> **`Character Controller`**. Con eso queda equivalente al rig pelado y conservas las referencias
+> ya conectadas.
 
 Aun así, **no te fíes del nombre, fíate del componente.** Lo que decide cuál objeto arrastrar en el
 capítulo 4 es cuál tiene el `Tracked Pose Driver` de la mano derecha. Si tu versión los nombra
