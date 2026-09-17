@@ -1,7 +1,10 @@
 {
     "name": "Drum",
     "rootNamespace": "",
-    "references": ["Unity.XR.CoreUtils"],
+    "references": [
+        "Unity.XR.CoreUtils",
+        "Unity.TextMeshPro"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "autoReferenced": true

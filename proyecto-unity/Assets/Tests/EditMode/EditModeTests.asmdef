@@ -1,11 +1,22 @@
 {
     "name": "EditModeTests",
     "rootNamespace": "",
-    "references": ["Drum", "UnityEngine.TestRunner", "UnityEditor.TestRunner"],
-    "includePlatforms": ["Editor"],
+    "references": [
+        "Drum",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "Unity.TextMeshPro"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "overrideReferences": true,
-    "precompiledReferences": ["nunit.framework.dll"],
-    "defineConstraints": ["UNITY_INCLUDE_TESTS"],
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
     "autoReferenced": false
 }
