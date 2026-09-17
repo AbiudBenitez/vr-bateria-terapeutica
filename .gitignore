@@ -25,3 +25,8 @@ __pycache__/
 
 # Grabaciones de latencia: pesan y son datos crudos, no fuente
 mediciones/*.wav
+
+# Volcados del visor: solo se versionan los JSON de la sonda, no el resto del
+# persistentDataPath (il2cpp, analytics de Unity) que se arrastra con adb pull.
+mediciones/probe/files/il2cpp/
+mediciones/probe/files/Unity/
