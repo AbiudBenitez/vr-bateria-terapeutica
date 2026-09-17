@@ -118,13 +118,18 @@ public static class AnalizarKit
             "Vale");
     }
 
-    /// Centroide espectral de los primeros 50 ms: dónde está el centro de gravedad del ataque.
+    /// Centroide espectral del ataque: dónde está el centro de gravedad de la energía.
+    ///
+    /// CUIDADO CON EL LÍMITE SUPERIOR. La primera versión recorría 256 bandas de 1024, o sea
+    /// solo hasta 5977 Hz a 48 kHz. Un platillo vive entero por encima de eso: medía 4116 Hz
+    /// cuando su centroide real es 11509. Hay que barrer hasta Nyquist o los instrumentos
+    /// brillantes salen todos iguales y se ordenan por ruido.
     static float Centroide(float[] datos, int frecuencia, int canales)
     {
-        int n = Mathf.Min(2048, datos.Length / Mathf.Max(canales, 1));
+        int n = Mathf.Min(1024, datos.Length / Mathf.Max(canales, 1));
         if (n < 64) return 0f;
 
-        // Mono y ventana de Hann, en un solo paso.
+        // Mono y ventana de Hann en un solo paso.
         var x = new float[n];
         for (int i = 0; i < n; i++)
         {
@@ -133,14 +138,17 @@ public static class AnalizarKit
             x[i] = s / canales * (0.5f - 0.5f * Mathf.Cos(2f * Mathf.PI * i / (n - 1)));
         }
 
-        // DFT directa sobre 256 bandas: n es pequeño y esto corre una vez, en el editor.
-        const int bandas = 256;
+        // DFT directa hasta Nyquist. n es pequeño y esto corre una vez, en el editor.
         float num = 0f, den = 0f;
-        for (int k = 1; k < bandas; k++)
+        for (int k = 1; k <= n / 2; k++)
         {
             float re = 0f, im = 0f;
             float w = 2f * Mathf.PI * k / n;
-            for (int i = 0; i < n; i++) { re += x[i] * Mathf.Cos(w * i); im -= x[i] * Mathf.Sin(w * i); }
+            for (int i = 0; i < n; i++)
+            {
+                re += x[i] * Mathf.Cos(w * i);
+                im -= x[i] * Mathf.Sin(w * i);
+            }
             float mag = Mathf.Sqrt(re * re + im * im);
             num += mag * (k * (float)frecuencia / n);
             den += mag;
