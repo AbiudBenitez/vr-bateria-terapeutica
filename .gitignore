@@ -30,3 +30,6 @@ mediciones/*.wav
 # persistentDataPath (il2cpp, analytics de Unity) que se arrastra con adb pull.
 mediciones/probe/files/il2cpp/
 mediciones/probe/files/Unity/
+
+# Build de Unity
+proyecto-unity/Builds/

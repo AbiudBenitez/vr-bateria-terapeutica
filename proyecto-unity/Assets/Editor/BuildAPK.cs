@@ -17,6 +17,13 @@ public static class BuildAPK
 {
     const string Salida = "Builds/bateria.apk";
 
+    /// Tamaño real del APK en disco.
+    ///
+    /// NO se usa BuildSummary.totalSize: ése mide el staging sin comprimir y engaña por un
+    /// factor de veinte. Reportaba 881 MB para un APK de 43.
+    static double MegasDelApk =>
+        File.Exists(Salida) ? new FileInfo(Salida).Length / (1024.0 * 1024.0) : 0;
+
     [MenuItem("Batería/Compilar APK")]
     public static void DesdeMenu()
     {
@@ -27,7 +34,7 @@ public static class BuildAPK
         EditorUtility.DisplayDialog("Batería",
             ok
                 ? $"APK compilado.\n\n{Salida}\n" +
-                  $"{reporte.summary.totalSize / (1024 * 1024)} MB en " +
+                  $"{MegasDelApk:F1} MB en " +
                   $"{reporte.summary.totalTime.TotalMinutes:F1} min.\n\n" +
                   "Para instalarlo:\n  $ADB install -r " + Salida
                 : $"El build falló: {reporte.summary.result}.\nRevisa la consola.",
@@ -84,7 +91,7 @@ public static class BuildAPK
 
         var r = reporte.summary;
         if (r.result == BuildResult.Succeeded)
-            Debug.Log($"[BuildAPK] OK. {Salida} · {r.totalSize / (1024 * 1024)} MB · " +
+            Debug.Log($"[BuildAPK] OK. {Salida} · {MegasDelApk:F1} MB · " +
                       $"{r.totalTime.TotalMinutes:F1} min");
         else
             Debug.LogError($"[BuildAPK] Falló: {r.result}. {r.totalErrors} error(es).");
