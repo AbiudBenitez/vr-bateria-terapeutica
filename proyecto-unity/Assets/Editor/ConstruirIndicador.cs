@@ -45,10 +45,14 @@ public static class ConstruirIndicador
         var texto = go.GetComponent<TextMeshPro>();
         if (texto == null) texto = Undo.AddComponent<TextMeshPro>(go);
         texto.text = "Golpea una pieza";
-        texto.fontSize = 1.4f;                        // tamaño en METROS: es texto 3D, no UI
+        // CUIDADO: en un TextMeshPro 3D el fontSize está en unidades de MUNDO, o sea metros.
+        // La primera versión puso 1.4 y salieron letras de metro y medio. A un metro de
+        // distancia, 5 cm de altura se leen cómodos y siguen viéndose desde fuera del visor
+        // cuando alguien mira la pantalla espejo durante la demostración.
+        texto.fontSize = 0.05f;
         texto.alignment = TextAlignmentOptions.TopLeft;
         texto.color = Color.white;
-        texto.rectTransform.sizeDelta = new Vector2(1.1f, 0.7f);
+        texto.rectTransform.sizeDelta = new Vector2(0.75f, 0.35f);   // 5 líneas de 5 cm
         // Fuente monoespaciada no hay, pero el relleno a ancho fijo de HitRing alinea igual.
 
         var readout = go.GetComponent<HitReadout>();
