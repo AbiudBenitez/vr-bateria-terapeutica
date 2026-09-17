@@ -57,6 +57,23 @@ public static class ConstruirKit
         Undo.SetCurrentGroupName("Construir kit de 6 piezas");
         int grupo = Undo.GetCurrentGroup();
 
+        // IDEMPOTENCIA. La primera versión reutilizaba un pad como plantilla y clonaba los
+        // otros cinco, así que la segunda ejecución dejaba 11 pads en vez de 6. Ahora se
+        // recogen TODOS los existentes y se reutilizan; los que sobren se borran.
+        var existentes = Object.FindObjectsByType<DrumPad>().ToList();
+        existentes.Sort((a, b) => string.CompareOrdinal(a.name, b.name));
+
+        // Raíz común: permite mover el kit entero sin deshacer la disposición.
+        var raiz = GameObject.Find("Kit");
+        if (raiz == null)
+        {
+            raiz = new GameObject("Kit");
+            Undo.RegisterCreatedObjectUndo(raiz, "Crear raíz del kit");
+        }
+        raiz.transform.position = Vector3.zero;
+        raiz.transform.rotation = Quaternion.identity;
+
+        string msg_cal = "";
         var pads = new System.Collections.Generic.List<DrumPad>();
         var faltantes = new System.Collections.Generic.List<string>();
 
@@ -68,9 +85,9 @@ public static class ConstruirKit
             // Reutiliza el pad existente para la primera pieza: conserva sus referencias y el
             // PadVisual ya montado.
             DrumPad pad;
-            if (pads.Count == 0 && plantilla != null)
+            if (pads.Count < existentes.Count)
             {
-                pad = plantilla;
+                pad = existentes[pads.Count];
                 Undo.RecordObject(pad.gameObject, "Reubicar pad");
             }
             else
@@ -79,6 +96,7 @@ public static class ConstruirKit
                 Undo.RegisterCreatedObjectUndo(go, $"Crear pad {nombre}");
                 pad = go.GetComponent<DrumPad>();
             }
+            Undo.SetTransformParent(pad.transform, raiz.transform, "Meter pad en el kit");
 
             pad.gameObject.name = $"Pad_{nombre}";
             float rad = grados * Mathf.Deg2Rad;
@@ -108,8 +126,31 @@ public static class ConstruirKit
             EditorUtility.SetDirty(t);
         }
 
+        // Los pads que sobran de una ejecución anterior. Sin esto la segunda pasada dejaba 11.
+        int sobrantes = 0;
+        foreach (var viejo in existentes)
+            if (!pads.Contains(viejo))
+            {
+                Undo.DestroyObjectImmediate(viejo.gameObject);
+                sobrantes++;
+            }
+
         // Comprobación que faltaba en la primera versión y que costó cinco pares solapados.
         string solapes = Solapes(pads);
+
+        // El calibrador debe mover el KIT, no un pad suelto: si no, el botón A saca una pieza
+        // de su sitio y rompe la disposición.
+        var cal = Object.FindAnyObjectByType<PadCalibrator>();
+        if (cal != null && pads.Count > 0)
+        {
+            var soCal = new SerializedObject(cal);
+            soCal.FindProperty("objetivo").objectReferenceValue = raiz.transform;
+            var refPad = pads.FirstOrDefault(x => x.name.Contains("Tarola")) ?? pads[0];
+            soCal.FindProperty("pad").objectReferenceValue = refPad;
+            soCal.ApplyModifiedPropertiesWithoutUndo();
+            EditorUtility.SetDirty(cal);
+            msg_cal = $"Calibrador: mueve '{raiz.name}' tomando '{refPad.name}' como referencia.";
+        }
 
         Undo.CollapseUndoOperations(grupo);
         EditorSceneManager.MarkSceneDirty(plantilla.gameObject.scene);
@@ -120,6 +161,7 @@ public static class ConstruirKit
             if (!faltantes.Contains(nombre))
                 msg.AppendLine($"  {nombre,-9} {grados,4:F0}°  r {radio:F2} m  altura {altura:F2} m");
         msg.AppendLine($"\n{trackers.Length} StickTracker cableados a los {pads.Count} pads.");
+        if (sobrantes > 0) msg.AppendLine($"{sobrantes} pad(s) sobrantes eliminados.");
         if (!string.IsNullOrEmpty(solapes))
         {
             msg.AppendLine("\nPADS QUE SE SOLAPAN — un golpe dispararía los dos:");
@@ -129,6 +171,7 @@ public static class ConstruirKit
         if (faltantes.Count > 0)
             msg.AppendLine($"\nFALTAN en {CarpetaPiezas}: {string.Join(", ", faltantes)}\n" +
                            "Ejecuta 'Analizar kit' primero.");
+        if (!string.IsNullOrEmpty(msg_cal)) msg.AppendLine(msg_cal);
         msg.Append("\nGuarda la escena (Cmd+S).");
 
         Debug.Log("[ConstruirKit]\n" + msg);

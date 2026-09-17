@@ -15,7 +15,14 @@ using UnityEngine.XR;
 /// nada. La vibración es la única señal que llega al usuario donde está.
 public sealed class PadCalibrator : MonoBehaviour
 {
-    [SerializeField] DrumPad   pad;
+    [SerializeField, Tooltip("Pad de REFERENCIA: el que quedará bajo la punta al calibrar.")]
+    DrumPad pad;
+
+    [SerializeField, Tooltip("Qué se mueve. Con un solo pad, su propio Transform. Con un kit " +
+                             "de seis piezas, la raíz del kit: así todo se desplaza junto y la " +
+                             "disposición se conserva. Vacío = se mueve el pad de referencia.")]
+    Transform objetivo;
+
     [SerializeField] Transform tip;
     [SerializeField] XRNode    hand = XRNode.RightHand;
 
@@ -58,9 +65,13 @@ public sealed class PadCalibrator : MonoBehaviour
 
     void Calibrar(InputDevice device)
     {
-        Vector3 destino = tip.position;
-        pad.transform.position = destino;
-        pad.transform.rotation = Quaternion.identity;   // normal = Vector3.up
+        // Se aplica un DESPLAZAMIENTO, no una posición absoluta. Con un kit de seis piezas,
+        // teletransportar la raíz a la punta lo mandaría todo a otro sitio; lo que se quiere es
+        // que el pad de referencia acabe bajo la punta y el resto lo acompañe.
+        Transform mueve = objetivo != null ? objetivo : pad.transform;
+        Vector3 delta = tip.position - pad.Center;
+        mueve.position += delta;
+
         Calibraciones++;
 
         if (vibrarAlCalibrar
@@ -70,7 +81,8 @@ public sealed class PadCalibrator : MonoBehaviour
             device.SendHapticImpulse(0u, amplitud, duracion);
         }
 
-        Debug.Log($"[PadCalibrator] Calibración #{Calibraciones}: pad recolocado en " +
-                  $"({destino.x:F3}, {destino.y:F3}, {destino.z:F3}).", this);
+        Debug.Log($"[PadCalibrator] Calibración #{Calibraciones}: '{mueve.name}' desplazado " +
+                  $"({delta.x:+F3}, {delta.y:+F3}, {delta.z:+F3}) m para poner " +
+                  $"'{pad.name}' bajo la punta.", this);
     }
 }
