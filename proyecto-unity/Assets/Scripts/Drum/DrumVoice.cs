@@ -8,8 +8,8 @@ using UnityEngine;
 public sealed class DrumVoice : DrumHitSink
 {
     [Header("Fuente de sonido")]
-    [SerializeField, Tooltip("Pieza del kit con sus muestras ordenadas por brillo. " +
-                             "Si se deja vacía se usa el clip suelto de abajo.")]
+    [SerializeField, Tooltip("Pieza por defecto. Si el pad golpeado trae la suya, manda la del " +
+                             "pad: así una sola DrumVoice sirve a las seis piezas del kit.")]
     DrumKitPiece pieza;
 
     [SerializeField, Tooltip("Respaldo de una sola muestra. Es lo que usa Cap04_Pad, la escena " +
@@ -36,7 +36,10 @@ public sealed class DrumVoice : DrumHitSink
 
     AudioSource[] pool;
     int next;
-    int ultimoIndice = -1;
+    /// La última muestra reproducida, POR PIEZA. Con un solo contador global, alternar entre
+    /// tarola y tom hacía que cada uno excluyera el índice que había usado el otro, y el
+    /// round-robin dejaba de tener sentido.
+    readonly System.Collections.Generic.Dictionary<DrumKitPiece, int> ultimoPorPieza = new();
 
     void Awake()
     {
@@ -62,28 +65,32 @@ public sealed class DrumVoice : DrumHitSink
 
     public override void Handle(in DrumHit hit)
     {
+        // La pieza la decide el PAD: él sabe qué instrumento es. La del inspector queda como
+        // respaldo para escenas de un solo pad, como Cap04_Pad.
+        DrumKitPiece p = hit.Pad != null && hit.Pad.Pieza != null ? hit.Pad.Pieza : pieza;
+
         var src = pool[next];
         next = (next + 1) % pool.Length;
         if (src.isPlaying) src.Stop();
 
         float ganancia = Mathf.Clamp01(velocityToGain.Evaluate(hit.Velocity));
 
-        if (pieza != null && pieza.Cuenta > 0)
+        if (p != null && p.Cuenta > 0)
         {
             int i = SampleSelector.Elegir(
-                pieza.Cuenta,
+                p.Cuenta,
                 velocityToBrillo.Evaluate(hit.Velocity),
-                ultimoIndice,
+                ultimoPorPieza.TryGetValue(p, out int ult) ? ult : -1,
                 ventanaRoundRobin,
-                pieza.TieneEjeTimbral,
+                p.TieneEjeTimbral,
                 Random.value);
 
             if (i < 0) return;
-            ultimoIndice = i;
+            ultimoPorPieza[p] = i;
 
-            var m = pieza.muestras[i];
+            var m = p.muestras[i];
             src.clip   = m.clip;
-            src.volume = Mathf.Clamp01(ganancia * m.ganancia * pieza.nivelPieza);
+            src.volume = Mathf.Clamp01(ganancia * m.ganancia * p.nivelPieza);
         }
         else
         {

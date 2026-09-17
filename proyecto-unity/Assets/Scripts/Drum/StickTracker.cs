@@ -13,6 +13,10 @@ public sealed class StickTracker : MonoBehaviour
     [SerializeField] DrumPad[]   pads;
     [SerializeField] DrumHitSink sink;
 
+    [SerializeField, Tooltip("Margen del pre-filtro de proximidad, en metros. Solo se evalúa " +
+                             "el plano de los pads que la punta tenga cerca.")]
+    float margenProximidad = 0.15f;
+
     [SerializeField, Tooltip("Corrección constante entre el reloj de pose y el de audio, en segundos. " +
                              "Se determina midiendo, en el capítulo 6. No se adivina.")]
     float poseToAudioOffset = 0f;
@@ -97,6 +101,22 @@ public sealed class StickTracker : MonoBehaviour
 
     void Evaluate(DrumPad pad, Vector3 tipNow, Vector3 vTip, double dspNow)
     {
+        // Pre-filtro barato: con seis piezas y dos manos serían 12 pruebas de plano por frame.
+        // Se descarta por DISTANCIA, no con un collider: un collider devolvería la física al
+        // camino del golpe, que es exactamente lo que el capítulo 4 sacó de ahí.
+        //
+        // Se exige que AMBOS extremos del segmento estén lejos. Con solo comprobar la posición
+        // actual, una baqueta rápida podría atravesar el pad entre frames y el filtro se lo
+        // tragaría — el mismo tunelado que motivó no usar colliders.
+        float alcance = pad.Radius + pad.ArmDistance + margenProximidad;
+        float a2 = alcance * alcance;
+        if ((tipNow - pad.Center).sqrMagnitude > a2 &&
+            (prevTip - pad.Center).sqrMagnitude > a2)
+        {
+            armed[pad] = true;   // lejos del pad: queda rearmado para el próximo acercamiento
+            return;
+        }
+
         float dPrev = pad.SignedDistanceToArmPlane(prevTip);
         float dNow  = pad.SignedDistanceToArmPlane(tipNow);
 
@@ -118,6 +138,7 @@ public sealed class StickTracker : MonoBehaviour
         double dspImpact = CrossSolver.ImpactDsp(dspCross, pad.ArmDistance, vNormal);
 
         armed[pad] = false;
-        sink.Handle(new DrumHit(pad, vNormal, dspImpact, crossPoint, hand));
+        sink.Handle(new DrumHit(pad, vNormal, dspImpact, crossPoint, hand,
+                                pad.Intensidad(vNormal)));
     }
 }

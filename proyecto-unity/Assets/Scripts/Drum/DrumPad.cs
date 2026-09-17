@@ -13,17 +13,38 @@ public sealed class DrumPad : MonoBehaviour
     [SerializeField, Tooltip("Distancia del plano armado por delante de la superficie, en metros.")]
     float armDistance = 0.06f;
 
+    [Header("Identidad")]
+    [SerializeField, Tooltip("Qué instrumento es este pad. El entregable exige que cada golpe " +
+                             "se registre con su pieza: el pad ES esa identidad.")]
+    DrumKitPiece pieza;
+
+    [Header("Intensidad")]
+    [SerializeField, Tooltip("Velocidad en m/s a partir de la cual el golpe cuenta como medio.")]
+    float velocidadMedia = 1.5f;
+
+    [SerializeField, Tooltip("Velocidad en m/s a partir de la cual cuenta como fuerte. " +
+                             "Un bombo se golpea más fuerte que un hi-hat: por eso el umbral " +
+                             "vive en el pad y no es global.")]
+    float velocidadFuerte = 3.5f;
+
     [Header("Umbral")]
     [SerializeField, Tooltip("Velocidad normal mínima para contar como golpe, en m/s.")]
     float minVelocity = 0.4f;
 
     /// El radio útil del pad. WithinRadius() responde otra pregunta y no sirve para
     /// dimensionar el visual, que necesita el valor en sí.
+    public DrumKitPiece Pieza  => pieza;
+    public string  NombrePieza => pieza != null ? pieza.nombrePieza : name;
     public float   Radius      => radius;
     public float   ArmDistance => armDistance;
     public float   MinVelocity => minVelocity;
     public Vector3 Normal      => transform.up;
     public Vector3 Center      => transform.position;
+
+    /// 1 suave, 2 medio, 3 fuerte. El entregable del 21-sep pide tres niveles; la velocidad
+    /// continua se conserva aparte en DrumHit para no perder la dinámica timbral.
+    public int Intensidad(float velocidad)
+        => HitIntensity.From(velocidad, velocidadMedia, velocidadFuerte);
 
     /// Distancia con signo al plano armado. Positiva = del lado del jugador.
     public float SignedDistanceToArmPlane(Vector3 worldPoint)
