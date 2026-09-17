@@ -1,0 +1,144 @@
+{
+    "totalGolpes": 23,
+    "agendasTardias": 0,
+    "registros": [
+        {
+            "dspImpacto": 6.925594399829706,
+            "dspAhora": 6.8373333333333339,
+            "velocidad": 0.6009947657585144,
+            "agendaTardia": false
+        },
+        {
+            "dspImpacto": 12.624794148186842,
+            "dspAhora": 12.586666666666666,
+            "velocidad": 1.1634602546691895,
+            "agendaTardia": false
+        },
+        {
+            "dspImpacto": 13.623205001592636,
+            "dspAhora": 13.584,
+            "velocidad": 1.109377384185791,
+            "agendaTardia": false
+        },
+        {
+            "dspImpacto": 14.570824840456249,
+            "dspAhora": 14.528,
+            "velocidad": 1.0732128620147706,
+            "agendaTardia": false
+        },
+        {
+            "dspImpacto": 16.62789061433077,
+            "dspAhora": 16.544,
+            "velocidad": 0.6866199374198914,
+            "agendaTardia": false
+        },
+        {
+            "dspImpacto": 16.685468882501124,
+            "dspAhora": 16.597333333333336,
+            "velocidad": 0.608573317527771,
+            "agendaTardia": false
+        },
+        {
+            "dspImpacto": 22.229442770421504,
+            "dspAhora": 22.128,
+            "velocidad": 0.5638211369514465,
+            "agendaTardia": false
+        },
+        {
+            "dspImpacto": 23.25303903800249,
+            "dspAhora": 23.168,
+            "velocidad": 0.6768995523452759,
+            "agendaTardia": false
+        },
+        {
+            "dspImpacto": 24.305764241695404,
+            "dspAhora": 24.250666666666669,
+            "velocidad": 1.0866365432739258,
+            "agendaTardia": false
+        },
+        {
+            "dspImpacto": 25.360948122024536,
+            "dspAhora": 25.296,
+            "velocidad": 0.7886488437652588,
+            "agendaTardia": false
+        },
+        {
+            "dspImpacto": 46.09159676092863,
+            "dspAhora": 46.032,
+            "velocidad": 0.8919560313224793,
+            "agendaTardia": false
+        },
+        {
+            "dspImpacto": 47.40147015581528,
+            "dspAhora": 47.306666666666668,
+            "velocidad": 0.5741795897483826,
+            "agendaTardia": false
+        },
+        {
+            "dspImpacto": 48.98511744985978,
+            "dspAhora": 48.906666666666669,
+            "velocidad": 0.7135159969329834,
+            "agendaTardia": false
+        },
+        {
+            "dspImpacto": 51.59135391706228,
+            "dspAhora": 51.51466666666666,
+            "velocidad": 0.7541929483413696,
+            "agendaTardia": false
+        },
+        {
+            "dspImpacto": 52.552772439797717,
+            "dspAhora": 52.474666666666667,
+            "velocidad": 0.7550337910652161,
+            "agendaTardia": false
+        },
+        {
+            "dspImpacto": 53.6467512178421,
+            "dspAhora": 53.568,
+            "velocidad": 0.756399393081665,
+            "agendaTardia": false
+        },
+        {
+            "dspImpacto": 54.71550410547852,
+            "dspAhora": 54.672,
+            "velocidad": 1.0897066593170167,
+            "agendaTardia": false
+        },
+        {
+            "dspImpacto": 55.74494195598364,
+            "dspAhora": 55.696,
+            "velocidad": 0.9454646110534668,
+            "agendaTardia": false
+        },
+        {
+            "dspImpacto": 56.800190842628477,
+            "dspAhora": 56.752,
+            "velocidad": 0.947455644607544,
+            "agendaTardia": false
+        },
+        {
+            "dspImpacto": 57.83327813141545,
+            "dspAhora": 57.781333333333339,
+            "velocidad": 1.0406056642532349,
+            "agendaTardia": false
+        },
+        {
+            "dspImpacto": 58.96989645669858,
+            "dspAhora": 58.906666666666669,
+            "velocidad": 0.8888033032417297,
+            "agendaTardia": false
+        },
+        {
+            "dspImpacto": 60.050971527258557,
+            "dspAhora": 60.0,
+            "velocidad": 1.0285587310791016,
+            "agendaTardia": false
+        },
+        {
+            "dspImpacto": 61.12399591514468,
+            "dspAhora": 61.072,
+            "velocidad": 1.0912386178970338,
+            "agendaTardia": false
+        }
+    ]
+}

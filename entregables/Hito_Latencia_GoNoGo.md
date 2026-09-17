@@ -83,14 +83,59 @@ orden de plausibilidad y todas pendientes de comprobar:
 
 1. **La pose del controlador ya viene predicha al instante de presentación** por el runtime de
    OpenXR. Eso adelanta `tip.position` respecto a la realidad y compensa por sí solo buena
-   parte del retardo del camino de audio.
+   parte del retardo del camino de audio. — **Confirmada**, ver abajo.
 2. El camino de audio del Quest 3S es más rápido que los ~5 ms presupuestados para el buffer.
 3. Los dos efectos se cancelan parcialmente con `poseToAudioOffset` en 0.
 
-**Comprobación pendiente, barata:** el JSON de `LatencyProbe` registra `agendasTardias`. Si el
-mecanismo es el descrito, la corrida sin predicción debería mostrar una proporción alta de
-agendas tardías y la corrida con predicción, casi ninguna. Sacarlo con `adb pull` y compararlo
-confirmaría o descartaría la explicación 1 sin volver a medir.
+### Comprobación con la sonda interna — mecanismo confirmado
+
+Se extrajeron los volcados de `LatencyProbe` del visor con `adb pull`. Separan las dos
+configuraciones sin ambigüedad:
+
+| Corrida | Golpes | Agendas tardías | Lead mediano |
+|---|---|---|---|
+| Con predicción (18:55) | 62 | **0 %** | **+52.39 ms** |
+| Sin predicción (19:45) | 118 | **100 %** | **−6.92 ms** |
+
+**Sin predicción, el 100% de los golpes agenda el audio en el pasado** y cae al camino de
+respaldo: reproducir de inmediato. Eso cuantiza cada golpe al instante del frame en que se
+detectó, y ahí aparece el jitter.
+
+La confirmación numérica es exacta:
+
+| Observado | Valor | Predicho por la teoría |
+|---|---|---|
+| Lead mediano sin predicción | **−6.92 ms** | medio frame a 72 Hz = **−6.94 ms** |
+| Anchura de la distribución del lead | 15.65 ms (−15.83 a −0.18) | un frame completo, con cola por frames largos |
+| Jitter adicional sin predicción | **3.01 ms** | desviación de una uniforme de un frame: 3.21 ms a 90 Hz, 4.01 ms a 72 Hz |
+
+El lead mediano coincide con medio frame a 72 Hz **con 0.02 ms de error**, y la distribución
+del lead es una uniforme de un frame de ancho. Ésa es la firma inconfundible de la cuantización
+de frame.
+
+**Conclusión: la función real de la predicción del plano armado es recuperar el instante
+sub-frame del cruce.** No añade adelanto neto —la pose del controlador ya viene predicha por el
+runtime y compensa el camino de audio— sino que evita que el golpe se redondee al borde del
+frame. Por eso el efecto medido es sobre la dispersión y no sobre la media.
+
+Queda descartada la hipótesis de que el presupuesto de ~26 ms se estuviera compensando por
+casualidad: se compensa, pero por la predicción de pose del runtime, no por la nuestra.
+
+### Advertencia para la etapa B
+
+El lead con predicción fue de **+52 ms**, que implica golpes a **1.15 m/s** — toques suaves,
+propios de una sesión de calibración. El lead es `armDistance / velocidad`, así que se encoge
+al tocar rápido:
+
+| Velocidad | Lead disponible |
+|---|---|
+| 1.15 m/s (medido) | 52 ms |
+| 4 m/s (toque normal) | 15 ms |
+| 8 m/s (redoble fuerte) | 7.5 ms |
+
+A velocidades altas el margen se acerca al punto en que los golpes volverían a agendarse tarde.
+**`agendasTardias` debe vigilarse al tocar de verdad**, no solo al calibrar. Si sube, hay que
+aumentar `armDistance`.
 
 ## Limitaciones declaradas
 
@@ -108,5 +153,6 @@ confirmaría o descartaría la explicación 1 sin volver a medir.
 | | |
 |---|---|
 | Grabaciones | `mediciones/con_prediccion.wav`, `mediciones/sin_predicciones.wav` |
+| Volcados de la sonda | `mediciones/probe/files/latencia_20260916_185553.json` (con), `..._194540.json` (sin) |
 | Herramienta | `scripts/latencia.py` · 19 pruebas en `scripts/test_latencia.py` |
 | Protocolo | Capítulo 5 de `entregables/guia/Guia_Bateria_VR_A.md` |
