@@ -14,19 +14,29 @@ public static class ConstruirKit
 {
     const string CarpetaPiezas = "Assets/Audio/Piezas";
 
-    /// Ángulo en grados respecto al frente, radio en metros, nombre del asset de la pieza.
-    /// Los radios crecen hacia los extremos: alcanzar de lado es natural, y de paso gradúa.
-    static readonly (string pieza, float grados, float radio)[] Disposicion =
+    /// Ángulo respecto al frente, radio en metros, altura en metros, nombre del asset.
+    ///
+    /// LA ALTURA ES LO QUE HACE QUE QUEPAN. La primera versión puso las seis piezas a la misma
+    /// altura en un arco de ±65°, y las cinco parejas adyacentes SE SOLAPABAN — Tarola y Bombo
+    /// por 8 cm. Un golpe en la zona compartida disparaba los dos pads: dos piezas de un solo
+    /// golpe, que rompe justo el criterio de "cada golpe se registra con su pieza".
+    ///
+    /// Los platillos arriba, como en una batería real, separan en la tercera dimensión lo que
+    /// en planta está cerca. Con eso el arco se cierra a ±60°, el alcance baja a 0.40–0.62 m y
+    /// los pads quedan MÁS grandes que antes. El radio de 0.15 nunca fue el problema.
+    static readonly (string pieza, float grados, float radio, float altura)[] Disposicion =
     {
-        ("Platillo", -65f, 0.68f),   // acento, el más lejano
-        ("HiHat",    -40f, 0.55f),
-        ("Tarola",   -15f, 0.42f),   // la más tocada, la más cerca
-        ("Bombo",     15f, 0.42f),
-        ("TomAlto",   40f, 0.55f),
-        ("TomBajo",   65f, 0.68f),
+        ("TomAlto",  -60f, 0.62f, 0.75f),
+        ("HiHat",    -38f, 0.62f, 1.00f),   // platillo: arriba
+        ("Tarola",   -26f, 0.40f, 0.75f),   // la más tocada, la más cerca
+        ("Bombo",     26f, 0.40f, 0.75f),
+        ("Platillo",  38f, 0.62f, 1.00f),   // platillo: arriba
+        ("TomBajo",   60f, 0.62f, 0.75f),
     };
 
-    const float Altura = 0.75f;      // altura de tarola
+    /// Holgura mínima exigida entre los BORDES de dos pads. Por debajo de esto un golpe puede
+    /// caer dentro de dos a la vez.
+    const float HolguraMinima = 0.02f;
 
     [MenuItem("Batería/Construir kit de 6 piezas")]
     public static void Construir()
@@ -50,7 +60,7 @@ public static class ConstruirKit
         var pads = new System.Collections.Generic.List<DrumPad>();
         var faltantes = new System.Collections.Generic.List<string>();
 
-        foreach (var (nombre, grados, radio) in Disposicion)
+        foreach (var (nombre, grados, radio, altura) in Disposicion)
         {
             var pieza = AssetDatabase.LoadAssetAtPath<DrumKitPiece>($"{CarpetaPiezas}/{nombre}.asset");
             if (pieza == null) { faltantes.Add(nombre); continue; }
@@ -72,7 +82,7 @@ public static class ConstruirKit
 
             pad.gameObject.name = $"Pad_{nombre}";
             float rad = grados * Mathf.Deg2Rad;
-            pad.transform.position = new Vector3(Mathf.Sin(rad) * radio, Altura, Mathf.Cos(rad) * radio);
+            pad.transform.position = new Vector3(Mathf.Sin(rad) * radio, altura, Mathf.Cos(rad) * radio);
             pad.transform.rotation = Quaternion.identity;   // normal hacia arriba
 
             var so = new SerializedObject(pad);
@@ -98,15 +108,24 @@ public static class ConstruirKit
             EditorUtility.SetDirty(t);
         }
 
+        // Comprobación que faltaba en la primera versión y que costó cinco pares solapados.
+        string solapes = Solapes(pads);
+
         Undo.CollapseUndoOperations(grupo);
         EditorSceneManager.MarkSceneDirty(plantilla.gameObject.scene);
 
         var msg = new System.Text.StringBuilder();
         msg.AppendLine($"{pads.Count} piezas colocadas en arco:\n");
-        foreach (var (nombre, grados, radio) in Disposicion)
+        foreach (var (nombre, grados, radio, altura) in Disposicion)
             if (!faltantes.Contains(nombre))
-                msg.AppendLine($"  {nombre,-9} {grados,4:F0}°  a {radio:F2} m");
+                msg.AppendLine($"  {nombre,-9} {grados,4:F0}°  r {radio:F2} m  altura {altura:F2} m");
         msg.AppendLine($"\n{trackers.Length} StickTracker cableados a los {pads.Count} pads.");
+        if (!string.IsNullOrEmpty(solapes))
+        {
+            msg.AppendLine("\nPADS QUE SE SOLAPAN — un golpe dispararía los dos:");
+            msg.Append(solapes);
+            Debug.LogError("[ConstruirKit] Hay pads solapados:\n" + solapes);
+        }
         if (faltantes.Count > 0)
             msg.AppendLine($"\nFALTAN en {CarpetaPiezas}: {string.Join(", ", faltantes)}\n" +
                            "Ejecuta 'Analizar kit' primero.");
@@ -114,5 +133,24 @@ public static class ConstruirKit
 
         Debug.Log("[ConstruirKit]\n" + msg);
         EditorUtility.DisplayDialog("Batería", msg.ToString(), "Vale");
+    }
+
+    /// Devuelve los pares cuyos bordes quedan a menos de HolguraMinima, o cadena vacía.
+    ///
+    /// Se comprueba sobre las posiciones REALES de los pads, no sobre la tabla: si alguien
+    /// mueve uno a mano, el siguiente que ejecute esto se entera.
+    static string Solapes(System.Collections.Generic.List<DrumPad> pads)
+    {
+        var sb = new System.Text.StringBuilder();
+        for (int i = 0; i < pads.Count; i++)
+            for (int j = i + 1; j < pads.Count; j++)
+            {
+                float d = Vector3.Distance(pads[i].Center, pads[j].Center);
+                float necesita = pads[i].Radius + pads[j].Radius + HolguraMinima;
+                if (d < necesita)
+                    sb.AppendLine($"  {pads[i].name} / {pads[j].name}: " +
+                                  $"{d:F3} m, hacen falta {necesita:F3} m");
+            }
+        return sb.ToString();
     }
 }
