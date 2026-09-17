@@ -126,17 +126,27 @@ public static class BuildAPK
                "OpenGLES3 sigue en la lista de Graphics APIs. Si Vulkan falla al arrancar, el " +
                "visor cae al camino lento en silencio y las mediciones dejan de valer.");
 
-        // Estos dos van como AVISO y no bloquean: AudioSettings.GetConfiguration() devuelve la
-        // configuración del editor, que puede no reflejar un override de la plataforma Android.
-        // Un falso positivo aquí detendría un build correcto, y eso es peor que no avisar.
-        var conf = AudioSettings.GetConfiguration();
-        if (conf.sampleRate != 48000)
-            Debug.LogWarning($"[BuildAPK] Sample rate {conf.sampleRate}, se esperaba 48000. " +
-                             "Compruébalo en Project Settings → Audio.");
-        if (conf.dspBufferSize > 256)
-            Debug.LogWarning($"[BuildAPK] DSP Buffer Size {conf.dspBufferSize} samples. " +
-                             "Con Best Latency (256) el presupuesto de latencia baja unos 6 ms. " +
-                             "Compruébalo en Project Settings → Audio.");
+        // Se lee el AJUSTE DEL PROYECTO, no AudioSettings.GetConfiguration().
+        //
+        // GetConfiguration devuelve la configuración del dispositivo de audio en uso, y en
+        // batchmode no hay dispositivo: devolvía 44100 y avisaba de un problema inexistente
+        // mientras AudioManager.asset decía 48000. Un aviso falso en cada build enseña a
+        // ignorar los avisos, que es peor que no avisar.
+        var audio = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/AudioManager.asset")
+                                 .FirstOrDefault();
+        if (audio != null)
+        {
+            var so = new SerializedObject(audio);
+            int sr = so.FindProperty("m_SampleRate")?.intValue ?? 0;
+            int buf = so.FindProperty("m_RequestedDSPBufferSize")?.intValue ?? 0;
+
+            if (sr != 0 && sr != 48000)
+                Debug.LogWarning($"[BuildAPK] Sample rate del proyecto {sr}, se esperaba 48000. " +
+                                 "Cualquier otro valor obliga a remuestrear en tiempo real.");
+            if (buf > 256)
+                Debug.LogWarning($"[BuildAPK] DSP Buffer Size {buf} samples. Con Best Latency " +
+                                 "(256) el presupuesto de latencia baja unos 6 ms.");
+        }
 
         Exigir(!PlayerSettings.applicationIdentifier.Contains("UnityTechnologies")
                && !PlayerSettings.applicationIdentifier.Contains("template"),

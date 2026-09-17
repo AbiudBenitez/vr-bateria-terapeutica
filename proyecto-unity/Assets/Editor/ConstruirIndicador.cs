@@ -37,19 +37,30 @@ public static class ConstruirIndicador
             Undo.RegisterCreatedObjectUndo(go, "Crear indicador");
         }
 
-        // A la izquierda del kit y ligeramente girado hacia el jugador: no tapa las piezas y
-        // se lee sin mover la cabeza del todo.
-        go.transform.position = new Vector3(-0.75f, 1.35f, 0.55f);
-        go.transform.rotation = Quaternion.Euler(0f, -25f, 0f);
+        // Solo se coloca la PRIMERA vez. Si ya existía, se respeta dónde lo dejó quien lo
+        // movió: sabe mejor que esta tabla desde dónde se lee bien con el visor puesto.
+        if (existente == null)
+        {
+            go.transform.position = new Vector3(-0.75f, 1.35f, 0.55f);
+            go.transform.rotation = Quaternion.Euler(0f, -25f, 0f);
+        }
 
         var texto = go.GetComponent<TextMeshPro>();
         if (texto == null) texto = Undo.AddComponent<TextMeshPro>(go);
         texto.text = "Golpea una pieza";
-        // CUIDADO: en un TextMeshPro 3D el fontSize está en unidades de MUNDO, o sea metros.
-        // La primera versión puso 1.4 y salieron letras de metro y medio. A un metro de
-        // distancia, 5 cm de altura se leen cómodos y siguen viéndose desde fuera del visor
-        // cuando alguien mira la pantalla espejo durante la demostración.
-        texto.fontSize = 0.05f;
+        // AUTOAJUSTE en vez de un tamaño fijo.
+        //
+        // En un TextMeshPro 3D el fontSize está en unidades de MUNDO, o sea metros, y elegirlo
+        // a ojo con el texto de marcador de posición engaña: "Golpea una pieza" cabe donde
+        // "TomAlto  ●●●  4.1 m/s" no. Con fontSize 0.5 una línea real medía 6 m de ancho en un
+        // panel de 0.75 y se partía en ocho renglones.
+        //
+        // Con autoajuste y sin partir palabras, TMP agranda la letra todo lo que quepa y la
+        // encoge cuando no. El tamaño lo decide el contenido más largo, no una suposición.
+        texto.enableAutoSizing = true;
+        texto.fontSizeMin = 0.015f;
+        texto.fontSizeMax = 0.20f;
+        texto.textWrappingMode = TextWrappingModes.NoWrap;
         texto.alignment = TextAlignmentOptions.TopLeft;
         texto.color = Color.white;
         texto.rectTransform.sizeDelta = new Vector2(0.75f, 0.35f);   // 5 líneas de 5 cm
