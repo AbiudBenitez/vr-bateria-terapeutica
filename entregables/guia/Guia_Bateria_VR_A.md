@@ -393,7 +393,12 @@ de cambios, no un cambio por build.**
 `adb` viene con Unity, no hay que instalar Android Studio:
 
 ```bash
-ADB=~/Library/Application\ Support/Unity/Hub/Editor/*/PlaybackEngines/AndroidPlayer/SDK/platform-tools/adb
+# Unity Hub instala el editor en un sitio u otro según cómo se configurara. Esto busca en los
+# dos y se queda con el primero que encuentre, así no hay que adivinar.
+ADB=$(ls /Applications/Unity/Hub/Editor/*/PlaybackEngines/AndroidPlayer/SDK/platform-tools/adb \
+         ~/Library/Application\ Support/Unity/Hub/Editor/*/PlaybackEngines/AndroidPlayer/SDK/platform-tools/adb \
+         2>/dev/null | head -1)
+echo "$ADB"      # si sale vacío, falta el módulo Android Build Support del capítulo 1.1
 $ADB devices                          # debe listar el visor como "device", no "unauthorized"
 $ADB install -r Builds/bateria.apk
 ```
@@ -1908,8 +1913,10 @@ ese usuario.
 El archivo queda en `Application.persistentDataPath` del visor. Para sacarlo:
 
 ```bash
-$ADB shell ls /sdcard/Android/data/<tu.bundle.id>/files/
-$ADB pull /sdcard/Android/data/<tu.bundle.id>/files/latencia_20260925_143012.json mediciones/
+PKG=$(grep -A1 'applicationIdentifier:' <ruta-del-proyecto>/ProjectSettings/ProjectSettings.asset \
+        | grep Android: | awk '{print $2}')
+$ADB shell ls /sdcard/Android/data/$PKG/files/
+$ADB pull /sdcard/Android/data/$PKG/files/ mediciones/probe/
 ```
 
 **Limitación declarada, y es importante:** la sonda mide **solo el tramo de audio**. Conoce el

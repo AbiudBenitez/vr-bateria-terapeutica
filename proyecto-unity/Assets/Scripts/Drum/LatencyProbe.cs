@@ -63,12 +63,20 @@ public sealed class LatencyProbe : DrumHitSink
         });
     }
 
+    /// Cuántos registros se han escrito ya a disco.
+    ///
+    /// OnApplicationPause(true) y OnApplicationQuit se disparan los DOS al cerrar la app, con
+    /// un segundo de diferencia, y cada uno producía un archivo. Quedaban pares de volcados
+    /// idénticos con nombres distintos, y al revisarlos había que adivinar cuál era cuál.
+    /// Se vuelca solo si hay golpes nuevos desde el último volcado.
+    int registrosVolcados;
+
     void OnApplicationPause(bool paused) { if (paused) Dump(); }
     void OnApplicationQuit() => Dump();
 
     void Dump()
     {
-        if (volcado.registros.Count == 0) return;
+        if (volcado.registros.Count <= registrosVolcados) return;
 
         volcado.totalGolpes    = volcado.registros.Count;
         volcado.agendasTardias = lateSchedules;
@@ -76,6 +84,7 @@ public sealed class LatencyProbe : DrumHitSink
         string ruta = Path.Combine(Application.persistentDataPath,
             $"latencia_{System.DateTime.Now:yyyyMMdd_HHmmss}.json");
         File.WriteAllText(ruta, JsonUtility.ToJson(volcado, true));
+        registrosVolcados = volcado.registros.Count;
         Debug.Log($"[LatencyProbe] {volcado.totalGolpes} golpes, " +
                   $"{volcado.agendasTardias} agendas tardías -> {ruta}");
     }
