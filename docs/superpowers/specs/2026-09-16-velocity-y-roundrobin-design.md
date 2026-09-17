@@ -87,6 +87,40 @@ El ajuste fino queda en **`nivelPieza`**, un trim por pieza en el inspector, a o
 bajar, nunca subir — que es la limitación real de la API expuesta con honestidad en vez de
 disimulada con una fórmula.
 
+### 3.1 Lo que faltaba saber: Unity ya normalizaba
+
+Al verificar los assets generados, las seis piezas reportaban **pico 1.00**, cuando los archivos
+originales van de 0.106 a 0.939.
+
+La causa está en los ajustes de importación: **`Force To Mono` trae una sub-opción `Normalize`
+activada por defecto**, y Unity normaliza cada clip a fondo de escala al convertirlo a mono.
+
+| | Archivo | Lo que llega al motor |
+|---|---|---|
+| Platillo | 0.106 | **1.00** |
+| Bombo | 0.939 | **1.00** |
+
+**Los 19 dB de diferencia entre piezas nunca llegaron al motor.** La normalización por RMS que
+se intentó estaba operando sobre audio ya normalizado, de modo que los −19 dB de los toms
+salieron solo de diferencias de RMS —la cola de un tom contra la de un platillo— y no de niveles
+reales. Se estaba corrigiendo un problema que ya no existía, y el remedio creó uno peor.
+
+**Se deja `Normalize` activado.** Es lo que hace usable el platillo, grabado 19 dB por debajo del
+resto y por tanto imposible de subir con `AudioSource.volume`. Resuelve de raíz lo que esta
+sección intentaba resolver a mano.
+
+**Consecuencia:** con todas las piezas a fondo de escala, el balance relativo entre ellas es
+plano — un platillo y un bombo pican igual. Eso es una decisión musical, no técnica, y para eso
+está `nivelPieza`. Punto de partida sugerido, a afinar de oído:
+
+| Pieza | `nivelPieza` |
+|---|---|
+| Bombo | 1.00 |
+| Tarola | 0.90 |
+| TomAlto / TomBajo | 0.85 |
+| HiHat | 0.60 |
+| Platillo | 0.50 |
+
 ## 4. Componentes
 
 ```
