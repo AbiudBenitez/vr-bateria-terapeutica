@@ -40,7 +40,7 @@ public static class ImportarSamples
 
                 bool hayQueTocar =
                     !imp.forceToMono
-                    || imp.preloadAudioData != true
+                    || !muestra.preloadAudioData
                     || muestra.loadType != AudioClipLoadType.DecompressOnLoad
                     || muestra.compressionFormat != AudioCompressionFormat.PCM
                     || muestra.sampleRateSetting != AudioSampleRateSetting.PreserveSampleRate;
@@ -50,8 +50,10 @@ public static class ImportarSamples
                 // Mono: DrumVoice usa spatialBlend = 0, así que el canal derecho duplica la
                 // memoria sin aportar nada audible.
                 imp.forceToMono = true;
-                imp.preloadAudioData = true;   // evita el tirón del primer golpe de cada pieza
 
+                // preloadAudioData dejó de estar en el AudioImporter: en Unity 6 es un ajuste
+                // por plataforma dentro de las sample settings.
+                muestra.preloadAudioData = true;   // evita el tirón del primer golpe de cada pieza
                 muestra.loadType = AudioClipLoadType.DecompressOnLoad;
                 muestra.compressionFormat = AudioCompressionFormat.PCM;
                 muestra.sampleRateSetting = AudioSampleRateSetting.PreserveSampleRate;

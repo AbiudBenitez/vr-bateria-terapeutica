@@ -31,7 +31,7 @@ public sealed class DiagnosticoMovimiento : MonoBehaviour
     {
         if (origen == null)
         {
-            foreach (var mb in FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None))
+            foreach (var mb in FindObjectsByType<MonoBehaviour>())
             {
                 if (mb.GetType().Name == "XROrigin") { origen = mb.transform; break; }
             }

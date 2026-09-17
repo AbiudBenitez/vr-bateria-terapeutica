@@ -21,7 +21,7 @@ public static class PadVisualBuilder
     [MenuItem("Batería/Reconstruir visual del pad")]
     public static void Reconstruir()
     {
-        var pad = Object.FindFirstObjectByType<DrumPad>();
+        var pad = Object.FindAnyObjectByType<DrumPad>();
         if (pad == null)
         {
             EditorUtility.DisplayDialog("Batería",
@@ -66,7 +66,7 @@ public static class PadVisualBuilder
     /// Se crea aquí para que no dependa de que alguien se acuerde de añadirlo a mano.
     static void AsegurarCalibrador(DrumPad pad)
     {
-        var cal = Object.FindFirstObjectByType<PadCalibrator>();
+        var cal = Object.FindAnyObjectByType<PadCalibrator>();
         if (cal != null)
         {
             Debug.Log($"[PadVisualBuilder] Ya existe un PadCalibrator en '{cal.name}'.", cal);
@@ -74,9 +74,9 @@ public static class PadVisualBuilder
         }
 
         // Se cuelga del tracker de la mano derecha para heredar su Tip sin ambigüedad.
-        var tracker = Object.FindObjectsByType<StickTracker>(FindObjectsSortMode.None)
+        var tracker = Object.FindObjectsByType<StickTracker>()
                             .FirstOrDefault(t => t.name.Contains("Tracker") && !t.name.EndsWith("L"))
-                      ?? Object.FindFirstObjectByType<StickTracker>();
+                      ?? Object.FindAnyObjectByType<StickTracker>();
 
         var go = new GameObject("Calibrador");
         Undo.RegisterCreatedObjectUndo(go, "Crear Calibrador");
@@ -132,7 +132,7 @@ public static class PadVisualBuilder
     /// alguien les cuelgue geometría.
     static void NormalizarTip()
     {
-        foreach (var tracker in Object.FindObjectsByType<StickTracker>(FindObjectsSortMode.None))
+        foreach (var tracker in Object.FindObjectsByType<StickTracker>())
         {
             foreach (Transform t in tracker.GetComponentsInChildren<Transform>(true))
             {
