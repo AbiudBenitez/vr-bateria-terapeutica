@@ -1747,8 +1747,29 @@ tienen contenido espectral parecido.
 El umbral está en `RAZON_CENTROIDE_MIN = 2.5` dentro de `scripts/latencia.py`. Con bombo la razón
 sale del orden de 15 a 80; con tarola, cerca de 1.
 
-**6. Grabar.** Cualquier grabadora de voz que produzca WAV. A 48 kHz si se puede elegir. Mono o
+**6. El mismo sample en las dos corridas.** Cambiarlo entre la corrida con predicción y la de sin
+invalida la comparación: estarías midiendo dos sistemas distintos.
+
+**7. Grabar.** Cualquier grabadora de voz que produzca WAV. A 48 kHz si se puede elegir. Mono o
 estéreo da igual: la herramienta promedia los canales.
+
+### Más grave NO es mejor
+
+La intuición dice que si la herramienta separa el clic del tambor por contenido grave, conviene
+un sample lo más grave posible. **Es al revés, y es una trampa cara.**
+
+Las bocinas del visor son diminutas y el micrófono de un celular tampoco baja: **un fundamental
+de 40 Hz no llega a la grabación**. Un bombo muy profundo suena magnífico por audífonos y
+desaparece del WAV, dejando solo el chasquido del batidor — que es justo lo que se confunde con
+el clic físico.
+
+**Busca un bombo con energía entre 80 y 200 Hz.** El criterio no es cómo suena en tus audífonos
+sino qué sobrevive a la grabación. La herramienta lo mide: si el cuerpo grave del tambor sale por
+debajo de 1.0, avisa.
+
+Caso real de este proyecto: un archivo llamado `bass drum.wav` dio **0.55** de razón grave/agudo
+global en la grabación, contra **1.83** de un bombo más contenido. El nombre del archivo no dice
+nada; cuenta lo que sale por la bocina.
 
 ## 5.4 Dos corridas, veinte golpes cada una
 
@@ -1826,7 +1847,32 @@ temprano no se percibe en absoluto. **El objetivo no es Δ = 0.**
 es el que llegó tarde. Una mediana de +12 ms con un p90 de +40 ms describe un sistema que se
 siente mal una de cada diez veces, y eso basta para romper la ilusión de causalidad.
 
-## 5.7 Qué hacer si no aprueba
+## 5.7 «NO CONCLUYENTE» no es lo mismo que «no aprueba»
+
+La herramienta distingue tres finales, no dos:
+
+| Veredicto | Qué significa |
+|---|---|
+| **APRUEBA** | La corrida es válida y el p90 entra en rango |
+| **NO APRUEBA** | La corrida es válida y el p90 se sale. Hay trabajo que hacer, ver 5.8 |
+| **NO CONCLUYENTE** | **La corrida no sirve como evidencia.** Las cifras existen pero no describen lo que crees |
+
+El tercero es el importante. Una corrida puede producir números perfectamente plausibles sin
+estar midiendo lo que se piensa. Pasó en este proyecto: con un sample demasiado grave para el
+hardware, la herramienta emparejó el ataque del golpe físico con el retumbe de la mesa y devolvió
+una mediana de −3.03 ms **con veredicto de aprobado**. Ese número habría entrado al informe del
+hito Go/No-Go.
+
+Tres señales lo delatan, y la herramienta las comprueba sola:
+
+- **Más del 30% de golpes omitidos.** Los medidos ya no representan la corrida.
+- **Cuerpo grave del tambor por debajo de 1.0.** Apenas asoma sobre el ruido.
+- **El primer transitorio es el más grave en casi todos los golpes.** Puede ser predicción
+  adelantada de verdad, o puede ser el golpe físico partido en dos.
+
+**Un veredicto sobre datos malos es peor que un error.** El error se corrige; el número se cita.
+
+## 5.8 Qué hacer si no aprueba
 
 En este orden, del más barato al más caro:
 
@@ -1840,7 +1886,7 @@ En este orden, del más barato al más caro:
 El paso 1 es el que más veces resuelve el problema, y es el que más veces se olvida: el valor por
 defecto de Unity en Android es 512 samples, que son ~11 ms en lugar de ~5.
 
-## 5.8 La sonda interna, y por qué no sustituye a esto
+## 5.9 La sonda interna, y por qué no sustituye a esto
 
 `LatencyProbe` registra cada golpe dentro de la aplicación y vuelca un JSON al salir:
 
@@ -1874,7 +1920,7 @@ mostrar cero agendas tardías y sentirse horrible.
 **La medición externa de §5.2 es la que vale para el Go/No-Go.** La sonda es diagnóstico
 complementario, no sustituto.
 
-## 5.9 Registrar el resultado
+## 5.10 Registrar el resultado
 
 El hito exige dejar constancia. Anota, con fecha:
 
