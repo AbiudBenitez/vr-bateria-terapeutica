@@ -88,11 +88,33 @@ def test_varios_golpes():
     assert all(abs(d - e * 1000) < 1.0 for d, e in zip(ds, [0.008, 0.012, 0.010]))
 
 
-def test_rechaza_transitorios_indistinguibles():
-    # Dos clics: mismo contenido espectral. No hay forma de saber cuál es el golpe físico.
+def test_omite_transitorios_indistinguibles():
+    """
+    Dos clics: mismo balance espectral, no hay forma de saber cuál es el golpe físico.
+
+    Un golpe ambiguo se OMITE y se explica; no aborta la corrida. Antes lanzaba ValueError, y
+    eso tiraba veinte golpes buenos por culpa de uno malo — justo al final de una sesión de
+    medición, que es cuando más caro sale.
+    """
     x = mezclar([(clic(semilla=1), 1.0), (clic(semilla=2), 1.012)])
-    with pytest.raises(ValueError, match="centroides demasiado parecidos"):
-        latencia.deltas_ms(x, SR)
+
+    assert latencia.deltas_ms(x, SR) == []
+
+    golpes = latencia.analizar(x, SR)
+    assert len(golpes) == 1
+    assert golpes[0]["ok"] is False
+    assert "cuerpo grave" in golpes[0]["motivo"]
+
+
+def test_un_golpe_malo_no_tira_los_buenos():
+    """Dos golpes medibles y uno ambiguo en medio: se reportan los dos buenos."""
+    eventos = [(clic(semilla=0), 0.5), (bombo(), 0.512),
+               (clic(semilla=1), 1.5), (clic(semilla=2), 1.512),   # ambiguo
+               (clic(semilla=3), 2.5), (bombo(), 2.510)]
+    ds = latencia.deltas_ms(mezclar(eventos, dur_s=4.0), SR)
+    assert len(ds) == 2, f"esperaba 2 golpes medibles, hubo {len(ds)}"
+    assert abs(ds[0] - 12.0) < 1.0
+    assert abs(ds[1] - 10.0) < 1.0
 
 
 def escribir_wav(ruta, x, sr=SR, canales=1):

@@ -611,6 +611,33 @@ Parámetros del detector, con su sensibilidad medida:
 Validación: 20 golpes sintéticos con jitter alrededor de +12 ms se recuperan con mediana +11.29 ms
 y p90 +13.06 ms.
 
+### 7.6 El discriminador cambió: razón grave/agudo, no centroide
+
+Corregido el 16-sep-2026 contra grabaciones reales. Se probaron tres discriminadores:
+
+| Discriminador | Por qué falló |
+|---|---|
+| Centroide espectral | **Hardware.** Las bocinas del visor apenas dan graves y el micrófono de un celular tampoco los capta: al tambor se le amputa justo lo que lo hacía grave. Medido: clic 1869 Hz contra bombo 745 Hz, razón 2.4, por debajo del umbral de 2.5 fijado a ojo. Rechazaba mediciones buenas |
+| Decaimiento a −20 dB | **Solapamiento.** Si el tambor suena primero —que es lo que pasa cuando la predicción se adelanta, y es un resultado válido— su cola sigue sonando bajo el clic. Medido sobre señal de prueba: el clic daba 63 ms cuando dura 2 |
+| **Razón grave/agudo** | **Elegido.** Aguanta las dos cosas. Verificado con el tambor delante (82× de separación) y sobre grabación real de celular (1.4× a 6×, siempre en el mismo sentido) |
+
+Además la **razón sola no basta**: dos clics daban 0.015 contra 0.009, razón 1.7, porque con
+valores tan pequeños la decide el ruido. Hace falta un **piso absoluto** de cuerpo grave
+(`GRAVE_MIN_TAMBOR = 0.5`): un tambor real da 1.4 a 2.0 en grabación de celular; un clic, 0.006
+a 0.036.
+
+### 7.7 Emparejado por golpe, no por transitorios consecutivos
+
+Una grabación real de 20 golpes produce del orden de **110 transitorios**: el clic, el tambor y
+los rebotes de la sala. Emparejar transitorios consecutivos mezclaba rebotes con eventos reales.
+
+Ahora se agrupan por golpe (hueco > 300 ms abre golpe nuevo), se descarta lo que esté por debajo
+del 25% del pico del golpe —los rebotes llegan 26 dB más flojos— y se toman los **dos más
+fuertes**. Los rebotes se caen solos.
+
+**Un golpe ambiguo se omite y se explica; ya no aborta la corrida.** Lanzar una excepción tiraba
+veinte golpes buenos por culpa de uno malo, justo al final de una sesión de medición.
+
 **Requisito que esto impone al capítulo 4:** el sample usado para medir debe ser de **bombo**. La
 clasificación separa el clic del plástico del tambor virtual por centroide espectral, y una tarola
 tiene centroide parecido al del clic. No es preferencia estética: es un requisito del instrumento.

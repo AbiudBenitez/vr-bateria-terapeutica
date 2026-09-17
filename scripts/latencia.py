@@ -46,11 +46,53 @@ SEPARACION_MIN_MS = 2.5    # NO subir: Δ va de -25 a +25 ms y un refractario gr
 # entrar el cuerpo grave del tambor en el segmento del clic y acerca los dos centroides.
 VENTANA_CENTROIDE_MS = 4.0
 
-# Razón mínima entre el centroide alto y el bajo para fiarse de la clasificación. No se
-# comprueba contra un umbral absoluto: lo que rompe el método es que los dos transitorios se
-# PAREZCAN, que es justo lo que pasa si se mide con tarola en lugar de bombo.
-RAZON_CENTROIDE_MIN = 2.5
+# El DECAIMIENTO es el discriminador principal, no el centroide.
+#
+# El centroide falla en grabaciones reales por una razón de hardware: las bocinas del visor
+# apenas reproducen graves, y el micrófono de un celular tampoco los capta, así que al bombo
+# se le amputa justo la parte que lo hacía grave. Medido sobre una corrida real: clic 1869 Hz
+# contra bombo 745 Hz, razón 2.4 — por debajo del umbral de 2.5 que se había fijado a ojo.
+#
+# El decaimiento no sufre eso. El clic del plástico es un impulso que muere de inmediato; el
+# tambor resuena. En la misma corrida: 0 ms contra 19 ms. Separación de sobra.
+# El discriminador es la RAZÓN GRAVE/AGUDO de energía, no el decaimiento ni el centroide.
+#
+# El decaimiento funciona solo cuando los dos eventos no se solapan: si el tambor suena
+# primero -que es lo que pasa cuando la predicción se adelanta, y es un resultado válido- su
+# cola sigue sonando bajo el clic y contamina la medida. Medido sobre la señal de prueba: el
+# clic daba 63 ms de decaimiento cuando dura 2.
+#
+# El centroide falla por hardware: las bocinas del visor apenas dan graves y el micrófono de un
+# celular tampoco los capta, así que al tambor se le amputa lo que lo hacía grave. En una
+# corrida real dio 1869 Hz contra 745 Hz, razón 2.4, por debajo del umbral fijado a ojo.
+#
+# La razón grave/agudo aguanta las dos cosas. Verificada sobre señal sintética con el tambor
+# delante (82x de separación) y sobre grabación real de celular (1.4x a 6x, siempre en el
+# mismo sentido).
+CORTE_GRAVE_HZ = 500.0
+VENTANA_BANDA_MS = 12.0
+RAZON_GRAVE_MIN = 1.3          # por debajo, los dos transitorios se parecen demasiado
+
+# Piso ABSOLUTO, además de la razón. Dos clics dan razones caprichosas -0.015 contra 0.009 es
+# razón 1.7- porque con valores así de pequeños la decide el ruido de fondo. Un tambor real
+# tiene cuerpo grave de verdad: medido, 1.4 a 2.0 en grabación de celular y 43 a 297 en señal
+# sintética, contra 0.006 a 0.036 de un clic.
+GRAVE_MIN_TAMBOR = 0.5
+
+# Corroboración, no decisión.
+DECAIMIENTO_MIN_TAMBOR_MS = 6.0
+RAZON_CENTROIDE_MIN = 1.5
+
+# Separación máxima entre el clic y el tambor del MISMO golpe.
 EMPAREJADO_MAX_MS = 80.0
+
+# Hueco mínimo entre golpes distintos. Los transitorios de un mismo golpe -clic, tambor y sus
+# rebotes- caen juntos; el siguiente golpe llega mucho después.
+HUECO_ENTRE_GOLPES_MS = 300.0
+
+# Un transitorio por debajo de esta fracción del pico del golpe es un rebote de la sala, no un
+# evento propio. Medido: el clic y el tambor llegan a ~1.0 y los rebotes a ~0.05.
+FRACCION_MIN_EVENTO = 0.25
 
 # --- Criterio de aceptación del hito Go/No-Go (§7.3 del spec) -------------------------------
 # Un adelanto moderado es preferible al retraso: el oído tolera ~10 ms de adelanto y castiga
@@ -146,47 +188,149 @@ def _centroide_en(x, sr, t, limite_s=None, ventana_ms=VENTANA_CENTROIDE_MS):
     return spectral_centroid(x[i:i + n], sr)
 
 
-def deltas_ms(x, sr, emparejado_max_ms=EMPAREJADO_MAX_MS, razon_min=RAZON_CENTROIDE_MIN):
-    """
-    Devuelve un Δ en milisegundos por cada par clic/tambor encontrado.
+def _pico_en(x, sr, t, ventana_ms=20.0):
+    """Amplitud de pico justo después del transitorio."""
+    i = int(t * sr)
+    n = int(sr * ventana_ms / 1000)
+    seg = np.abs(x[i:i + n])
+    return float(seg.max()) if seg.size else 0.0
 
-    Empareja transitorios consecutivos separados por menos de emparejado_max_ms y los clasifica
-    por centroide espectral: el de centroide más alto es el clic físico. NO se clasifica por
-    orden temporal, porque Δ negativo es un resultado válido y frecuente.
+
+def razon_grave(x, sr, t, ventana_ms=VENTANA_BANDA_MS, corte=CORTE_GRAVE_HZ):
+    """
+    Energía por debajo de `corte` dividida entre la de encima, en una ventana tras el
+    transitorio. Alta en un tambor, baja en un clic de plástico.
+
+    Es el discriminador principal porque es el único de los tres probados que sobrevive a que
+    los dos eventos se solapen, cosa que ocurre siempre que Δ es pequeño o negativo.
+    """
+    i = int(t * sr)
+    n = int(sr * ventana_ms / 1000)
+    seg = x[i:i + n]
+    if seg.size < 32:
+        return 0.0
+    mag = np.abs(np.fft.rfft(seg * np.hanning(seg.size)))
+    f = np.fft.rfftfreq(seg.size, 1.0 / sr)
+    agudo = mag[f >= corte].sum()
+    return float(mag[f < corte].sum() / max(agudo, 1e-9))
+
+
+def decay_ms(x, sr, t, caida_db=20.0, max_ms=400.0):
+    """
+    Milisegundos que tarda la envolvente en caer `caida_db` desde su pico.
+
+    Es el discriminador principal entre el clic físico y el tambor virtual: un impulso de
+    plástico muere de inmediato, un parche resuena.
+    """
+    i = int(t * sr)
+    n = int(sr * max_ms / 1000)
+    seg = np.abs(x[i:i + n])
+    if seg.size < 10:
+        return 0.0
+
+    nb = max(1, int(sr * 0.001))                 # envolvente de pico por bloques de 1 ms
+    m = seg.size // nb
+    if m < 2:
+        return 0.0
+    env = seg[:m * nb].reshape(m, nb).max(axis=1)
+
+    pico = env.max()
+    if pico <= 0:
+        return 0.0
+    bajo = np.flatnonzero(env < pico * 10.0 ** (-caida_db / 20.0))
+    return float(bajo[0]) if bajo.size else float(m)
+
+
+def _agrupar_golpes(ts, hueco_ms=HUECO_ENTRE_GOLPES_MS):
+    """Parte la lista de transitorios en golpes. Un hueco grande abre un golpe nuevo."""
+    grupos = []
+    for t in ts:
+        if not grupos or (t - grupos[-1][-1]) * 1000 > hueco_ms:
+            grupos.append([t])
+        else:
+            grupos[-1].append(t)
+    return grupos
+
+
+def analizar(x, sr, razon_grave_min=RAZON_GRAVE_MIN):
+    """
+    Devuelve una lista de dicts, uno por golpe, con todo lo que se midió.
+
+    Por cada golpe se toman los DOS transitorios más fuertes -el clic y el tambor- y se
+    descartan los rebotes de la sala, que llegan mucho más flojos. La clasificación es por
+    decaimiento; el centroide corrobora.
     """
     ts = onset_times(x, sr)
     salida = []
-    i = 0
-    while i < len(ts) - 1:
-        t_a, t_b = ts[i], ts[i + 1]
-        if (t_b - t_a) * 1000 > emparejado_max_ms:
-            i += 1
+
+    for grupo in _agrupar_golpes(ts):
+        cand = [(t, _pico_en(x, sr, t)) for t in grupo]
+        pico_golpe = max(p for _, p in cand) if cand else 0.0
+        if pico_golpe <= 0:
             continue
 
-        # Ambas ventanas se acotan a la separación del par: ninguna debe alcanzar al otro
-        # transitorio, o la clasificación puede invertirse y el Δ saldría con el signo cambiado.
-        sep = t_b - t_a
-        c_a = _centroide_en(x, sr, t_a, limite_s=sep)
-        c_b = _centroide_en(x, sr, t_b, limite_s=sep)
+        # Fuera los rebotes.
+        cand = [(t, p) for t, p in cand if p >= FRACCION_MIN_EVENTO * pico_golpe]
+        if len(cand) < 2:
+            salida.append(dict(t=grupo[0], ok=False,
+                               motivo="solo se detectó un transitorio fuerte en este golpe"))
+            continue
 
-        alto, bajo = max(c_a, c_b), min(c_a, c_b)
-        if bajo <= 0 or alto / bajo < razon_min:
-            raise ValueError(
-                f"Par en t={t_a:.3f}s: centroides demasiado parecidos "
-                f"({c_a:.0f} Hz y {c_b:.0f} Hz, razón {alto / max(bajo, 1e-9):.1f}). "
-                "No se puede saber cuál es el clic físico y cuál el tambor. Causa habitual: "
-                "se midió con tarola en lugar de bombo. El protocolo exige un sample grave, "
-                "porque el clic del plástico y la tarola tienen contenido espectral parecido."
-            )
+        # Los dos más fuertes, devueltos a orden temporal.
+        dos_mas_fuertes = sorted(cand, key=lambda c: -c[1])[:2]
+        ta, tb = (t for t, _ in sorted(dos_mas_fuertes, key=lambda c: c[0]))
 
-        if c_a >= c_b:
-            t_clic, t_virtual = t_a, t_b
-        else:
-            t_clic, t_virtual = t_b, t_a
+        sep_ms = (tb - ta) * 1000
+        if sep_ms > EMPAREJADO_MAX_MS:
+            salida.append(dict(t=ta, ok=False,
+                               motivo=f"los dos transitorios fuertes están a {sep_ms:.0f} ms, "
+                                      f"más de los {EMPAREJADO_MAX_MS:.0f} ms admitidos"))
+            continue
 
-        salida.append((t_virtual - t_clic) * 1000.0)
-        i += 2
+        # Ventana acotada en el primero para que no se coma al segundo.
+        vent_a = min(VENTANA_BANDA_MS, max(1.0, sep_ms - 0.5))
+        ga = razon_grave(x, sr, ta, ventana_ms=vent_a)
+        gb = razon_grave(x, sr, tb)
+        da, db = decay_ms(x, sr, ta), decay_ms(x, sr, tb)
+
+        alto, bajo = max(ga, gb), min(ga, gb)
+        if alto < GRAVE_MIN_TAMBOR:
+            salida.append(dict(t=ta, ok=False, grave=(ga, gb), decay=(da, db),
+                               motivo=f"ninguno de los dos transitorios tiene cuerpo grave "
+                                      f"({ga:.3f} y {gb:.3f}, hace falta {GRAVE_MIN_TAMBOR}). "
+                                      f"Los dos parecen clics: ¿está sonando el tambor virtual, "
+                                      f"y por las bocinas del visor y no por Bluetooth?"))
+            continue
+
+        if bajo <= 0 or alto / bajo < razon_grave_min:
+            salida.append(dict(t=ta, ok=False, grave=(ga, gb), decay=(da, db),
+                               motivo=f"los dos transitorios tienen el mismo balance de graves "
+                                      f"({ga:.2f} y {gb:.2f}, razón {alto / max(bajo, 1e-9):.1f}). "
+                                      f"No puedo saber cuál es el clic y cuál el tambor. "
+                                      f"Usa un sample con más cuerpo grave"))
+            continue
+
+        # El más grave es el tambor.
+        if ga > gb: t_tambor, t_clic = ta, tb
+        else:       t_tambor, t_clic = tb, ta
+
+        # Corroboración por decaimiento, solo si los eventos están lo bastante separados
+        # para medirlo sin contaminación.
+        coherente = None
+        if sep_ms > 10.0:
+            d_tambor = da if t_tambor == ta else db
+            d_clic   = db if t_tambor == ta else da
+            coherente = d_tambor > d_clic
+
+        salida.append(dict(t=ta, ok=True,
+                           delta_ms=(t_tambor - t_clic) * 1000.0,
+                           grave=(ga, gb), decay=(da, db), coherente=coherente))
     return salida
+
+
+def deltas_ms(x, sr, **kw):
+    """Los Δ de los golpes que se pudieron medir. Los que no, se omiten."""
+    return [g["delta_ms"] for g in analizar(x, sr) if g["ok"]]
 
 
 def stats(deltas):
@@ -241,6 +385,9 @@ def _main():
     ap.add_argument("wav", help="Grabación de la corrida, 48 kHz recomendado.")
     ap.add_argument("--etiqueta", default="", help="Nombre de la corrida, p. ej. 'con predicción'.")
     ap.add_argument("--detalle", action="store_true", help="Imprime el Δ de cada golpe.")
+    ap.add_argument("--diagnostico", action="store_true",
+                    help="Además del Δ, las características con las que se clasificó cada "
+                         "transitorio. Para entender por qué un golpe se omitió.")
     ap.add_argument("--margen-db", type=float, default=MARGEN_DB,
                     help="Sensibilidad del detector en dB. Súbelo si detecta transitorios de "
                          "más, bájalo si se pierde golpes. Por defecto 6.")
@@ -248,16 +395,47 @@ def _main():
 
     sr, x = load_wav(args.wav)
     ts = onset_times(x, sr, margen_db=args.margen_db)
-    ds = deltas_ms(x, sr)
+    golpes = analizar(x, sr)
+    ds = [g["delta_ms"] for g in golpes if g["ok"]]
+    omitidos = [g for g in golpes if not g["ok"]]
+
+    if not ds:
+        print(f"Archivo: {args.wav}  ({sr} Hz, {len(x) / sr:.1f} s)")
+        print(f"Transitorios detectados: {len(ts)}   Golpes: {len(golpes)}   Medibles: 0\n")
+        print("Ningún golpe se pudo medir. Motivos:")
+        for g in omitidos[:10]:
+            print(f"  t={g['t']:7.3f}s  {g['motivo']}")
+        raise SystemExit(1)
+
     st = stats(ds)
 
     if args.etiqueta:
         print(f"Corrida: {args.etiqueta}")
     print(f"Archivo: {args.wav}  ({sr} Hz, {len(x) / sr:.1f} s)")
-    print(f"Transitorios detectados: {len(ts)}   Golpes emparejados: {st['n']}")
-    if args.detalle:
-        for k, d in enumerate(ds, 1):
-            print(f"  golpe {k:2d}:  {d:+7.2f} ms")
+    print(f"Transitorios detectados: {len(ts)}   "
+          f"Golpes medibles: {st['n']}   Omitidos: {len(omitidos)}")
+    if args.detalle or args.diagnostico:
+        k = 0
+        for g in golpes:
+            if not g["ok"]:
+                print(f"  omitido t={g['t']:7.3f}s  {g['motivo']}")
+                continue
+            k += 1
+            linea = f"  golpe {k:2d}:  {g['delta_ms']:+7.2f} ms"
+            if args.diagnostico:
+                ga, gb = g["grave"]
+                da, db = g["decay"]
+                coh = {True: "sí", False: "NO", None: "n/d"}[g["coherente"]]
+                linea += (f"   grave {ga:6.2f}/{gb:6.2f}"
+                          f"   decae {da:4.0f}/{db:4.0f} ms"
+                          f"   decaimiento coincide: {coh}")
+            print(linea)
+
+    incoherentes = [g for g in golpes if g["ok"] and g["coherente"] is False]
+    if incoherentes:
+        print(f"\nAviso: en {len(incoherentes)} golpe(s) el decaimiento contradice al balance de "
+              f"graves. Corre con --diagnostico para verlos; si son muchos, el sample puede no "
+              f"tener suficiente cuerpo grave.")
     print(f"Mediana: {st['mediana']:+7.2f} ms")
     print(f"p90:     {st['p90']:+7.2f} ms   <- el que decide")
     print(f"Rango:   {st['min']:+7.2f} .. {st['max']:+7.2f} ms")
