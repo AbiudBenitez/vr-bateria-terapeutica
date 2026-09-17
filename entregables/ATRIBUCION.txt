@@ -1,0 +1,26 @@
+Samples de percusión — Dustyroom "Fake Acoustic Drum Kit"
+=========================================================
+
+Autores:  Dustyroom (Volodymyr Dzitsiuk, Max Dzitsiuk)
+Fuente:   dustyroom.com  ·  @_dstrm
+Licencia: Creative Commons Attribution 4.0 International (CC BY 4.0)
+          https://creativecommons.org/licenses/by/4.0/
+
+Uso permitido en proyectos comerciales y no comerciales. La licencia EXIGE atribución.
+Dustyroom conserva el copyright de la obra original y los derechos exclusivos de
+reproducirla, distribuirla y venderla "tal cual".
+
+Nota técnica: los samples están sintetizados con NI FM8, no son grabaciones acústicas.
+El pack se llama "Fake Acoustic" por eso. No afirmar realismo acústico en los informes.
+
+Formato original: WAV 24 bits, 48 kHz, estéreo. Sin post-proceso salvo los FX de FM8.
+
+Selección usada en este proyecto (82 de 504 muestras):
+  Bombo     Kick8-*     7    elegido por conservar energía en 80-200 Hz
+  Tarola    Snare7-*   14
+  HiHat     Hat5-*     20
+  TomAlto   Tom2-*     14    7 niveles de velocity x 2 round-robin
+  TomBajo   Tom4-*     15
+  Platillo  Ride2-*    12    sustituye al crash: el pack no incluye ninguno
+
+El criterio de selección está en docs/investigacion/revision-packs-de-samples.md

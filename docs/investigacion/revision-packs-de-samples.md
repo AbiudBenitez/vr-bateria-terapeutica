@@ -130,9 +130,20 @@ derecho no aporta nada y duplica la memoria.
 
 ## 8. Pendiente antes de usarlos
 
-**Leer `LICENSE.pdf` de Dustyroom.** No se pudo extraer su texto —usa fuentes con subconjunto— y
-**no se ha verificado qué permite**. Es requisito del entregable, no un trámite: hay que saber si
-exige atribución y si permite uso en un trabajo académico publicado.
+**Licencia resuelta el 16-sep-2026: CC BY 4.0.**
+
+> The included samples have been created by Dustyroom (Volodymyr Dzitsiuk, Max Dzitsiuk).
+> Everything in the pack licensed CC BY 4.0. You may use the sounds for free in non-commercial
+> and commercial projects. Dustyroom retains copyright over the original work itself.
+
+Uso permitido, **con atribución obligatoria**. La atribución está en
+`Assets/Audio/Kit/ATRIBUCION.txt` dentro del proyecto Unity y en `entregables/ATRIBUCION.txt`
+para el informe.
+
+**Dato que conviene no pasar por alto:** el pack declara *"Completely faked with NI FM8"*. Los
+samples están **sintetizados**, no grabados de instrumentos reales — de ahí el nombre "Fake
+Acoustic". Sonoramente sirven y para rehabilitación motriz da igual, pero **no se debe afirmar
+realismo acústico** en los informes.
 
 Clark Audio **no trae ningún archivo de licencia**, lo que es razón suficiente para no
 construir sobre él aunque los sonidos gusten.

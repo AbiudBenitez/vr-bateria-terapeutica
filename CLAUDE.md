@@ -315,7 +315,7 @@ de **bombo** — ya está puesto `512175__kopreusz__kick_2.wav`.
 
 - **Apagar los dos `DiagnosticoMano`**: imprimen cada frame, 144 líneas/s a dos manos. Cuestan
   frames reales en el visor y contaminarían la medición.
-- Confirmar la **licencia del sample** antes de meterlo al repositorio.
+- ~~Licencia del sample~~ **resuelta**: Dustyroom es CC BY 4.0, atribución en `entregables/ATRIBUCION.txt`.
 - **Discrepancia de rol:** el acta v3.0 asigna el desarrollo VR a María Fernanda; lo ejecuta
   Misael. Es carga fuera del rol formal y mueve el cálculo de sobreasignación.
 
