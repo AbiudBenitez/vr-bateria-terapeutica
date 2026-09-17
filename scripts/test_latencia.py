@@ -175,3 +175,23 @@ def test_load_wav_convierte_estereo_a_mono(tmp_path):
     sr, y = latencia.load_wav(str(ruta))
     assert y.ndim == 1
     assert abs(latencia.deltas_ms(y, sr)[0] - 12.0) < 1.0
+
+
+def test_calidad_detecta_demasiados_omitidos():
+    """Una corrida con la mitad de los golpes sin medir no representa nada."""
+    golpes = [{"ok": True, "delta_ms": 3.0, "grave": (0.3, 1.8)}] * 5 + \
+             [{"ok": False, "motivo": "x"}] * 5
+    problemas = latencia.calidad(golpes)
+    assert any("omitieron" in p for p in problemas)
+
+
+def test_calidad_detecta_tambor_sin_cuerpo():
+    """El sample demasiado grave para el hardware: el tambor apenas asoma sobre el ruido."""
+    golpes = [{"ok": True, "delta_ms": -3.0, "grave": (0.7, 0.4)}] * 10
+    problemas = latencia.calidad(golpes)
+    assert any("DEMASIADO grave" in p for p in problemas)
+
+
+def test_calidad_acepta_una_corrida_buena():
+    golpes = [{"ok": True, "delta_ms": 3.0, "grave": (0.4, 1.9)}] * 10
+    assert latencia.calidad(golpes) == []

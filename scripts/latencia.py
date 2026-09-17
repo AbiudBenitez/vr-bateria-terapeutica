@@ -79,6 +79,16 @@ RAZON_GRAVE_MIN = 1.3          # por debajo, los dos transitorios se parecen dem
 # sintética, contra 0.006 a 0.036 de un clic.
 GRAVE_MIN_TAMBOR = 0.5
 
+# --- Calidad de la corrida completa -------------------------------------------------------
+# Una corrida puede producir numeros perfectamente plausibles y no estar midiendo lo que se
+# cree. Paso real: se cambio el sample a uno tan grave que las bocinas del visor y el microfono
+# del celular no lo reproducian, y la herramienta emparejo el ataque del golpe fisico con el
+# retumbe de la mesa. Dio -3.03 ms de mediana y un APRUEBA que habria entrado al informe.
+#
+# Un veredicto sobre datos malos es peor que un error: el error se corrige, el numero se cita.
+FRACCION_OMITIDOS_MAX = 0.30      # mas de esto y la corrida no es representativa
+GRAVE_TAMBOR_COMODO = 1.0         # por debajo, el tambor apenas asoma sobre el ruido
+
 # Corroboración, no decisión.
 DECAIMIENTO_MIN_TAMBOR_MS = 6.0
 RAZON_CENTROIDE_MIN = 1.5
@@ -328,6 +338,44 @@ def analizar(x, sr, razon_grave_min=RAZON_GRAVE_MIN):
     return salida
 
 
+def calidad(golpes):
+    """
+    Revisa la corrida ENTERA y devuelve la lista de problemas encontrados.
+
+    Comprueba lo que un Δ por golpe no puede ver: si se midieron pocos golpes, o si el tambor
+    apenas se distingue del ruido en todos ellos.
+    """
+    problemas = []
+    if not golpes:
+        return ["No se detectó ningún golpe."]
+
+    ok = [g for g in golpes if g["ok"]]
+    frac = 1.0 - len(ok) / len(golpes)
+    if frac > FRACCION_OMITIDOS_MAX:
+        problemas.append(
+            f"Se omitieron {len(golpes) - len(ok)} de {len(golpes)} golpes ({frac:.0%}). "
+            f"Con esa proporción los golpes medidos no representan la corrida.")
+
+    if ok:
+        graves = sorted(max(g["grave"]) for g in ok)
+        mediana = graves[len(graves) // 2]
+        if mediana < GRAVE_TAMBOR_COMODO:
+            problemas.append(
+                f"El cuerpo grave del tambor es de {mediana:.2f} de mediana, apenas sobre el "
+                f"mínimo de {GRAVE_MIN_TAMBOR}. El sample puede ser DEMASIADO grave para el "
+                f"hardware: las bocinas del visor y el micrófono de un celular no reproducen "
+                f"un fundamental de 40 Hz. Busca un bombo con energía entre 80 y 200 Hz.")
+
+        primero_mas_grave = sum(1 for g in ok if g["grave"][0] > g["grave"][1])
+        if primero_mas_grave > 0.7 * len(ok):
+            problemas.append(
+                f"En {primero_mas_grave} de {len(ok)} golpes el PRIMER transitorio es el más "
+                f"grave. Puede ser real —predicción adelantada— o puede que se esté emparejando "
+                f"el ataque del golpe físico con el retumbe de la mesa. Compruébalo contra una "
+                f"corrida donde sepas el signo.")
+    return problemas
+
+
 def deltas_ms(x, sr, **kw):
     """Los Δ de los golpes que se pudieron medir. Los que no, se omiten."""
     return [g["delta_ms"] for g in analizar(x, sr) if g["ok"]]
@@ -439,11 +487,20 @@ def _main():
     print(f"Mediana: {st['mediana']:+7.2f} ms")
     print(f"p90:     {st['p90']:+7.2f} ms   <- el que decide")
     print(f"Rango:   {st['min']:+7.2f} .. {st['max']:+7.2f} ms")
-    print(f"Criterio {DELTA_MIN_MS:+.0f} .. {DELTA_MAX_MS:+.0f} ms  ->  "
-          f"{'APRUEBA' if st['aprueba'] else 'NO APRUEBA'}")
+    problemas = calidad(golpes)
+    if problemas:
+        print(f"Criterio {DELTA_MIN_MS:+.0f} .. {DELTA_MAX_MS:+.0f} ms  ->  NO CONCLUYENTE")
+        print("\nLa corrida no es de fiar. Las cifras de arriba existen, pero no sirven como "
+              "evidencia:")
+        for pr in problemas:
+            print(f"  · {pr}")
+        print("\nRepite la corrida antes de usar estos números.")
+    else:
+        print(f"Criterio {DELTA_MIN_MS:+.0f} .. {DELTA_MAX_MS:+.0f} ms  ->  "
+              f"{'APRUEBA' if st['aprueba'] else 'NO APRUEBA'}")
 
     if st["n"] < 20:
-        print(f"\nAviso: {st['n']} golpes emparejados. El protocolo pide 20 para que el p90 "
+        print(f"\nAviso: {st['n']} golpes medibles. El protocolo pide 20 para que el p90 "
               f"signifique algo. Si grabaste 20 y detectó menos, ajusta --margen-db.")
 
 
