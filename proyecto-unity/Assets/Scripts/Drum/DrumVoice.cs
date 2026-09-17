@@ -83,7 +83,7 @@ public sealed class DrumVoice : DrumHitSink
 
             var m = pieza.muestras[i];
             src.clip   = m.clip;
-            src.volume = Mathf.Clamp01(ganancia * m.ganancia);
+            src.volume = Mathf.Clamp01(ganancia * m.ganancia * pieza.nivelPieza);
         }
         else
         {

@@ -48,29 +48,44 @@ Se evaluaron tres caminos:
 ±1 alrededor del índice da la variación. No hacen falta estructuras separadas de capas y
 round-robin — que es justo lo que este pack no tiene.
 
-## 3. El problema de nivel, y por qué la solución es un compromiso
+## 3. El nivel entre piezas: no se puede igualar, y no hay que intentarlo
 
-Los picos **entre** piezas difieren 19 dB: Platillo 0.106 contra Bombo 0.939. Sin normalizar, el
-platillo es inaudible al lado del bombo y la curva de velocidad no controla nada.
+Los picos entre piezas difieren 19 dB: Platillo 0.106 contra Bombo 0.939.
 
-**`AudioSource.volume` está limitado a [0, 1]: no se puede amplificar.** Poner ganancia 8.9 al
-platillo no funciona, Unity la recorta. Sin recurrir a un AudioMixer, la única normalización
-posible es **atenuar hacia la pieza más floja**:
+**`AudioSource.volume` está limitado a [0, 1]: no se puede amplificar.** Subir el platillo es
+imposible. La primera versión de este diseño intentó lo contrario —igualar el RMS atenuando
+hacia la pieza más floja— y **estuvo mal**. Resultado medido:
+
+| Pieza | Atenuación aplicada |
+|---|---|
+| TomBajo | −19.2 dB |
+| TomAlto | −18.6 dB |
+| Bombo | −14.3 dB |
+| Platillo | −1.5 dB |
+
+Probado en el visor, el síntoma no fue "suena más bajo" sino **"suena como si me alejara"**.
+Dos efectos que se suman:
+
+1. **Igual sonoridad.** A niveles bajos el oído pierde sensibilidad a los graves mucho antes
+   que a los agudos. Bajar el bombo 14 dB no lo suaviza: le borra el cuerpo. Se oye el batidor
+   y no el tambor.
+2. **Las bocinas del visor tampoco dan graves a bajo nivel.** A −19 dB no queda casi nada por
+   debajo de 150 Hz.
+
+Grave amputado más nivel bajo es exactamente la señal perceptual de la **distancia**. El
+diagnóstico llegó del oído del usuario, no de la métrica: la herramienta reportaba una
+normalización correcta.
+
+**Corrección:** no se iguala nada entre piezas. Se conservan los niveles relativos del pack y la
+ganancia horneada solo evita el recorte digital:
 
 ```
-ganancia = min( rmsObjetivo / rms_muestra ,  0.98 / pico_muestra ,  1.0 )
+ganancia = min( 0.98 / pico_muestra , 1.0 )
 ```
 
-con `rmsObjetivo` = el RMS más bajo del kit. Dos topes: el segundo evita recorte digital, el
-tercero respeta el límite de Unity.
-
-**Coste: unos 19 dB de headroom.** Todo el kit suena a un nivel bajo que se compensa con el
-volumen del visor. Es un compromiso aceptado, no una elección libre. La alternativa —un
-`AudioMixerGroup` por pieza con ganancia en dB— añade un nodo de mezcla al camino del audio, y
-este proyecto lleva semanas acortando ese camino.
-
-Se normaliza por **RMS y no por pico** porque el RMS se corresponde con la sonoridad percibida:
-igualar picos deja una tarola, que tiene factor de cresta alto, sonando más floja que un bombo.
+El ajuste fino queda en **`nivelPieza`**, un trim por pieza en el inspector, a oído. Solo puede
+bajar, nunca subir — que es la limitación real de la API expuesta con honestidad en vez de
+disimulada con una fórmula.
 
 ## 4. Componentes
 

@@ -70,12 +70,16 @@ public static class AnalizarKit
             return;
         }
 
-        // Referencia de nivel: el RMS más bajo de TODO el kit.
+        // NO se iguala la sonoridad entre piezas.
         //
-        // AudioSource.volume no puede pasar de 1, así que no se puede amplificar lo flojo: hay
-        // que atenuar hacia ello. Cuesta headroom —unos 19 dB con este kit— y se compensa con
-        // el volumen del visor. Es un compromiso forzado por la API, no una preferencia.
-        float rmsObjetivo = piezas.SelectMany(p => p.m).Min(x => x.rms);
+        // La primera versión normalizaba al RMS más bajo del kit para que todas sonaran igual.
+        // El resultado fue -19 dB en los toms y -14 en el bombo, y sonaba MAL: a nivel bajo el
+        // oído pierde los graves antes que los agudos, así que al bombo se le borraba el cuerpo
+        // y se percibía lejano, no suave. Las bocinas del visor tampoco dan graves a ese nivel.
+        //
+        // Igualar hacia arriba es imposible -AudioSource.volume no pasa de 1 y el platillo tiene
+        // pico 0.106-, así que se conservan los niveles relativos del pack y el ajuste fino
+        // queda en nivelPieza, a oído. Aquí solo se evita el recorte digital.
 
         var informe = new System.Text.StringBuilder();
         foreach (var (nombre, medidas) in piezas)
@@ -96,16 +100,17 @@ public static class AnalizarKit
                 centroideHz = x.cen,
                 // Dos topes: el primero evita recorte digital, el segundo respeta el límite
                 // de AudioSource.volume.
-                ganancia = Mathf.Min(rmsObjetivo / Mathf.Max(x.rms, 1e-6f),
-                                     0.98f / Mathf.Max(x.pico, 1e-6f), 1f),
+                ganancia = Mathf.Min(0.98f / Mathf.Max(x.pico, 1e-6f), 1f),
             }).ToArray();
 
             if (nuevo) AssetDatabase.CreateAsset(activo, ruta);
             EditorUtility.SetDirty(activo);
 
+            float picoMax = medidas.Max(x => x.pico);
             informe.AppendLine(
                 $"{nombre,-10} {medidas.Count,3} muestras · brillo {cenMin,6:F0}–{cenMax,-6:F0} Hz " +
-                $"(×{rango:F2}) · {(activo.TieneEjeTimbral ? "eje timbral" : "ROUND-ROBIN, sin eje")}");
+                $"(×{rango:F2}) · {(activo.TieneEjeTimbral ? "eje timbral" : "ROUND-ROBIN")} " +
+                $"· pico {picoMax:F2}");
         }
 
         AssetDatabase.SaveAssets();

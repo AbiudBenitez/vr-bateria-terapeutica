@@ -35,6 +35,18 @@ public sealed class DrumKitPiece : ScriptableObject
     [Tooltip("Brillo máximo dividido entre el mínimo.")]
     public float rangoDeBrillo;
 
+    /// Ajuste manual de nivel, a oído.
+    ///
+    /// No existe forma automática de igualar la sonoridad ENTRE piezas: AudioSource.volume no
+    /// puede amplificar, así que una pieza grabada floja -el platillo de este kit tiene pico
+    /// 0.106- no se puede subir. Intentar igualar atenuando el resto costó 19 dB y le borró el
+    /// cuerpo al bombo: a bajo nivel el oído pierde los graves antes que los agudos, y el
+    /// resultado no sonaba más suave sino más LEJANO.
+    [Range(0f, 1f)]
+    [Tooltip("Baja esta pieza si tapa a las demás. No puede subirla: 1 ya es el máximo que " +
+             "permite AudioSource.")]
+    public float nivelPieza = 1f;
+
     /// ¿Tiene suficiente recorrido timbral para que la velocidad seleccione muestra?
     public bool TieneEjeTimbral => rangoDeBrillo >= UmbralBrillo;
 
