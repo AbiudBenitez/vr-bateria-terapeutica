@@ -17,9 +17,10 @@ public sealed class DrumVoice : DrumHitSink
     AudioClip clip;
 
     [Header("Voces")]
-    [SerializeField, Min(1), Tooltip("Voces simultáneas. Dimensionar al peor redoble esperado: " +
-                                     "cuando se agotan, la voz más vieja se corta a media cola.")]
-    int voices = 8;
+    [SerializeField, Min(1), Tooltip("Voces simultáneas, COMPARTIDAS por las seis piezas. " +
+                                     "Al agotarse se roba la más antigua, que es la más " +
+                                     "apagada y por eso el corte no se oye.")]
+    int voices = 32;
 
     [Header("Respuesta a la velocidad")]
     [SerializeField, Tooltip("Velocidad del golpe en m/s -> ganancia.")]
