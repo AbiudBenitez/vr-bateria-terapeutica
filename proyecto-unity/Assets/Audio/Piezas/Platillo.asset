@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb8f56433b6946d0a20ebdb11fc358b, type: 3}
+  m_Name: Platillo
+  m_EditorClassIdentifier: Drum::DrumKitPiece
+  nombrePieza: Platillo
+  muestras:
+  - clip: {fileID: 8300000, guid: 7fdc8c0562e254d73a9c5118f9dabfd5, type: 3}
+    centroideHz: 11093.957
+    ganancia: 0.98
+  - clip: {fileID: 8300000, guid: f22fb3123f6ba4bc18525d721590e397, type: 3}
+    centroideHz: 11199.028
+    ganancia: 0.98002994
+  - clip: {fileID: 8300000, guid: 835d693202be34e92aa7bee8c7e8eef6, type: 3}
+    centroideHz: 11407.543
+    ganancia: 0.98
+  - clip: {fileID: 8300000, guid: b0f53e34557814ce284c39c098ce46b8, type: 3}
+    centroideHz: 11427.2295
+    ganancia: 0.98
+  - clip: {fileID: 8300000, guid: d38860b0cb57e4066a917432cc7bc90a, type: 3}
+    centroideHz: 11453.459
+    ganancia: 0.98
+  - clip: {fileID: 8300000, guid: 0c97a4edb2fae4688897720697586839, type: 3}
+    centroideHz: 11460.354
+    ganancia: 0.98
+  - clip: {fileID: 8300000, guid: 1991277d301fe48f39186ffca88339cf, type: 3}
+    centroideHz: 11520.872
+    ganancia: 0.98
+  - clip: {fileID: 8300000, guid: aa6ba310687244e29b60a2e953f9754e, type: 3}
+    centroideHz: 11530.4
+    ganancia: 0.98
+  - clip: {fileID: 8300000, guid: c077d65e8f6804d098b5dc06172c3c42, type: 3}
+    centroideHz: 11597.751
+    ganancia: 0.98002994
+  - clip: {fileID: 8300000, guid: f94fff81ed9404aa19a1acb4c88adc0b, type: 3}
+    centroideHz: 11642.244
+    ganancia: 0.98002994
+  - clip: {fileID: 8300000, guid: 6389e73cf51e94c9499b9d4369e0ec4d, type: 3}
+    centroideHz: 11870.352
+    ganancia: 0.98002994
+  - clip: {fileID: 8300000, guid: fb319d6a98f2d42faa9ea6540473cc9d, type: 3}
+    centroideHz: 12130.399
+    ganancia: 0.98002994
+  rangoDeBrillo: 1.0934241
+  nivelPieza: 0.5

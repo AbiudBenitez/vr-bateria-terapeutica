@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb8f56433b6946d0a20ebdb11fc358b, type: 3}
+  m_Name: TomAlto
+  m_EditorClassIdentifier: Drum::DrumKitPiece
+  nombrePieza: TomAlto
+  muestras:
+  - clip: {fileID: 8300000, guid: 6a4a7da502c394e9688561f05c0c1ab1, type: 3}
+    centroideHz: 451.08807
+    ganancia: 0.98002994
+  - clip: {fileID: 8300000, guid: 7fd7ff0f612034af8b5371dda0938c8d, type: 3}
+    centroideHz: 484.83475
+    ganancia: 0.98002994
+  - clip: {fileID: 8300000, guid: b395da58c46b1461bb4f2a996f07db30, type: 3}
+    centroideHz: 513.7967
+    ganancia: 0.98
+  - clip: {fileID: 8300000, guid: 4651bcd536777408c9b99571a46b5532, type: 3}
+    centroideHz: 522.1618
+    ganancia: 0.98002994
+  - clip: {fileID: 8300000, guid: c67477fd42ad944dfbce1f8bb3670764, type: 3}
+    centroideHz: 528.74347
+    ganancia: 0.98002994
+  - clip: {fileID: 8300000, guid: f567771febfc941149998dc2ace71c0a, type: 3}
+    centroideHz: 529.3835
+    ganancia: 0.98
+  - clip: {fileID: 8300000, guid: b81d5bc5ad7594412b3e2e29abf3551e, type: 3}
+    centroideHz: 611.01953
+    ganancia: 0.98002994
+  - clip: {fileID: 8300000, guid: c68b061d186bd40a480510378f5ccf5e, type: 3}
+    centroideHz: 638.1525
+    ganancia: 0.98002994
+  - clip: {fileID: 8300000, guid: 116bf77816aa947e0bda1256e5289c13, type: 3}
+    centroideHz: 692.6056
+    ganancia: 0.98002994
+  - clip: {fileID: 8300000, guid: 56bd5b2d98d8a44309821b2bd4888190, type: 3}
+    centroideHz: 742.5498
+    ganancia: 0.98002994
+  - clip: {fileID: 8300000, guid: dd1b5ee38935846f78fb43d5acddb30a, type: 3}
+    centroideHz: 771.8584
+    ganancia: 0.98002994
+  - clip: {fileID: 8300000, guid: 8403a15d2bb4c4c0b9b323758d60da29, type: 3}
+    centroideHz: 816.7398
+    ganancia: 0.98002994
+  - clip: {fileID: 8300000, guid: 8231732df5f2f4257baccd842ce2ac8f, type: 3}
+    centroideHz: 903.319
+    ganancia: 0.98002994
+  - clip: {fileID: 8300000, guid: 115e8926c333945389240f343cb0d84b, type: 3}
+    centroideHz: 928.1817
+    ganancia: 0.98
+  rangoDeBrillo: 2.0576508
+  nivelPieza: 0.85
