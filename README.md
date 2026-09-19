@@ -19,6 +19,7 @@ siguiendo rutinas rítmicas graduadas, y el sistema registra su desempeño.
 | Los documentos que se entregan a la docente | [`entregables/`](entregables/) |
 | El cronograma para abrir en ProjectLibre | [`entregables/Cronograma_ProjectLibre.xml`](entregables/Cronograma_ProjectLibre.xml) |
 | Cómo colaborar sin pisar el trabajo de otro | **[`COMO-COLABORAR.md`](COMO-COLABORAR.md)** |
+| Practicar el flujo de ramas y pull requests | [`FIRMAS.md`](FIRMAS.md) |
 | El código del prototipo en Unity | [`proyecto-unity/`](proyecto-unity/) |
 | Guía técnica del sistema de percusión | [`prototipo/`](prototipo/) |
 | Tareas individuales de la materia | [`tareas-individuales/`](tareas-individuales/) |
