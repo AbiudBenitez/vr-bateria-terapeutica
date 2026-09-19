@@ -160,7 +160,7 @@ concretas:
 ### Sarai Galindo García
 
 - **Área:** Interfaz, UX/UI y tutorial
-- **Usuario de GitHub:** pendiente
+- **Usuario de GitHub:** saragdot
 - **Fecha:** pendiente
 - **Con qué contribuyo al proyecto:** pendiente
 
