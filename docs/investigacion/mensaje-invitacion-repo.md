@@ -65,6 +65,25 @@ Diana.
 
 ━━━━━━━━━━━━━━━━━━
 
+✍️ PRIMERA TAREA: FIRMAR
+
+Para que todos aparezcan como colaboradores y de
+paso practiquemos cómo se trabaja de verdad en
+software, cada quien va a firmar el proyecto.
+
+Abran el archivo FIRMAS.md en el repo. Ahí viene
+el paso a paso. Se hace desde la página de GitHub,
+sin instalar nada, en menos de 5 minutos.
+
+El chiste no es la firma: es practicar el flujo
+de rama → pull request → revisión → merge, que
+es como se trabaja en cualquier equipo real.
+
+Se revisan entre ustedes, NO se aprueben solos.
+Las parejas vienen en el mismo archivo.
+
+━━━━━━━━━━━━━━━━━━
+
 📖 Todo esto está explicado con más detalle en
 el archivo COMO-COLABORAR.md dentro del repo.
 Ahí también viene cómo abrir el cronograma y qué
