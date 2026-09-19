@@ -11,12 +11,54 @@ from docx.oxml import OxmlElement
 C = WA.CENTER
 J = WA.JUSTIFY
 
-def nuevo(margen=2.5):
+def nuevo(margen=2.5, fuente=None, tam=None):
+    """Documento en blanco. Si se indica fuente o tamaño, se aplican a todo el texto."""
     doc = Document()
     s = doc.sections[0]
     s.left_margin=s.right_margin=Cm(margen)
     s.top_margin=s.bottom_margin=Cm(2.5)
+    if fuente or tam: tipografia(doc, fuente, tam)
     return doc
+
+def tipografia(doc, fuente=None, tam=None):
+    """Fija la fuente base del documento y la de los encabezados.
+
+    Word toma la fuente de tres lugares distintos: la del estilo, la de Asia oriental
+    y la de escritura compleja. Si solo se cambia la primera, algunos caracteres se
+    siguen componiendo con la fuente anterior, así que se fijan las tres."""
+    def aplicar(st, sz=None):
+        if fuente:
+            st.font.name = fuente
+            rpr = st.element.get_or_add_rPr()
+            rf = rpr.find(qn('w:rFonts'))
+            if rf is None:
+                rf = OxmlElement('w:rFonts'); rpr.append(rf)
+            for at in ('w:ascii','w:hAnsi','w:eastAsia','w:cs'):
+                rf.set(qn(at), fuente)
+        if sz: st.font.size = Pt(sz)
+    aplicar(doc.styles['Normal'], tam)
+    if tam:
+        for h, f in (('Heading 1',1.45), ('Heading 2',1.20), ('Heading 3',1.05)):
+            try: aplicar(doc.styles[h], round(tam*f,1))
+            except KeyError: pass
+    elif fuente:
+        for h in ('Heading 1','Heading 2','Heading 3'):
+            try: aplicar(doc.styles[h])
+            except KeyError: pass
+    for est in ('List Bullet','List Number','Table Grid'):
+        try: aplicar(doc.styles[est])
+        except KeyError: pass
+    return doc
+
+def campo(doc, etiqueta, valor, after=4, tam=None):
+    """Renglón de portada con la etiqueta en negrita y el valor en texto normal."""
+    p = doc.add_paragraph()
+    r = p.add_run(etiqueta + ": "); r.bold = True
+    v = p.add_run(valor)
+    if tam:
+        r.font.size = Pt(tam); v.font.size = Pt(tam)
+    p.paragraph_format.space_after = Pt(after)
+    return p
 
 def P(doc, txt="", bold=False, italic=False, size=None, align=None, after=8):
     p=doc.add_paragraph(); r=p.add_run(txt); r.bold=bold; r.italic=italic

@@ -3,100 +3,85 @@ import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from neutro import *
 from docx import Document
-from docx.shared import Cm
-import rc257 as R, costos as K, compresion as CP
+import rc257 as R, costos as K
 M = R.V2
 def d(x): return f"${x:,.0f}"
-f = R.fnum
-FIG="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/figuras_costos/"
 doc = Document('/tmp/_cost_d.docx')
 
-# ================================================================ 12
-H(doc,"12. Análisis del costo de la calidad",1)
-P(doc,"El costo de la calidad reúne todo el esfuerzo dedicado a que el producto cumpla sus requisitos, más "
-  "el que se gasta cuando no los cumple. La guía PMBOK lo divide en costos de conformidad, que se invierten "
-  "para evitar fallos, y costos de no conformidad, que se pagan cuando el fallo ya ocurrió.")
-table(doc,["Categoría","Tipo","Qué comprende en este proyecto"],[
- ("Prevención","Conformidad","Planificación y gestión del proyecto, gestión de riesgos, definición de requisitos y trazabilidad, y registro del avance. Es el trabajo que evita que los defectos lleguen a existir."),
- ("Evaluación","Conformidad","Planes y ejecución de pruebas, y validación integral con métricas. Es el trabajo de comprobar que el producto cumple."),
- ("Fallos internos","No conformidad","Gestión y corrección de errores, correcciones de la batería, de la interfaz y de la ambientación. Son defectos detectados antes de la entrega."),
- ("Fallos externos","No conformidad","No aplica. El proyecto entrega un prototipo académico que no llega a usuarios finales fuera del entorno de prueba."),
-],widths=[2.6,2.4,11.0],fs=9.5)
-
-rows=[]
-for cat,gs in K.COQ.items():
-    for n,g in enumerate(gs):
-        rows.append((cat if n==0 else "", g, K.GRUPO[g][:28], d(K.costo_grupo(g))))
-    rows.append(("", f"Subtotal {cat.lower()}", "", d(K.COQ_TOT[cat])))
-rows.append(("Total del costo de la calidad","","",d(sum(K.COQ_TOT.values()))))
-table(doc,["Categoría","Grupo","Perfil","Costo"],rows,widths=[3.4,1.8,6.4,2.8],fs=9)
-
-table(doc,["Categoría","Costo","% de la mano de obra","% del costo de la calidad"],
- [(c, d(v), f"{100*v/K.MANO_OBRA:.1f} %", f"{100*v/sum(K.COQ_TOT.values()):.1f} %") for c,v in K.COQ_TOT.items()]+
- [("Total", d(sum(K.COQ_TOT.values())), f"{100*sum(K.COQ_TOT.values())/K.MANO_OBRA:.1f} %","100.0 %")],
- widths=[4.4,3.2,4.2,4.2],fs=10)
-
-H(doc,"12.1 Lectura del resultado",2)
-P(doc,f"El costo de la calidad representa el {100*sum(K.COQ_TOT.values())/K.MANO_OBRA:.1f} % de la mano de "
-  "obra. Es una proporción alta comparada con la referencia habitual de la industria del software, que "
-  "ronda el 15 %, y tiene una explicación concreta: el proyecto es un trabajo académico cuya documentación "
-  "es en sí misma un entregable evaluable, de modo que el esfuerzo de prevención incluye tareas que en un "
-  "proyecto comercial no existirían.")
-P(doc,"La proporción entre categorías sí es sana. Se invierte más en prevención que en corregir fallos, "
-  f"{d(K.COQ_TOT['Prevención'])} contra {d(K.COQ_TOT['Fallos internos'])}, que es la relación que se busca: "
-  "cuesta menos evitar un defecto que repararlo. Si la relación fuera la inversa, indicaría que el proyecto "
-  "está descubriendo los problemas demasiado tarde.")
-P(doc,"La ausencia de costos por fallos externos no debe leerse como una virtud del proyecto, sino como una "
-  "consecuencia de su alcance: el prototipo no se entrega a usuarios finales fuera del entorno controlado "
-  "de prueba, de modo que no hay oportunidad de que un defecto llegue al cliente.")
+c = K.corte(9.0)
+PV, EV, BAC = c["PV"], c["EV"], K.PRESUPUESTO
+SV, SPI = EV-PV, EV/PV
 
 # ================================================================ 13
-H(doc,"13. Análisis de riesgos",1)
-P(doc,"Esta sección identifica los riesgos del proyecto, los evalúa de forma cualitativa y cuantitativa, y "
-  "obtiene de ahí la reserva de contingencia que aparece en el presupuesto. El tratamiento de cada riesgo, "
-  "con su estrategia de respuesta, responsable y plan de contingencia, se desarrolla en el Plan de Gestión "
-  "de los Riesgos.")
+H(doc,"13. Controlar los costos",1)
+P(doc,"Los procesos anteriores producen la línea base. Controlar los costos es el proceso de monitorear el "
+  "avance real contra esa línea base, medir la desviación y pronosticar el resultado final. La guía PMBOK "
+  "emplea para ello la gestión del valor ganado, que compara tres magnitudes expresadas todas en dinero.")
 
-H(doc,"13.1 Escalas de valoración",2)
-P(doc,"Para que el análisis cualitativo sea reproducible, la probabilidad y el impacto se valoran en "
-  "escalas definidas de antemano.")
-table(doc,["Nivel","Probabilidad","Impacto sobre el costo","Impacto sobre el cronograma"],[
- ("Muy bajo","10 %","Hasta $4,000","Menos de un día hábil"),
- ("Bajo","30 %","Hasta $8,000","De uno a dos días hábiles"),
- ("Medio","50 %","Hasta $14,000","De tres a cinco días hábiles"),
- ("Alto","70 %","Hasta $20,000","De seis a diez días hábiles"),
- ("Muy alto","90 %","Más de $20,000","Más de diez días hábiles, o compromete la fecha de entrega"),
-],widths=[2.2,2.4,4.0,7.4],fs=9.5)
+H(doc,"13.1 Las tres magnitudes",2)
+table(doc,["Magnitud","Qué mide","Cómo se obtiene en este proyecto"],[
+ ("Valor planificado (PV)","Cuánto valor debería haberse producido a la fecha de corte, según el plan.","Se acumula el costo de cada actividad en proporción al avance que el cronograma le asigna a esa fecha."),
+ ("Valor ganado (EV)","Cuánto valor se ha producido realmente.","Suma del costo presupuestado de las actividades terminadas. Con la regla 0/100, una actividad aporta su costo completo al cumplir su criterio de aceptación, y cero antes."),
+ ("Costo real (AC)","Cuánto se ha gastado realmente para producir ese valor.","Horas efectivamente trabajadas por la tarifa del perfil. Requiere que el equipo registre horas, cosa que hoy no hace."),
+],widths=[3.2,5.2,7.6],fs=9.5)
 
-H(doc,"13.2 Registro de riesgos y análisis cuantitativo",2)
-P(doc,"El valor monetario esperado de cada riesgo es el producto de su probabilidad por su impacto. La suma "
-  "de todos ellos determina la reserva de contingencia.")
-rows=[(r[0], r[1], r[4], f"{r[2]:.0%}", d(r[3]), d(r[2]*r[3])) for r in K.RIESGOS]
-rows.append(("","Valor monetario esperado total","","","",d(K.EMV)))
-rows.append(("","Reserva de contingencia adoptada, redondeada","","","",d(K.CONTINGENCIA)))
-table(doc,["Id","Riesgo","Categoría","Prob.","Impacto","Valor esperado"],rows,
-      widths=[0.9,7.0,2.0,1.3,2.0,2.8],fs=9)
+H(doc,"13.2 Los índices de desempeño",2)
+table(doc,["Indicador","Fórmula","Interpretación"],[
+ ("Variación del cronograma (SV)","EV menos PV","Positiva, el proyecto va adelantado; negativa, atrasado. Se expresa en dinero aunque mida tiempo."),
+ ("Índice de desempeño del cronograma (SPI)","EV entre PV","Mayor que 1, se produce más valor del planificado. Menor que 1, menos."),
+ ("Variación del costo (CV)","EV menos AC","Positiva, se gastó menos de lo presupuestado para el valor producido."),
+ ("Índice de desempeño del costo (CPI)","EV entre AC","Mayor que 1, eficiencia en costo. Menor que 1, sobrecosto."),
+],widths=[4.4,2.8,8.8],fs=9.5)
 
-H(doc,"13.3 Matriz de probabilidad e impacto",2)
-if os.path.exists(FIG+"Fig4_Matriz_riesgos.png"):
-    doc.add_picture(FIG+"Fig4_Matriz_riesgos.png", width=Cm(14.6)); doc.paragraphs[-1].alignment=C
-caption(doc,"Fig. 4 — Matriz de probabilidad e impacto de los nueve riesgos identificados.")
+H(doc,"13.3 Medición al corte de medio curso",2)
+P(doc,f"Se toma como fecha de corte el cierre del {K.fecha(8):%d de %B de %Y}, que corresponde al día hábil "
+  f"{int(c['dia'])} del proyecto y al último día laborable antes de la entrega de medio curso.")
+table(doc,["Concepto","Valor"],[
+ ("Actividades terminadas", f"{len(c['terminadas'])} de 257"),
+ ("Actividades en curso", f"{len(c['en_curso'])}"),
+ ("Horas de esfuerzo completadas", f"{c['horas']:,.0f} de {K.HORAS_TOT:,.0f}  ({100*c['horas']/K.HORAS_TOT:.0f} %)"),
+ ("Valor planificado (PV)", d(PV)),
+ ("Valor ganado (EV)", d(EV)),
+ ("Variación del cronograma (SV)", d(SV)),
+ ("Índice de desempeño del cronograma (SPI)", f"{SPI:.3f}"),
+ ("Presupuesto hasta la conclusión (BAC)", d(BAC)),
+],widths=[9.0,7.0],fs=10)
+P(doc,f"El índice de desempeño del cronograma es {SPI:.3f}, es decir que el proyecto ha producido el "
+  f"{100*SPI:.1f} % del valor que el plan preveía para esta fecha. La desviación es de {d(abs(SV))}, "
+  f"equivalente a menos de medio día hábil de trabajo del equipo completo. El proyecto está esencialmente "
+  "en plan.")
+P(doc,"Conviene señalar qué no se puede medir todavía. El costo real exige registrar las horas que cada "
+  "integrante dedica efectivamente a cada actividad, y la hoja de control del equipo registra la fecha real "
+  "de término pero no las horas. Sin ese dato no pueden calcularse el índice de desempeño del costo ni la "
+  "variación del costo, que son la mitad del método.")
 
-H(doc,"13.4 Lectura del análisis",2)
-P(doc,f"El valor monetario esperado de los riesgos identificados asciende a {d(K.EMV)}, equivalente al "
-  f"{100*K.EMV/K.DIRECTOS:.1f} % de los costos directos. La reserva de contingencia se fija en ese valor, "
-  "redondeado a la centena.")
-P(doc,"Conviene señalar que este método asigna reserva en proporción al riesgo real y no mediante un "
-  "porcentaje fijo. Un 10 % de los costos directos, que es la práctica habitual por defecto, habría "
-  f"arrojado {d(K.DIRECTOS*0.10)}, una cifra distinta y sin sustento.")
-P(doc,"Los tres riesgos de mayor valor esperado son el retraso de la cadena del entorno tridimensional, la "
-  "sobrecarga del área de QA y el incumplimiento del umbral de latencia. Los dos primeros son de recursos y "
-  "cronograma, y se atienden redistribuyendo trabajo; el tercero es técnico y se atiende con el hito de "
-  "verificación temprana previsto en la planificación.")
-P(doc,"El riesgo R5, que la Facultad no concrete el préstamo de los visores, merece atención particular "
-  f"porque su impacto de {d(18998)} equivale al 80 % de todos los costos no laborales del proyecto. Es la "
-  "contrapartida de haber excluido el equipo del presupuesto: el ahorro es real, pero traslada una "
-  "dependencia externa al proyecto.")
+H(doc,"13.4 Pronósticos",2)
+P(doc,"A partir del desempeño observado se proyecta el resultado final. La guía PMBOK ofrece varias "
+  "fórmulas según el supuesto que se adopte sobre el comportamiento futuro.")
+eac1 = BAC
+eac2 = BAC/SPI
+table(doc,["Pronóstico","Fórmula","Supuesto","Resultado"],[
+ ("Estimación a la conclusión (EAC)","BAC","Las desviaciones observadas son atípicas y no se repetirán.",d(eac1)),
+ ("Estimación a la conclusión (EAC)","BAC entre SPI","El desempeño del cronograma observado se mantiene hasta el final.",d(eac2)),
+ ("Estimación hasta la conclusión (ETC)","EAC menos EV","Trabajo que resta por producir, bajo el segundo supuesto.",d(eac2-EV)),
+ ("Variación a la conclusión (VAC)","BAC menos EAC","Diferencia esperada contra el presupuesto, bajo el segundo supuesto.",d(BAC-eac2)),
+],widths=[4.2,3.0,6.0,2.8],fs=9.5)
+P(doc,f"Bajo el supuesto conservador, si el ritmo actual se mantiene, el proyecto concluiría con un valor de "
+  f"{d(eac2)}, es decir {d(abs(BAC-eac2))} por encima del presupuesto. Como el costo es proporcional a las "
+  "horas y estas no cambian, esa diferencia no significa gastar más dinero: significa que el equipo "
+  "necesitaría más horas de las estimadas, y por tanto más días de calendario. Se absorbería con la reserva "
+  "de cronograma.")
+
+H(doc,"13.5 Qué debe empezar a registrarse",2)
+P(doc,"Para que el control de costos funcione durante el resto del proyecto hacen falta dos datos que hoy no "
+  "se capturan.")
+table(doc,["Dato","Para qué sirve","Dónde registrarlo"],[
+ ("Horas efectivamente dedicadas a cada actividad","Permite calcular el costo real y con él el índice de desempeño del costo.","Campo de trabajo real en ProjectLibre, o una columna adicional en el reporte semanal."),
+ ("Porcentaje de avance de las actividades en curso","Permite refinar el valor ganado en los cortes intermedios.","Campo de porcentaje completado en ProjectLibre."),
+],widths=[4.6,6.4,5.0],fs=9.5)
+P(doc,"Con la regla 0/100 declarada en la sección 2, el porcentaje de avance no altera el valor ganado, pero "
+  "sí sirve para anticipar si una actividad va a cerrar a tiempo. El registro de horas es el dato "
+  "indispensable: sin él, la mitad del método de valor ganado queda inutilizable.")
 
 doc.add_page_break()
 doc.save('/tmp/_cost_e.docx'); print("E OK")

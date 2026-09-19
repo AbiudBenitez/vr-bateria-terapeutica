@@ -4,78 +4,99 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from neutro import *
 from docx import Document
 from docx.shared import Cm
-import rc257 as R, costos as K, compresion as CP
+import rc257 as R, costos as K
 M = R.V2
 def d(x): return f"${x:,.0f}"
-f = R.fnum
 FIG="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/figuras_costos/"
 doc = Document('/tmp/_cost_c.docx')
 
 # ================================================================ 11
-H(doc,"11. Compresión de la red",1)
-P(doc,"La compresión es la etapa del método de la ruta crítica que responde a una pregunta económica: si "
-  "hiciera falta terminar antes, ¿cuánto costaría cada día ganado y qué actividades conviene acelerar? "
-  "Solo tiene sentido comprimir actividades de la ruta crítica: acelerar una actividad con holgura no "
-  "adelanta la fecha final y sí cuesta dinero.")
-
-H(doc,"11.1 Modelo de compresión adoptado",2)
-P(doc,"Cada área del proyecto tiene una sola persona asignada, de modo que no es posible comprimir "
-  "añadiendo un segundo recurso: no hay a quién añadir sin quitarlo de otra área. La única vía disponible "
-  "es extender la jornada.")
-table(doc,["Parámetro","Valor","Fundamento"],[
- ("Jornada normal","8 horas diarias","Es la base sobre la que se estimaron todas las duraciones."),
- ("Jornada extendida","10 horas diarias","Dos horas de tiempo extraordinario, que es el máximo que la Ley Federal del Trabajo permite de forma habitual sin recargo doble."),
- ("Reducción máxima de la duración","20 %","Una actividad de diez días ejecutada a diez horas diarias termina en ocho."),
- ("Sobreprecio de la hora extra","50 % sobre la tarifa ordinaria","Corresponde al pago de tiempo extraordinario simple: hora doble, es decir la ordinaria más una vez más, aplicada solo a la fracción extra."),
-],widths=[4.0,3.4,8.6],fs=9.5)
-
-H(doc,"11.2 Pendiente de costo por actividad",2)
-P(doc,"La pendiente de costo es el sobrecosto dividido entre los días que se ganan. Indica cuánto cuesta "
-  "cada día de adelanto en esa actividad.")
+H(doc,"11. Análisis del costo de la calidad",1)
+P(doc,"El costo de la calidad reúne todo el esfuerzo dedicado a que el producto cumpla sus requisitos, más "
+  "el que se gasta cuando no los cumple. La guía PMBOK lo divide en costos de conformidad, que se invierten "
+  "para evitar fallos, y costos de no conformidad, que se pagan cuando el fallo ya ocurrió.")
+table(doc,["Categoría","Tipo","Qué comprende en este proyecto"],[
+ ("Prevención","Conformidad","Planificación y gestión del proyecto, gestión de riesgos, definición de requisitos y trazabilidad, y registro del avance."),
+ ("Evaluación","Conformidad","Planes y ejecución de pruebas, y validación integral con métricas."),
+ ("Fallos internos","No conformidad","Gestión y corrección de errores, y correcciones de la batería, la interfaz y la ambientación."),
+ ("Fallos externos","No conformidad","No aplica. El prototipo no llega a usuarios finales fuera del entorno de prueba."),
+],widths=[2.6,2.4,11.0],fs=9.5)
 rows=[]
-for k in CP.CANDIDATAS[:22]:
-    rows.append((k, R.T[k]["desc"][:44], f(R.T[k]["dur"]), f"{CP.comprimible(k):.2f}",
-                 d(K.costo(k)), d(CP.sobrecosto(k)), d(CP.pendiente(k)), K.perfil(k)[:26]))
-table(doc,["Clave","Actividad","Dur.","Recorte","Costo normal","Sobrecosto","$/día","Perfil"],rows,
-      widths=[1.3,5.0,1.0,1.3,1.8,1.6,1.4,2.6],fs=8)
-P(doc,"Se muestran las 22 actividades críticas más baratas de comprimir, de un total de "
-  f"{len(CP.CANDIDATAS)}. La tabla completa está en el anexo B.")
-P(doc,"Obsérvese que la pendiente es idéntica dentro de cada perfil: 401 pesos por día en las actividades "
-  "de QA, 450 en las de análisis, 520 en las del entorno tridimensional. No es casualidad. Bajo el modelo "
-  "de tiempo extraordinario, la pendiente resulta ser exactamente cuatro veces la tarifa horaria del "
-  "perfil, con independencia de cuánto dure la actividad. La conclusión práctica es directa: conviene "
-  "comprimir primero el trabajo de los perfiles más baratos que estén sobre la ruta crítica.")
+for cat,gs in K.COQ.items():
+    for n,g in enumerate(gs):
+        rows.append((cat if n==0 else "", g, K.GRUPO[g][:28], d(K.costo_grupo(g))))
+    rows.append(("", f"Subtotal {cat.lower()}", "", d(K.COQ_TOT[cat])))
+rows.append(("Total del costo de la calidad","","",d(sum(K.COQ_TOT.values()))))
+table(doc,["Categoría","Grupo","Perfil","Costo"],rows,widths=[3.4,1.8,6.4,2.8],fs=9)
+table(doc,["Categoría","Costo","% de la mano de obra","% del costo de la calidad"],
+ [(c, d(v), f"{100*v/K.MANO_OBRA:.1f} %", f"{100*v/sum(K.COQ_TOT.values()):.1f} %") for c,v in K.COQ_TOT.items()]+
+ [("Total", d(sum(K.COQ_TOT.values())), f"{100*sum(K.COQ_TOT.values())/K.MANO_OBRA:.1f} %","100.0 %")],
+ widths=[4.4,3.2,4.2,4.2],fs=10)
+P(doc,f"El costo de la calidad representa el {100*sum(K.COQ_TOT.values())/K.MANO_OBRA:.1f} % de la mano de "
+  "obra. Es una proporción alta comparada con la referencia habitual de la industria del software, que ronda "
+  "el 15 %, y tiene una explicación concreta: en un proyecto académico la documentación es en sí misma un "
+  "entregable evaluable, de modo que el esfuerzo de prevención incluye tareas que en un proyecto comercial "
+  "no existirían.")
+P(doc,"La proporción entre categorías sí es sana. Se invierte más en prevención que en corregir fallos, "
+  f"{d(K.COQ_TOT['Prevención'])} contra {d(K.COQ_TOT['Fallos internos'])}, que es la relación que se busca: "
+  "cuesta menos evitar un defecto que repararlo.")
 
-H(doc,"11.3 Curva de compresión",2)
-P(doc,"Comprimir una actividad crítica acorta el proyecto solo hasta que otra trayectoria se vuelve "
-  "crítica. A partir de ahí hay que comprimir dos trayectorias a la vez, y el costo por día ganado sube. "
-  "La curva se construyó aplicando el procedimiento de forma iterativa: en cada paso se comprime la "
-  "actividad crítica más barata que efectivamente reduzca la duración, y se vuelve a calcular la red.")
-if os.path.exists(FIG+"Fig2_Curva_compresion.png"):
-    doc.add_picture(FIG+"Fig2_Curva_compresion.png", width=Cm(16.4)); doc.paragraphs[-1].alignment=C
-caption(doc,"Fig. 2 — Curva de compresión tiempo-costo. Cada escalón corresponde a una actividad comprimida.")
-pts,_ = CP.curva()
-table(doc,["Punto","Duración","Sobrecosto acumulado","Costo por día ganado"],[
- ("Duración normal", f"{pts[0][0]:.2f} días", "Sin sobrecosto", "—"),
- ("Primeros días ganados", f"{pts[5][0]:.2f} días", d(pts[5][1]), d(pts[5][1]/(pts[0][0]-pts[5][0]))),
- ("Mitad de la compresión", f"{pts[len(pts)//2][0]:.2f} días", d(pts[len(pts)//2][1]),
-  d(pts[len(pts)//2][1]/(pts[0][0]-pts[len(pts)//2][0]))),
- ("Compresión máxima", f"{pts[-1][0]:.2f} días", d(pts[-1][1]), d(pts[-1][1]/(pts[0][0]-pts[-1][0]))),
-],widths=[4.4,3.0,4.2,4.4],fs=9.5)
-P(doc,f"El proyecto puede reducirse de {pts[0][0]:.2f} a {pts[-1][0]:.2f} días hábiles, es decir "
-  f"{pts[0][0]-pts[-1][0]:.2f} días, con un sobrecosto de {d(pts[-1][1])}. El costo marginal arranca en "
-  "401 pesos por día y llega a superar los 2,500 en los últimos tramos.")
+doc.add_page_break()
+# ================================================================ 12
+H(doc,"12. Análisis de riesgos",1)
+P(doc,"Esta sección identifica los riesgos del proyecto, los evalúa de forma cualitativa y cuantitativa, y "
+  "obtiene de ahí la reserva de cronograma. El tratamiento de cada riesgo, con su estrategia de respuesta, "
+  "responsable y plan de contingencia, se desarrolla en el Plan de Gestión de los Riesgos.")
 
-H(doc,"11.4 Conclusión sobre la compresión",2)
-P(doc,"El proyecto no necesita comprimirse para cumplir el calendario: la ruta crítica mide 38.25 días "
-  "hábiles y hay 47 disponibles hasta el 13 de noviembre. La compresión es, por tanto, un instrumento de "
-  "contingencia y no una necesidad del plan.")
-P(doc,f"Su utilidad práctica es que {d(pts[-1][1])}, un 1.5 % del presupuesto, compran hasta "
-  f"{pts[0][0]-pts[-1][0]:.2f} días hábiles de margen. Es una relación favorable, y conviene tenerla "
-  "documentada por si alguno de los riesgos de la sección siguiente llegara a materializarse.")
-P(doc,"Hay que advertir su límite: la compresión resuelve problemas de la ruta crítica, no de carga de "
-  "trabajo. La restricción dominante del proyecto es que el área de QA tiene 511 horas asignadas y su "
-  "ventana solo permite unas 362. Comprimir la ruta crítica no corrige eso; redistribuir trabajo, sí.")
+H(doc,"12.1 Por qué el impacto se mide en días y no en pesos",2)
+P(doc,"En la mayoría de los proyectos el impacto de un riesgo se expresa en dinero, porque materializarse "
+  "significa comprar algo que no estaba previsto, pagar horas adicionales o afrontar una penalización. Nada "
+  "de eso ocurre aquí: el proyecto no compra, no contrata y no tiene cliente que penalice.")
+P(doc,"Lo que sí puede perder es tiempo y alcance. Por eso el impacto de cada riesgo se valora en días "
+  "hábiles de retraso y en la degradación concreta que produciría sobre el producto, y la reserva que se "
+  "constituye es de cronograma, no de dinero. Es la aplicación del mismo método sobre la variable que en "
+  "este proyecto sí está en riesgo.")
+
+H(doc,"12.2 Escalas de valoración",2)
+table(doc,["Nivel","Probabilidad","Impacto en cronograma","Impacto en alcance"],[
+ ("Muy bajo","10 %","Alrededor de 1 día hábil","Ningún entregable afectado"),
+ ("Bajo","30 %","Alrededor de 2 días","Un entregable secundario se degrada"),
+ ("Medio","50 %","Alrededor de 3 días","Un entregable principal se degrada"),
+ ("Alto","70 %","Alrededor de 5 días","Se pierde un entregable secundario"),
+ ("Muy alto","90 %","8 días o más","Se pierde un entregable principal"),
+],widths=[2.0,2.2,4.4,7.4],fs=9.5)
+
+H(doc,"12.3 Registro de riesgos y análisis cuantitativo",2)
+P(doc,"El valor esperado de cada riesgo es el producto de su probabilidad por su impacto en días. La suma "
+  "determina la reserva de cronograma necesaria.")
+rows=[(r[0], r[1], r[5], f"{r[2]:.0%}", f"{r[3]:.1f} d", f"{r[2]*r[3]:.2f} d", r[4]) for r in K.RIESGOS]
+rows.append(("","Valor esperado total","","","",f"{K.EMV_DIAS:.2f} d",""))
+table(doc,["Id","Riesgo","Categoría","Prob.","Impacto","Valor esp.","Impacto en alcance"],rows,
+      widths=[0.8,4.8,1.8,1.1,1.3,1.4,4.8],fs=8.5)
+
+H(doc,"12.4 Matriz de probabilidad e impacto",2)
+if os.path.exists(FIG+"Fig4_Matriz_riesgos.png"):
+    doc.add_picture(FIG+"Fig4_Matriz_riesgos.png", width=Cm(14.6)); doc.paragraphs[-1].alignment=C
+caption(doc,"Fig. 4 — Matriz de probabilidad e impacto de los nueve riesgos identificados.")
+
+H(doc,"12.5 Suficiencia de la reserva",2)
+table(doc,["Concepto","Días hábiles"],[
+ ("Valor esperado del impacto de los nueve riesgos", f"{K.EMV_DIAS:.2f}"),
+ ("Reserva de cronograma disponible", f"{K.RESERVA_CRONO:.2f}"),
+ ("Margen", f"{K.RESERVA_CRONO-K.EMV_DIAS:.2f}"),
+],widths=[11.0,5.0],fs=10)
+P(doc,f"La reserva alcanza, con un margen del {100*(K.RESERVA_CRONO/K.EMV_DIAS-1):.0f} % sobre el valor "
+  "esperado. Conviene leerlo con cautela: el valor esperado es un promedio, no un tope. Si se materializaran "
+  "simultáneamente los tres riesgos de mayor impacto —el incumplimiento del umbral de latencia, el retraso "
+  "del entorno tridimensional y la falta del préstamo de los visores— el retraso sumaría 15 días y la "
+  "reserva sería insuficiente.")
+P(doc,"Los tres riesgos de mayor valor esperado son la sobrecarga del área de QA, el retraso de la cadena "
+  "del entorno tridimensional y el incumplimiento del umbral de latencia. Los dos primeros son de recursos y "
+  "cronograma, y se atienden redistribuyendo trabajo; el tercero es técnico y se atiende con verificación "
+  "temprana.")
+P(doc,"El riesgo R5, que la Facultad no concrete el préstamo de los visores, merece atención particular: es "
+  "el de mayor impacto unitario, seis días hábiles, y además reduciría las pruebas con usuarios a una sola "
+  "sesión. Es la contrapartida de haber excluido el equipo del presupuesto.")
 
 doc.add_page_break()
 doc.save('/tmp/_cost_d.docx'); print("D OK")

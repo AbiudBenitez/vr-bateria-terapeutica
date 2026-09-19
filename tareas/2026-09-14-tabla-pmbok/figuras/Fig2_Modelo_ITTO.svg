@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1000.8pt" height="405.687479pt" viewBox="0 0 1000.8 405.687479" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-09-14T17:48:19.775887</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 405.687479 
+L 1000.8 405.687479 
+L 1000.8 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 294.735888 164.866427 
+Q 338.163458 164.866427 378.684139 164.866427 
+" clip-path="url(#p54bfc4c3ed)" style="fill: none; stroke: #444444; stroke-width: 2.6; stroke-linecap: round"/>
+    <path d="M 371.484139 161.266427 
+L 378.684139 164.866427 
+L 371.484139 168.466427 
+z
+" clip-path="url(#p54bfc4c3ed)" style="fill: #444444; stroke: #444444; stroke-width: 2.6; stroke-linecap: round"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 619.209573 164.866427 
+Q 662.637142 164.866427 703.157823 164.866427 
+" clip-path="url(#p54bfc4c3ed)" style="fill: none; stroke: #444444; stroke-width: 2.6; stroke-linecap: round"/>
+    <path d="M 695.957823 161.266427 
+L 703.157823 164.866427 
+L 695.957823 168.466427 
+z
+" clip-path="url(#p54bfc4c3ed)" style="fill: #444444; stroke: #444444; stroke-width: 2.6; stroke-linecap: round"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 823.014555 245.243327 
+Q 500.399805 116.936818 179.447275 244.582402 
+" clip-path="url(#p54bfc4c3ed)" style="fill: none; stroke-dasharray: 8,3.2; stroke-dashoffset: 0; stroke: #0b5394; stroke-width: 1.6; stroke-linecap: round"/>
+    <path d="M 185.685598 245.114683 
+L 179.447275 244.582402 
+L 183.616094 239.911112 
+z
+" clip-path="url(#p54bfc4c3ed)" style="fill: #0b5394; stroke-dasharray: 8,3.2; stroke-dashoffset: 0; stroke: #0b5394; stroke-width: 1.6; stroke-linecap: round"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 59.115789 249.229585 
+L 292.736842 249.229585 
+Q 295.981579 249.229585 295.981579 245.984848 
+L 295.981579 83.748006 
+Q 295.981579 80.503269 292.736842 80.503269 
+L 59.115789 80.503269 
+Q 55.871053 80.503269 55.871053 83.748006 
+L 55.871053 245.984848 
+Q 55.871053 249.229585 59.115789 249.229585 
+z
+" clip-path="url(#p54bfc4c3ed)" style="fill: #4472c4; fill-opacity: 0.133333; stroke: #4472c4; stroke-width: 2.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 383.589474 249.229585 
+L 617.210526 249.229585 
+Q 620.455263 249.229585 620.455263 245.984848 
+L 620.455263 83.748006 
+Q 620.455263 80.503269 617.210526 80.503269 
+L 383.589474 80.503269 
+Q 380.344737 80.503269 380.344737 83.748006 
+L 380.344737 245.984848 
+Q 380.344737 249.229585 383.589474 249.229585 
+z
+" clip-path="url(#p54bfc4c3ed)" style="fill: #ed7d31; fill-opacity: 0.133333; stroke: #ed7d31; stroke-width: 2.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 708.063158 249.229585 
+L 941.684211 249.229585 
+Q 944.928947 249.229585 944.928947 245.984848 
+L 944.928947 83.748006 
+Q 944.928947 80.503269 941.684211 80.503269 
+L 708.063158 80.503269 
+Q 704.818421 80.503269 704.818421 83.748006 
+L 704.818421 245.984848 
+Q 704.818421 249.229585 708.063158 249.229585 
+z
+" clip-path="url(#p54bfc4c3ed)" style="fill: #8fbc3f; fill-opacity: 0.133333; stroke: #8fbc3f; stroke-width: 2.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-style: italic; font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #0b5394" x="500.4" y="347.072779" transform="rotate(-0 500.4 347.072779)">la salida de un proceso es, casi siempre, la entrada de otro</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 9.4px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #444444" x="500.4" y="25.550539" transform="rotate(-0 500.4 25.550539)">Cada uno de los 49 procesos del PMBOK se describe con esta misma estructura de tres partes</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle" x="500.4" y="17.076953" transform="rotate(-0 500.4 17.076953)">FIG. 2  MODELO DE ENTRADAS, HERRAMIENTAS Y SALIDAS</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 11.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #4472c4" x="175.926316" y="109.998037" transform="rotate(-0 175.926316 109.998037)">ENTRADAS</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(120.395847 137.284604)">· Documentos que el proceso</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(136.322597 146.024604)">necesita para operar</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="175.926316" y="170.208289" transform="rotate(-0 175.926316 170.208289)">· Salidas de procesos previos</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(133.000566 195.128223)">· Factores ambientales</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(148.799066 203.131973)">de la empresa</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(129.127535 222.945657)">· Activos de los procesos</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(141.148597 231.837657)">de la organización</text>
+   </g>
+   <g id="text_9">
+    <text style="font-weight: 700; font-size: 11.5px; font-family: 'DejaVu Sans'; fill: #ed7d31" transform="translate(449.686797 103.098037)">HERRAMIENTAS</text>
+    <text style="font-weight: 700; font-size: 11.5px; font-family: 'DejaVu Sans'; fill: #ed7d31" transform="translate(462.402383 117.962685)">Y TÉCNICAS</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="500.4" y="141.654604" transform="rotate(-0 500.4 141.654604)">· Juicio de expertos</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="500.4" y="171.096539" transform="rotate(-0 500.4 171.096539)">· Análisis de datos</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="500.4" y="199.498223" transform="rotate(-0 500.4 199.498223)">· Reuniones</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(460.861594 223.097657)">· Técnicas propias de</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(475.084875 231.685657)">cada proceso</text>
+   </g>
+   <g id="text_14">
+    <text style="font-weight: 700; font-size: 11.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8fbc3f" x="824.873684" y="109.998037" transform="rotate(-0 824.873684 109.998037)">SALIDAS</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(771.147028 137.284604)">· Documentos o entregables</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(780.285434 146.024604)">que el proceso produce</text>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="824.873684" y="170.208289" transform="rotate(-0 824.873684 170.208289)">· Actualizaciones al plan</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(782.874184 195.128223)">· Actualizaciones a los</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(776.467028 203.131973)">documentos del proyecto</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="824.873684" y="228.051907" transform="rotate(-0 824.873684 228.051907)">· Solicitudes de cambio</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p54bfc4c3ed">
+   <rect x="7.2" y="35.076953" width="986.4" height="363.410526"/>
+  </clipPath>
+ </defs>
+</svg>

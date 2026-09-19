@@ -163,10 +163,33 @@ ProjectLibre cubre **todas** las columnas de la hoja:
 
 - 8 tareas resumen por área + 257 tareas
 - 417 vínculos fin → inicio
-- 8 recursos con sus asignaciones
+- **13 recursos con tarifa por hora**, y el costo de cada tarea
 - Arranque **7-sep-2026**, fin **30-oct-2026**
 - **El avance ya está cargado:** las 9 completadas al 100 % con su fecha real, y `QC.2` al 50 %
 - Calendario lunes a viernes, 08:00–12:00 y 13:00–17:00, con 16-sep y 16-nov inhábiles
+
+### Por qué 13 recursos y no 8
+
+Siete de los ocho integrantes ejecutan un solo perfil, pero **Diana ejecuta seis**: gerencia,
+análisis, pruebas, redacción técnica, desarrollo y dirección, porque su área reúne la gestión
+del proyecto además del aseguramiento de calidad.
+
+Si se le asignara una sola tarifa promedio, el costo total saldría bien pero el de cada tarea
+saldría mal. Por eso cada recurso es una combinación de **persona y perfil**: «Diana — Gerente
+de proyecto», «Diana — Redactor técnico», y así. El campo *Grupo* lleva el área, de modo que
+en ProjectLibre se puede agrupar por persona o por área indistintamente.
+
+Con eso el costo sale exacto en los tres niveles: tarea, área y proyecto.
+
+| | |
+|---|---|
+| Tarifa más alta | Diana — Director de proyecto, $86.64/h (2.2 SM) |
+| Tarifa más baja | Diana — Redactor técnico, $39.38/h (1.0 SM) |
+| Costo total | **$104,013**, idéntico al documento de costos |
+| Costo real acumulado | $3,977 de las 9 tareas ya cerradas |
+
+Cada recurso trae además su **tarifa de horas extra al 150 %**, que es el modelo de compresión
+de la red. Si hiciera falta comprimir, ProjectLibre calcula el sobrecosto solo.
 
 Se importa con *Archivo → Abrir* y eligiendo el tipo XML.
 

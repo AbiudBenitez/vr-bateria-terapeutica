@@ -6,100 +6,82 @@ from docx import Document
 import rc257 as R, costos as K
 doc = Document('/tmp/_plan_c.docx')
 
-doc.add_page_break()
-# ======================================================= PARTE III
-H(doc,"PARTE III. CERTIFICACIONES EN DIRECCIÓN DE PROYECTOS",1)
-P(doc,"Revisión de las principales certificaciones profesionales del área, con sus requisitos, costo y "
-  "perfil al que se dirigen. Los montos están en dólares estadounidenses, que es la moneda en que los "
-  "organismos emisores publican sus tarifas, y corresponden a 2026.")
+# ================================================================ 15
+H(doc,"15. Implementar la respuesta a los riesgos",2)
+P(doc,"Planificar respuestas no reduce ningún riesgo: la reducción ocurre cuando alguien ejecuta la "
+  "respuesta. Este proceso define cómo se pasa del plan a la acción, y es donde la mayoría de los registros "
+  "de riesgos fracasa, porque quedan escritos y nadie los ejecuta.")
 
-H(doc,"16. Panorama general",2)
-P(doc,"Las certificaciones del área se agrupan en tres familias. Distinguirlas importa porque responden a "
-  "filosofías distintas y no compiten entre sí de forma directa.")
-table(doc,["Familia","Enfoque","Organismo","Certificaciones principales"],[
- ("Basadas en cuerpo de conocimiento","Certifican dominio de un conjunto de procesos, herramientas y técnicas. Es el enfoque de la guía PMBOK.","Project Management Institute (PMI), Estados Unidos","CAPM, PMP, PMI-ACP, PMI-RMP, PMI-SP"),
- ("Basadas en método","Certifican la aplicación de un método prescriptivo, con roles y productos definidos.","PeopleCert, Reino Unido","PRINCE2 Foundation y Practitioner"),
- ("Basadas en competencia","Certifican capacidad demostrada mediante evaluación de experiencia real, por niveles.","International Project Management Association (IPMA)","IPMA niveles D, C, B y A"),
- ("Marcos ágiles","Certifican el dominio de un marco de trabajo específico, no de la dirección de proyectos en general.","Scrum.org, Scrum Alliance, Scaled Agile","PSM, CSM, SAFe"),
-],widths=[3.4,5.4,3.6,3.6],fs=9)
+H(doc,"15.1 Regla de activación",3)
+P(doc,"Cada riesgo del registro tiene un disparador redactado como un hecho observable, no como una "
+  "apreciación. Cuando el responsable observa el disparador, ejecuta la respuesta sin esperar autorización "
+  "ni a la reunión semanal. Solo se escala al director cuando la respuesta implica recortar alcance o "
+  "consumir más de tres días de la reserva de cronograma.")
+table(doc,["Situación","Quién decide","Plazo"],[
+ ("El disparador se cumple y la respuesta está dentro del área del responsable.","El responsable del riesgo, por su cuenta.","De inmediato. Se informa en la siguiente reunión."),
+ ("La respuesta requiere apoyo de otra área.","El gerente de proyecto.","En un plazo de 24 horas."),
+ ("La respuesta implica recortar alcance o consumir más de tres días de reserva.","El director de proyecto.","En la siguiente reunión, o antes si es urgente."),
+ ("Aparece un riesgo no registrado con impacto mayor a dos días.","El gerente lo registra y asigna responsable de inmediato.","El mismo día en que se detecta."),
+],widths=[6.8,4.8,4.4],fs=9.5)
 
-H(doc,"17. Certificaciones del Project Management Institute",2)
-P(doc,"Son las de mayor reconocimiento en México y las que corresponden directamente a la guía PMBOK que "
-  "se emplea en esta materia.")
-table(doc,["Certificación","Dirigida a","Requisitos","Examen","Costo"],[
- ("CAPM — Certified Associate in Project Management",
-  "Estudiantes y personas sin experiencia dirigiendo proyectos. Es la puerta de entrada.",
-  "Bachillerato concluido más 23 horas de formación en dirección de proyectos. No exige experiencia dirigiendo proyectos.",
-  "150 preguntas, 3 horas. Cubre fundamentos, metodologías predictiva y ágil, y análisis de negocio.",
-  "USD $225 miembros · USD $300 no miembros"),
- ("PMP — Project Management Professional",
-  "Profesionales con experiencia comprobable dirigiendo proyectos. Es la certificación de referencia del área.",
-  "Con título universitario de cuatro años: 36 meses dirigiendo proyectos, equivalentes a 4,500 horas, más 35 horas de formación. Sin título: 60 meses y 7,500 horas.",
-  "180 preguntas, 230 minutos. Cubre personas, procesos y entorno de negocio, con enfoques predictivo, ágil e híbrido.",
-  "USD $405 miembros · USD $555 no miembros"),
- ("PMI-ACP — Agile Certified Practitioner",
-  "Quienes trabajan en entornos ágiles y quieren acreditar dominio de varios marcos, no de uno solo.",
-  "Experiencia en proyectos ágiles más formación específica en prácticas ágiles.",
-  "Cubre Scrum, Kanban, Lean, programación extrema y otros marcos.",
-  "USD $435 miembros · USD $495 no miembros aproximadamente"),
- ("PMI-RMP — Risk Management Professional",
-  "Especialistas en gestión de riesgos dentro de proyectos grandes.",
-  "Experiencia comprobable en gestión de riesgos más formación específica.",
-  "Enfocado exclusivamente en el área de riesgos.",
-  "USD $520 miembros · USD $670 no miembros aproximadamente"),
- ("PMI-SP — Scheduling Professional",
-  "Especialistas en programación y control de cronogramas. Es la que más se acerca al trabajo de ruta crítica de esta materia.",
-  "Experiencia comprobable en desarrollo y control de cronogramas más formación específica.",
-  "Enfocado en planificación temporal, red de precedencias, ruta crítica y control del cronograma.",
-  "USD $520 miembros · USD $670 no miembros aproximadamente"),
-],widths=[3.2,3.6,4.4,3.0,2.0],fs=8)
-P(doc,"La membresía del PMI cuesta USD $139 anuales más USD $10 de inscripción inicial. Conviene evaluarla "
-  "antes de presentar examen: en el caso del PMP, el ahorro en la cuota del examen supera el costo de la "
-  "membresía, de modo que afiliarse resulta más barato que no hacerlo. Además da acceso a la guía PMBOK en "
-  "formato digital sin costo adicional.")
+H(doc,"15.2 Responsables de riesgo",3)
+P(doc,"Cada riesgo tiene un dueño nominal. Un riesgo sin dueño es un riesgo que nadie vigila.")
+rows=[]
+RESP_NOM={"R1":"Misael","R2":"Kimberly","R3":"Diana","R4":"Javier y Christian",
+          "R5":"Benjamín","R6":"Sarai","R7":"Sarai","R8":"Diana","R9":"Benjamín"}
+for rid, desc, prob, dias, alc, cat in K.RIESGOS:
+    rows.append((rid, desc[:58], RESP_NOM[rid], f"{prob*dias:.2f} d"))
+table(doc,["Id","Riesgo","Responsable de vigilarlo y ejecutarlo","Valor esperado"],rows,
+      widths=[0.9,7.6,4.5,3.0],fs=9)
 
-H(doc,"18. Otras certificaciones relevantes",2)
-table(doc,["Certificación","Organismo","Características","Costo aproximado"],[
- ("PRINCE2 Foundation","PeopleCert","Método prescriptivo de origen británico, muy extendido en Europa y en organismos públicos. Define siete principios, siete temas y siete procesos. No exige experiencia previa.","USD $300 a $500 según el país"),
- ("PRINCE2 Practitioner","PeopleCert","Segundo nivel. Evalúa la capacidad de adaptar el método a un escenario concreto. Requiere tener Foundation.","USD $500 a $700"),
- ("IPMA nivel D","International Project Management Association","Evalúa conocimiento de competencias en dirección de proyectos. Es el nivel de entrada y admite candidatos sin experiencia.","Varía por asociación nacional"),
- ("Professional Scrum Master I (PSM I)","Scrum.org","Certifica dominio del marco Scrum. No caduca ni requiere renovación. No exige curso previo.","USD $200"),
- ("Certified ScrumMaster (CSM)","Scrum Alliance","Equivalente en alcance, pero obliga a tomar un curso oficial de dos días y a renovar cada dos años.","USD $1,000 a $1,400, curso incluido"),
-],widths=[3.4,3.2,7.0,2.4],fs=9)
+H(doc,"15.3 Registro de ejecución",3)
+P(doc,"Cada vez que se ejecuta una respuesta se anota qué disparador se cumplió, qué se hizo, cuántos días "
+  "de reserva se consumieron y cuál fue el resultado. Sin ese registro no se puede saber si la reserva "
+  "sigue alcanzando, ni aprender nada para el siguiente proyecto.")
+table(doc,["Campo","Contenido"],[
+ ("Fecha","Cuándo se observó el disparador."),
+ ("Riesgo","Identificador del registro."),
+ ("Disparador observado","El hecho concreto, no la impresión."),
+ ("Respuesta ejecutada","Qué se hizo, y quién."),
+ ("Días de reserva consumidos","Cuánto se gastó de los "+f"{K.RESERVA_CRONO:.2f}"+" disponibles."),
+ ("Reserva restante","Saldo después de la ejecución."),
+ ("Resultado","Si la respuesta funcionó, y qué quedó pendiente."),
+],widths=[4.4,11.6],fs=9.5)
 
-H(doc,"19. Recomendación para el equipo",2)
-P(doc,"La certificación pertinente para el perfil del equipo es la CAPM, por tres razones concretas.")
-bullets(doc,[
- "No exige experiencia dirigiendo proyectos. El PMP pide 36 meses con título universitario, lo que lo "
- "vuelve inalcanzable para quien todavía está estudiando.",
- "Su requisito de 23 horas de formación en dirección de proyectos se cubre en buena medida con esta "
- "misma unidad de aprendizaje, siempre que se documente el contenido y la carga horaria.",
- "Su temario coincide con lo que este proyecto ya aplicó: estructura de desglose del trabajo, red de "
- "precedencias, ruta crítica, estimación ascendente de costos, gestión de la calidad y gestión de riesgos.",
-],num=True)
-table(doc,["Momento","Recomendación"],[
- ("Durante la carrera","CAPM. Es la única del PMI accesible sin experiencia, y convalida la formación de esta materia."),
- ("Primer empleo","PSM I si el entorno de trabajo es ágil. Cuesta USD $200, no caduca y no obliga a tomar curso."),
- ("A los tres años de ejercicio","PMP, una vez acumuladas las 4,500 horas dirigiendo proyectos que exige con título universitario."),
- ("Especialización posterior","PMI-SP para quien se incline por la planificación y el control de cronogramas, que es el terreno del trabajo de ruta crítica; PMI-RMP para quien se incline por la gestión de riesgos."),
-],widths=[3.6,12.4],fs=9.5)
-P(doc,"Una advertencia sobre el valor de las certificaciones: acreditan conocimiento del vocabulario y de "
-  "los procesos, no capacidad de dirigir. El PMI lo reconoce al exigir experiencia comprobable para el PMP "
-  "y no solo un examen. Para un egresado, la certificación abre la puerta a entrevistas; lo que sostiene la "
-  "carrera es haber ejecutado proyectos reales.")
+# ================================================================ 16
+H(doc,"16. Monitorear los riesgos",2)
+P(doc,"Monitorear es comprobar que las respuestas funcionan, reevaluar los riesgos vigentes, identificar los "
+  "nuevos y cerrar los que ya no pueden ocurrir. Es un proceso continuo, no una revisión al final.")
 
-doc.add_page_break()
-H(doc,"20. Fuentes",1)
-table(doc,["Fuente","Contenido"],[
- ("Project Management Institute, pmi.org","Requisitos y cuotas vigentes de CAPM, PMP, PMI-ACP, PMI-RMP y PMI-SP, y de la membresía anual."),
- ("PeopleCert, peoplecert.org","Requisitos y cuotas de PRINCE2 Foundation y Practitioner."),
- ("Scrum.org y Scrum Alliance","Requisitos y cuotas de PSM I y CSM."),
- ("International Project Management Association, ipma.world","Esquema de certificación por niveles D a A."),
- ("Guía de los Fundamentos para la Dirección de Proyectos (Guía del PMBOK), Project Management Institute","Marco de referencia de las áreas 8 y 11, que sustentan las partes I y II de este documento."),
-],widths=[5.6,10.4],fs=9.5)
-P(doc,"Los costos de examen se consultaron en septiembre de 2026 y los organismos emisores los actualizan "
-  "periódicamente. Conviene verificarlos en el sitio oficial antes de inscribirse.",italic=True)
+H(doc,"16.1 Actividades y periodicidad",3)
+table(doc,["Actividad","Frecuencia","Responsable","Producto"],[
+ ("Revisión del registro de riesgos","Semanal","Gerente de proyecto","Registro actualizado con probabilidades reevaluadas"),
+ ("Verificación de disparadores","Semanal","Responsable de cada riesgo","Confirmación de que ningún disparador se cumplió, o activación de la respuesta"),
+ ("Identificación de riesgos nuevos","Semanal","Todo el equipo","Altas en el registro, con responsable asignado el mismo día"),
+ ("Control del saldo de la reserva de cronograma","Semanal","Gerente de proyecto","Días consumidos y días restantes"),
+ ("Reevaluación completa del registro","En cada hito de control","Gerente y director","Registro revisado y reserva recalculada"),
+ ("Cierre de riesgos superados","En cada hito","Gerente de proyecto","Riesgos marcados como cerrados, con la lección aprendida"),
+ ("Auditoría de riesgos","A la mitad del proyecto","Gerente de proyecto","Informe sobre si las respuestas planificadas están siendo eficaces"),
+],widths=[4.6,2.4,3.4,5.6],fs=9.5)
 
-out="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/Plan_Calidad_Plan_Riesgos.docx"
-doc.save(out); print("OK", out)
-print("párrafos:",len(doc.paragraphs)," tablas:",len(doc.tables)," imágenes:",len(doc.inline_shapes))
+H(doc,"16.2 Cierre de riesgos",3)
+P(doc,"Un riesgo se cierra cuando la ventana en que podía materializarse ya pasó. Cerrarlo libera la parte "
+  "de reserva que tenía asociada, que vuelve a estar disponible para los riesgos vigentes.")
+table(doc,["Riesgo","Se cierra cuando","Libera"],[
+ ("R1  Latencia sobre el umbral","Se supera el hito de verificación de latencia con medición favorable.","1.50 días"),
+ ("R4  Licencias ambiguas","Todos los recursos externos están incorporados y verificados.","0.70 días"),
+ ("R5  Préstamo de visores","Existe confirmación escrita de la Facultad.","1.20 días"),
+ ("R7  Mareo en usuarios","Concluyen las sesiones de prueba sin incidencias.","0.40 días"),
+],widths=[4.4,8.0,3.6],fs=9.5)
+
+H(doc,"16.3 Indicadores de seguimiento",3)
+table(doc,["Indicador","Qué señala","Umbral de alarma"],[
+ ("Días de reserva consumidos","Cuánto margen queda para absorber lo que falte.","Superar el 50 % antes de la mitad del proyecto."),
+ ("Riesgos nuevos por semana","Si la identificación inicial fue suficiente.","Más de dos semanas consecutivas con altas."),
+ ("Riesgos con disparador cumplido y sin respuesta ejecutada","Si el plan se está aplicando o solo está escrito.","Cualquier valor distinto de cero."),
+ ("Valor esperado total del registro","Si la exposición del proyecto crece o baja.","Superar la reserva de cronograma disponible."),
+],widths=[4.6,6.4,5.0],fs=9.5)
+P(doc,"El tercero es el indicador decisivo. Un registro de riesgos con disparadores cumplidos y respuestas "
+  "sin ejecutar no es una herramienta de gestión: es documentación.")
+
+doc.save('/tmp/_plan_d.docx'); print("D OK")

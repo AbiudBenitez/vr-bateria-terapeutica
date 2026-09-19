@@ -22,43 +22,39 @@ def guarda(fig,n):
 M = R.V2
 def miles(x,_=None): return f"${x/1000:,.0f}k"
 
-# ============================================ FIG 1 — curva S
+# ============================================ FIG 1 — curva S y valor ganado
 def fig1():
     T = M["TOTAL"]; dias = np.arange(0, T+0.5, 0.25)
     acum = np.zeros_like(dias)
     for k in R.ORD:
         es, ef, c = M["ES"][k], M["EF"][k], K.costo(k)
         if ef <= es: acum += np.where(dias >= es, c, 0); continue
-        frac = np.clip((dias-es)/(ef-es), 0, 1)
-        acum += c*frac
+        acum += c*np.clip((dias-es)/(ef-es), 0, 1)
     fig, ax = plt.subplots(figsize=(12.5, 6.6))
-    ax.plot(dias, acum, color=AZUL, lw=2.6, label="Costo acumulado de mano de obra")
+    ax.plot(dias, acum, color=AZUL, lw=2.6, label="Valor planificado acumulado")
     ax.fill_between(dias, 0, acum, color=AZUL, alpha=0.10)
-    tot = K.MANO_OBRA
-    XF = T*1.03                                   # las líneas se cortan antes de las acotaciones
-    ax.plot([0,XF],[tot]*2, color=AZUL, ls=":", lw=1.2)
-    ax.plot([0,XF],[K.DIRECTOS]*2, color=VERDE, ls="--", lw=1.6, label=f"Costos directos  ${K.DIRECTOS:,.0f}")
-    ax.plot([0,XF],[K.LINEA_BASE]*2, color=ROJO, ls="-.", lw=1.8, label=f"Línea base de costos  ${K.LINEA_BASE:,.0f}")
-    ax.plot([0,XF],[K.PRESUPUESTO]*2, color="#7030A0", ls="-", lw=1.8, label=f"Presupuesto total  ${K.PRESUPUESTO:,.0f}")
-    ax.text(T*0.02, tot+4500, f"mano de obra ${tot:,.0f}", fontsize=8.5, color=AZUL)
-    XA = T*1.07
-    ax.annotate("", xy=(XA, K.DIRECTOS), xytext=(XA, K.LINEA_BASE),
-                arrowprops=dict(arrowstyle="<->", color=ROJO, lw=1.2))
-    ax.text(XA+T*0.025, (K.DIRECTOS+K.LINEA_BASE)/2,
-            f"reserva de contingencia\n${K.CONTINGENCIA:,.0f}", fontsize=8, color=ROJO, va="center")
-    ax.annotate("", xy=(XA, K.LINEA_BASE), xytext=(XA, K.PRESUPUESTO),
-                arrowprops=dict(arrowstyle="<->", color="#7030A0", lw=1.2))
-    ax.text(XA+T*0.025, (K.LINEA_BASE+K.PRESUPUESTO)/2,
-            f"reserva de gestión\n${K.GESTION:,.0f}", fontsize=8, color="#7030A0", va="center")
-    ax.set_xlabel("Días hábiles desde el inicio del proyecto", fontsize=9.5)
+    c9 = K.corte(9.0)
+    ax.axvline(9.0, color=GRIS, ls="--", lw=1.3)
+    ax.plot([9.0],[c9["PV"]], "o", color=AZUL, ms=8, zorder=5)
+    ax.plot([9.0],[c9["EV"]], "s", color=VERDE, ms=8, zorder=5,
+            label="Valor ganado al corte de medio curso")
+    ax.annotate(f"corte del {K.fecha(8):%d-%b}\nPV ${c9['PV']:,.0f}\nEV ${c9['EV']:,.0f}\nSPI {c9['EV']/c9['PV']:.3f}",
+                xy=(9.0, c9["EV"]), xytext=(12.5, c9["EV"]*0.42), fontsize=8.6, color=GRIS,
+                arrowprops=dict(arrowstyle="->", color=GRIS, lw=0.9))
+    ax.plot([0,T*1.02],[K.PRESUPUESTO]*2, color="#7030A0", ls="-", lw=1.8,
+            label=f"Presupuesto hasta la conclusión  ${K.PRESUPUESTO:,.0f}")
+    ax.text(T*0.02, K.PRESUPUESTO*0.955, "sin reserva monetaria: el proyecto no realiza compras",
+            fontsize=8.2, color="#7030A0", style="italic")
+    ax.set_xlabel("Días hábiles desde el 7 de septiembre de 2026", fontsize=9.5)
     ax.set_ylabel("Costo acumulado (MXN)", fontsize=9.5)
     ax.yaxis.set_major_formatter(miles)
-    ax.set_xlim(0, T*1.42); ax.set_ylim(0, K.PRESUPUESTO*1.10)
+    ax.set_xlim(0, T*1.06); ax.set_ylim(0, K.PRESUPUESTO*1.12)
     ax.grid(alpha=0.22, lw=0.6); ax.set_axisbelow(True)
-    for s in ("top","right"): ax.spines[s].set_visible(False)
+    for sp in ("top","right"): ax.spines[sp].set_visible(False)
     ax.legend(loc="upper left", fontsize=8.6, framealpha=1)
-    ax.set_title("FIG. 1  CURVA S DEL PRESUPUESTO", fontsize=13, fontweight="bold", pad=22)
-    ax.text(0.5,1.03,"Costo acumulado de mano de obra a lo largo de los 38.25 días hábiles del proyecto",
+    ax.set_title("FIG. 1  CURVA S Y VALOR GANADO", fontsize=13, fontweight="bold", pad=22)
+    ax.text(0.5,1.03,f"Presupuesto ${K.PRESUPUESTO:,.0f} sobre {K.HORAS_TOT:,.0f} horas  ·  "
+            f"regla de medición 0/100  ·  duración de la red {T:.2f} días hábiles",
             transform=ax.transAxes, ha="center", va="bottom", fontsize=9.2, color=GRIS)
     fig.tight_layout(); guarda(fig,"Fig1_Curva_S")
 
@@ -128,14 +124,12 @@ def fig3():
              ha="center", fontsize=9.2, color=GRIS)
     fig.tight_layout(); guarda(fig,"Fig3_Distribucion_costo")
 
-# ============================================ FIG 4 — matriz probabilidad-impacto
+# ============================================ FIG 4 — matriz probabilidad-impacto (días)
 def fig4():
     PROB = [(0.10,"Muy baja"),(0.30,"Baja"),(0.50,"Media"),(0.70,"Alta"),(0.90,"Muy alta")]
-    IMP  = [(4000,"Muy bajo"),(8000,"Bajo"),(14000,"Medio"),(20000,"Alto"),(30000,"Muy alto")]
-    def bp(p):   # nivel más cercano; los empates suben, que es lo conservador en riesgos
-        return min(range(5), key=lambda i:(abs(p-PROB[i][0]), -i))
-    def bi(x):
-        return min(range(5), key=lambda i:(abs(x-IMP[i][0]), -i))
+    IMP  = [(1.0,"Muy bajo"),(2.0,"Bajo"),(3.0,"Medio"),(5.0,"Alto"),(8.0,"Muy alto")]
+    def bp(p): return min(range(5), key=lambda i:(abs(p-PROB[i][0]), -i))
+    def bi(x): return min(range(5), key=lambda i:(abs(x-IMP[i][0]), -i))
     fig, ax = plt.subplots(figsize=(11.5,7.6))
     for r in range(5):
         for c in range(5):
@@ -143,27 +137,27 @@ def fig4():
             fc = "#d7ecd1" if sev<=4 else "#fdf3cf" if sev<=9 else "#fbdcc4" if sev<=15 else "#f5c6c6"
             ax.add_patch(Rectangle((c-0.5,r-0.5),1,1,fc=fc,ec="white",lw=1.6,zorder=1))
     en = {}
-    for rg in K.RIESGOS:
-        key=(bi(rg[3]),bp(rg[2])); en.setdefault(key,[]).append(rg)
+    for rg in K.RIESGOS: en.setdefault((bi(rg[3]),bp(rg[2])), []).append(rg)
     for (c,r),lst in en.items():
         for j,rg in enumerate(lst):
             dx = (j-(len(lst)-1)/2)*0.26
             ax.plot(c+dx, r, "o", ms=21, color="white", mec=ROJO, mew=1.9, zorder=3)
             ax.text(c+dx, r, rg[0], ha="center", va="center", fontsize=8.2,
                     fontweight="bold", color=ROJO, zorder=4)
-    ax.set_xticks(range(5)); ax.set_xticklabels([f"{n}\n≤ ${v/1000:.0f}k" for v,n in IMP], fontsize=8.4)
+    ax.set_xticks(range(5)); ax.set_xticklabels([f"{n}\n≈ {v:g} d" for v,n in IMP], fontsize=8.4)
     ax.set_yticks(range(5)); ax.set_yticklabels([f"{n}\n{v:.0%}" for v,n in PROB], fontsize=8.4)
-    ax.set_xlabel("Impacto sobre el costo del proyecto", fontsize=9.6)
+    ax.set_xlabel("Impacto sobre el cronograma, en días hábiles", fontsize=9.6)
     ax.set_ylabel("Probabilidad de ocurrencia", fontsize=9.6)
     ax.set_xlim(-0.5,4.5); ax.set_ylim(-0.5,4.5)
-    for s in ("top","right","bottom","left"): ax.spines[s].set_visible(False)
+    for sp in ("top","right","bottom","left"): ax.spines[sp].set_visible(False)
     ax.tick_params(length=0)
     hs=[Line2D([0],[0],marker="s",color="white",markerfacecolor=c,markeredgecolor="white",markersize=13,label=l)
         for c,l in (("#d7ecd1","Bajo"),("#fdf3cf","Moderado"),("#fbdcc4","Alto"),("#f5c6c6","Muy alto"))]
     ax.legend(handles=hs, loc="lower center", bbox_to_anchor=(0.5,-0.20), ncol=4, fontsize=8.6,
               framealpha=1, title="Nivel de severidad", title_fontsize=8.6)
     ax.set_title("FIG. 4  MATRIZ DE PROBABILIDAD E IMPACTO", fontsize=13, fontweight="bold", pad=22)
-    ax.text(0.5,1.03,f"Los nueve riesgos del registro  ·  valor monetario esperado total ${K.EMV:,.0f}",
+    ax.text(0.5,1.03,f"Nueve riesgos  ·  el impacto se mide en días porque ninguno tiene efecto monetario  ·  "
+            f"valor esperado {K.EMV_DIAS:.2f} días contra una reserva de {K.RESERVA_CRONO:.2f}",
             transform=ax.transAxes, ha="center", va="bottom", fontsize=9.2, color=GRIS)
     fig.tight_layout(); guarda(fig,"Fig4_Matriz_riesgos")
 

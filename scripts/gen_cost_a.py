@@ -16,11 +16,11 @@ portada(doc,
   ("Equipo","Equipo A"),
   ("Marco de referencia","Guía PMBOK: áreas 7 Costos, 8 Calidad y 11 Riesgos"),
   ("Técnica de estimación","Ascendente (bottom-up), sobre 257 actividades"),
-  ("Criterio de duración","Rangos al valor menor, alineado con la hoja de control"),
+  ("Base de las tarifas","Salario mínimo general vigente, con escala por responsabilidad"),
   ("Esfuerzo estimado",f"{K.HORAS_TOT:,.0f} horas"),
   ("Presupuesto total",d(K.PRESUPUESTO)),
-  ("Fecha","11 de septiembre de 2026")],
- sub2="Estimación con tarifas derivadas de fuentes oficiales mexicanas")
+  ("Fecha","14 de septiembre de 2026")],
+ sub2="Estimación ascendente sobre tarifas ancladas a fuentes oficiales")
 
 # ================================================================ 1
 H(doc,"1. Alcance del documento",1)
@@ -28,13 +28,13 @@ P(doc,"Este documento desarrolla tres áreas de conocimiento de la guía PMBOK s
   "simulación de batería en realidad virtual con juego de ritmo, tomando como base las 257 actividades "
   "definidas por el equipo y la red de precedencias del documento de ruta crítica.")
 table(doc,["Área","Procesos que se desarrollan","Sección"],[
- ("7. Gestión de los Costos","7.1 Planificar la gestión de los costos · 7.2 Estimar los costos · 7.3 Determinar el presupuesto","2 a 7"),
- ("8. Gestión de la Calidad","Análisis del costo de la calidad, como insumo de 8.1 Planificar la gestión de la calidad","10"),
- ("11. Gestión de los Riesgos","11.2 Identificar los riesgos · 11.3 Análisis cualitativo · 11.4 Análisis cuantitativo, como sustento de la reserva de contingencia","11"),
+ ("7. Gestión de los Costos","7.1 Planificar la gestión de los costos · 7.2 Estimar los costos · 7.3 Determinar el presupuesto · 7.4 Controlar los costos","2 a 8 y 13"),
+ ("8. Gestión de la Calidad","Análisis del costo de la calidad, como insumo de 8.1 Planificar la gestión de la calidad","11"),
+ ("11. Gestión de los Riesgos","11.2 Identificar los riesgos · 11.3 Análisis cualitativo · 11.4 Análisis cuantitativo","12"),
 ],widths=[4.0,9.4,2.6],fs=9.5)
-P(doc,"Los planes formales de gestión de la calidad y de los riesgos, con sus políticas, roles y respuestas, "
-  "se desarrollan en el documento «Plan de Gestión de la Calidad y Plan de Gestión de los Riesgos». Aquí se "
-  "presenta el análisis numérico que los sustenta.")
+P(doc,"Los planes formales de gestión de la calidad y de los riesgos, con sus políticas, roles, respuestas y "
+  "procesos de implementación y monitoreo, se desarrollan en el documento «Plan de Gestión de la Calidad y "
+  "Plan de Gestión de los Riesgos». Aquí se presenta el análisis numérico que los sustenta.")
 
 # ================================================================ 2
 H(doc,"2. Planificar la gestión de los costos",1)
@@ -42,13 +42,13 @@ P(doc,"Este proceso establece las políticas y procedimientos con los que se est
   "controlan los costos del proyecto.")
 table(doc,["Concepto","Definición adoptada"],[
  ("Unidad de medida del esfuerzo","Hora-persona. Las duraciones de las actividades se expresan en días laborables de ocho horas y se convierten a horas para costear."),
- ("Moneda","Peso mexicano (MXN), a precios de 2026. No se aplica inflación: el proyecto dura once semanas."),
+ ("Moneda","Peso mexicano (MXN), a precios de 2026. No se aplica inflación: el proyecto dura ocho semanas."),
  ("Nivel de precisión","Los montos se redondean al peso. Las tarifas por hora se expresan con dos decimales."),
  ("Nivel de exactitud","±10 % sobre la línea base, que corresponde a una estimación definitiva conforme a la clasificación de la guía."),
  ("Enlace con la estructura de desglose","Cada actividad pertenece a un grupo de claves y cada grupo a un área. Los tres niveles son cuentas de control."),
  ("Umbral de control","Una desviación acumulada superior al 10 % sobre la línea base en cualquier área obliga a informar al director del proyecto."),
  ("Regla de medición del desempeño","Valor ganado con la regla 0/100: una actividad aporta valor solo cuando cumple su criterio de aceptación. No se reconoce avance parcial."),
- ("Formato de los informes","Informe semanal de costo por área, con costo real contra valor planificado y valor ganado."),
+ ("Formato de los informes","Informe semanal de costo por área, con valor planificado, valor ganado y los índices de desempeño."),
 ],widths=[4.4,11.6],fs=9.5)
 
 # ================================================================ 3
@@ -69,55 +69,84 @@ P(doc,"La estimación ascendente exige que cada actividad tenga duración conoci
 
 # ================================================================ 4
 H(doc,"4. Determinación de las tarifas",1)
-H(doc,"4.1 Criterio de selección de las fuentes",2)
+H(doc,"4.1 Naturaleza del equipo y consecuencia sobre la tarifa",2)
+P(doc,"El proyecto lo ejecutan ocho estudiantes de licenciatura en el marco de sus prácticas profesionales, "
+  "bajo convenio con la Facultad. Esa condición determina cómo debe calcularse la tarifa, y conviene "
+  "explicarlo antes de presentar cifras.")
+P(doc,"Las prácticas profesionales realizadas bajo convenio escolar no constituyen una relación laboral: no "
+  "generan séptimo día pagado, ni aguinaldo, ni prima vacacional. La retribución corresponde a las horas "
+  "efectivamente trabajadas. Por eso la tarifa por hora se obtiene dividiendo el salario mínimo general "
+  "diario entre las ocho horas de la jornada legal, y no dividiendo el equivalente mensual entre las horas "
+  "laborables del mes, que es el cálculo que corresponde a un trabajador de planta.")
+table(doc,["Forma de conversión","Cálculo","Tarifa","A quién corresponde"],[
+ ("Nominal, por hora trabajada", f"{d2(K.SM_DIARIO)} diarios entre 8 horas de jornada", d2(K.SM_HORA),
+  "Practicante bajo convenio escolar. Es la que se aplica en este documento."),
+ ("Costo patronal por hora productiva", "$9,577 mensuales entre 173.33 horas", "$55.25",
+  "Trabajador con relación laboral formal, cuyo patrón paga también los días de descanso. No es el caso del equipo."),
+],widths=[3.8,4.6,1.8,5.8],fs=9.5)
+P(doc,"La diferencia entre ambas cifras no es de criterio contable sino de figura jurídica. Aplicar la "
+  "segunda a un practicante sobrestimaría el costo, porque incluiría prestaciones que el convenio escolar no "
+  "genera.")
+
+H(doc,"4.2 Fuentes oficiales empleadas",2)
 P(doc,"Las tarifas no se tomaron de portales de empleo ni de agregadores de ofertas laborales, porque esas "
   "fuentes publican salarios ofrecidos y autorreportados, no ingresos efectivamente percibidos, y tienden a "
   "sobrestimar. Se emplearon exclusivamente fuentes oficiales del gobierno mexicano.")
-table(doc,["Fuente","Institución","Dato utilizado","Periodo"],[
- ("Observatorio Laboral","Secretaría del Trabajo y Previsión Social, con datos de la Encuesta Nacional de Ocupación y Empleo del INEGI",
-  "Ingreso promedio mensual de los profesionistas ocupados, por área de conocimiento","2.º trimestre de 2026"),
- ("Data México","Secretaría de Economía, con datos de la Encuesta Nacional de Ocupación y Empleo",
-  "Ingreso promedio mensual por ocupación específica","1.er trimestre de 2026"),
- ("Salarios mínimos","Comisión Nacional de los Salarios Mínimos (CONASAMI)",
-  "Salario mínimo general vigente, para el escenario de valoración a nivel de practicante","Vigente desde el 1 de enero de 2026"),
- ("Salario base de cotización","Instituto Mexicano del Seguro Social",
-  "Salario base de cotización promedio nacional, empleado como contraste","Enero de 2026"),
-],widths=[3.0,5.4,5.4,2.2],fs=9)
+table(doc,["Referencia","Valor","Fuente y uso en este documento"],
+ [(k, v, s) for k,(v,s) in K.FUENTES.items()],
+ widths=[2.4,3.0,10.6],fs=9)
+P(doc,"El programa Jóvenes Construyendo el Futuro merece mención aparte: es el único referente "
+  "gubernamental de retribución a personas aprendices, y fija el apoyo mensual en el equivalente al salario "
+  "mínimo general. Confirma que el salario mínimo es la referencia correcta para un perfil en formación, y "
+  "que no existe base oficial para retribuir por debajo de él.")
 
-H(doc,"4.2 Valores de referencia",2)
-table(doc,["Referencia","Ingreso mensual","Fuente"],
- [(k, d(v), s) for k,(v,s) in K.OFICIAL.items()],
- widths=[2.4,2.6,11.0],fs=8.5)
-
-H(doc,"4.3 Conversión a tarifa horaria",2)
-P(doc,"El ingreso mensual se divide entre 173.33 horas laborables al mes, que resultan de una jornada de "
-  "cuarenta horas semanales multiplicada por 52 semanas y dividida entre 12 meses. Es el mismo divisor que "
-  "emplea la práctica contable mexicana para obtener el costo horario a partir del sueldo.")
-P(doc,"Algunos perfiles llevan un factor de ajuste sobre la referencia. Los factores superiores a uno "
-  "corresponden a responsabilidad directiva o de planificación; los inferiores a uno, a perfiles de entrada.")
+H(doc,"4.3 Escala de tarifas por responsabilidad",2)
+P(doc,"Los ocho integrantes son practicantes del mismo nivel académico, pero la responsabilidad de sus roles "
+  "no es la misma: quien decide sobre el alcance del proyecto no asume la misma carga que quien redacta un "
+  "manual. La tarifa se gradúa expresando cada perfil como múltiplo del salario mínimo por hora, que es la "
+  "forma habitual de escalar retribuciones en México.")
 rows=[]
-for p,(anc,fac,just) in K.PERFIL_BASE.items():
-    tar,men = K.PERFIL[p]
-    rows.append((p, anc, f"{fac:.2f}", d(men), d2(tar), just))
-table(doc,["Perfil","Ref.","Factor","Mensual","Por hora","Justificación del factor"],rows,
-      widths=[3.6,1.2,1.2,1.8,1.6,6.6],fs=8.5)
-P(doc,f"Tarifa media ponderada del proyecto: {d2(K.TARIFA_MED)} por hora. Se obtiene dividiendo el costo "
-  f"total de mano de obra entre las {K.HORAS_TOT:,.0f} horas estimadas.")
+for p,(m,just) in sorted(K.PERFIL_BASE.items(), key=lambda x:-x[1][0]):
+    rows.append((p, f"{m:.1f} SM", d2(K.PERFIL[p][0]), just))
+table(doc,["Perfil","Múltiplo","Por hora","Justificación del nivel"],rows,
+      widths=[4.2,1.6,1.8,8.4],fs=8.5)
+P(doc,f"Un salario mínimo por hora equivale a {d2(K.SM_HORA)}. La escala va de 1.0 a 2.2, es decir que el "
+  f"perfil de mayor responsabilidad cuesta poco más del doble que el de entrada. La tarifa media ponderada "
+  f"del proyecto es {d2(K.TARIFA_MED)} por hora, equivalente a {K.TARIFA_MED/K.SM_HORA:.2f} salarios mínimos.")
 
-H(doc,"4.4 Contraste de las referencias entre sí",2)
-P(doc,"Conviene verificar que las cifras adoptadas sean coherentes con las demás fuentes oficiales, porque "
-  "cada una mide un universo distinto.")
-table(doc,["Contraste","Valor","Lectura"],[
- ("Tarifa media del proyecto", d2(K.TARIFA_MED)+" por hora", "Equivale a "+d(K.TARIFA_MED*K.HMES)+" mensuales."),
- ("Salario base de cotización promedio del IMSS", d(K.OFICIAL['IMSS_SBC'][0])+" mensuales",
-  "La tarifa media del proyecto queda por debajo, lo cual es consistente: el proyecto incluye perfiles de entrada."),
- ("Ocupación «Desarrolladores y Analistas de Software y Multimedia» en Data México", d(K.OFICIAL['OCUP_SW'][0])+" mensuales",
-  "Muy por debajo de la referencia de profesionistas en TIC. La diferencia se explica porque esa medición incluye a trabajadores sin estudios superiores y un 14.2 % de informalidad."),
- ("Dos salarios mínimos generales", d(K.OFICIAL['SM'][0]*2)+" mensuales",
-  "Coincide casi exactamente con la tarifa media adoptada. Es una verificación independiente de que el orden de magnitud es correcto."),
-],widths=[5.0,3.4,7.6],fs=9)
-P(doc,"La coincidencia entre la tarifa media adoptada y el equivalente de dos salarios mínimos generales "
-  "respalda la estimación por una vía distinta de la que se empleó para construirla.")
+H(doc,"4.4 Contraste con el costo de personal titulado",2)
+P(doc,"Conviene dimensionar lo que el proyecto ahorra por ejecutarse con practicantes. Si el mismo trabajo "
+  "se contratara con profesionistas titulados, empleando las tarifas del Observatorio Laboral, el costo de "
+  "mano de obra sería considerablemente mayor.")
+table(doc,["Supuesto","Tarifa media","Mano de obra","Diferencia"],[
+ ("Practicantes, escala del salario mínimo", d2(K.TARIFA_MED), d(K.MANO_OBRA), "—"),
+ ("Profesionistas titulados, Observatorio Laboral", "$113.72", d(K.HORAS_TOT*113.72),
+  d(K.HORAS_TOT*113.72-K.MANO_OBRA)+" más"),
+],widths=[6.4,2.6,3.0,4.0],fs=9.5)
+P(doc,"La diferencia no representa un ahorro que el proyecto capture, sino el valor del trabajo que los "
+  "integrantes aportan mientras se forman. Se documenta porque es la magnitud que tendría el proyecto si se "
+  "ejecutara comercialmente.")
+
+doc.add_page_break()
+# ================================================================ 5
+H(doc,"5. Matriz de tiempos",1)
+P(doc,"Las 257 duraciones, en horas, tras aplicar la conversión de ocho horas por día laborable. Se conserva "
+  "la estimación original para poder verificar la conversión. Los rangos se toman en su valor menor, que es "
+  "el criterio de la hoja de control de tareas del equipo.")
+COLS = 3
+mid = (len(R.ORD)+COLS-1)//COLS
+part = [R.ORD[i*mid:(i+1)*mid] for i in range(COLS)]
+rows = []
+for i in range(mid):
+    fila = []
+    for c in range(COLS):
+        if i < len(part[c]):
+            k = part[c][i]; fila += [k, f"{K.horas(k):g}", R.T[k]["durtxt"]]
+        else: fila += ["", "", ""]
+    rows.append(fila)
+table(doc,["Clave","Horas","Original"]*COLS, rows, widths=[1.5,1.0,2.8]*COLS, fs=7.5)
+P(doc,f"Suma total: {K.HORAS_TOT:,.0f} horas. Representa el esfuerzo del proyecto, es decir la cantidad de "
+  "trabajo que hay que repartir entre las ocho personas del equipo.")
 
 doc.add_page_break()
 doc.save('/tmp/_cost_a.docx'); print("A OK")

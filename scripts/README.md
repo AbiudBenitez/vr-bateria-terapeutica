@@ -171,3 +171,88 @@ documentos y en las cuatro figuras.
 
 El entorno es pyenv `redes` (Python 3.11.9), que es el que tiene numpy. Requiere `pytest`,
 instalable con `~/.pyenv/versions/redes/bin/python -m pip install pytest`.
+
+---
+
+## Modelo de costos vigente desde el 14-sep-2026
+
+El equipo son **practicantes bajo convenio escolar**, no empleados. La tarifa se ancla al
+**salario mínimo nominal**: $315.04 diarios ÷ 8 h de jornada = **$39.38/h = 1 SM**. Cada perfil
+es un múltiplo de esa base, de 1.0 a 2.2 SM según responsabilidad (`PERFIL_BASE` en
+`costos.py`).
+
+No dividir el equivalente mensual entre 173.33 h: eso da $55.25 y corresponde al **costo
+patronal** de un trabajador de planta, que sí cobra días de descanso. Un practicante no.
+
+| | |
+|---|---|
+| Mano de obra | $104,013 |
+| Costos no laborales | **Ninguno**. Equipo prestado, licencias libres |
+| Reserva monetaria | **Ninguna**. Ningún riesgo tiene impacto en dinero |
+| Reserva de cronograma | 10.75 días hábiles (49 disponibles − 38.25 de red) |
+| **Presupuesto** | **$104,013** |
+
+`RIESGOS` en `costos.py` valora el impacto en **días hábiles**, no en pesos, y `EMV_DIAS` da
+9.15 d contra una reserva de 10.75.
+
+`costos.corte(dia)` calcula PV, EV y las actividades terminadas a un corte dado, para la
+sección 7.4 de valor ganado. `costos.fecha(n)` convierte índice de día hábil a fecha.
+
+```bash
+python3 costos.py                  # presupuesto, reserva, corte de medio curso
+venv/bin/python fig_costos.py      # curva S con valor ganado, compresión, distribución, matriz en días
+
+python3 gen_cost_a.py && python3 gen_cost_b.py && python3 gen_cost_c.py && \
+python3 gen_cost_d.py && python3 gen_cost_e.py && python3 gen_cost_f.py   # Analisis_Costos_Calidad_Riesgos.docx
+
+python3 gen_plan_a.py && python3 gen_plan_b.py && python3 gen_plan_c.py && \
+python3 gen_plan_d.py && python3 gen_plan_e.py                            # Plan_Calidad_Plan_Riesgos.docx
+
+python3 gen_medio.py               # Entregable_Medio_Curso_21sep.docx
+```
+
+### Costos en el cronograma de ProjectLibre
+
+`gen_mspdi257.py` incluye tarifas y costos. Crea **un recurso por combinación de persona y
+perfil** (13 en total), no uno por persona: Diana ejecuta seis perfiles distintos y una tarifa
+promedio daría bien el total pero mal el costo de cada tarea.
+
+Cada recurso lleva `StandardRate` (del perfil), `OvertimeRate` al 150 % para el modelo de
+compresión, y `Group` con el área para poder agrupar en ProjectLibre. Cada tarea lleva `Work`,
+`Cost`, y las cerradas `ActualCost` y `ActualWork`.
+
+El orden de los elementos sigue el esquema MSPDI, que es estricto. En `<Task>` va:
+`… Work, Milestone, Summary, Critical, FixedCost, FixedCostAccrual, PercentComplete,
+PercentWorkComplete, Cost, ActualStart, ActualFinish, ActualCost, ActualWork, ConstraintType,
+PredecessorLink`. Alterarlo hace que la importación falle en silencio.
+
+---
+
+## Tarea individual: elementos de estudio del PMBOK (14-sep-2026)
+
+| Archivo | Contiene |
+|---|---|
+| `pmbok.py` | Estructura de la 6.ª edición: 5 grupos, 10 áreas, los 49 procesos, y las entradas y salidas características de cada grupo. Valida que sean 49. |
+| `fig_pmbok.py` | Tres figuras: grupos de procesos e interacción, modelo ITTO, matriz áreas × grupos. SVG + PNG. |
+| `gen_tarea_a..e.py` | El documento, encadenado por `/tmp/_tarea_[a-d].docx`. |
+
+```bash
+python3 pmbok.py                   # verifica la estructura
+venv/bin/python fig_pmbok.py       # las 3 figuras
+python3 gen_tarea_a.py && python3 gen_tarea_b.py && python3 gen_tarea_c.py && \
+python3 gen_tarea_d.py && python3 gen_tarea_e.py
+```
+
+**Faltan tres datos en la portada**, marcados como `[COMPLETAR]` en `gen_tarea_a.py`: matrícula,
+módulo y nombre de la actividad. Editarlos ahí y regenerar.
+
+El diccionario `EJECUTADOS` de `gen_tarea_d.py` mapea los procesos del PMBOK contra los
+entregables reales del equipo. Si se producen documentos nuevos, agregarlos ahí y la cobertura
+se recalcula sola.
+
+**Formato de la tarea individual:** Arial 12 en todo el documento. `neutro.nuevo()` acepta
+`fuente` y `tam`; internamente llama a `tipografia()`, que fija la fuente en las tres variantes
+que Word consulta (ascii, eastAsia y cs) porque cambiar solo la primera deja acentos y símbolos
+con la tipografía anterior. Los encabezados se escalan sobre el tamaño base: H1 ×1.45, H2 ×1.20,
+H3 ×1.05. La portada usa `neutro.campo()`, que escribe «Etiqueta: valor» con la etiqueta en
+negrita, en lugar de una tabla.

@@ -63,7 +63,7 @@ table(doc,["Proceso","Cómo se aplica en este proyecto"],[
  ("Planificar la gestión de los riesgos","Este documento. Define escalas, roles, periodicidad y umbrales."),
  ("Identificar los riesgos","Sesión inicial de identificación con todo el equipo, más revisión en cada reunión semanal. Técnicas: tormenta de ideas, análisis de supuestos y revisión de la red de precedencias en busca de puntos de convergencia."),
  ("Análisis cualitativo","Valoración de probabilidad e impacto en escalas de cinco niveles y ubicación en la matriz."),
- ("Análisis cuantitativo","Cálculo del valor monetario esperado de cada riesgo, cuyo total determina la reserva de contingencia."),
+ ("Análisis cuantitativo","Cálculo del valor esperado de cada riesgo en días hábiles, cuyo total determina la reserva de cronograma."),
  ("Planificar la respuesta","Estrategia, responsable, disparador y plan de contingencia por cada riesgo, en la sección 13."),
  ("Implementar la respuesta","El responsable ejecuta la estrategia acordada cuando se cumple el disparador."),
  ("Monitorear los riesgos","Revisión semanal del registro. Se reevalúan probabilidades, se cierran los superados y se identifican nuevos."),
@@ -71,7 +71,7 @@ table(doc,["Proceso","Cómo se aplica en este proyecto"],[
 
 H(doc,"11. Roles y periodicidad",2)
 table(doc,["Rol","Responsabilidad en materia de riesgos"],[
- ("Director de proyecto","Autoriza el uso de la reserva de contingencia y decide ante riesgos que comprometan el alcance."),
+ ("Director de proyecto","Autoriza el uso de la reserva de cronograma y decide ante riesgos que comprometan el alcance."),
  ("Gerente de proyecto","Es el dueño del registro de riesgos. Lo actualiza, lo presenta semanalmente y vigila los disparadores."),
  ("Responsable de área","Identifica y reporta los riesgos de su ámbito, y ejecuta las respuestas que le corresponden."),
  ("Todo el equipo","Reporta cualquier riesgo que detecte, sin esperar a la reunión semanal si es urgente."),
@@ -82,13 +82,16 @@ P(doc,"Periodicidad: revisión del registro en la reunión semanal de seguimient
 H(doc,"12. Escalas, matriz y umbrales",2)
 P(doc,"Las escalas se definen antes de valorar los riesgos, para que la valoración sea reproducible y no "
   "dependa de la impresión de quien la hace.")
-table(doc,["Nivel","Probabilidad","Impacto en costo","Impacto en cronograma","Impacto en alcance"],[
- ("Muy bajo","10 %","Hasta $4,000","Menos de un día hábil","Ningún entregable afectado"),
- ("Bajo","30 %","Hasta $8,000","De uno a dos días hábiles","Un entregable secundario se degrada"),
- ("Medio","50 %","Hasta $14,000","De tres a cinco días hábiles","Un entregable principal se degrada"),
- ("Alto","70 %","Hasta $20,000","De seis a diez días hábiles","Se pierde un entregable secundario"),
- ("Muy alto","90 %","Más de $20,000","Más de diez días, o compromete la entrega","Se pierde un entregable principal"),
-],widths=[1.8,1.8,2.8,4.4,5.2],fs=9)
+table(doc,["Nivel","Probabilidad","Impacto en cronograma","Impacto en alcance"],[
+ ("Muy bajo","10 %","Alrededor de 1 día hábil","Ningún entregable afectado"),
+ ("Bajo","30 %","Alrededor de 2 días hábiles","Un entregable secundario se degrada"),
+ ("Medio","50 %","Alrededor de 3 días hábiles","Un entregable principal se degrada"),
+ ("Alto","70 %","Alrededor de 5 días hábiles","Se pierde un entregable secundario"),
+ ("Muy alto","90 %","8 días o más, o compromete la entrega","Se pierde un entregable principal"),
+],widths=[2.0,2.2,4.8,7.0],fs=9)
+P(doc,"El impacto no se valora en dinero. El proyecto no realiza compras ni contrata personal, de modo que "
+  "ningún riesgo puede materializarse como un desembolso: lo que puede perder es tiempo y alcance. La "
+  "justificación completa está en la sección 12.1 del documento de análisis.")
 
 H(doc,"12.1 Umbrales de acción",3)
 table(doc,["Severidad","Definición","Acción obligatoria"],[

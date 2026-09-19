@@ -7,76 +7,37 @@ from docx.shared import Cm
 import rc257 as R, costos as K, compresion as CP
 M = R.V2
 def d(x): return f"${x:,.0f}"
+def d2(x): return f"${x:,.2f}"
 f = R.fnum
 FIG="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/figuras_costos/"
 doc = Document('/tmp/_cost_b.docx')
 
-# ================================================================ 8
-H(doc,"8. Determinar el presupuesto",1)
-P(doc,"Este proceso suma los costos estimados para establecer la línea base de costos autorizada. La guía "
-  "PMBOK distingue con precisión entre cuatro niveles, y la distinción importa porque cada uno lo autoriza "
-  "una figura distinta.")
-table(doc,["Nivel","Qué incluye","Quién dispone de él"],[
- ("Costos directos","Mano de obra más costos no laborales. Es la suma de las estimaciones de las 257 actividades y de las partidas de equipo, licencias y operación.","El gerente del proyecto, dentro de cada cuenta de control."),
- ("Línea base de costos","Costos directos más la reserva de contingencia.","El gerente del proyecto. La reserva se aplica ante riesgos identificados que se materialicen."),
- ("Presupuesto total","Línea base más la reserva de gestión.","La patrocinadora. La reserva de gestión cubre trabajo imprevisto no identificado y su uso requiere autorización expresa."),
-],widths=[3.2,8.8,4.0],fs=9.5)
-
-H(doc,"8.1 Integración del presupuesto",2)
-table(doc,["Concepto","Monto","% del total"],[
- ("Mano de obra", d(K.MANO_OBRA), f"{100*K.MANO_OBRA/K.PRESUPUESTO:.1f} %"),
- ("Costos no laborales", d(K.NO_LAB_TOT), f"{100*K.NO_LAB_TOT/K.PRESUPUESTO:.1f} %"),
- ("Costos directos", d(K.DIRECTOS), f"{100*K.DIRECTOS/K.PRESUPUESTO:.1f} %"),
- ("Reserva de contingencia", d(K.CONTINGENCIA), f"{100*K.CONTINGENCIA/K.PRESUPUESTO:.1f} %"),
- ("Línea base de costos", d(K.LINEA_BASE), f"{100*K.LINEA_BASE/K.PRESUPUESTO:.1f} %"),
- ("Reserva de gestión", d(K.GESTION), f"{100*K.GESTION/K.PRESUPUESTO:.1f} %"),
- ("Presupuesto total del proyecto", d(K.PRESUPUESTO), "100.0 %"),
-],widths=[8.0,4.0,4.0],fs=10)
-P(doc,"La reserva de contingencia no es un porcentaje arbitrario: se obtiene del valor monetario esperado "
-  "de los riesgos identificados, según el cálculo de la sección 11. La reserva de gestión sí se fija como "
-  "porcentaje, el 5 % de la línea base, que es el valor habitual para proyectos de esta duración.")
-
-H(doc,"8.2 Curva S",2)
-P(doc,"La curva S muestra cómo se acumula el costo a lo largo del proyecto. Es la referencia contra la que "
-  "se compara el gasto real durante la ejecución.")
-if os.path.exists(FIG+"Fig1_Curva_S.png"):
-    doc.add_picture(FIG+"Fig1_Curva_S.png", width=Cm(16.4)); doc.paragraphs[-1].alignment=C
-caption(doc,"Fig. 1 — Curva S del presupuesto.")
-P(doc,"La curva es marcadamente frontal: cerca del 60 % del costo se acumula en la primera mitad del "
-  "proyecto. La razón está en la red de precedencias: las ocho áreas arrancan simultáneamente el primer día "
-  "y el trabajo se concentra en las primeras cuatro semanas, mientras que la última parte del proyecto "
-  "corresponde casi por completo al área de QA. Tiene una consecuencia práctica: el desembolso se necesita "
-  "temprano, no de forma uniforme.")
-
 # ================================================================ 9
 H(doc,"9. Escenarios de sensibilidad",1)
-P(doc,"El presupuesto de la sección anterior valora el trabajo del equipo a tarifas de profesionista "
-  "titulado. Es una decisión metodológica que conviene explicitar, porque existen otras dos formas "
-  "legítimas de costear un proyecto académico, y la diferencia entre ellas es grande.")
+P(doc,"El presupuesto valora el trabajo del equipo a tarifas de practicante ancladas al salario mínimo. Es "
+  "una decisión metodológica que conviene explicitar, porque existen otras dos lecturas legítimas del costo "
+  "de un proyecto académico.")
 rows=[]
 for nom,t,just in K.ESCENARIOS:
-    mo,dir_,lb,pt = K.escenario(t)
-    rows.append((nom, d(mo), d(dir_), d(pt), just))
-table(doc,["Escenario","Mano de obra","Costos directos","Presupuesto","Fundamento"],rows,
-      widths=[3.4,2.2,2.2,2.2,6.0],fs=9)
-P(doc,"El escenario C es la línea base de este documento. Responde a la pregunta «cuánto costaría que una "
-  "empresa ejecutara este proyecto con personal calificado», que es la que da sentido a un ejercicio de "
-  "administración de proyectos.")
-P(doc,"El escenario A responde a «cuánto dinero sale efectivamente del bolsillo del equipo», y es la cifra "
-  "real de un proyecto escolar: el trabajo se cursa por créditos y no se remunera. Se documenta porque es "
-  "la única cifra que el equipo desembolsará de verdad.")
-P(doc,"El escenario B es intermedio y corresponde a lo que una empresa pagaría a este equipo por su nivel "
-  "de experiencia. Su cercanía con el escenario C, una diferencia del 22 %, indica que la estimación "
-  "principal no está inflada.")
+    rows.append((nom, d2(t) if t else "—", d(K.escenario(t)), just))
+table(doc,["Escenario","Tarifa media","Costo del proyecto","Fundamento"],rows,
+      widths=[4.4,2.2,2.6,6.8],fs=9.5)
+P(doc,"El escenario B es la línea base de este documento. El escenario A es el desembolso real del equipo: "
+  "el trabajo se cursa por créditos y no se remunera, de modo que no sale dinero de ningún bolsillo. El "
+  "escenario C dimensiona lo que costaría ejecutar el mismo alcance con personal titulado.")
+P(doc,"Presentar los tres tiene un propósito: distinguir el costo del valor. El proyecto no cuesta dinero, "
+  "pero el trabajo que se invierte en él sí tiene un valor, y ese valor es el que se administra.")
 
 # ================================================================ 10
-H(doc,"10. Tabla de simultaneidad",1)
+H(doc,"10. Tabla de simultaneidad y compresión de la red",1)
+H(doc,"10.1 Trabajo simultáneo",2)
 P(doc,"La tabla indica qué trabajo puede ejecutarse al mismo tiempo. Se deriva directamente de la red de "
   "precedencias: dos actividades pueden ser simultáneas cuando sus intervalos entre tiempo próximo de "
   "iniciación y de terminación se traslapan y ninguna depende de la otra.")
 rows=[]
 for a,b in CP.TRAMOS:
     act = CP.activas(a,b)
+    if not act: continue
     tot = sum(len(v) for v in act.values())
     det = " · ".join(f"{s}: {len(v)}" for s,v in sorted(act.items()))
     rows.append((f"{a:.0f} – {b:.0f}", len(act), tot, det))
@@ -85,14 +46,34 @@ table(doc,["Días","Áreas activas","Tareas en curso","Detalle por área"],rows,
 P(doc,"Las claves de área son D desarrollo VR, J juego de ritmo, E experiencia emocional, M música, "
   "S sonido, I interfaz, A entorno tridimensional y Q aseguramiento de calidad.",italic=True)
 P(doc,"El proyecto alcanza su máximo paralelismo en los primeros diez días hábiles, con las ocho áreas "
-  "activas a la vez y hasta 77 tareas en curso. A partir del día 35 solo queda activa el área de QA, lo que "
-  "explica tanto la forma de la curva S como la sobrecarga de esa área.")
+  "activas a la vez. Hacia el final solo queda activa el área de QA, lo que explica tanto la forma de la "
+  "curva S como la sobrecarga de esa área.")
 
-H(doc,"10.1 Implicación para la asignación de recursos",2)
-P(doc,"La simultaneidad de las primeras semanas no representa un problema mientras cada área tenga una "
-  "persona dedicada, porque las tareas simultáneas pertenecen a áreas distintas. El problema aparece "
-  "dentro de cada área: la carga individual excede la ventana disponible en siete de las ocho, según el "
-  "análisis del documento de ruta crítica.")
+H(doc,"10.2 Compresión de la red",2)
+P(doc,"La compresión responde a una pregunta económica: si hiciera falta terminar antes, ¿cuánto costaría "
+  "cada día ganado? Solo tiene sentido comprimir actividades de la ruta crítica.")
+P(doc,"Cada área tiene una sola persona asignada, de modo que no es posible comprimir añadiendo un segundo "
+  "recurso. La única vía es extender la jornada: de ocho a diez horas, con las dos horas adicionales "
+  "retribuidas al 150 %, lo que permite reducir la duración hasta un 20 %.")
+pts,_ = CP.curva()
+table(doc,["Punto","Duración","Sobrecosto acumulado","Costo por día ganado"],[
+ ("Duración normal", f"{pts[0][0]:.2f} días", "Sin sobrecosto", "—"),
+ ("Compresión máxima", f"{pts[-1][0]:.2f} días", d(pts[-1][1]), d(pts[-1][1]/(pts[0][0]-pts[-1][0]))),
+],widths=[4.4,3.0,4.2,4.4],fs=9.5)
+if os.path.exists(FIG+"Fig2_Curva_compresion.png"):
+    doc.add_picture(FIG+"Fig2_Curva_compresion.png", width=Cm(15.4)); doc.paragraphs[-1].alignment=C
+caption(doc,"Fig. 2 — Curva de compresión tiempo-costo.")
+P(doc,f"El proyecto puede reducirse de {pts[0][0]:.2f} a {pts[-1][0]:.2f} días hábiles, es decir "
+  f"{pts[0][0]-pts[-1][0]:.2f} días, con un sobrecosto de {d(pts[-1][1])}. No lo necesita para cumplir el "
+  f"calendario: la ruta crítica mide {pts[0][0]:.2f} días y hay {K.DIAS_DISPONIBLES} disponibles. La "
+  "compresión es un instrumento de contingencia.")
+P(doc,"Obsérvese que la pendiente de costo resulta idéntica dentro de cada perfil. Bajo el modelo de "
+  "jornada extendida, la pendiente es exactamente cuatro veces la tarifa horaria, con independencia de "
+  "cuánto dure la actividad. La conclusión práctica: conviene comprimir primero el trabajo de los perfiles "
+  "de menor nivel que estén sobre la ruta crítica.")
+P(doc,"Su límite conviene declararlo: la compresión resuelve problemas de ruta crítica, no de carga de "
+  "trabajo. La restricción dominante del proyecto es que el área de QA tiene 511 horas asignadas y su "
+  "ventana permite unas 306. Comprimir no corrige eso; redistribuir trabajo, sí.")
 
 doc.add_page_break()
 doc.save('/tmp/_cost_c.docx'); print("C OK")
