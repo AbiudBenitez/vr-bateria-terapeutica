@@ -98,7 +98,7 @@ def dibuja(salida, titulo, sub, modo):
     plt.close()
     print("OK",salida)
 
-D="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/tareas/2026-09-04-ejemplo-ruta-critica/"
+D="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/tareas-individuales/2026-09-04-ejemplo-ruta-critica/"
 SUB="Obtención de aceites esenciales de hierbabuena y menta"
 dibuja(D+"Fig1_Arreglo_Logico.png","FIG. 1  ARREGLO LÓGICO",SUB,"logico")
 dibuja(D+"Fig2_Red_Medida.png","FIG. 2  RED MEDIDA — tiempos próximos y remotos de los eventos",

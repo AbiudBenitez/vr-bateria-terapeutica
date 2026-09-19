@@ -5,7 +5,7 @@ from neutro import *
 from docx import Document
 from docx.shared import Cm
 import pmbok as PB
-FIG="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/tareas/2026-09-14-tabla-pmbok/figuras/"
+FIG="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/tareas-individuales/2026-09-14-tabla-pmbok/figuras/"
 doc = Document('/tmp/_tarea_b.docx')
 
 H(doc,"3.7 Evolución del estándar: sexta, séptima y octava edición",2)

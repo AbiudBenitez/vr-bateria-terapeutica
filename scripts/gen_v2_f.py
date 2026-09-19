@@ -61,7 +61,7 @@ P(doc,"Los cálculos son reproducibles. Cualquier cambio en una duración o en u
   "las matrices, a las figuras y a las conclusiones repitiendo los recorridos descritos en las secciones 7 "
   "y 8.")
 
-out="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/Ruta_Critica_257_Tareas_v3.docx"
+out="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/03_Ruta_Critica.docx"
 doc.save(out); print("OK", out)
 print("parrafos:",len(doc.paragraphs)," tablas:",len(doc.tables),
       " imagenes:",len(doc.inline_shapes)," secciones:",len(doc.sections))

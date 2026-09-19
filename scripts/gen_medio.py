@@ -163,6 +163,6 @@ P(doc,"El proyecto continúa después de esta entrega con la construcción del e
   "interfaz de usuario, la integración de las rutinas terapéuticas y las pruebas con usuarios, para concluir "
   "el 30 de octubre.")
 
-out="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/Entregable_Medio_Curso_21sep.docx"
+out="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/06_Entregable_Medio_Curso.docx"
 doc.save(out); print("OK", out)
 print("párrafos:",len(doc.paragraphs)," tablas:",len(doc.tables))

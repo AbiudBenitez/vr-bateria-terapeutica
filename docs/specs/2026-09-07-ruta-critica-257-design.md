@@ -65,7 +65,7 @@ La aritmética de la estimación previa es correcta. El problema es el modelo.
 | Archivo | Contenido |
 |---|---|
 | `entregables/Ruta_Critica_257_Tareas.docx` | 15 secciones, 25 tablas, 4 figuras. Matrices de tiempos, secuencias, información y elasticidad de las 257 actividades. |
-| `entregables/figuras257/` | 4 figuras en SVG editable y PNG. |
+| `entregables/figuras-ruta-critica/` | 4 figuras en SVG editable y PNG. |
 | `docs/investigacion/brecha-acta-vs-lista-lider.md` | Diferencias contra el acta v3.0 y las tres opciones de reconciliación. |
 | `scripts/rc257.py`, `fig257.py`, `gen_rc257_*.py` | Todo reproducible. |
 

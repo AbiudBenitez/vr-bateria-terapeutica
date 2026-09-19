@@ -5,7 +5,7 @@ from neutro import *
 from docx.shared import Cm
 import pdm
 
-FIG="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/figuras/"
+FIG="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/superados/figuras-cronograma-42-paquetes/"
 TIPO={"FS":"Fin → inicio","SS":"Inicio → inicio","FF":"Fin → fin"}
 
 # justificacion de cada dependencia
@@ -420,5 +420,5 @@ P(doc,"El proyecto es realizable dentro del periodo disponible, con una duració
   "que deben sostenerse: que el spike de latencia resulte favorable en el día 10, y que las ramas de "
   "interacción y de audio avancen sin retrasos, ya que ninguna de las dos tiene margen.")
 
-out="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/Ruta_Critica_Proyecto_Bateria.docx"
+out="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/superados/Ruta_Critica_42_paquetes_superada.docx"
 doc.save(out); print("OK",out)

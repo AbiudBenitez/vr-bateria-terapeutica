@@ -9,7 +9,7 @@ from matplotlib.patches import FancyArrowPatch, FancyBboxPatch, Rectangle
 from matplotlib.lines import Line2D
 import pmbok as P
 
-SAL = "/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/tareas/2026-09-14-tabla-pmbok/figuras/"
+SAL = "/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/tareas-individuales/2026-09-14-tabla-pmbok/figuras/"
 os.makedirs(SAL, exist_ok=True)
 GRIS="#444444"; AZUL="#0b5394"; ROJO="#b00020"
 COLG = {"Inicio":"#4472C4","Planificación":"#2E9BB5","Ejecución":"#8FBC3F",

@@ -10,7 +10,7 @@ from matplotlib.lines import Line2D
 import numpy as np
 import rc257 as R, costos as K, compresion as C
 
-SAL = "/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/figuras_costos/"
+SAL = "/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/figuras-costos/"
 os.makedirs(SAL, exist_ok=True)
 ROJO="#b00020"; AZUL="#0b5394"; GRIS="#444444"; VERDE="#4a7c1f"
 COL = {"D":"#4472C4","J":"#7030A0","E":"#2E9BB5","M":"#ED7D31","S":"#BF9000",

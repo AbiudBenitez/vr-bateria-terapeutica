@@ -121,7 +121,7 @@ def dibuja(salida, titulo, sub, medida):
     plt.savefig(salida, dpi=200, bbox_inches="tight", facecolor="white")
     plt.close(); print("OK", salida)
 
-D = "/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/figuras/"
+D = "/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/superados/figuras-cronograma-42-paquetes/"
 os.makedirs(D, exist_ok=True)
 dibuja(D+"Fig1_Red_PDM.png", "FIG. 1  RED DE PRECEDENCIAS (PDM / AON)",
        "Simulador de batería en realidad virtual con enfoque de musicoterapia  ·  27 actividades", False)

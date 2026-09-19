@@ -5,7 +5,7 @@ from neutro import *
 from docx import Document
 from docx.shared import Cm
 import rc257 as R, costos as K
-FIG="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/figuras_costos/"
+FIG="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/figuras-costos/"
 doc = Document('/tmp/_plan_b.docx')
 
 H(doc,"14. Registro de riesgos y respuestas",2)

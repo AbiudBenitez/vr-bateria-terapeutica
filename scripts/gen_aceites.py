@@ -5,7 +5,7 @@ from neutro import *
 from docx.shared import Cm
 import aoa
 
-D="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/tareas/2026-09-04-ejemplo-ruta-critica/"
+D="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/tareas-individuales/2026-09-04-ejemplo-ruta-critica/"
 
 doc = nuevo()
 portada(doc,

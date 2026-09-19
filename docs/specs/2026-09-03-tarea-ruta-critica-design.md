@@ -49,8 +49,8 @@ ejercicio sin decidir cuál de los tres cuadros es el correcto.
 
 | Archivo | Contenido |
 |---|---|
-| `tareas/2026-09-04-ejemplo-ruta-critica/Ejemplo_Ruta_Critica_Aceites.docx` | 7 secciones + anexo de erratas, 10 tablas, red embebida en página horizontal |
-| `tareas/2026-09-04-ejemplo-ruta-critica/Fig8_Arreglo_Logico.png` | Red AOA: 21 eventos, 27 actividades reales, 3 ficticias |
+| `tareas-individuales/2026-09-04-ejemplo-ruta-critica/Ejemplo_Ruta_Critica_Aceites.docx` | 7 secciones + anexo de erratas, 10 tablas, red embebida en página horizontal |
+| `tareas-individuales/2026-09-04-ejemplo-ruta-critica/Fig8_Arreglo_Logico.png` | Red AOA: 21 eventos, 27 actividades reales, 3 ficticias |
 | `docs/investigacion/metodo-ruta-critica-apuntes.md` | El método destilado: 9 etapas, notación, fórmulas de las 4 holguras, criterios de criticidad |
 | `docs/investigacion/ruta-critica-bateria-insumos.md` | 26 actividades, matriz de información, matriz de elasticidad calculada, ruta crítica y análisis de la brecha |
 

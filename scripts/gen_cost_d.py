@@ -7,7 +7,7 @@ from docx.shared import Cm
 import rc257 as R, costos as K
 M = R.V2
 def d(x): return f"${x:,.0f}"
-FIG="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/figuras_costos/"
+FIG="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/figuras-costos/"
 doc = Document('/tmp/_cost_c.docx')
 
 # ================================================================ 11

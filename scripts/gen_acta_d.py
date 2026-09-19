@@ -224,6 +224,6 @@ table(doc,["Nombre","Rol","Firma","Fecha"],[
  ("Ricardo Alejandro Rodríguez Ríos","Gerente de proyecto","",""),
 ],widths=[5.4,4.2,3.8,2.6],fs=10)
 
-out="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/Acta_Constitutiva_v3.0.docx"
+out="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/02_Acta_Constitutiva.docx"
 doc.save(out); print("OK",out)
 print("parrafos:",len(doc.paragraphs)," tablas:",len(doc.tables)," secciones:",len(doc.sections))

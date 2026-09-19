@@ -68,7 +68,7 @@ docs/specs/            Diseño técnico y specs de brainstorming
 docs/investigacion/    Evidencia de musicoterapia y apuntes del método de ruta crítica
 entregables/           Documentos vigentes del proyecto
 entregables/figuras/   Diagramas generados (PNG)
-entregables/superadas/ Versiones anteriores. No borrar: son evidencia del avance.
+entregables/superados/ Versiones anteriores. No borrar: son evidencia del avance.
 referencia/            Fuentes: plantilla, actas originales, PMI 4 y el PDF del método
 tareas/                Tareas de clase con fecha (una carpeta por entrega)
 ```
@@ -92,12 +92,12 @@ Cadena documental completa y consistente entre sí:
 | Archivo | Qué es |
 |---|---|
 | `Carta_Sponsor_v2.0.docx` | Revisión 2. Reorienta el proyecto a musicoterapia. Presupuesto $384,201. |
-| `Acta_Constitutiva_v3.0.docx` | EDT de 42 paquetes con criterio de aceptación, responsable, recursos y duración. |
+| `02_Acta_Constitutiva.docx` | EDT de 42 paquetes con criterio de aceptación, responsable, recursos y duración. |
 | `Cronograma_MindView_v3.xml` | MS Project XML: 56 tareas, 9 recursos, 65 asignaciones, 48 vínculos con tipo y demora. |
 | `Ruta_Critica_Proyecto_Bateria.docx` | Desarrollo PDM/AON completo con justificación. |
 | `figuras/` | Red de precedencias y red medida. |
 
-Las versiones anteriores están en `entregables/superadas/`. No se borraron.
+Las versiones anteriores están en `entregables/superados/`. No se borraron.
 
 ### Números que deben mantenerse consistentes
 
@@ -138,10 +138,10 @@ rehabilitación motriz del acta v3.0. Fuentes en `referencia/`:
 | Archivo | Qué es |
 |---|---|
 | `entregables/Ruta_Critica_257_Tareas_v2.docx` | El análisis completo. 15 secciones, 30 tablas, 4 figuras. |
-| `entregables/figuras257/` | Las 4 figuras en SVG editable en Inkscape + PNG. |
+| `entregables/figuras-ruta-critica/` | Las 4 figuras en SVG editable en Inkscape + PNG. |
 | `entregables/Cronograma_257_MindView.xml` | MS Project XML: 8 resúmenes de área + 257 tareas, 417 vínculos, 8 recursos. Arranca 9-sep-2026, termina 12-nov. |
 
-La v1 y sus figuras están en `entregables/superadas/`.
+La v1 y sus figuras están en `entregables/superados/`.
 
 **Ojo con los dos cronogramas:** `Cronograma_MindView_v3.xml` es de los 42 paquetes del acta
 v3.0; `Cronograma_257_MindView.xml` es de las 257 tareas del líder. Son proyectos distintos.
@@ -235,12 +235,12 @@ tarifas sin fuente oficial.
 
 | Archivo | Qué es |
 |---|---|
-| `Ruta_Critica_257_Tareas_v3.docx` | Red PDM completa, criterio alineado |
-| `Analisis_Costos_Calidad_Riesgos.docx` | 14 secciones + 3 anexos. Cubre **7.1 a 7.4**, incluido valor ganado |
-| `Plan_Calidad_Plan_Riesgos.docx` | Calidad (8.1–8.3), riesgos **11.1 a 11.7**, certificaciones |
+| `03_Ruta_Critica.docx` | Red PDM completa, criterio alineado |
+| `05_Analisis_Costos_Calidad_Riesgos.docx` | 14 secciones + 3 anexos. Cubre **7.1 a 7.4**, incluido valor ganado |
+| `04_Planes_Costos_Calidad_Riesgos.docx` | Calidad (8.1–8.3), riesgos **11.1 a 11.7**, certificaciones |
 | `Entregable_Medio_Curso_21sep.docx` | Compromiso de entrega del 21-sep, derivado del cronograma |
-| `Cronograma_257_ProjectLibre.xml` | 265 tareas, 417 vínculos, **13 recursos con tarifa y costo**, avance real cargado. Total $104,013 |
-| `figuras257/` y `figuras_costos/` | 8 figuras, SVG editable + PNG |
+| `Cronograma_ProjectLibre.xml` | 265 tareas, 417 vínculos, **13 recursos con tarifa y costo**, avance real cargado. Total $104,013 |
+| `figuras-ruta-critica/` y `figuras-costos/` | 8 figuras, SVG editable + PNG |
 
 Cobertura PMBOK completa: área 7 de 7.1 a 7.4, área 11 de 11.1 a 11.7.
 
@@ -323,4 +323,4 @@ de **bombo** — ya está puesto `512175__kopreusz__kick_2.wav`.
 
 | Fecha | Tarea | Carpeta |
 |---|---|---|
-| 4-sep-2026 | Ejemplo de ruta crítica (aceites esenciales), desarrollo completo hasta ruta crítica | `tareas/2026-09-04-ejemplo-ruta-critica/` |
+| 4-sep-2026 | Ejemplo de ruta crítica (aceites esenciales), desarrollo completo hasta ruta crítica | `tareas-individuales/2026-09-04-ejemplo-ruta-critica/` |

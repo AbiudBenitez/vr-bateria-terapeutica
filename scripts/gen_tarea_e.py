@@ -96,7 +96,7 @@ P(doc,"Nota sobre las fuentes: las ediciones séptima y octava de la guía se co
   "documentación del proyecto citada es de elaboración propia del equipo durante el semestre y se incluye "
   "porque constituye la evidencia de la sección 5.2.", italic=True, size=9.5)
 
-out="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/tareas/2026-09-14-tabla-pmbok/Elementos_Estudio_PMBOK.docx"
+out="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/tareas-individuales/2026-09-14-tabla-pmbok/Elementos_Estudio_PMBOK.docx"
 os.makedirs(os.path.dirname(out), exist_ok=True)
 doc.save(out); print("OK", out)
 print("párrafos:",len(doc.paragraphs)," tablas:",len(doc.tables)," imágenes:",len(doc.inline_shapes))

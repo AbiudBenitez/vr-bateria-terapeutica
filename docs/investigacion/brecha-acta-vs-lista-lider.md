@@ -133,7 +133,7 @@ ritmo una justificación terapéutica real.
 ## Ver también
 
 - `entregables/Ruta_Critica_257_Tareas.docx` — el análisis completo
-- `entregables/Acta_Constitutiva_v3.0.docx` — el proyecto entregado el 3-sep
+- `entregables/02_Acta_Constitutiva.docx` — el proyecto entregado el 3-sep
 - `docs/investigacion/metodo-ruta-critica-apuntes.md` — el método
 - `referencia/Nomenclatura_Tareas_VR_Bateria_Colores.docx` — las 257 tareas
 - `referencia/Organizacion_Simulacion_VR_Bateria.docx` — el reparto por áreas

@@ -159,7 +159,7 @@ ProjectLibre cubre **todas** las columnas de la hoja:
 
 ### El archivo
 
-`entregables/Cronograma_257_ProjectLibre.xml`, en formato MS Project XML:
+`entregables/Cronograma_ProjectLibre.xml`, en formato MS Project XML:
 
 - 8 tareas resumen por área + 257 tareas
 - 417 vínculos fin → inicio
@@ -210,6 +210,6 @@ editar el XML a mano.
 
 ## Ver también
 
-- `entregables/Cronograma_257_ProjectLibre.xml` — el cronograma a importar
+- `entregables/Cronograma_ProjectLibre.xml` — el cronograma a importar
 - `docs/investigacion/alternativas-software-gestion-proyectos.md` — cómo hacer que ProjectLibre abra en Mac con chip ARM
-- `entregables/Ruta_Critica_257_Tareas_v3.docx` — el análisis con el criterio ya alineado
+- `entregables/03_Ruta_Critica.docx` — el análisis con el criterio ya alineado

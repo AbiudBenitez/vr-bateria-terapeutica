@@ -1,6 +1,6 @@
 # Reparto de la exposición — Análisis de Costos, Calidad y Riesgos
 
-**Documento base:** `entregables/Analisis_Costos_Calidad_Riesgos.docx`
+**Documento base:** `entregables/05_Analisis_Costos_Calidad_Riesgos.docx`
 **Duración total:** unos 26 minutos, más preguntas.
 **Regla general:** cada quien dice **la cifra exacta**, no «aproximadamente». Las cifras están
 abajo para que no haya que buscarlas.

@@ -231,5 +231,5 @@ table(doc,["Nombre","Rol","Firma","Fecha"],[
  ("","Gerente de proyecto","",""),
 ],widths=[5.4,4.4,3.6,2.6],fs=10)
 
-out="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/Carta_Sponsor_v2.0.docx"
+out="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/01_Carta_Sponsor.docx"
 doc.save(out); print("OK",out)

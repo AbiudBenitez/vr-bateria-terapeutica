@@ -30,7 +30,7 @@ claves existen en las 257, ninguna estaba ya declarada, ningún ciclo introducid
 | Sección 12 dedicada al contraste + notas donde el número se movió | Contraste solo woven, o documento aparte | Elección del usuario. Permite leerlo de corrido y por partes. |
 | Reportar el desequilibrio de recursos sin proponer reparto concreto | Proponer qué tareas mover y recalcular | Elección del usuario. El reparto es decisión del equipo. |
 | Sección 13 con las tres observaciones residuales | Omitirlas | Elección del usuario. Ninguna cambia el número, las tres importan para el control. |
-| Archivar v1 en `superadas/` en vez de sobrescribir | Reemplazar el archivo | Ambos análisis se citan mutuamente; la §12 no tendría sentido sin poder consultar el anterior. |
+| Archivar v1 en `superados/` en vez de sobrescribir | Reemplazar el archivo | Ambos análisis se citan mutuamente; la §12 no tendría sentido sin poder consultar el anterior. |
 
 ## Resultados
 

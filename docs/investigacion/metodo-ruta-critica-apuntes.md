@@ -3,7 +3,7 @@
 Destilado del documento base «El Método de la Ruta Crítica» (fuente: Agustín Montaño,
 adaptación docente) leído el 3-sep-2026. Sirve de referencia para construir la ruta
 crítica del proyecto de batería VR y para el ejercicio de clase entregado el 4-sep-2026
-(`tareas/2026-09-04-ejemplo-ruta-critica/`).
+(`tareas-individuales/2026-09-04-ejemplo-ruta-critica/`).
 
 ---
 
@@ -179,4 +179,4 @@ Esto es directamente relevante para nuestro proyecto: ver
 
 - [[ruta-critica-bateria-insumos]] — aplicación al proyecto de batería VR
 - [[evidencia-musicoterapia]] — fundamentación terapéutica
-- `tareas/2026-09-04-ejemplo-ruta-critica/` — ejercicio de clase resuelto
+- `tareas-individuales/2026-09-04-ejemplo-ruta-critica/` — ejercicio de clase resuelto

@@ -37,7 +37,7 @@ verificable.
 | Reasignar 3.3 a UX-XR y adelantar 3.1 a la semana 1 | Contratar apoyo externo de modelado | Sin costo adicional. 3.3 es el paquete de menor complejidad técnica de la rama y UX-XR tenía capacidad libre en las semanas 2 a 4. |
 | Formato neutral en los Word | Estilos con encabezados de color | Petición explícita del usuario. |
 | Generar todo desde scripts | Editar los Word a mano | Las mismas cifras aparecen en cuatro documentos. Un cambio de duración se propaga solo si los documentos se derivan de un modelo común. |
-| Archivar las versiones anteriores en `superadas/` | Borrarlas | Reversible, y evita que se entregue la versión equivocada teniendo dos actas en la misma carpeta. |
+| Archivar las versiones anteriores en `superados/` | Borrarlas | Reversible, y evita que se entregue la versión equivocada teniendo dos actas en la misma carpeta. |
 | La división de tareas del líder no entra en los documentos | Reescribir los roles según sus seis frentes | Petición del usuario. En su lugar, el anexo A del acta lista la asignación nominal por paquete, que permite ver la cobertura sin señalar a nadie. |
 
 ## Hallazgos
@@ -83,12 +83,12 @@ verificable.
 
 | Archivo | Contenido |
 |---|---|
-| `entregables/Carta_Sponsor_v2.0.docx` | Revisión 2 con enfoque terapéutico y presupuesto recalculado. |
-| `entregables/Acta_Constitutiva_v3.0.docx` | 42 paquetes con criterio de aceptación, Gantt, simultaneidad, ruta crítica y anexo de asignación nominal. |
-| `entregables/Cronograma_MindView_v3.xml` | MS Project XML con dependencias tipadas. |
-| `entregables/Ruta_Critica_Proyecto_Bateria.docx` | Desarrollo PDM completo con justificación por sección. |
+| `entregables/01_Carta_Sponsor.docx` | Revisión 2 con enfoque terapéutico y presupuesto recalculado. |
+| `entregables/02_Acta_Constitutiva.docx` | 42 paquetes con criterio de aceptación, Gantt, simultaneidad, ruta crítica y anexo de asignación nominal. |
+| `entregables/superados/Cronograma_MindView_42_paquetes.xml` | MS Project XML con dependencias tipadas. |
+| `entregables/superados/Ruta_Critica_42_paquetes_superada.docx` | Desarrollo PDM completo con justificación por sección. |
 | `entregables/figuras/` | Red de precedencias y red medida. |
-| `tareas/2026-09-04-ejemplo-ruta-critica/` | Ejemplo de aceites completo con tres figuras y anexo de erratas. |
+| `tareas-individuales/2026-09-04-ejemplo-ruta-critica/` | Ejemplo de aceites completo con tres figuras y anexo de erratas. |
 | `scripts/` | Todo lo anterior es reproducible desde aquí. |
 
 ## Fuera de alcance

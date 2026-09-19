@@ -113,6 +113,6 @@ table(doc,["Fuente","Institución","Dato empleado"],[
   "Marco de referencia de las áreas de conocimiento 7, 8 y 11."),
 ],widths=[5.4,4.6,6.0],fs=9)
 
-out="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/Analisis_Costos_Calidad_Riesgos.docx"
+out="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/05_Analisis_Costos_Calidad_Riesgos.docx"
 doc.save(out); print("OK", out)
 print("párrafos:",len(doc.paragraphs)," tablas:",len(doc.tables)," imágenes:",len(doc.inline_shapes))

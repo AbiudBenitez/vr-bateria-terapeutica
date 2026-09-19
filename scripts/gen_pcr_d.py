@@ -7,7 +7,7 @@ from docx.shared import Cm
 from collections import Counter
 import rc257 as R, costos as K, pruebas as PR, compresion as CP
 doc = Document('/tmp/_pcr_c.docx')
-FIG="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/figuras_costos/"
+FIG="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/figuras-costos/"
 
 # ======================================================= PARTE IV
 H(doc,"PARTE IV. PLAN DE GESTIÓN DE LOS RIESGOS",1)

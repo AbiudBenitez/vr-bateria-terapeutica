@@ -677,7 +677,7 @@ foveated rendering activo, 72 Hz fijo como objetivo.
 
 - Diseño técnico del prototipo: `docs/specs/2026-08-29-vr-percusion-terapeutica-design.md`
   (arquitectura de módulos, presupuesto de latencia, regla de `dspTime`, presupuesto de rendimiento)
-- Acta constitutiva v3.0 y EDT de 42 paquetes: `entregables/Acta_Constitutiva_v3.0.docx`
+- Acta constitutiva v3.0 y EDT de 42 paquetes: `entregables/02_Acta_Constitutiva.docx`
 - [Meta Quest 3 y 3S en México](https://about.fb.com/ltam/news/2025/05/meta-quest-3-y-quest-3s-llegan-a-mexico-el-20-de-mayo/)
 - [Comparativa de especificaciones Quest 3S / 3 / 2 — Road to VR](https://roadtovr.com/quest-3s-quest-3-quest-2-specs-compared/)
 - [Especificaciones del Quest 3S — UploadVR](https://www.uploadvr.com/quest-3s-specs/)

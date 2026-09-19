@@ -92,6 +92,6 @@ table(doc,["#","Punto","Por qué importa"],[
   "Es la respuesta a R14. Hoy, si alguien se da de baja, se pierde el conocimiento de su área completa."),
 ],widths=[0.8,6.4,8.8],fs=9.5)
 
-out="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/Planes_Costos_Calidad_Riesgos.docx"
+out="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/04_Planes_Costos_Calidad_Riesgos.docx"
 doc.save(out); print("OK", out)
 print("párrafos:",len(doc.paragraphs)," tablas:",len(doc.tables)," imágenes:",len(doc.inline_shapes))

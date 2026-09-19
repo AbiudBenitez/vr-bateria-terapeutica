@@ -154,7 +154,7 @@ for c, nm, cr, rs, rc, ac, dd in edt.PKG:
         au += 1
 o += '  </Assignments>\n</Project>\n'
 
-out = "/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/Cronograma_MindView_v3.xml"
+out = "/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/superados/Cronograma_MindView_42_paquetes.xml"
 open(out, "w", encoding="utf-8").write(o)
 print("OK", out)
 import xml.etree.ElementTree as ET

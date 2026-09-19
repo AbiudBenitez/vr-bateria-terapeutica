@@ -96,6 +96,6 @@ table(doc,["Fuente","Contenido"],[
 P(doc,"Los costos de examen se consultaron en septiembre de 2026 y los organismos emisores los actualizan "
   "periódicamente. Conviene verificarlos en el sitio oficial antes de inscribirse.",italic=True)
 
-out="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/Plan_Calidad_Plan_Riesgos.docx"
+out="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/superados/Plan_Calidad_Plan_Riesgos.docx"
 doc.save(out); print("OK", out)
 print("párrafos:",len(doc.paragraphs)," tablas:",len(doc.tables)," imágenes:",len(doc.inline_shapes))

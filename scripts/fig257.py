@@ -9,7 +9,7 @@ from matplotlib.patches import FancyArrowPatch, Rectangle, FancyBboxPatch
 from matplotlib.lines import Line2D
 import rc257 as R
 
-SAL = "/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/figuras257/"
+SAL = "/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/figuras-ruta-critica/"
 os.makedirs(SAL, exist_ok=True)
 ROJO = "#b00020"; GRIS = "#444444"
 COL = {"D":"#4472C4","J":"#7030A0","E":"#2E9BB5","M":"#ED7D31","S":"#BF9000",

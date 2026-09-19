@@ -7,7 +7,7 @@ from docx.shared import Cm
 import rc257 as R
 M, O = R.V2, R.ORIG
 f = R.fnum
-FIG = "/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/figuras257/"
+FIG = "/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/figuras-ruta-critica/"
 doc = Document('/tmp/_v2_d.docx')
 
 def alcanza(MM,i,fin):

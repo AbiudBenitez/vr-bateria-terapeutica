@@ -69,7 +69,7 @@ for a in R.AREAS:
 
 o  = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
 o += f'<Project xmlns="{NS}">\n'
-o += '  <Name>Cronograma_257_VR_Bateria.xml</Name>\n'
+o += '  <Name>Cronograma_VR_Bateria.xml</Name>\n'
 o += '  <Title>Simulación VR de batería con juego de ritmo — 257 tareas</Title>\n'
 o += '  <Author>Equipo A</Author>\n  <Company>UANL FIME</Company>\n'
 o += '  <ScheduleFromStart>1</ScheduleFromStart>\n'
@@ -199,7 +199,7 @@ for k in R.ORD:
           f'      <Work>{wrk_h(K.horas(k))}</Work>\n    </Assignment>\n'); au += 1
 o += '  </Assignments>\n</Project>\n'
 
-out = "/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/Cronograma_257_ProjectLibre.xml"
+out = "/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/Cronograma_ProjectLibre.xml"
 open(out, "w", encoding="utf-8").write(o)
 print("OK", out)
 

@@ -9,7 +9,7 @@ M = R.V2
 def d(x): return f"${x:,.0f}"
 def d2(x): return f"${x:,.2f}"
 f = R.fnum
-FIG="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/figuras_costos/"
+FIG="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/figuras-costos/"
 doc = Document('/tmp/_cost_b.docx')
 
 # ================================================================ 9
