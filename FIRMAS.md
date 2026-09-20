@@ -126,7 +126,7 @@ concretas:
 - **Área:** Aseguramiento de calidad, documentación y gestión
 - **Usuario de GitHub:** pendiente
 - **Fecha:** pendiente
-- **Con qué contribuyo al proyecto:** pendiente
+- **Con qué contribuyo al proyecto:** DOCUMENTACION
 
 ---
 
