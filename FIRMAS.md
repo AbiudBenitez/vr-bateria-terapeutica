@@ -124,9 +124,9 @@ concretas:
 ### Diana Laura Tello Salinas
 
 - **Área:** Aseguramiento de calidad, documentación y gestión
-- **Usuario de GitHub:** pendiente
+- **Usuario de GitHub:** Dianahs28
 - **Fecha:** pendiente
-- **Con qué contribuyo al proyecto:** DOCUMENTACION
+- **Con qué contribuyo al proyecto:**
 
 ---
 
