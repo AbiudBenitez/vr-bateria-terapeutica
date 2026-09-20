@@ -153,7 +153,7 @@ concretas:
 - **Área:** Investigación y experiencia emocional
 - **Usuario de GitHub:** pendiente
 - **Fecha:** pendiente
-- **Con qué contribuyo al proyecto:** pendiente
+- **Con qué contribuyo al proyecto:** firma/Fernanda
 
 ---
 
