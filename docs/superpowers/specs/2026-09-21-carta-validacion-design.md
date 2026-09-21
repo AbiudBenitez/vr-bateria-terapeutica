@@ -98,7 +98,24 @@ equipo:
 Los dos se generan por script, no se editan a mano: la convención del proyecto es que las
 cifras aparecen en varios documentos y deben poder regenerarse cuando cambien.
 
-## 7. Fuera de alcance
+## 7. Error de datos encontrado en la hoja de control
+
+Tres actividades del área de desarrollo VR figuran en la hoja asignadas a María, bajo el área
+«Experiencia emocional»:
+
+| Clave | Actividad |
+|---|---|
+| `DX.4` | Configurar XR Origin, cámara y seguimiento de cabeza |
+| `DB.1` | Crear versión provisional de las baquetas para pruebas |
+| `DT.1` | Crear batería provisional con objetos simples |
+
+Son inequívocamente trabajo de desarrollo VR. La atribución errónea infla el avance de María
+(21 de 22) y desinfla el de Misael (24 de 30); el total de 77 no cambia.
+
+**No se corrige desde aquí.** La hoja de control es el registro del equipo y reasignar
+responsables sin acuerdo sería peor que el error. Queda anotado para que el equipo lo decida.
+
+## 8. Fuera de alcance
 
 No se toca `06_Entregable_Medio_Curso.docx` ni su cifra de 117: es un documento ya entregado y
 corregirlo es decisión del equipo, no de este diseño. La carta declara la diferencia y deja el
