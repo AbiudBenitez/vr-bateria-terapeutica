@@ -33,3 +33,6 @@ mediciones/probe/files/Unity/
 
 # Build de Unity
 proyecto-unity/Builds/
+
+# Archivos de bloqueo de Word
+~$*
