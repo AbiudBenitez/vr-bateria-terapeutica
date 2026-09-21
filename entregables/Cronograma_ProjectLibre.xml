@@ -129,19 +129,17 @@
       <Milestone>0</Milestone>
       <Summary>0</Summary>
       <Critical>0</Critical>
-      <PercentComplete>100</PercentComplete>
-			<PercentWorkComplete>100</PercentWorkComplete>
-			<FixedCost>0</FixedCost>
+      <FixedCost>0</FixedCost>
       <FixedCostAccrual>3</FixedCostAccrual>
-      <PercentComplete>0</PercentComplete>
-      <PercentWorkComplete>0</PercentWorkComplete>
+      <PercentComplete>100</PercentComplete>
+      <PercentWorkComplete>100</PercentWorkComplete>
       <Cost>177.21</Cost>
-      <ConstraintType>0</ConstraintType>
 			<ActualStart>2026-09-07T08:00:00</ActualStart>
 			<ActualFinish>2026-09-07T11:00:00</ActualFinish>
 			<ActualCost>177.21</ActualCost>
 			<ActualWork>PT3H0M0S</ActualWork>
-		</Task>
+      <ConstraintType>0</ConstraintType>
+    </Task>
     <Task>
       <UID>3</UID>
       <ID>3</ID>
@@ -160,13 +158,15 @@
       <Milestone>0</Milestone>
       <Summary>0</Summary>
       <Critical>0</Critical>
-      <PercentComplete>100</PercentComplete>
-			<PercentWorkComplete>100</PercentWorkComplete>
-			<FixedCost>0</FixedCost>
+      <FixedCost>0</FixedCost>
       <FixedCostAccrual>3</FixedCostAccrual>
-      <PercentComplete>0</PercentComplete>
-      <PercentWorkComplete>0</PercentWorkComplete>
+      <PercentComplete>100</PercentComplete>
+      <PercentWorkComplete>100</PercentWorkComplete>
       <Cost>177.21</Cost>
+			<ActualStart>2026-09-07T11:00:00</ActualStart>
+			<ActualFinish>2026-09-07T15:00:00</ActualFinish>
+			<ActualCost>177.21</ActualCost>
+			<ActualWork>PT3H0M0S</ActualWork>
       <ConstraintType>0</ConstraintType>
       <PredecessorLink>
         <PredecessorUID>2</PredecessorUID>
@@ -174,11 +174,7 @@
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
-			<ActualStart>2026-09-07T11:00:00</ActualStart>
-			<ActualFinish>2026-09-07T15:00:00</ActualFinish>
-			<ActualCost>177.21</ActualCost>
-			<ActualWork>PT3H0M0S</ActualWork>
-		</Task>
+    </Task>
     <Task>
       <UID>4</UID>
       <ID>4</ID>
@@ -197,13 +193,15 @@
       <Milestone>0</Milestone>
       <Summary>0</Summary>
       <Critical>0</Critical>
-      <PercentComplete>100</PercentComplete>
-			<PercentWorkComplete>100</PercentWorkComplete>
-			<FixedCost>0</FixedCost>
+      <FixedCost>0</FixedCost>
       <FixedCostAccrual>3</FixedCostAccrual>
-      <PercentComplete>0</PercentComplete>
-      <PercentWorkComplete>0</PercentWorkComplete>
+      <PercentComplete>100</PercentComplete>
+      <PercentWorkComplete>100</PercentWorkComplete>
       <Cost>236.28</Cost>
+			<ActualStart>2026-09-07T15:00:00</ActualStart>
+			<ActualFinish>2026-09-08T10:00:00</ActualFinish>
+			<ActualCost>236.28</ActualCost>
+			<ActualWork>PT4H0M0S</ActualWork>
       <ConstraintType>0</ConstraintType>
       <PredecessorLink>
         <PredecessorUID>3</PredecessorUID>
@@ -211,11 +209,7 @@
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
-			<ActualStart>2026-09-07T15:00:00</ActualStart>
-			<ActualFinish>2026-09-08T10:00:00</ActualFinish>
-			<ActualCost>236.28</ActualCost>
-			<ActualWork>PT4H0M0S</ActualWork>
-		</Task>
+    </Task>
     <Task>
       <UID>5</UID>
       <ID>5</ID>
@@ -234,13 +228,15 @@
       <Milestone>0</Milestone>
       <Summary>0</Summary>
       <Critical>0</Critical>
-      <PercentComplete>100</PercentComplete>
-			<PercentWorkComplete>100</PercentWorkComplete>
-			<FixedCost>0</FixedCost>
+      <FixedCost>0</FixedCost>
       <FixedCostAccrual>3</FixedCostAccrual>
-      <PercentComplete>0</PercentComplete>
-      <PercentWorkComplete>0</PercentWorkComplete>
+      <PercentComplete>100</PercentComplete>
+      <PercentWorkComplete>100</PercentWorkComplete>
       <Cost>295.35</Cost>
+			<ActualStart>2026-09-07T11:00:00</ActualStart>
+			<ActualFinish>2026-09-07T17:00:00</ActualFinish>
+			<ActualCost>295.35</ActualCost>
+			<ActualWork>PT5H0M0S</ActualWork>
       <ConstraintType>0</ConstraintType>
       <PredecessorLink>
         <PredecessorUID>2</PredecessorUID>
@@ -248,11 +244,7 @@
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
-			<ActualStart>2026-09-07T11:00:00</ActualStart>
-			<ActualFinish>2026-09-07T17:00:00</ActualFinish>
-			<ActualCost>295.35</ActualCost>
-			<ActualWork>PT5H0M0S</ActualWork>
-		</Task>
+    </Task>
     <Task>
       <UID>6</UID>
       <ID>6</ID>
@@ -271,13 +263,15 @@
       <Milestone>0</Milestone>
       <Summary>0</Summary>
       <Critical>0</Critical>
-      <PercentComplete>100</PercentComplete>
-			<PercentWorkComplete>100</PercentWorkComplete>
-			<FixedCost>0</FixedCost>
+      <FixedCost>0</FixedCost>
       <FixedCostAccrual>3</FixedCostAccrual>
-      <PercentComplete>0</PercentComplete>
-      <PercentWorkComplete>0</PercentWorkComplete>
+      <PercentComplete>100</PercentComplete>
+      <PercentWorkComplete>100</PercentWorkComplete>
       <Cost>295.35</Cost>
+			<ActualStart>2026-09-08T08:00:00</ActualStart>
+			<ActualFinish>2026-09-08T14:00:00</ActualFinish>
+			<ActualCost>295.35</ActualCost>
+			<ActualWork>PT5H0M0S</ActualWork>
       <ConstraintType>0</ConstraintType>
       <PredecessorLink>
         <PredecessorUID>5</PredecessorUID>
@@ -285,11 +279,7 @@
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
-			<ActualStart>2026-09-08T08:00:00</ActualStart>
-			<ActualFinish>2026-09-08T14:00:00</ActualFinish>
-			<ActualCost>295.35</ActualCost>
-			<ActualWork>PT5H0M0S</ActualWork>
-		</Task>
+    </Task>
     <Task>
       <UID>7</UID>
       <ID>7</ID>
@@ -308,13 +298,15 @@
       <Milestone>0</Milestone>
       <Summary>0</Summary>
       <Critical>0</Critical>
-      <PercentComplete>100</PercentComplete>
-			<PercentWorkComplete>100</PercentWorkComplete>
-			<FixedCost>0</FixedCost>
+      <FixedCost>0</FixedCost>
       <FixedCostAccrual>3</FixedCostAccrual>
-      <PercentComplete>0</PercentComplete>
-      <PercentWorkComplete>0</PercentWorkComplete>
+      <PercentComplete>100</PercentComplete>
+      <PercentWorkComplete>100</PercentWorkComplete>
       <Cost>177.21</Cost>
+			<ActualStart>2026-09-08T14:00:00</ActualStart>
+			<ActualFinish>2026-09-08T17:00:00</ActualFinish>
+			<ActualCost>177.21</ActualCost>
+			<ActualWork>PT3H0M0S</ActualWork>
       <ConstraintType>0</ConstraintType>
       <PredecessorLink>
         <PredecessorUID>6</PredecessorUID>
@@ -322,11 +314,7 @@
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
-			<ActualStart>2026-09-08T14:00:00</ActualStart>
-			<ActualFinish>2026-09-08T17:00:00</ActualFinish>
-			<ActualCost>177.21</ActualCost>
-			<ActualWork>PT3H0M0S</ActualWork>
-		</Task>
+    </Task>
     <Task>
       <UID>8</UID>
       <ID>8</ID>
@@ -345,13 +333,15 @@
       <Milestone>0</Milestone>
       <Summary>0</Summary>
       <Critical>0</Critical>
-      <PercentComplete>100</PercentComplete>
-			<PercentWorkComplete>100</PercentWorkComplete>
-			<FixedCost>0</FixedCost>
+      <FixedCost>0</FixedCost>
       <FixedCostAccrual>3</FixedCostAccrual>
-      <PercentComplete>0</PercentComplete>
-      <PercentWorkComplete>0</PercentWorkComplete>
+      <PercentComplete>100</PercentComplete>
+      <PercentWorkComplete>100</PercentWorkComplete>
       <Cost>236.28</Cost>
+			<ActualStart>2026-09-09T08:00:00</ActualStart>
+			<ActualFinish>2026-09-09T12:00:00</ActualFinish>
+			<ActualCost>236.28</ActualCost>
+			<ActualWork>PT4H0M0S</ActualWork>
       <ConstraintType>0</ConstraintType>
       <PredecessorLink>
         <PredecessorUID>7</PredecessorUID>
@@ -359,11 +349,7 @@
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
-			<ActualStart>2026-09-09T08:00:00</ActualStart>
-			<ActualFinish>2026-09-09T12:00:00</ActualFinish>
-			<ActualCost>236.28</ActualCost>
-			<ActualWork>PT4H0M0S</ActualWork>
-		</Task>
+    </Task>
     <Task>
       <UID>9</UID>
       <ID>9</ID>
@@ -382,13 +368,15 @@
       <Milestone>0</Milestone>
       <Summary>0</Summary>
       <Critical>0</Critical>
-      <PercentComplete>100</PercentComplete>
-			<PercentWorkComplete>100</PercentWorkComplete>
-			<FixedCost>0</FixedCost>
+      <FixedCost>0</FixedCost>
       <FixedCostAccrual>3</FixedCostAccrual>
-      <PercentComplete>0</PercentComplete>
-      <PercentWorkComplete>0</PercentWorkComplete>
+      <PercentComplete>100</PercentComplete>
+      <PercentWorkComplete>100</PercentWorkComplete>
       <Cost>236.28</Cost>
+			<ActualStart>2026-09-09T13:00:00</ActualStart>
+			<ActualFinish>2026-09-09T17:00:00</ActualFinish>
+			<ActualCost>236.28</ActualCost>
+			<ActualWork>PT4H0M0S</ActualWork>
       <ConstraintType>0</ConstraintType>
       <PredecessorLink>
         <PredecessorUID>8</PredecessorUID>
@@ -396,11 +384,7 @@
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
-			<ActualStart>2026-09-09T13:00:00</ActualStart>
-			<ActualFinish>2026-09-09T17:00:00</ActualFinish>
-			<ActualCost>236.28</ActualCost>
-			<ActualWork>PT4H0M0S</ActualWork>
-		</Task>
+    </Task>
     <Task>
       <UID>10</UID>
       <ID>10</ID>
@@ -419,13 +403,15 @@
       <Milestone>0</Milestone>
       <Summary>0</Summary>
       <Critical>0</Critical>
-      <PercentComplete>100</PercentComplete>
-			<PercentWorkComplete>100</PercentWorkComplete>
-			<FixedCost>0</FixedCost>
+      <FixedCost>0</FixedCost>
       <FixedCostAccrual>3</FixedCostAccrual>
-      <PercentComplete>0</PercentComplete>
-      <PercentWorkComplete>0</PercentWorkComplete>
+      <PercentComplete>100</PercentComplete>
+      <PercentWorkComplete>100</PercentWorkComplete>
       <Cost>236.28</Cost>
+			<ActualStart>2026-09-09T13:00:00</ActualStart>
+			<ActualFinish>2026-09-09T17:00:00</ActualFinish>
+			<ActualCost>236.28</ActualCost>
+			<ActualWork>PT4H0M0S</ActualWork>
       <ConstraintType>0</ConstraintType>
       <PredecessorLink>
         <PredecessorUID>8</PredecessorUID>
@@ -433,11 +419,7 @@
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
-			<ActualStart>2026-09-09T13:00:00</ActualStart>
-			<ActualFinish>2026-09-09T17:00:00</ActualFinish>
-			<ActualCost>236.28</ActualCost>
-			<ActualWork>PT4H0M0S</ActualWork>
-		</Task>
+    </Task>
     <Task>
       <UID>11</UID>
       <ID>11</ID>
@@ -487,13 +469,15 @@
       <Milestone>0</Milestone>
       <Summary>0</Summary>
       <Critical>0</Critical>
-      <PercentComplete>100</PercentComplete>
-			<PercentWorkComplete>100</PercentWorkComplete>
-			<FixedCost>0</FixedCost>
+      <FixedCost>0</FixedCost>
       <FixedCostAccrual>3</FixedCostAccrual>
-      <PercentComplete>0</PercentComplete>
-      <PercentWorkComplete>0</PercentWorkComplete>
+      <PercentComplete>100</PercentComplete>
+      <PercentWorkComplete>100</PercentWorkComplete>
       <Cost>177.21</Cost>
+			<ActualStart>2026-09-09T08:00:00</ActualStart>
+			<ActualFinish>2026-09-09T11:00:00</ActualFinish>
+			<ActualCost>177.21</ActualCost>
+			<ActualWork>PT3H0M0S</ActualWork>
       <ConstraintType>0</ConstraintType>
       <PredecessorLink>
         <PredecessorUID>7</PredecessorUID>
@@ -501,11 +485,7 @@
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
-			<ActualStart>2026-09-09T08:00:00</ActualStart>
-			<ActualFinish>2026-09-09T11:00:00</ActualFinish>
-			<ActualCost>177.21</ActualCost>
-			<ActualWork>PT3H0M0S</ActualWork>
-		</Task>
+    </Task>
     <Task>
       <UID>13</UID>
       <ID>13</ID>
@@ -561,13 +541,15 @@
       <Milestone>0</Milestone>
       <Summary>0</Summary>
       <Critical>0</Critical>
-      <PercentComplete>100</PercentComplete>
-			<PercentWorkComplete>100</PercentWorkComplete>
-			<FixedCost>0</FixedCost>
+      <FixedCost>0</FixedCost>
       <FixedCostAccrual>3</FixedCostAccrual>
-      <PercentComplete>0</PercentComplete>
-      <PercentWorkComplete>0</PercentWorkComplete>
+      <PercentComplete>100</PercentComplete>
+      <PercentWorkComplete>100</PercentWorkComplete>
       <Cost>236.28</Cost>
+			<ActualStart>2026-09-11T14:00:00</ActualStart>
+			<ActualFinish>2026-09-14T09:00:00</ActualFinish>
+			<ActualCost>236.28</ActualCost>
+			<ActualWork>PT4H0M0S</ActualWork>
       <ConstraintType>0</ConstraintType>
       <PredecessorLink>
         <PredecessorUID>13</PredecessorUID>
@@ -575,11 +557,7 @@
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
-			<ActualStart>2026-09-11T14:00:00</ActualStart>
-			<ActualFinish>2026-09-14T09:00:00</ActualFinish>
-			<ActualCost>236.28</ActualCost>
-			<ActualWork>PT4H0M0S</ActualWork>
-		</Task>
+    </Task>
     <Task>
       <UID>15</UID>
       <ID>15</ID>
@@ -598,13 +576,15 @@
       <Milestone>0</Milestone>
       <Summary>0</Summary>
       <Critical>0</Critical>
-      <PercentComplete>100</PercentComplete>
-			<PercentWorkComplete>100</PercentWorkComplete>
-			<FixedCost>0</FixedCost>
+      <FixedCost>0</FixedCost>
       <FixedCostAccrual>3</FixedCostAccrual>
-      <PercentComplete>0</PercentComplete>
-      <PercentWorkComplete>0</PercentWorkComplete>
+      <PercentComplete>100</PercentComplete>
+      <PercentWorkComplete>100</PercentWorkComplete>
       <Cost>295.35</Cost>
+			<ActualStart>2026-09-09T08:00:00</ActualStart>
+			<ActualFinish>2026-09-09T14:00:00</ActualFinish>
+			<ActualCost>295.35</ActualCost>
+			<ActualWork>PT5H0M0S</ActualWork>
       <ConstraintType>0</ConstraintType>
       <PredecessorLink>
         <PredecessorUID>7</PredecessorUID>
@@ -612,11 +592,7 @@
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
-			<ActualStart>2026-09-09T08:00:00</ActualStart>
-			<ActualFinish>2026-09-09T14:00:00</ActualFinish>
-			<ActualCost>295.35</ActualCost>
-			<ActualWork>PT5H0M0S</ActualWork>
-		</Task>
+    </Task>
     <Task>
       <UID>16</UID>
       <ID>16</ID>
@@ -635,13 +611,15 @@
       <Milestone>0</Milestone>
       <Summary>0</Summary>
       <Critical>0</Critical>
-      <PercentComplete>100</PercentComplete>
-			<PercentWorkComplete>100</PercentWorkComplete>
-			<FixedCost>0</FixedCost>
+      <FixedCost>0</FixedCost>
       <FixedCostAccrual>3</FixedCostAccrual>
-      <PercentComplete>0</PercentComplete>
-      <PercentWorkComplete>0</PercentWorkComplete>
+      <PercentComplete>100</PercentComplete>
+      <PercentWorkComplete>100</PercentWorkComplete>
       <Cost>236.28</Cost>
+			<ActualStart>2026-09-09T14:00:00</ActualStart>
+			<ActualFinish>2026-09-10T09:00:00</ActualFinish>
+			<ActualCost>236.28</ActualCost>
+			<ActualWork>PT4H0M0S</ActualWork>
       <ConstraintType>0</ConstraintType>
       <PredecessorLink>
         <PredecessorUID>15</PredecessorUID>
@@ -649,11 +627,7 @@
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
-			<ActualStart>2026-09-09T14:00:00</ActualStart>
-			<ActualFinish>2026-09-10T09:00:00</ActualFinish>
-			<ActualCost>236.28</ActualCost>
-			<ActualWork>PT4H0M0S</ActualWork>
-		</Task>
+    </Task>
     <Task>
       <UID>17</UID>
       <ID>17</ID>
@@ -703,13 +677,15 @@
       <Milestone>0</Milestone>
       <Summary>0</Summary>
       <Critical>0</Critical>
-      <PercentComplete>100</PercentComplete>
-			<PercentWorkComplete>100</PercentWorkComplete>
-			<FixedCost>0</FixedCost>
+      <FixedCost>0</FixedCost>
       <FixedCostAccrual>3</FixedCostAccrual>
-      <PercentComplete>0</PercentComplete>
-      <PercentWorkComplete>0</PercentWorkComplete>
+      <PercentComplete>100</PercentComplete>
+      <PercentWorkComplete>100</PercentWorkComplete>
       <Cost>472.56</Cost>
+			<ActualStart>2026-09-11T14:00:00</ActualStart>
+			<ActualFinish>2026-09-14T14:00:00</ActualFinish>
+			<ActualCost>472.56</ActualCost>
+			<ActualWork>PT8H0M0S</ActualWork>
       <ConstraintType>0</ConstraintType>
       <PredecessorLink>
         <PredecessorUID>13</PredecessorUID>
@@ -723,11 +699,7 @@
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
-			<ActualStart>2026-09-11T14:00:00</ActualStart>
-			<ActualFinish>2026-09-14T14:00:00</ActualFinish>
-			<ActualCost>472.56</ActualCost>
-			<ActualWork>PT8H0M0S</ActualWork>
-		</Task>
+    </Task>
     <Task>
       <UID>19</UID>
       <ID>19</ID>
@@ -746,13 +718,15 @@
       <Milestone>0</Milestone>
       <Summary>0</Summary>
       <Critical>0</Critical>
-      <PercentComplete>100</PercentComplete>
-			<PercentWorkComplete>100</PercentWorkComplete>
-			<FixedCost>0</FixedCost>
+      <FixedCost>0</FixedCost>
       <FixedCostAccrual>3</FixedCostAccrual>
-      <PercentComplete>0</PercentComplete>
-      <PercentWorkComplete>0</PercentWorkComplete>
+      <PercentComplete>100</PercentComplete>
+      <PercentWorkComplete>100</PercentWorkComplete>
       <Cost>472.56</Cost>
+			<ActualStart>2026-09-14T14:00:00</ActualStart>
+			<ActualFinish>2026-09-15T14:00:00</ActualFinish>
+			<ActualCost>472.56</ActualCost>
+			<ActualWork>PT8H0M0S</ActualWork>
       <ConstraintType>0</ConstraintType>
       <PredecessorLink>
         <PredecessorUID>18</PredecessorUID>
@@ -760,11 +734,7 @@
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
-			<ActualStart>2026-09-14T14:00:00</ActualStart>
-			<ActualFinish>2026-09-15T14:00:00</ActualFinish>
-			<ActualCost>472.56</ActualCost>
-			<ActualWork>PT8H0M0S</ActualWork>
-		</Task>
+    </Task>
     <Task>
       <UID>20</UID>
       <ID>20</ID>
@@ -783,13 +753,15 @@
       <Milestone>0</Milestone>
       <Summary>0</Summary>
       <Critical>0</Critical>
-      <PercentComplete>100</PercentComplete>
-			<PercentWorkComplete>100</PercentWorkComplete>
-			<FixedCost>0</FixedCost>
+      <FixedCost>0</FixedCost>
       <FixedCostAccrual>3</FixedCostAccrual>
-      <PercentComplete>0</PercentComplete>
-      <PercentWorkComplete>0</PercentWorkComplete>
+      <PercentComplete>100</PercentComplete>
+      <PercentWorkComplete>100</PercentWorkComplete>
       <Cost>472.56</Cost>
+			<ActualStart>2026-09-14T14:00:00</ActualStart>
+			<ActualFinish>2026-09-15T14:00:00</ActualFinish>
+			<ActualCost>472.56</ActualCost>
+			<ActualWork>PT8H0M0S</ActualWork>
       <ConstraintType>0</ConstraintType>
       <PredecessorLink>
         <PredecessorUID>18</PredecessorUID>
@@ -797,11 +769,7 @@
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
-			<ActualStart>2026-09-14T14:00:00</ActualStart>
-			<ActualFinish>2026-09-15T14:00:00</ActualFinish>
-			<ActualCost>472.56</ActualCost>
-			<ActualWork>PT8H0M0S</ActualWork>
-		</Task>
+    </Task>
     <Task>
       <UID>21</UID>
       <ID>21</ID>
@@ -820,13 +788,15 @@
       <Milestone>0</Milestone>
       <Summary>0</Summary>
       <Critical>0</Critical>
-      <PercentComplete>100</PercentComplete>
-			<PercentWorkComplete>100</PercentWorkComplete>
-			<FixedCost>0</FixedCost>
+      <FixedCost>0</FixedCost>
       <FixedCostAccrual>3</FixedCostAccrual>
-      <PercentComplete>0</PercentComplete>
-      <PercentWorkComplete>0</PercentWorkComplete>
+      <PercentComplete>100</PercentComplete>
+      <PercentWorkComplete>100</PercentWorkComplete>
       <Cost>472.56</Cost>
+			<ActualStart>2026-09-15T14:00:00</ActualStart>
+			<ActualFinish>2026-09-17T14:00:00</ActualFinish>
+			<ActualCost>472.56</ActualCost>
+			<ActualWork>PT8H0M0S</ActualWork>
       <ConstraintType>0</ConstraintType>
       <PredecessorLink>
         <PredecessorUID>20</PredecessorUID>
@@ -834,11 +804,7 @@
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
-			<ActualStart>2026-09-15T14:00:00</ActualStart>
-			<ActualFinish>2026-09-17T14:00:00</ActualFinish>
-			<ActualCost>472.56</ActualCost>
-			<ActualWork>PT8H0M0S</ActualWork>
-		</Task>
+    </Task>
     <Task>
       <UID>22</UID>
       <ID>22</ID>
@@ -857,13 +823,15 @@
       <Milestone>0</Milestone>
       <Summary>0</Summary>
       <Critical>0</Critical>
-      <PercentComplete>100</PercentComplete>
-			<PercentWorkComplete>100</PercentWorkComplete>
-			<FixedCost>0</FixedCost>
+      <FixedCost>0</FixedCost>
       <FixedCostAccrual>3</FixedCostAccrual>
-      <PercentComplete>0</PercentComplete>
-      <PercentWorkComplete>0</PercentWorkComplete>
+      <PercentComplete>100</PercentComplete>
+      <PercentWorkComplete>100</PercentWorkComplete>
       <Cost>295.35</Cost>
+			<ActualStart>2026-09-17T14:00:00</ActualStart>
+			<ActualFinish>2026-09-18T10:00:00</ActualFinish>
+			<ActualCost>295.35</ActualCost>
+			<ActualWork>PT5H0M0S</ActualWork>
       <ConstraintType>0</ConstraintType>
       <PredecessorLink>
         <PredecessorUID>21</PredecessorUID>
@@ -871,11 +839,7 @@
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
-			<ActualStart>2026-09-17T14:00:00</ActualStart>
-			<ActualFinish>2026-09-18T10:00:00</ActualFinish>
-			<ActualCost>295.35</ActualCost>
-			<ActualWork>PT5H0M0S</ActualWork>
-		</Task>
+    </Task>
     <Task>
       <UID>23</UID>
       <ID>23</ID>
@@ -894,13 +858,15 @@
       <Milestone>0</Milestone>
       <Summary>0</Summary>
       <Critical>0</Critical>
-      <PercentComplete>100</PercentComplete>
-			<PercentWorkComplete>100</PercentWorkComplete>
-			<FixedCost>0</FixedCost>
+      <FixedCost>0</FixedCost>
       <FixedCostAccrual>3</FixedCostAccrual>
-      <PercentComplete>0</PercentComplete>
-      <PercentWorkComplete>0</PercentWorkComplete>
+      <PercentComplete>100</PercentComplete>
+      <PercentWorkComplete>100</PercentWorkComplete>
       <Cost>472.56</Cost>
+			<ActualStart>2026-09-14T14:00:00</ActualStart>
+			<ActualFinish>2026-09-15T14:00:00</ActualFinish>
+			<ActualCost>472.56</ActualCost>
+			<ActualWork>PT8H0M0S</ActualWork>
       <ConstraintType>0</ConstraintType>
       <PredecessorLink>
         <PredecessorUID>18</PredecessorUID>
@@ -908,11 +874,7 @@
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
-			<ActualStart>2026-09-14T14:00:00</ActualStart>
-			<ActualFinish>2026-09-15T14:00:00</ActualFinish>
-			<ActualCost>472.56</ActualCost>
-			<ActualWork>PT8H0M0S</ActualWork>
-		</Task>
+    </Task>
     <Task>
       <UID>24</UID>
       <ID>24</ID>
@@ -931,13 +893,15 @@
       <Milestone>0</Milestone>
       <Summary>0</Summary>
       <Critical>0</Critical>
-      <PercentComplete>100</PercentComplete>
-			<PercentWorkComplete>100</PercentWorkComplete>
-			<FixedCost>0</FixedCost>
+      <FixedCost>0</FixedCost>
       <FixedCostAccrual>3</FixedCostAccrual>
-      <PercentComplete>0</PercentComplete>
-      <PercentWorkComplete>0</PercentWorkComplete>
+      <PercentComplete>100</PercentComplete>
+      <PercentWorkComplete>100</PercentWorkComplete>
       <Cost>295.35</Cost>
+			<ActualStart>2026-09-14T14:00:00</ActualStart>
+			<ActualFinish>2026-09-15T10:00:00</ActualFinish>
+			<ActualCost>295.35</ActualCost>
+			<ActualWork>PT5H0M0S</ActualWork>
       <ConstraintType>0</ConstraintType>
       <PredecessorLink>
         <PredecessorUID>18</PredecessorUID>
@@ -945,11 +909,7 @@
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
-			<ActualStart>2026-09-14T14:00:00</ActualStart>
-			<ActualFinish>2026-09-15T10:00:00</ActualFinish>
-			<ActualCost>295.35</ActualCost>
-			<ActualWork>PT5H0M0S</ActualWork>
-		</Task>
+    </Task>
     <Task>
       <UID>25</UID>
       <ID>25</ID>
@@ -968,13 +928,15 @@
       <Milestone>0</Milestone>
       <Summary>0</Summary>
       <Critical>0</Critical>
-      <PercentComplete>100</PercentComplete>
-			<PercentWorkComplete>100</PercentWorkComplete>
-			<FixedCost>0</FixedCost>
+      <FixedCost>0</FixedCost>
       <FixedCostAccrual>3</FixedCostAccrual>
-      <PercentComplete>0</PercentComplete>
-      <PercentWorkComplete>0</PercentWorkComplete>
+      <PercentComplete>100</PercentComplete>
+      <PercentWorkComplete>100</PercentWorkComplete>
       <Cost>236.28</Cost>
+			<ActualStart>2026-09-17T14:00:00</ActualStart>
+			<ActualFinish>2026-09-18T09:00:00</ActualFinish>
+			<ActualCost>236.28</ActualCost>
+			<ActualWork>PT4H0M0S</ActualWork>
       <ConstraintType>0</ConstraintType>
       <PredecessorLink>
         <PredecessorUID>21</PredecessorUID>
@@ -988,11 +950,7 @@
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
-			<ActualStart>2026-09-17T14:00:00</ActualStart>
-			<ActualFinish>2026-09-18T09:00:00</ActualFinish>
-			<ActualCost>236.28</ActualCost>
-			<ActualWork>PT4H0M0S</ActualWork>
-		</Task>
+    </Task>
     <Task>
       <UID>26</UID>
       <ID>26</ID>
@@ -1011,13 +969,15 @@
       <Milestone>0</Milestone>
       <Summary>0</Summary>
       <Critical>0</Critical>
-      <PercentComplete>100</PercentComplete>
-			<PercentWorkComplete>100</PercentWorkComplete>
-			<FixedCost>0</FixedCost>
+      <FixedCost>0</FixedCost>
       <FixedCostAccrual>3</FixedCostAccrual>
-      <PercentComplete>0</PercentComplete>
-      <PercentWorkComplete>0</PercentWorkComplete>
+      <PercentComplete>100</PercentComplete>
+      <PercentWorkComplete>100</PercentWorkComplete>
       <Cost>472.56</Cost>
+			<ActualStart>2026-09-17T14:00:00</ActualStart>
+			<ActualFinish>2026-09-18T14:00:00</ActualFinish>
+			<ActualCost>472.56</ActualCost>
+			<ActualWork>PT8H0M0S</ActualWork>
       <ConstraintType>0</ConstraintType>
       <PredecessorLink>
         <PredecessorUID>19</PredecessorUID>
@@ -1031,11 +991,7 @@
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
-			<ActualStart>2026-09-17T14:00:00</ActualStart>
-			<ActualFinish>2026-09-18T14:00:00</ActualFinish>
-			<ActualCost>472.56</ActualCost>
-			<ActualWork>PT8H0M0S</ActualWork>
-		</Task>
+    </Task>
     <Task>
       <UID>27</UID>
       <ID>27</ID>
@@ -1054,13 +1010,15 @@
       <Milestone>0</Milestone>
       <Summary>0</Summary>
       <Critical>0</Critical>
-      <PercentComplete>100</PercentComplete>
-			<PercentWorkComplete>100</PercentWorkComplete>
-			<FixedCost>0</FixedCost>
+      <FixedCost>0</FixedCost>
       <FixedCostAccrual>3</FixedCostAccrual>
-      <PercentComplete>0</PercentComplete>
-      <PercentWorkComplete>0</PercentWorkComplete>
+      <PercentComplete>100</PercentComplete>
+      <PercentWorkComplete>100</PercentWorkComplete>
       <Cost>295.35</Cost>
+			<ActualStart>2026-09-18T14:00:00</ActualStart>
+			<ActualFinish>2026-09-21T10:00:00</ActualFinish>
+			<ActualCost>295.35</ActualCost>
+			<ActualWork>PT5H0M0S</ActualWork>
       <ConstraintType>0</ConstraintType>
       <PredecessorLink>
         <PredecessorUID>26</PredecessorUID>
@@ -1068,11 +1026,7 @@
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
-			<ActualStart>2026-09-18T14:00:00</ActualStart>
-			<ActualFinish>2026-09-21T10:00:00</ActualFinish>
-			<ActualCost>295.35</ActualCost>
-			<ActualWork>PT5H0M0S</ActualWork>
-		</Task>
+    </Task>
     <Task>
       <UID>28</UID>
       <ID>28</ID>
@@ -1122,13 +1076,15 @@
       <Milestone>0</Milestone>
       <Summary>0</Summary>
       <Critical>0</Critical>
-      <PercentComplete>100</PercentComplete>
-			<PercentWorkComplete>100</PercentWorkComplete>
-			<FixedCost>0</FixedCost>
+      <FixedCost>0</FixedCost>
       <FixedCostAccrual>3</FixedCostAccrual>
-      <PercentComplete>0</PercentComplete>
-      <PercentWorkComplete>0</PercentWorkComplete>
+      <PercentComplete>100</PercentComplete>
+      <PercentWorkComplete>100</PercentWorkComplete>
       <Cost>472.56</Cost>
+			<ActualStart>2026-09-15T14:00:00</ActualStart>
+			<ActualFinish>2026-09-17T14:00:00</ActualFinish>
+			<ActualCost>472.56</ActualCost>
+			<ActualWork>PT8H0M0S</ActualWork>
       <ConstraintType>0</ConstraintType>
       <PredecessorLink>
         <PredecessorUID>28</PredecessorUID>
@@ -1136,11 +1092,7 @@
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
-			<ActualStart>2026-09-15T14:00:00</ActualStart>
-			<ActualFinish>2026-09-17T14:00:00</ActualFinish>
-			<ActualCost>472.56</ActualCost>
-			<ActualWork>PT8H0M0S</ActualWork>
-		</Task>
+    </Task>
     <Task>
       <UID>30</UID>
       <ID>30</ID>
@@ -1233,13 +1185,15 @@
       <Milestone>0</Milestone>
       <Summary>0</Summary>
       <Critical>0</Critical>
-      <PercentComplete>100</PercentComplete>
-			<PercentWorkComplete>100</PercentWorkComplete>
-			<FixedCost>0</FixedCost>
+      <FixedCost>0</FixedCost>
       <FixedCostAccrual>3</FixedCostAccrual>
-      <PercentComplete>0</PercentComplete>
-      <PercentWorkComplete>0</PercentWorkComplete>
+      <PercentComplete>100</PercentComplete>
+      <PercentWorkComplete>100</PercentWorkComplete>
       <Cost>295.35</Cost>
+			<ActualStart>2026-10-01T10:00:00</ActualStart>
+			<ActualFinish>2026-10-01T16:00:00</ActualFinish>
+			<ActualCost>295.35</ActualCost>
+			<ActualWork>PT5H0M0S</ActualWork>
       <ConstraintType>0</ConstraintType>
       <PredecessorLink>
         <PredecessorUID>31</PredecessorUID>
@@ -1253,11 +1207,7 @@
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
-			<ActualStart>2026-10-01T10:00:00</ActualStart>
-			<ActualFinish>2026-10-01T16:00:00</ActualFinish>
-			<ActualCost>295.35</ActualCost>
-			<ActualWork>PT5H0M0S</ActualWork>
-		</Task>
+    </Task>
     <Task>
       <UID>33</UID>
       <ID>33</ID>
@@ -1276,13 +1226,15 @@
       <Milestone>0</Milestone>
       <Summary>0</Summary>
       <Critical>0</Critical>
-      <PercentComplete>100</PercentComplete>
-			<PercentWorkComplete>100</PercentWorkComplete>
-			<FixedCost>0</FixedCost>
+      <FixedCost>0</FixedCost>
       <FixedCostAccrual>3</FixedCostAccrual>
-      <PercentComplete>0</PercentComplete>
-      <PercentWorkComplete>0</PercentWorkComplete>
+      <PercentComplete>100</PercentComplete>
+      <PercentWorkComplete>100</PercentWorkComplete>
       <Cost>472.56</Cost>
+			<ActualStart>2026-10-01T16:00:00</ActualStart>
+			<ActualFinish>2026-10-02T16:00:00</ActualFinish>
+			<ActualCost>472.56</ActualCost>
+			<ActualWork>PT8H0M0S</ActualWork>
       <ConstraintType>0</ConstraintType>
       <PredecessorLink>
         <PredecessorUID>32</PredecessorUID>
@@ -1332,11 +1284,7 @@
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
-			<ActualStart>2026-10-01T16:00:00</ActualStart>
-			<ActualFinish>2026-10-02T16:00:00</ActualFinish>
-			<ActualCost>472.56</ActualCost>
-			<ActualWork>PT8H0M0S</ActualWork>
-		</Task>
+    </Task>
     <Task>
       <UID>34</UID>
       <ID>34</ID>
@@ -1355,13 +1303,15 @@
       <Milestone>0</Milestone>
       <Summary>0</Summary>
       <Critical>0</Critical>
-      <PercentComplete>100</PercentComplete>
-			<PercentWorkComplete>100</PercentWorkComplete>
-			<FixedCost>0</FixedCost>
+      <FixedCost>0</FixedCost>
       <FixedCostAccrual>3</FixedCostAccrual>
-      <PercentComplete>0</PercentComplete>
-      <PercentWorkComplete>0</PercentWorkComplete>
+      <PercentComplete>100</PercentComplete>
+      <PercentWorkComplete>100</PercentWorkComplete>
       <Cost>472.56</Cost>
+			<ActualStart>2026-10-02T16:00:00</ActualStart>
+			<ActualFinish>2026-10-05T16:00:00</ActualFinish>
+			<ActualCost>472.56</ActualCost>
+			<ActualWork>PT8H0M0S</ActualWork>
       <ConstraintType>0</ConstraintType>
       <PredecessorLink>
         <PredecessorUID>33</PredecessorUID>
@@ -1369,11 +1319,7 @@
         <LinkLag>0</LinkLag>
         <LagFormat>7</LagFormat>
       </PredecessorLink>
-			<ActualStart>2026-10-02T16:00:00</ActualStart>
-			<ActualFinish>2026-10-05T16:00:00</ActualFinish>
-			<ActualCost>472.56</ActualCost>
-			<ActualWork>PT8H0M0S</ActualWork>
-		</Task>
+    </Task>
     <Task>
       <UID>35</UID>
       <ID>35</ID>
