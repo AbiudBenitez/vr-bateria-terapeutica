@@ -319,6 +319,56 @@ de **bombo** — ya está puesto `512175__kopreusz__kick_2.wav`.
 - **Discrepancia de rol:** el acta v3.0 asigna el desarrollo VR a María Fernanda; lo ejecuta
   Misael. Es carga fuera del rol formal y mueve el cálculo de sobreasignación.
 
+## Juego de ritmo — reloj musical, cerrado el 17-oct-2026
+
+El área de juego de ritmo pasó a desarrollo VR por la respuesta al riesgo R14 (baja de un
+integrante). Primera pieza construida: el reloj musical.
+
+| | |
+|---|---|
+| Spec | `docs/superpowers/specs/2026-10-07-reloj-musical-design.md` |
+| Plan | `docs/superpowers/plans/2026-10-10-reloj-musical.md` |
+| Código | `TempoMap.cs` · `MusicalTime.cs` · `MusicalClock.cs` · `ClockProbe.cs` |
+| Escena | `Cap08_Reloj.unity`, generada por menú |
+| Cierra | `JT.1` reloj sin deriva · `JT.2` BPM y duración de beat · `JT.3` compases |
+
+### Verificado: cero deriva
+
+**Desvío de 0.0 ms sostenido durante 205 segundos** contra un metrónomo de 120 BPM exactos.
+El criterio era menos de 20 ms sin crecer.
+
+El metrónomo (`Assets/Audio/Pruebas/Metronomo_120BPM.wav`) se genera, no se busca: adivinar
+el BPM de una pista mete en la medición la incertidumbre que la medición viene a resolver.
+Cada pulso se coloca desde su número de beat y no sumando intervalos — acumular 0.5 s
+cuatrocientas veces introduce justo la deriva que se quiere detectar. Verificado con
+`scripts/latencia.py`: 420 pulsos, intervalo medio 499.999 ms, error acumulado 0.33 ms.
+
+### Puerta abierta al iso-principio
+
+`ITempoMap` es una interfaz con dos métodos de conversión. La implementación de hoy es de
+tempo constante; cuando llegue la rampa que el acta describe —del tempo espontáneo del usuario
+hasta 60 BPM— se implementa otro mapa y nada de lo que lo consume cambia.
+
+**Hay una prueba que lo verifica** con un mapa de dos tramos (90 → 60 BPM). Pasó sin tocar
+código de producción, que es lo que demuestra que la abstracción aísla de verdad.
+
+### Reglas que no se negocian
+
+1. **La canción se agenda, no se reproduce.** `PlayScheduled(dspTime + margen)` y el reloj
+   arranca en ese mismo instante. Llamar a `Play()` y anotar `dspTime` después deja un desfase
+   constante que no se nota al principio y es evidente al minuto dos.
+2. **Puntuar un golpe no compensa latencia.** `reloj.BeatEn(hit.ImpactDsp)` y ya: `ImpactDsp`
+   viene en el mismo reloj DSP que mide la canción. Es lo que cobra el hito Go/No-Go, y por lo
+   que `JY` —calibrar latencia entre golpe y música— quedó sin objeto.
+3. **Los beats negativos son válidos**: son la cuenta regresiva.
+
+### Lección de la sonda
+
+`AudioSource.isPlaying` devuelve `true` en cuanto la pista queda **agendada**, aunque todavía
+no suene. La primera lectura de cada corrida comparaba un reloj en beats negativos contra un
+`timeSamples` en cero y reportaba −14.7 ms, que contaminaba el máximo de los tres minutos
+siguientes. El defecto era de la sonda, no del reloj.
+
 ## Tareas de clase entregadas
 
 | Fecha | Tarea | Carpeta |
