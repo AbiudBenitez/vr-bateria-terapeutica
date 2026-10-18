@@ -21,7 +21,14 @@ import xml.etree.ElementTree as ET
 
 NS = "{http://schemas.microsoft.com/project}"
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CRONO = os.path.join(RAIZ, "entregables", "Cronograma_ProjectLibre.xml")
+# VIGILA EL CRONOGRAMA OPERATIVO, que es el que el equipo abre en ProjectLibre.
+#
+# Hasta el 18 de octubre apuntaba al de 257 tareas, que desde el recorte de alcance es
+# evidencia historica y nadie edita. El resultado fue que el guardian informaba sobre un
+# archivo que nadie tocaba mientras el que si se tocaba perdia marcas sin aviso: trece se
+# cayeron y el informe seguia diciendo que todo estaba bien.
+CRONO = os.path.join(RAIZ, "entregables", "Cronograma_Operativo.xml")
+HISTORICO = os.path.join(RAIZ, "entregables", "Cronograma_ProjectLibre.xml")
 ESTADO = os.path.join(RAIZ, "scripts", ".hitos_completos.json")
 
 
@@ -100,7 +107,13 @@ def restaurar(claves):
 
 
 def main():
+    global CRONO, ESTADO
     arg = sys.argv[1] if len(sys.argv) > 1 else ""
+    if arg == "--historico":
+        # El de 257 tareas, por si hiciera falta revisarlo. Cada archivo lleva su propio
+        # estado: mezclarlos daria falsos positivos en los dos sentidos.
+        CRONO, ESTADO = HISTORICO, ESTADO.replace(".json", "_historico.json")
+        arg = sys.argv[2] if len(sys.argv) > 2 else ""
 
     if arg == "--guardar":
         c = guardar()
