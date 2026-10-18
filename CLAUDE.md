@@ -369,6 +369,58 @@ no suene. La primera lectura de cada corrida comparaba un reloj en beats negativ
 `timeSamples` en cero y reportaba −14.7 ms, que contaminaba el máximo de los tres minutos
 siguientes. El defecto era de la sonda, no del reloj.
 
+## Juego de ritmo — jugable, 17-oct-2026
+
+Segunda pieza del área que heredó desarrollo VR por R14. Sobre el reloj musical.
+
+| | |
+|---|---|
+| Spec | `docs/superpowers/specs/2026-10-17-beatmap-y-juicio-design.md` |
+| Plan | `docs/superpowers/plans/2026-10-17-beatmap-y-juicio.md` |
+| Código | `Beatmap` · `HitJudge` · `NoteMatcher` · `NoteSpawner` · `Scoreboard` · `JudgePopup` |
+| Cierra | `JA.2` `JA.3` · `JB.1`–`JB.3` · `JN.1` `JN.2` · `JW.1` `JW.2` `JW.5` · `JP.1` `JP.3` · `JI.1` |
+
+Con las tres del reloj son **las 15 que R14 conservó**. 79 pruebas en verde.
+
+### Las ventanas van en milisegundos, nunca en beats
+
+```
+Perfect ±25 ms · Good ±60 ms · Miss más allá
+```
+
+Una ventana en fracciones de pulso se encoge al subir el tempo, y la precisión humana no escala
+con el BPM. El ±25 es el criterio Go/No-Go del acta: con un p90 medido de +4.07 ms, la ventana
+es **seis veces el error del sistema**. Se mide al jugador, no al motor.
+
+La comparación se hace en tiempo DSP —`hit.ImpactDsp` contra `reloj.DspDelBeat(beat)`—, así que
+`HitJudge` no sabe de tempo y sigue valiendo si llega la rampa del iso-principio.
+
+### Cuatro defectos que solo aparecieron en el visor
+
+1. **El `MISS` era inalcanzable por las dos vías.** Una nota no golpeada se contaba sin avisar
+   a nadie; y un golpe emparejado tampoco podía darlo, porque `NoteMatcher` busca DENTRO de la
+   ventana de Miss y `HitJudge` solo lo devuelve FUERA. Se excluyen.
+2. **Dos componentes escribiendo sobre el mismo `TMP_Text`.** Lo causó el cableador al
+   «reutilizar el texto existente».
+3. **Panel a dieciséis metros.** Posición local colgando de un objeto en `(1.87, 0, 15.98)`,
+   creado donde cayó. Una posición local solo vale si controlas dónde está el padre.
+4. **El patrón era injugable.** 4 notas/s con dos baquetas. Bajar el hi-hat a la mitad no
+   bastó: seguía cayendo en el mismo pulso que el bombo, exigiendo las dos manos a la vez.
+   Ahora una nota por pulso, 2/s.
+
+### Reglas nuevas
+
+- **Dos compases de entrada** antes de la primera nota. Sin ellos los fallos iniciales no miden
+  precisión, miden que la canción agarró al jugador desprevenido.
+- **El veredicto aparece sobre el pad golpeado**, no en un panel arriba: en VR, leer un
+  marcador lejano es dejar de ver lo que estás tocando.
+- **El tamaño de TMP 3D va en metros.** 0.05 resultó grande; 0.032 se lee sin tapar la pieza.
+
+### Trabajar con el visor sin cable
+
+`scripts/quest.sh` — `wifi` una vez con cable, luego `install`, `ritmo`, `pull`. El modo TCP/IP
+se pierde al reiniciar el visor.
+
 ## Tareas de clase entregadas
 
 | Fecha | Tarea | Carpeta |
