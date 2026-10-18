@@ -458,6 +458,26 @@ publicados de NMT y se documenta la ausencia de validación externa como limitac
 Añade un nodo al camino del audio y obligaría a **remedir la latencia**, que es la medida 4 y
 la única ya ganada con margen. Ninguna medida pide un mixer.
 
+### ProjectLibre: dos cosas que NO soporta
+
+**Tareas inactivas.** Escribe `<Active>` en las 265 tareas pero lo ignora: poner `Active=0` y
+guardar lo revierte a `1`. Las tareas inactivas son de MS Project 2010+ y ProjectLibre no las
+implementa. **Probado el 18-oct con JY; no funciona.** Por eso las recortadas se marcan con una
+nota, no desactivándolas.
+
+**Hitos de duración cero al 100 %.** Hay **38 hitos** en el cronograma —`PT0H0M0S`— y
+**ninguno puede quedar marcado como completo**: ProjectLibre deriva el porcentaje de la
+duración, y sin duración el cociente es cero. Cada vez que alguien abre y guarda el archivo,
+los hitos que estuvieran al 100 % vuelven a 0.
+
+Los 38: `AA.1 AB.4 AD.2 AO.3 AR.1 II.3 IS.3 IS.4 JB.1 JB.2 JF.2 JL.2 JM.3 JP.2 JP.3 JW.3 JW.4
+JW.5 JY MP.2 MP.3 QB.4 QC.1 QC.4 QC.5 QD.5 QE.3 QE.4 QT.3 SB.1 SB.2 SB.3 SB.4 SB.5 SC.1 SE.4
+SM.1 SU`
+
+Explica los sustos de septiembre y octubre: `QC.5` cayéndose tres veces no era capricho de la
+herramienta, era estructural. **Tras cada guardado desde ProjectLibre hay que revisar si algún
+hito volvió a cero.**
+
 ### Cuidado al tocar el cronograma
 
 Las recortadas **no se borran**: llevan `[FUERA DE ALCANCE]` y la razón en el campo de notas.
