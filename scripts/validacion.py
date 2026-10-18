@@ -116,10 +116,24 @@ def resumen():
     for t in hechas:
         a = AREAS.get(t["clave"][0], t["clave"][0])
         por_area[a] = por_area.get(a, 0) + 1
+    # Las recortadas salen del denominador: medir el avance contra trabajo cancelado daría un
+    # porcentaje que no significa nada. Se importa aquí y no arriba para que validacion.py
+    # siga funcionando si recorte.py no existe todavía.
+    try:
+        import recorte
+        fuera = set(recorte.RECORTADAS)
+    except ImportError:
+        fuera = set()
+
+    vigentes = {k: v for k, v in f.items() if k not in fuera}
+    hechas_v = [t for t in vigentes.values() if t["hecha"]]
+
     return dict(
-        total=len(f),
-        hechas=len(hechas),
-        pct=100.0 * len(hechas) / max(len(f), 1),
+        total=len(vigentes),
+        hechas=len(hechas_v),
+        pct=100.0 * len(hechas_v) / max(len(vigentes), 1),
+        total_original=len(f),
+        recortadas=len(fuera),
         por_responsable=dict(sorted(por_resp.items(), key=lambda kv: -kv[1]["hechas"])),
         por_area=dict(sorted(por_area.items(), key=lambda kv: -kv[1])),
         # Las que la hoja del equipo no refleja: el desfase que la carta declara.

@@ -421,6 +421,82 @@ La comparación se hace en tiempo DSP —`hit.ImpactDsp` contra `reloj.DspDelBea
 `scripts/quest.sh` — `wifi` una vez con cable, luego `install`, `ritmo`, `pull`. El modo TCP/IP
 se pierde al reiniciar el visor.
 
+## Recorte de alcance — 18-oct-2026
+
+El proyecto pasa de **257 a 158 actividades**. 100 recortadas, 12 que estaban hechas sin
+registrar, 1 añadida.
+
+| | |
+|---|---|
+| Spec | `docs/superpowers/specs/2026-10-18-recorte-de-alcance-design.md` |
+| Plan | `docs/superpowers/plans/2026-10-18-recorte-de-alcance.md` |
+| Documento | `entregables/10_Recorte_de_Alcance.docx` |
+| Datos | `scripts/recorte.py` — única fuente de verdad, con 8 pruebas |
+
+### El criterio
+
+**Sobrevive lo que sirve a una medida de éxito de la carta sponsor. Se recorta lo que no sirve
+a ninguna.** No es «lo que dio tiempo»: la carta comprometió diez resultados verificables, no
+257 tareas.
+
+### La medida 8 se retira
+
+El asesor terapéutico tenía fecha límite el 10-sep y nunca llegó. Sin asesor no hay dictamen,
+así que la medida no se puede verificar por ningún camino. Se sustituye por protocolos
+publicados de NMT y se documenta la ausencia de validación externa como limitación explícita
+— la contingencia que el acta ya había previsto.
+
+### Los tres recortes grandes
+
+- **Entorno 3D, de 31 a 6.** El área deja de modelar y pasa a integrar assets libres.
+  Diecisiete tareas seriales de modelado no caben en diecinueve días.
+- **Juego de ritmo, de 22 a 0.** Ya estaban recortadas por R14; esto solo lo refleja.
+- **Sonido, de 22 a 1.** Doce ya estaban hechas sin registrar. Solo falta un crash.
+
+### El Audio Mixer se descarta, y por qué
+
+Añade un nodo al camino del audio y obligaría a **remedir la latencia**, que es la medida 4 y
+la única ya ganada con margen. Ninguna medida pide un mixer.
+
+### ProjectLibre: dos cosas que NO soporta
+
+**Tareas inactivas.** Escribe `<Active>` en las 265 tareas pero lo ignora: poner `Active=0` y
+guardar lo revierte a `1`. Las tareas inactivas son de MS Project 2010+ y ProjectLibre no las
+implementa. **Probado el 18-oct con JY; no funciona.** Por eso las recortadas se marcan con una
+nota, no desactivándolas.
+
+**Hitos de duración cero al 100 %.** Hay **38 hitos** en el cronograma —`PT0H0M0S`— y
+**ninguno puede quedar marcado como completo**: ProjectLibre deriva el porcentaje de la
+duración, y sin duración el cociente es cero. Cada vez que alguien abre y guarda el archivo,
+los hitos que estuvieran al 100 % vuelven a 0.
+
+Los 38: `AA.1 AB.4 AD.2 AO.3 AR.1 II.3 IS.3 IS.4 JB.1 JB.2 JF.2 JL.2 JM.3 JP.2 JP.3 JW.3 JW.4
+JW.5 JY MP.2 MP.3 QB.4 QC.1 QC.4 QC.5 QD.5 QE.3 QE.4 QT.3 SB.1 SB.2 SB.3 SB.4 SB.5 SC.1 SE.4
+SM.1 SU`
+
+Explica los sustos de septiembre y octubre: `QC.5` cayéndose tres veces no era capricho de la
+herramienta, era estructural. **Tras cada guardado desde ProjectLibre hay que revisar si algún
+hito volvió a cero.** Para eso está `scripts/hitos.py`:
+
+```
+hitos.py              informe: cuáles cayeron
+hitos.py --guardar    anota el estado bueno (correr ANTES de abrir ProjectLibre)
+hitos.py --restaurar  devuelve al 100 % los que cayeron
+```
+
+### Cuidado al tocar el cronograma
+
+Las recortadas **no se borran**: llevan `[FUERA DE ALCANCE]` y la razón en el campo de notas.
+Una actividad borrada no deja rastro de por qué se quitó.
+
+`validacion.py` las excluye del denominador. El avance vigente es **93 de 157 (59 %)**; sube a
+105 de 158 (66 %) cuando el área de sonido marque sus doce desde ProjectLibre.
+
+### Ojo con regenerar la carta de validación
+
+`gen_validacion.py` **sigue produciendo la sección 3.1**, que el equipo decidió retirar el
+21-sep. Correrlo sobrescribe esa decisión. Hay un aviso en el propio script.
+
 ## Tareas de clase entregadas
 
 | Fecha | Tarea | Carpeta |

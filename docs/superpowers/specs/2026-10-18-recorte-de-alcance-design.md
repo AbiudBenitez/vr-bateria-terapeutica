@@ -57,16 +57,16 @@ son el destino. Recortar contra las medidas se defiende; recortar contra el relo
 | Juego de ritmo | 17 | 0 | 22 | 17 |
 | QA y gestión | 18 | 28 | 14 | 46 |
 | Experiencia emocional | 18 | 1 | 0 | 19 |
-| Interfaz | 9 | 8 | 14 | 17 |
+| Interfaz | 9 | 9 | 13 | 18 |
 | Entorno 3D | 1 | 6 | 25 | 7 |
 | Música | 2 | 5 | 13 | 7 |
 | **Sonido** | **13** | **1** | **9** | **14** |
-| Subtotal | 105 | 51 | 101 | 156 |
+| Subtotal | 105 | 52 | 100 | 157 |
 | Métricas de sesión (nueva, §5) | — | 1 | — | 1 |
-| **TOTAL** | **105** | **52** | **101** | **157** |
+| **TOTAL** | **105** | **53** | **100** | **158** |
 
-Las 257 originales se reparten en 105 hechas, 51 que sobreviven y 101 recortadas. La actividad
-de métricas no existía en el plan original y se añade. **De 257 actividades a 157.**
+Las 257 originales se reparten en 105 hechas, 52 que sobreviven y 100 recortadas. La actividad
+de métricas no existía en el plan original y se añade. **De 257 actividades a 158.**
 
 El ritmo exigido baja a **2.7 actividades diarias entre siete personas** hasta el 13 de
 noviembre, que sí cabe.
@@ -78,7 +78,7 @@ La primera versión de este diseño contaba las doce actividades de sonido ya ej
 por intensidad, la medición del retraso y la normalización de las muestras se hicieron desde
 desarrollo VR y nadie las registró en el área que las tenía asignadas.
 
-Eso mueve las hechas de 93 a **105** y el nuevo total de 144 a **157**. El error iba en
+Eso mueve las hechas de 93 a **105** y el nuevo total de 144 a **158**. El error iba en
 contra del proyecto —daba por perdido trabajo real—, pero un recorte que no distingue entre
 «hecho» y «cancelado» no sirve para decidir nada.
 
@@ -142,7 +142,7 @@ dificultad por patrón, y las pruebas de comodidad del patrón.
 Las dificultades ya no existen por R14, de modo que crear tres versiones de cada patrón no
 tiene destino.
 
-### Interfaz: de 22 pendientes a 8
+### Interfaz: de 22 pendientes a 9
 
 **Sobrevive:** el tutorial *(medida 6, interacción intuitiva)*, la corrección de legibilidad en
 el visor, y la implementación en Unity de las pantallas del flujo que se demuestra.
