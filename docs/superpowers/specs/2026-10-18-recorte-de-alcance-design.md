@@ -53,27 +53,41 @@ son el destino. Recortar contra las medidas se defiende; recortar contra el relo
 
 | Área | Hechas | Sobreviven | Se recortan | Nuevo total |
 |---|---|---|---|---|
-| Desarrollo VR | 27 | 3 | 3 | 30 |
+| Desarrollo VR | 27 | 2 | 4 | 29 |
 | Juego de ritmo | 17 | 0 | 22 | 17 |
 | QA y gestión | 18 | 28 | 14 | 46 |
 | Experiencia emocional | 18 | 1 | 0 | 19 |
 | Interfaz | 9 | 8 | 14 | 17 |
-| Entorno 3D | 1 | 5 | 26 | 6 |
-| Música | 2 | 4 | 14 | 6 |
-| Sonido | 1 | 2 | 20 | 3 |
-| **TOTAL** | **93** | **51** | **113** | **144** |
+| Entorno 3D | 1 | 6 | 25 | 7 |
+| Música | 2 | 5 | 13 | 7 |
+| **Sonido** | **13** | **1** | **9** | **14** |
+| **TOTAL** | **105** | **51** | **101** | **157** |
 
-**De 257 actividades a 144.** El ritmo exigido baja a **2.7 actividades diarias entre siete
-personas** hasta el 13 de noviembre, que sí cabe.
+Más una actividad nueva: exportar las métricas de sesión (§5). **De 257 actividades a 157.**
+
+El ritmo exigido baja a **2.7 actividades diarias entre siete personas** hasta el 13 de
+noviembre, que sí cabe.
+
+### 3.0 Corrección sobre el conteo de Sonido
+
+La primera versión de este diseño contaba las doce actividades de sonido ya ejecutadas como
+«recortadas». **No lo están: están terminadas.** La integración con `DrumHit`, la asignación
+por intensidad, la medición del retraso y la normalización de las muestras se hicieron desde
+desarrollo VR y nadie las registró en el área que las tenía asignadas.
+
+Eso mueve las hechas de 93 a **105** y el nuevo total de 144 a **157**. El error iba en
+contra del proyecto —daba por perdido trabajo real—, pero un recorte que no distingue entre
+«hecho» y «cancelado» no sirve para decidir nada.
 
 ### 3.1 El porcentaje sube y hay que decir por qué
 
-El avance pasa de **36 % a 65 %**. Conviene declararlo sin rodeos, porque leído solo suena a
+El avance pasa de **36 % a 67 %**. Conviene declararlo sin rodeos, porque leído solo suena a
 maquillaje:
 
-> El numerador no cambió. Siguen siendo las mismas 93 actividades terminadas. Lo que cambió es
-> el denominador, por una decisión documentada de recortar alcance. El proyecto no avanzó de
-> golpe: dejó de medirse contra trabajo que nunca se iba a hacer.
+> El numerador sube de 93 a 105 por una razón acotada: doce actividades de sonido estaban
+> terminadas y no se habían registrado. El resto del salto es del denominador, que baja de 257
+> a 157 por una decisión documentada de recortar alcance. El proyecto no avanzó de golpe: dejó
+> de medirse contra trabajo que nunca se iba a hacer.
 
 Un porcentaje que sube sin explicación destruye la credibilidad del resto del documento. Con la
 explicación, demuestra control.
@@ -93,7 +107,7 @@ qué entorno favorece la experiencia, y la revisión cruzada con experiencia emo
 El área deja de modelar y pasa a **integrar**. Diecisiete tareas seriales de modelado no caben;
 componer una escena con assets libres y optimizarla, sí.
 
-### Sonido: de 22 pendientes a 2
+### Sonido: de 22 pendientes a 1
 
 Doce de las veintidós **ya están hechas y nadie las registró**: la integración con `DrumHit`
 —que selecciona la muestra por pieza y por intensidad, con dinámica timbral y round-robin— y la
