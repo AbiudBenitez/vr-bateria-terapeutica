@@ -421,6 +421,56 @@ La comparación se hace en tiempo DSP —`hit.ImpactDsp` contra `reloj.DspDelBea
 `scripts/quest.sh` — `wifi` una vez con cable, luego `install`, `ritmo`, `pull`. El modo TCP/IP
 se pierde al reiniciar el visor.
 
+## Recorte de alcance — 18-oct-2026
+
+El proyecto pasa de **257 a 158 actividades**. 100 recortadas, 12 que estaban hechas sin
+registrar, 1 añadida.
+
+| | |
+|---|---|
+| Spec | `docs/superpowers/specs/2026-10-18-recorte-de-alcance-design.md` |
+| Plan | `docs/superpowers/plans/2026-10-18-recorte-de-alcance.md` |
+| Documento | `entregables/10_Recorte_de_Alcance.docx` |
+| Datos | `scripts/recorte.py` — única fuente de verdad, con 8 pruebas |
+
+### El criterio
+
+**Sobrevive lo que sirve a una medida de éxito de la carta sponsor. Se recorta lo que no sirve
+a ninguna.** No es «lo que dio tiempo»: la carta comprometió diez resultados verificables, no
+257 tareas.
+
+### La medida 8 se retira
+
+El asesor terapéutico tenía fecha límite el 10-sep y nunca llegó. Sin asesor no hay dictamen,
+así que la medida no se puede verificar por ningún camino. Se sustituye por protocolos
+publicados de NMT y se documenta la ausencia de validación externa como limitación explícita
+— la contingencia que el acta ya había previsto.
+
+### Los tres recortes grandes
+
+- **Entorno 3D, de 31 a 6.** El área deja de modelar y pasa a integrar assets libres.
+  Diecisiete tareas seriales de modelado no caben en diecinueve días.
+- **Juego de ritmo, de 22 a 0.** Ya estaban recortadas por R14; esto solo lo refleja.
+- **Sonido, de 22 a 1.** Doce ya estaban hechas sin registrar. Solo falta un crash.
+
+### El Audio Mixer se descarta, y por qué
+
+Añade un nodo al camino del audio y obligaría a **remedir la latencia**, que es la medida 4 y
+la única ya ganada con margen. Ninguna medida pide un mixer.
+
+### Cuidado al tocar el cronograma
+
+Las recortadas **no se borran**: llevan `[FUERA DE ALCANCE]` y la razón en el campo de notas.
+Una actividad borrada no deja rastro de por qué se quitó.
+
+`validacion.py` las excluye del denominador. El avance vigente es **93 de 157 (59 %)**; sube a
+105 de 158 (66 %) cuando el área de sonido marque sus doce desde ProjectLibre.
+
+### Ojo con regenerar la carta de validación
+
+`gen_validacion.py` **sigue produciendo la sección 3.1**, que el equipo decidió retirar el
+21-sep. Correrlo sobrescribe esa decisión. Hay un aviso en el propio script.
+
 ## Tareas de clase entregadas
 
 | Fecha | Tarea | Carpeta |
