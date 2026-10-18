@@ -1,0 +1,73 @@
+Assets del entorno 3D
+=====================
+
+Cinco modelos de Poly Pizza (poly.pizza) y un pack de cielos de Kenney.
+
+TRES DE ELLOS SON CC BY: la atribución es OBLIGATORIA, no cortesía. Omitirla es infracción
+aunque el proyecto sea académico y no se distribuya.
+
+
+Modelos
+-------
+
+    Stage                  iPoly3D      CC0           poly.pizza/m/dGRAisemWy
+    Market Scene           Quaternius   CC0           poly.pizza/m/LkNRqxdCKp
+    Stadium Seats          Zsky         CC BY 3.0     poly.pizza/m/KAHX68dbXO
+    Piano                  jeremy       CC BY 3.0     poly.pizza/m/7U-93vxPOER
+    Drumkit                J-Toastie    CC BY 3.0     poly.pizza/m/4l5jRtpTec
+
+    Skyboxes (1.0)         Kenney       CC0           kenney.nl
+
+CC BY 3.0:  https://creativecommons.org/licenses/by/3.0/
+CC0 1.0:    https://creativecommons.org/publicdomain/zero/1.0/
+
+
+Texto de atribución para los créditos de la aplicación
+------------------------------------------------------
+
+Incluir, de los modelos CC BY que se usen:
+
+    "Stadium Seats" por Zsky — poly.pizza
+    "Piano" por jeremy — poly.pizza
+    "Drumkit" por J-Toastie — poly.pizza
+    Licenciados bajo Creative Commons Attribution 3.0
+    https://creativecommons.org/licenses/by/3.0/
+
+Los CC0 no exigen atribución. Se citan igualmente por buena práctica:
+
+    "Stage" por iPoly3D y "Market Scene" por Quaternius — poly.pizza (CC0)
+    Skyboxes por Kenney — kenney.nl (CC0)
+
+
+Datos técnicos medidos
+----------------------
+
+    Drumkit          2 967 vértices    5 414 caras    6 materiales    0 texturas
+    Piano            1 234 vértices    1 936 caras    4 materiales    0 texturas
+    Stadium Seats      320 vértices      594 caras    2 materiales    0 texturas
+    Stage            FBX, 534 KB en dos archivos
+    Market Scene     FBX, 787 KB
+
+    Total contado en los OBJ: 7 944 triángulos, contra un presupuesto de 300 000.
+
+NINGUNO USA TEXTURAS: solo materiales de color plano. Es lo ideal para el visor —sin memoria
+gráfica que gastar ni compresión ASTC que resolver— y permite aplicar la paleta del proyecto
+cambiando el color del material, sin editar imágenes.
+
+
+Decisiones de uso
+-----------------
+
+SE USAN:  Stage, Stadium Seats y un skybox. Dan un lugar donde se está tocando, sin nada que
+          se mueva ni compita con las notas.
+
+NO SE USAN: Market Scene y Piano. Un mercado no tiene relación con una batería, y el piano
+          añade objetos sin aportar al objetivo.
+
+EL DRUMKIT NO SUSTITUYE A LOS PADS. Los pads actuales están medidos y calibrados, con sus
+planos de golpe ajustados y verificados por pruebas. Cambiarlos por un modelo obligaría a
+recolocar todo y rompería la medición de latencia. Sirve como decorado de fondo, nunca como
+el instrumento que se toca.
+
+LOS SKYBOX VIENEN A 4096x2048. Se conserva UNO solo y se reduce a 2048x1024: a distancia de
+cielo la diferencia no se percibe y cinco de ese tamaño son mucha memoria en el visor.
