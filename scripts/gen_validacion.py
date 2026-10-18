@@ -71,6 +71,14 @@ LIMITACIONES = [
 ]
 
 
+# AVISO: la carta entregada NO lleva la sección 3.1.
+#
+# El equipo decidió el 21-sep retirar la nota que conciliaba las cifras del documento de medio
+# curso con las del cronograma. Este generador la sigue produciendo, de modo que correrlo
+# SOBRESCRIBE esa decisión. Si se regenera, hay que volver a quitarla a mano o revertir el
+# archivo con git.
+
+
 def carta():
     r = validacion.resumen()
     doc = neutro.nuevo()
