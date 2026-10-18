@@ -19,6 +19,15 @@ propio golpe del de la pista.
 
 # Posiciones dentro de un compás de 4/4, en beats desde su inicio.
 CORCHEAS = [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5]
+PULSOS = [0.0, 1.0, 2.0, 3.0]
+
+# El acompañamiento marca los PULSOS, no las corcheas.
+#
+# La partitura de referencia lleva hi-hat en corcheas, pero eso es lo que TOCA un baterista,
+# no lo que necesita de referencia. Medido: en corcheas el fondo suena 2.67 veces por segundo
+# contra 1.67 del jugador —1.6 golpes de fondo por cada uno propio—, y en lugar de guiar
+# compite. En pulsos baja a 1.33/s y sigue marcando cada tiempo, que es lo que hace un
+# metrónomo.
 
 PATRONES = {
     "01_Pulso_80": dict(
@@ -27,7 +36,7 @@ PATRONES = {
         pulsos_por_compas=4,
         compases=32,
         # Hi-hat solo en los pulsos: a 80 BPM son 1.33 golpes por segundo de referencia.
-        acompanamiento={"HiHat": [0.0, 1.0, 2.0, 3.0]},
+        acompanamiento={"HiHat": PULSOS},
         # Lo mínimo que se puede tocar: una pieza cada dos pulsos, alternando manos.
         jugador={"Bombo": [0.0], "Tarola": [2.0]},
     ),
@@ -36,7 +45,7 @@ PATRONES = {
         bpm=80.0,
         pulsos_por_compas=4,
         compases=32,
-        acompanamiento={"HiHat": CORCHEAS},
+        acompanamiento={"HiHat": PULSOS},
         jugador={"Bombo": [0.0, 2.0, 2.5], "Tarola": [1.0, 3.0]},
     ),
     "03_Rock_100": dict(
@@ -44,7 +53,7 @@ PATRONES = {
         bpm=100.0,
         pulsos_por_compas=4,
         compases=32,
-        acompanamiento={"HiHat": CORCHEAS},
+        acompanamiento={"HiHat": PULSOS},
         jugador={"Bombo": [0.0, 2.0, 2.5], "Tarola": [1.0, 3.0]},
     ),
     "04_Rock_120": dict(
@@ -52,7 +61,7 @@ PATRONES = {
         bpm=120.0,
         pulsos_por_compas=4,
         compases=32,
-        acompanamiento={"HiHat": CORCHEAS},
+        acompanamiento={"HiHat": PULSOS},
         jugador={"Bombo": [0.0, 2.0, 2.5], "Tarola": [1.0, 3.0]},
     ),
 }

@@ -40,11 +40,25 @@ def test_el_rock_basico_tiene_la_forma_de_la_partitura():
     ], f"el patrón no coincide con la partitura: {primer_compas}"
 
 
-def test_el_hihat_va_en_corcheas_en_los_patrones_de_rock():
+def test_el_acompanamiento_marca_los_pulsos():
+    """
+    En corcheas el fondo sonaba 1.6 veces por cada golpe del jugador y competía en lugar de
+    guiar. La referencia va en pulsos, como un metrónomo.
+    """
+    for nombre, p in patrones.PATRONES.items():
+        assert p["acompanamiento"]["HiHat"] == patrones.PULSOS, \
+            f"{nombre}: el acompañamiento no marca los cuatro pulsos"
+
+
+def test_el_fondo_nunca_suena_mas_que_el_jugador_en_los_patrones_de_rock():
+    """Una referencia que suena más que tú deja de ser referencia."""
     for nombre in ("02_Rock_80", "03_Rock_100", "04_Rock_120"):
         p = patrones.PATRONES[nombre]
-        assert p["acompanamiento"]["HiHat"] == patrones.CORCHEAS, \
-            f"{nombre}: el hi-hat no marca las ocho corcheas"
+        d = patrones.duracion_segundos(p)
+        fondo = len(patrones.eventos(p, "acompanamiento")) / d
+        jug = len(patrones.eventos(p, "jugador")) / d
+        assert fondo <= jug, \
+            f"{nombre}: el fondo va a {fondo:.2f}/s contra {jug:.2f}/s del jugador"
 
 
 def test_la_progresion_sube_de_densidad():

@@ -20,14 +20,24 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import patrones
 
 SR = 48000          # tasa nativa del visor, la misma del kit
+
+# Nivel del acompañamiento. Es REFERENCIA, no protagonista: tiene que oírse sin tapar los
+# golpes del jugador, que suenan a nivel completo.
+NIVEL_FONDO = 0.35
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 UNITY = "/Users/abiudbenitez/Documents/code/Unity/BateriaVR"
 KIT = os.path.join(UNITY, "Assets", "Audio", "Kit")
 SALIDA = os.path.join(UNITY, "Assets", "Audio", "Practica")
 
-# Una muestra fija por pieza, no sorteada: la pista debe sonar igual cada vez que se genere,
-# para que una medición de hoy valga para el archivo de mañana.
-MUESTRAS = {"HiHat": "Hat5-1.wav", "Bombo": "Kick8-1.wav", "Tarola": "Snare7-1.wav"}
+# Se rota entre varias muestras de cada pieza, con SEMILLA FIJA.
+#
+# Una sola muestra repetida 128 veces suena a máquina: el kit tiene veinte hi-hats y el motor
+# ya hace round-robin al tocar, así que el acompañamiento sonaba más artificial que lo que el
+# jugador golpea. Con semilla fija la pista sigue siendo idéntica cada vez que se genera, que
+# es lo que permite que una medición de hoy valga para el archivo de mañana.
+SEMILLA = 20261018
+MUESTRAS = {"HiHat": "Hat5-", "Bombo": "Kick8-", "Tarola": "Snare7-"}
+CUANTAS = 6          # de cada pieza; más variedad no se nota y alarga la carga
 
 
 def decodificar(crudo, ancho):
@@ -51,8 +61,16 @@ def decodificar(crudo, ancho):
     raise SystemExit(f"ancho de muestra no soportado: {ancho} bytes")
 
 
-def leer_muestra(pieza):
-    ruta = os.path.join(KIT, pieza, MUESTRAS[pieza])
+def muestras_de(pieza):
+    """Las primeras CUANTAS muestras de la pieza, ordenadas por nombre."""
+    import glob as _glob
+    rutas = sorted(_glob.glob(os.path.join(KIT, pieza, MUESTRAS[pieza] + "*.wav")))
+    if not rutas:
+        raise SystemExit(f"No encontré muestras de {pieza} en {KIT}")
+    return [leer_muestra(r) for r in rutas[:CUANTAS]]
+
+
+def leer_muestra(ruta):
     with wave.open(ruta, "rb") as w:
         sr, n, ancho, canales = (w.getframerate(), w.getnframes(),
                                  w.getsampwidth(), w.getnchannels())
@@ -63,7 +81,51 @@ def leer_muestra(pieza):
     if sr != SR:
         raise SystemExit(f"{ruta} está a {sr} Hz y se esperaba {SR}")
     pico = np.max(np.abs(x))
-    return x / pico if pico else x
+    if pico:
+        x = x / pico
+    return recortar_al_ataque(x)
+
+
+def recortar_al_ataque(x, umbral=0.2):
+    """
+    Quita el silencio que precede al ataque.
+
+    Las muestras del pack empiezan con cantidades distintas de silencio: medido en los hi-hats,
+    de 0.40 a 4.21 ms. Al rotar entre varias, ese silencio desigual hace que el pulso tiemble
+    casi cuatro milisegundos, que es audible y además rompe la verificación de sincronía.
+
+    Alinear por el ataque es lo que permite usar round-robin sin perder precisión: la versión
+    de una sola muestra evitaba el problema por accidente, no por diseño.
+    """
+    if len(x) == 0:
+        return x
+    pico = np.max(np.abs(x))
+    if pico <= 0:
+        return x
+    i = int(np.argmax(np.abs(x) > umbral * pico))
+    return x[i:] if i > 0 else x
+
+
+def acortar(m, spb):
+    """
+    Recorta la muestra a poco menos de un pulso, con un desvanecido corto.
+
+    Las muestras del pack duran de 2 a 5 segundos. A 120 BPM eso son hasta diez hi-hats
+    sonando a la vez, y el zumbido acumulado enmascara los ataques siguientes: en la
+    verificación dos golpes de 128 quedaron sin detectar, y lo que el detector no oye el
+    jugador tampoco.
+
+    Un hi-hat cerrado real no suena cinco segundos. Acortarlo es corregir el sonido, no hacer
+    que pase una prueba.
+    """
+    largo = int(spb * 0.9 * SR)
+    if len(m) <= largo:
+        return m
+    cortada = m[:largo].copy()
+    # Desvanecido en el último 25 %: cortar en seco produce un chasquido.
+    n = max(1, int(largo * 0.25))
+    cortada[-n:] *= np.linspace(1.0, 0.0, n)
+    return cortada
 
 
 def sintetizar(patron):
@@ -73,20 +135,29 @@ def sintetizar(patron):
     cola = 1.0                                   # margen para que el último golpe no se corte
     senal = np.zeros(int((dur + cola) * SR))
 
-    muestras = {p: leer_muestra(p) for p in patron["acompanamiento"]}
+    banco = {p: muestras_de(p) for p in patron["acompanamiento"]}
+    rng = np.random.default_rng(SEMILLA)
+
     for beat, pieza in patrones.eventos(patron, "acompanamiento"):
         # Desde el beat, NO acumulando.
         i = int(round(beat * spb * SR))
-        m = muestras[pieza]
+        opciones = banco[pieza]
+        m = acortar(opciones[rng.integers(0, len(opciones))], spb)
         fin = min(i + len(m), len(senal))
-        senal[i:fin] += m[:fin - i] * 0.7        # deja sitio a lo que toca el jugador
+        senal[i:fin] += m[:fin - i] * NIVEL_FONDO
     return senal
 
 
 def escribir_wav(ruta, senal):
-    pico = np.max(np.abs(senal))
-    datos = (np.clip(senal / pico * 0.9, -1, 1) * 32767).astype("<i2") if pico else \
-            np.zeros(len(senal), dtype="<i2")
+    """
+    Escribe el WAV SIN normalizar al pico.
+
+    La primera versión normalizaba, y eso devolvía el acompañamiento a tope por mucho que se
+    hubiera mezclado al 70 %: en el visor el hi-hat sonaba más fuerte que los golpes del
+    jugador. El nivel debe venir ya decidido del archivo, no depender de que alguien baje un
+    control en el inspector.
+    """
+    datos = (np.clip(senal, -1, 1) * 32767).astype("<i2")
     with wave.open(ruta, "wb") as w:
         w.setnchannels(1)
         w.setsampwidth(2)
