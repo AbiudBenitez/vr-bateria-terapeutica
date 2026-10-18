@@ -8035,7 +8035,7 @@
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-14T08:00:00</Start>
-            <Finish>2026-09-16T11:00:00</Finish>
+            <Stop>2026-09-16T11:00:00</Stop><Finish>2026-09-16T11:00:00</Finish>
             <Duration>PT19H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -8050,8 +8050,8 @@
             <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
-            <PercentComplete>0</PercentComplete>
-            <PercentWorkComplete>0</PercentWorkComplete>
+            <PercentComplete>100</PercentComplete>
+            <PercentWorkComplete>100</PercentWorkComplete>
             <RemainingDuration>PT19H0M0S</RemainingDuration>
             <ConstraintType>0</ConstraintType>
             <CalendarUID>-1</CalendarUID>
@@ -8086,7 +8086,7 @@
             </PredecessorLink>
             <Active>1</Active>
             <Manual>0</Manual>
-        </Task>
+        <Notes>[HECHA 2026-10-18] Assets elegidos y copiados: Stage y Stadium Seats de Poly Pizza, skybox de Kenney, arbol y textura de tierra de Fantasy Forest</Notes></Task>
         <Task>
             <UID>114</UID>
             <ID>114</ID>
@@ -8099,7 +8099,7 @@
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-16T15:00:00</Start>
-            <Finish>2026-09-17T17:00:00</Finish>
+            <Stop>2026-09-17T17:00:00</Stop><Finish>2026-09-17T17:00:00</Finish>
             <Duration>PT10H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -8114,8 +8114,8 @@
             <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
-            <PercentComplete>0</PercentComplete>
-            <PercentWorkComplete>0</PercentWorkComplete>
+            <PercentComplete>100</PercentComplete>
+            <PercentWorkComplete>100</PercentWorkComplete>
             <RemainingDuration>PT10H0M0S</RemainingDuration>
             <ConstraintType>0</ConstraintType>
             <CalendarUID>-1</CalendarUID>
@@ -8135,7 +8135,7 @@
             </PredecessorLink>
             <Active>1</Active>
             <Manual>0</Manual>
-        </Task>
+        <Notes>[HECHA 2026-10-18] Licencia de cada asset verificada en su pagina de origen. Dos regimenes distintos: CC0/CC BY 3.0 y Standard Unity Asset Store EULA</Notes></Task>
         <Task>
             <UID>115</UID>
             <ID>115</ID>
@@ -8148,7 +8148,7 @@
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-18T08:00:00</Start>
-            <Finish>2026-09-21T11:00:00</Finish>
+            <Stop>2026-09-21T11:00:00</Stop><Finish>2026-09-21T11:00:00</Finish>
             <Duration>PT11H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -8163,8 +8163,8 @@
             <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
-            <PercentComplete>0</PercentComplete>
-            <PercentWorkComplete>0</PercentWorkComplete>
+            <PercentComplete>100</PercentComplete>
+            <PercentWorkComplete>100</PercentWorkComplete>
             <RemainingDuration>PT11H0M0S</RemainingDuration>
             <ConstraintType>5</ConstraintType>
             <CalendarUID>-1</CalendarUID>
@@ -8189,7 +8189,7 @@
             </PredecessorLink>
             <Active>1</Active>
             <Manual>0</Manual>
-        </Task>
+        <Notes>[HECHA 2026-10-18] Escena compuesta por script: Assets/Editor/ConstruirBosque.cs. Claro de bosque con 20 arboles en tres anillos y suelo texturizado</Notes></Task>
         <Task>
             <UID>116</UID>
             <ID>116</ID>
@@ -8267,7 +8267,7 @@
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-24T12:00:00</Start>
-            <Finish>2026-09-25T11:00:00</Finish>
+            <Stop>2026-09-25T11:00:00</Stop><Finish>2026-09-25T11:00:00</Finish>
             <Duration>PT7H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -8282,8 +8282,8 @@
             <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
-            <PercentComplete>0</PercentComplete>
-            <PercentWorkComplete>0</PercentWorkComplete>
+            <PercentComplete>100</PercentComplete>
+            <PercentWorkComplete>100</PercentWorkComplete>
             <RemainingDuration>PT7H0M0S</RemainingDuration>
             <ConstraintType>5</ConstraintType>
             <CalendarUID>-1</CalendarUID>
@@ -8303,7 +8303,7 @@
             </PredecessorLink>
             <Active>1</Active>
             <Manual>0</Manual>
-        </Task>
+        <Notes>[HECHA 2026-10-18] Iluminacion y ambiente definidos: sol bajo calido o luna rasante, ambiente de tres tonos, niebla exponencial y sombras suaves</Notes></Task>
         <Task>
             <UID>118</UID>
             <ID>118</ID>
@@ -9331,7 +9331,7 @@
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-21T11:00:00</Start>
-            <Finish>2026-09-22T11:00:00</Finish>
+            <Stop>2026-09-22T11:00:00</Stop><Finish>2026-09-22T11:00:00</Finish>
             <Duration>PT8H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -9346,8 +9346,8 @@
             <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
-            <PercentComplete>0</PercentComplete>
-            <PercentWorkComplete>0</PercentWorkComplete>
+            <PercentComplete>100</PercentComplete>
+            <PercentWorkComplete>100</PercentWorkComplete>
             <RemainingDuration>PT8H0M0S</RemainingDuration>
             <ConstraintType>0</ConstraintType>
             <CalendarUID>-1</CalendarUID>
@@ -9372,7 +9372,7 @@
             </PredecessorLink>
             <Active>1</Active>
             <Manual>0</Manual>
-        </Task>
+        <Notes>[HECHA 2026-10-17] 42 pruebas EditMode de bateria: CrossSolver 7, DrumPad 6, PadVisual 7, SampleSelector 8, HitIntensity 5, KitLayout 4, DrumHitFanout 2, EscenaRig 3</Notes></Task>
         <Task>
             <UID>139</UID>
             <ID>139</ID>
@@ -9385,7 +9385,7 @@
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-22T11:00:00</Start>
-            <Finish>2026-09-22T11:00:00</Finish>
+            <Stop>2026-09-22T11:00:00</Stop><Finish>2026-09-22T11:00:00</Finish>
             <Duration>PT0H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -9400,8 +9400,8 @@
             <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
-            <PercentComplete>0</PercentComplete>
-            <PercentWorkComplete>0</PercentWorkComplete>
+            <PercentComplete>100</PercentComplete>
+            <PercentWorkComplete>100</PercentWorkComplete>
             <ConstraintType>0</ConstraintType>
             <CalendarUID>-1</CalendarUID>
             <ConstraintDate>1970-01-01T00:00:00</ConstraintDate>
@@ -9490,7 +9490,7 @@
             </PredecessorLink>
             <Active>1</Active>
             <Manual>0</Manual>
-        </Task>
+        <Notes>[HECHA 2026-10-17] 52 pruebas EditMode de ritmo: SessionStats 11, MusicalTime 8, TempoMap 8, HitJudge 7, HitRing 6, NoteMatcher 6, JuegoDeRitmo 6</Notes></Task>
         <Task>
             <UID>140</UID>
             <ID>140</ID>
@@ -10154,7 +10154,7 @@
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-08T14:00:00</Start>
-            <Finish>2026-09-08T14:00:00</Finish>
+            <Stop>2026-09-08T14:00:00</Stop><Finish>2026-09-08T14:00:00</Finish>
             <Duration>PT0H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -10169,8 +10169,8 @@
             <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
-            <PercentComplete>0</PercentComplete>
-            <PercentWorkComplete>0</PercentWorkComplete>
+            <PercentComplete>100</PercentComplete>
+            <PercentWorkComplete>100</PercentWorkComplete>
             <ConstraintType>0</ConstraintType>
             <CalendarUID>-1</CalendarUID>
             <ConstraintDate>1970-01-01T00:00:00</ConstraintDate>
@@ -10189,7 +10189,7 @@
             </PredecessorLink>
             <Active>1</Active>
             <Manual>0</Manual>
-        </Task>
+        <Notes>[HECHA 2026-10-18] Registro de assets y licencias en Assets/Entorno/ATRIBUCION.txt y entregables/ATRIBUCION_entorno.txt, con las restricciones de cada EULA</Notes></Task>
         <Task>
             <UID>154</UID>
             <ID>154</ID>

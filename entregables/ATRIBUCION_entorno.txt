@@ -71,3 +71,61 @@ el instrumento que se toca.
 
 LOS SKYBOX VIENEN A 4096x2048. Se conserva UNO solo y se reduce a 2048x1024: a distancia de
 cielo la diferencia no se percibe y cinco de ese tamaño son mucha memoria en el visor.
+
+================================================================================
+FANTASY FOREST ENVIRONMENT - FREE DEMO
+================================================================================
+
+Autor:    TriForge Assets
+Fuente:   Unity Asset Store, paquete 35361
+Version:  2.0 (23-jul-2019), original para Unity 2018.2.11
+Tamano:   5.1 MB
+
+LICENCIA: Standard Unity Asset Store EULA  --  NO es CC0 ni CC BY
+
+  Esta licencia NO es como la de los demas assets de esta carpeta. Permite usar
+  el contenido dentro de una aplicacion, pero NO redistribuir los archivos
+  originales. En la practica, para este proyecto:
+
+    SE PUEDE   incluirlo en la build del prototipo y mostrarlo en clase
+    NO SE PUEDE subir los .fbx, .tga o .mat a un repositorio publico ni
+               entregarlos como archivos sueltos junto con la documentacion
+
+  Si el repositorio del proyecto se hace publico, esta carpeta debe quedar
+  fuera. Los assets de Poly Pizza (CC0 y CC BY) no tienen esa restriccion.
+
+ADAPTACIONES REALIZADAS
+
+  El paquete es de Built-in Render Pipeline y el proyecto usa URP, asi que sin
+  conversion todos los materiales se renderizan magenta.
+
+  1. Los materiales con shader Standard se pasaron a Universal Render
+     Pipeline/Lit, mapeando _MainTex -> _BaseMap y _Color -> _BaseColor.
+
+  2. El shader propio del paquete, "Fantasy Forest/StandardNoCulling", es un
+     surface shader generado con Amplify Shader Editor. Los surface shaders no
+     existen fuera de Built-in y el convertidor automatico de Unity no los
+     toca, asi que se escribio un reemplazo para URP:
+
+         Assets/Entorno/Bosque/FollajeURP.shader
+
+     Ese shader es obra propia, no del paquete.
+
+LO QUE NO SE USA, Y POR QUE
+
+  TERRENO (New Terrain.asset, 6.43 MB)
+    El sistema de terreno de Unity no esta pensado para movil. Su detalle y su
+    pasto son carga de CPU, y en este proyecto el CPU ya lleva el audio, el
+    seguimiento de manos y el juicio de golpes.
+
+  PASTO (grassmesh, grass01)
+    Usa recorte alfa con Cull Off. El GPU del Quest es de mosaicos: el recorte
+    alfa le impide descartar fragmentos tapados, asi que sombrea CADA capa
+    superpuesta. Un prado son decenas de capas por pixel. Es el peor caso
+    posible para esta arquitectura.
+
+  PostProcessing Profile
+    Es del PostProcessing Stack v2, no del sistema de Volume de URP.
+
+  SE USAN unicamente el arbol (tree_1) y la textura de tierra (dirt01), que son
+  geometria opaca ordinaria.
