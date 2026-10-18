@@ -8653,7 +8653,7 @@
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-25T11:00:00</Start>
-            <Finish>2026-09-28T11:00:00</Finish>
+            <Stop>2026-09-28T11:00:00</Stop><Finish>2026-09-28T11:00:00</Finish>
             <Duration>PT8H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -8668,8 +8668,8 @@
             <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
-            <PercentComplete>0</PercentComplete>
-            <PercentWorkComplete>0</PercentWorkComplete>
+            <PercentComplete>100</PercentComplete>
+            <PercentWorkComplete>100</PercentWorkComplete>
             <RemainingDuration>PT8H0M0S</RemainingDuration>
             <ConstraintType>0</ConstraintType>
             <CalendarUID>-1</CalendarUID>
@@ -8689,7 +8689,7 @@
             </PredecessorLink>
             <Active>1</Active>
             <Manual>0</Manual>
-        </Task>
+        <Notes>[HECHA 2026-10-18] Medido en el visor sobre el entorno definitivo: 12949 fotogramas, 12946 en vsync (100.0 %), 3 vsync perdidos (0.02 %) contra un criterio del 5 %. Evidencia en entregables/mediciones/fps_20261018_060703.json</Notes></Task>
         <Task>
             <UID>120</UID>
             <ID>120</ID>
@@ -10137,7 +10137,7 @@
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-25T11:00:00</Start>
-            <Finish>2026-09-25T17:00:00</Finish>
+            <Stop>2026-09-25T17:00:00</Stop><Finish>2026-09-25T17:00:00</Finish>
             <Duration>PT5H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -10152,8 +10152,8 @@
             <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
-            <PercentComplete>0</PercentComplete>
-            <PercentWorkComplete>0</PercentWorkComplete>
+            <PercentComplete>100</PercentComplete>
+            <PercentWorkComplete>100</PercentWorkComplete>
             <RemainingDuration>PT5H0M0S</RemainingDuration>
             <ConstraintType>0</ConstraintType>
             <CalendarUID>-1</CalendarUID>
@@ -10178,7 +10178,7 @@
             </PredecessorLink>
             <Active>1</Active>
             <Manual>0</Manual>
-        </Task>
+        <Notes>[HECHA 2026-10-18] Misma corrida que AO.5, desde QA. 71.9 fps de media, mediana y p99 en 13.9 ms, que es el intervalo exacto de vsync a 72 Hz</Notes></Task>
         <Task>
             <UID>148</UID>
             <ID>148</ID>

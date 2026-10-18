@@ -43,15 +43,23 @@ HECHAS = {
     "QT.7": ("2026-10-17",
              "52 pruebas EditMode de ritmo: SessionStats 11, MusicalTime 8, TempoMap 8, "
              "HitJudge 7, HitRing 6, NoteMatcher 6, JuegoDeRitmo 6"),
+    "AO.5": ("2026-10-18",
+             "Medido en el visor sobre el entorno definitivo: 12949 fotogramas, 12946 en "
+             "vsync (100.0 %), 3 vsync perdidos (0.02 %) contra un criterio del 5 %. "
+             "Evidencia en entregables/mediciones/fps_20261018_060703.json"),
+    "QV.3": ("2026-10-18",
+             "Misma corrida que AO.5, desde QA. 71.9 fps de media, mediana y p99 en 13.9 ms, "
+             "que es el intervalo exacto de vsync a 72 Hz"),
 }
 
 # Escritas pero SIN VERIFICAR. No se marcan: el codigo existe, la medicion no.
 # Marcar una medicion que nadie ha hecho es exactamente el tipo de dato que luego
 # no se puede sostener.
 PENDIENTES_DE_MEDIR = {
-    "AO.5": "FpsProbe.cs escrito; falta correrlo en el visor y volcar el JSON",
-    "QV.3": "misma medicion desde QA; depende de AO.5",
-    "AS":   "LimiteSeguro.cs escrito; falta montarlo en la escena y verificarlo",
+    "AS": "LimiteSeguro.cs montado y activo en la escena; falta que alguien confirme en el "
+          "visor que el radio se siente bien. Es la unica de las tres que no puede cerrarse "
+          "con un numero: la medida 10 habla de lo que REPORTAN los usuarios, no de lo que "
+          "mide el sistema.",
 }
 
 

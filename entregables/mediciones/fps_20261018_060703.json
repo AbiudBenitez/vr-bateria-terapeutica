@@ -1,0 +1,15 @@
+{
+    "fotogramas": 12949,
+    "fpsMedio": 71.92620086669922,
+    "msMediana": 13.888910293579102,
+    "msP95": 13.888980865478516,
+    "msP99": 13.889009475708008,
+    "msPeor": 194.44444274902345,
+    "objetivoFps": 72.0,
+    "fotogramasBajoObjetivo": 3,
+    "fraccionBajoObjetivo": 0.00023167811741586775,
+    "umbralDeCaidaMs": 20.83333396911621,
+    "enVsync": 12946,
+    "dosVsync": 2,
+    "tresOMasVsync": 1
+}
