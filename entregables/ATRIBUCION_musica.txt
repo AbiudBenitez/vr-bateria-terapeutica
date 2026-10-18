@@ -1,0 +1,60 @@
+Música — Kevin MacLeod
+======================
+
+Obra:     "Maccary Bay"
+Autor:    Kevin MacLeod
+Fuente:   incompetech.com
+Licencia: Creative Commons Attribution 4.0 International (CC BY 4.0)
+          https://creativecommons.org/licenses/by/4.0/
+
+La licencia EXIGE atribución. Kevin MacLeod conserva el copyright de la obra original.
+
+Texto de atribución a incluir en los créditos de la aplicación y en el informe final:
+
+    "Maccary Bay" — Kevin MacLeod (incompetech.com)
+    Licensed under Creative Commons: By Attribution 4.0
+    https://creativecommons.org/licenses/by/4.0/
+
+
+Datos MEDIDOS, no copiados de la descripción del autor
+------------------------------------------------------
+
+    Tempo          79.98 BPM
+    Desviación     0.10 BPM sobre 23 ventanas de 20 s
+    Primer pulso   0.008 s
+    Compás         4/4
+    Duración       240.1 s
+
+Medidos con scripts/tempo.py del repositorio de documentación: autocorrelación del flujo
+espectral sobre ventanas solapadas, con plegado por octava.
+
+Verificación independiente: los ataques caen en esa rejilla con z = 23.6 frente a 200 fases
+al azar. No es un artefacto de la medición, es el pulso real de la pista.
+
+EL DECIMAL IMPORTA. A 80.00 redondo la rejilla se desvía unos 5 ms cada 100 compases, y eso
+basta para que el beatmap se despegue de la música hacia el final. Usar 79.98.
+
+
+Por qué esta pista y no otra
+----------------------------
+
+Se midieron cuatro candidatas de Incompetech:
+
+    Maccary Bay        79.98 BPM  desv 0.10   z 23.6   <- elegida
+    Suave Standpipe   150.05 BPM  desv 0.05   z 16.3   (75.02 a la mitad)
+    Sneaky Snitch      86.50 BPM  desv 0.48   z  2.9   pulso difuso
+    Loss              184.87 BPM  desv 5.62   z  2.1   el tempo flota
+
+Sneaky Snitch mide estable pero sus ataques NO se alinean con la rejilla: el beatmap se
+sentiría desconectado de lo que se oye. Loss flota 5.6 BPM y no tiene rejilla en ninguna
+octava.
+
+Maccary Bay además encaja con el acta: 80 BPM es un punto de partida razonable para el
+descenso hacia 60 que describe el iso-principio.
+
+
+Formato
+-------
+
+Convertida a WAV 16 bits, 48 kHz, mono: el formato nativo del visor y el mismo del kit de
+percusión. El tempo se verificó DESPUÉS de convertir.
