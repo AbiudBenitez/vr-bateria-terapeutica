@@ -476,7 +476,13 @@ SM.1 SU`
 
 Explica los sustos de septiembre y octubre: `QC.5` cayéndose tres veces no era capricho de la
 herramienta, era estructural. **Tras cada guardado desde ProjectLibre hay que revisar si algún
-hito volvió a cero.**
+hito volvió a cero.** Para eso está `scripts/hitos.py`:
+
+```
+hitos.py              informe: cuáles cayeron
+hitos.py --guardar    anota el estado bueno (correr ANTES de abrir ProjectLibre)
+hitos.py --restaurar  devuelve al 100 % los que cayeron
+```
 
 ### Cuidado al tocar el cronograma
 

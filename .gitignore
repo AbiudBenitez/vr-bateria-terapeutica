@@ -36,3 +36,6 @@ proyecto-unity/Builds/
 
 # Archivos de bloqueo de Word
 ~$*
+
+# Estado local del vigilante de hitos
+scripts/.hitos_completos.json
