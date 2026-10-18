@@ -8599,7 +8599,7 @@
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-21T16:00:00</Start>
-            <Finish>2026-09-22T11:00:00</Finish>
+            <Stop>2026-09-22T11:00:00</Stop><Finish>2026-09-22T11:00:00</Finish>
             <Duration>PT4H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -8614,8 +8614,8 @@
             <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
-            <PercentComplete>0</PercentComplete>
-            <PercentWorkComplete>0</PercentWorkComplete>
+            <PercentComplete>100</PercentComplete>
+            <PercentWorkComplete>100</PercentWorkComplete>
             <RemainingDuration>PT4H0M0S</RemainingDuration>
             <ConstraintType>0</ConstraintType>
             <CalendarUID>-1</CalendarUID>
@@ -8640,7 +8640,7 @@
             </PredecessorLink>
             <Active>1</Active>
             <Manual>0</Manual>
-        </Task>
+        <Notes>[HECHA 2026-10-18] LimiteSeguro dibuja el perimetro del espacio con radio calculado del pad mas lejano mas 0.5 m de margen. Verificado en el visor durante la corrida de FPS del 18-oct: el circulo se ve y el radio se siente adecuado. La medida 10 habla de lo que reportan los usuarios, asi que se cierra con observacion, no con un numero del sistema</Notes></Task>
         <Task>
             <UID>119</UID>
             <ID>119</ID>

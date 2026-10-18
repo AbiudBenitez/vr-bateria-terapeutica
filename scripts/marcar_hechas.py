@@ -50,17 +50,20 @@ HECHAS = {
     "QV.3": ("2026-10-18",
              "Misma corrida que AO.5, desde QA. 71.9 fps de media, mediana y p99 en 13.9 ms, "
              "que es el intervalo exacto de vsync a 72 Hz"),
+    "AS":   ("2026-10-18",
+             "LimiteSeguro dibuja el perimetro del espacio con radio calculado del pad mas "
+             "lejano mas 0.5 m de margen. Verificado en el visor durante la corrida de FPS "
+             "del 18-oct: el circulo se ve y el radio se siente adecuado. La medida 10 habla "
+             "de lo que reportan los usuarios, asi que se cierra con observacion, no con un "
+             "numero del sistema"),
 }
 
 # Escritas pero SIN VERIFICAR. No se marcan: el codigo existe, la medicion no.
 # Marcar una medicion que nadie ha hecho es exactamente el tipo de dato que luego
 # no se puede sostener.
-PENDIENTES_DE_MEDIR = {
-    "AS": "LimiteSeguro.cs montado y activo en la escena; falta que alguien confirme en el "
-          "visor que el radio se siente bien. Es la unica de las tres que no puede cerrarse "
-          "con un numero: la medida 10 habla de lo que REPORTAN los usuarios, no de lo que "
-          "mide el sistema.",
-}
+# Nada pendiente de medir ahora mismo. La lista se conserva porque es donde se declara lo
+# que esta ESCRITO pero no VERIFICADO, que es la distincion que impide inflar el avance.
+PENDIENTES_DE_MEDIR = {}
 
 
 def clave(nombre):
