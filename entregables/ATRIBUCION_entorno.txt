@@ -129,3 +129,49 @@ LO QUE NO SE USA, Y POR QUE
 
   SE USAN unicamente el arbol (tree_1) y la textura de tierra (dirt01), que son
   geometria opaca ordinaria.
+
+================================================================================
+LOW POLY TREES AND VEGETATION - PACK
+================================================================================
+
+Autor:   HQP Studios
+Fuente:  Unity Asset Store, paquete 265300
+Tamano:  26.3 MB comprimido / 47 MB importado
+
+LICENCIA: Standard Unity Asset Store EULA  --  misma restriccion que el pack de
+          bosque: se puede usar dentro de la aplicacion, no redistribuir los
+          archivos originales. La carpeta va al .gitignore.
+
+CONTENIDO MEDIDO
+
+  782 modelos FBX    arboles, arbustos, flores, setas, rocas y terrenos, con
+                     variantes de otono y de nieve
+  2 materiales       Gray y White
+  2 texturas         ColorGrid.png (4 KB) y BirchTreeTexture.png (26 KB)
+
+POR QUE ES MAS LIGERO QUE EL PACK DE BOSQUE
+
+  Usa una PALETA COMPARTIDA: las UV de los modelos apuntan a una cuadricula de
+  color en vez de a una textura por objeto. Por eso 782 modelos caben en dos
+  materiales y 30 KB de textura, frente a los 6.3 MB de seis texturas del otro
+  pack.
+
+  Ademas no usa recorte alfa en ninguna parte. El follaje es geometria opaca
+  normal, que es lo que el GPU de mosaicos del visor puede descartar cuando
+  queda tapado.
+
+  Peso por arbol: 31-59 KB, frente a los 770 KB del arbol de Fantasy Forest.
+
+  NOTA: el rendimiento NO era lo que obligaba a cambiar. El bosque anterior ya
+  corria a 72 fps bloqueados, medido con FpsProbe sobre 11007 fotogramas. La
+  razon de este pack es la VARIEDAD -782 modelos contra 1- y la coherencia
+  visual con unos pads que tambien son geometria simple.
+
+LO QUE NO SE USA
+
+  Las escenas de demostracion (carpeta Demo) se borran al importar: son de
+  Built-in Render Pipeline y solo sirven de escaparate.
+
+  Las variantes con nieve quedan excluidas por codigo. El proyecto se quedo con
+  el enfoque emocional y una escena nevada lee como fria, que empuja justo al
+  lado contrario de la calma que se busca.
