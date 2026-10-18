@@ -1925,6 +1925,7 @@
             <UID>11</UID>
             <ID>11</ID>
             <Name>DO — Implementar sistema para agarrar y soltar objetos con los controles</Name>
+			<Notes>[FUERA DE ALCANCE] Agarrar y soltar objetos. Misma decisión del acta</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -2024,6 +2025,7 @@
             <UID>13</UID>
             <ID>13</ID>
             <Name>DB.2 — Configurar las baquetas como objetos interactuables</Name>
+			<Notes>[FUERA DE ALCANCE] Baquetas interactuables. Van solidarias al control, decisión del acta</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -2228,6 +2230,7 @@
             <UID>17</UID>
             <ID>17</ID>
             <Name>DT.3 — Configurar colliders para cada componente de la batería</Name>
+			<Notes>[FUERA DE ALCANCE] Colliders por componente. La detección es por plano armado</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -2792,6 +2795,7 @@
             <UID>28</UID>
             <ID>28</ID>
             <Name>DB.4 — Ajustar física de las baquetas para evitar vibraciones o movimientos extraños</Name>
+			<Notes>[FUERA DE ALCANCE] Física de baquetas. No hay física que ajustar</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -3528,6 +3532,7 @@
             <UID>42</UID>
             <ID>42</ID>
             <Name>JK — Crear sistema provisional de golpes utilizando teclado para desarrollar sin depender del VR</Name>
+			<Notes>[FUERA DE ALCANCE] Sistema de teclado. Sin objeto: la interacción VR ya existe</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -3942,6 +3947,7 @@
             <UID>50</UID>
             <ID>50</ID>
             <Name>JW.3 — Programar detección de golpes anticipados</Name>
+			<Notes>[FUERA DE ALCANCE] Detectar golpes anticipados por separado. Se registran como fallo</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -3990,6 +3996,7 @@
             <UID>51</UID>
             <ID>51</ID>
             <Name>JW.4 — Programar detección de golpes atrasados</Name>
+			<Notes>[FUERA DE ALCANCE] Detectar golpes atrasados por separado. Misma razón</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -4153,6 +4160,7 @@
             <UID>54</UID>
             <ID>54</ID>
             <Name>JP.2 — Crear sistema de combo o golpes consecutivos</Name>
+			<Notes>[FUERA DE ALCANCE] Combo. Recortada en R14</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -4251,6 +4259,7 @@
             <UID>56</UID>
             <ID>56</ID>
             <Name>JP.4 — Crear resumen de resultados al terminar una canción</Name>
+			<Notes>[FUERA DE ALCANCE] Resumen de resultados. Lo cubre II.6</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -4370,6 +4379,7 @@
             <UID>58</UID>
             <ID>58</ID>
             <Name>JI.2 — Sustituir controles provisionales de teclado por interacción VR</Name>
+			<Notes>[FUERA DE ALCANCE] Sustituir teclado por VR. El teclado nunca se construyó</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -4419,6 +4429,7 @@
             <UID>59</UID>
             <ID>59</ID>
             <Name>JI.3 — Implementar detección de intensidad del golpe dentro del juego</Name>
+			<Notes>[FUERA DE ALCANCE] Intensidad dentro del juego. DrumHit ya la lleva</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -4473,6 +4484,7 @@
             <UID>60</UID>
             <ID>60</ID>
             <Name>JI.4 — Diseñar mecánicas en las que determinados golpes requieran distinta intensidad</Name>
+			<Notes>[FUERA DE ALCANCE] Mecánicas por intensidad. Recortada en R14</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -4527,6 +4539,7 @@
             <UID>61</UID>
             <ID>61</ID>
             <Name>JF.1 — Crear feedback visual inmediato de acierto o error</Name>
+			<Notes>[FUERA DE ALCANCE] Feedback visual. Lo cubre JudgePopup</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -4581,6 +4594,7 @@
             <UID>62</UID>
             <ID>62</ID>
             <Name>JF.2 — Crear feedback auditivo para aciertos, errores e interacción</Name>
+			<Notes>[FUERA DE ALCANCE] Feedback auditivo. La batería ya suena al golpear</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -4634,6 +4648,7 @@
             <UID>63</UID>
             <ID>63</ID>
             <Name>JC.1 — Implementar cuenta regresiva antes de iniciar una canción</Name>
+			<Notes>[FUERA DE ALCANCE] Cuenta regresiva. Recortada en R14; los compases de entrada la cubren</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -4683,6 +4698,7 @@
             <UID>64</UID>
             <ID>64</ID>
             <Name>JC.2 — Crear sistema de pausa y reanudación</Name>
+			<Notes>[FUERA DE ALCANCE] Pausa y reanudación. Recortada en R14</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -4737,6 +4753,7 @@
             <UID>65</UID>
             <ID>65</ID>
             <Name>JC.3 — Crear sistema para reiniciar una actividad</Name>
+			<Notes>[FUERA DE ALCANCE] Reiniciar actividad. Recortada en R14</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -4786,6 +4803,7 @@
             <UID>66</UID>
             <ID>66</ID>
             <Name>JC.4 — Crear sistema para abandonar una actividad y regresar al menú</Name>
+			<Notes>[FUERA DE ALCANCE] Abandonar actividad. Recortada en R14</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -4835,6 +4853,7 @@
             <UID>67</UID>
             <ID>67</ID>
             <Name>JL.1 — Crear diferentes niveles de dificultad</Name>
+			<Notes>[FUERA DE ALCANCE] Niveles de dificultad. Recortada en R14</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -4889,6 +4908,7 @@
             <UID>68</UID>
             <ID>68</ID>
             <Name>JL.2 — Programar selección de dificultad antes de iniciar</Name>
+			<Notes>[FUERA DE ALCANCE] Selección de dificultad. Depende de JL.1</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -4942,6 +4962,7 @@
             <UID>69</UID>
             <ID>69</ID>
             <Name>JM.1 — Crear modo libre sin puntuación ni notas obligatorias</Name>
+			<Notes>[FUERA DE ALCANCE] Modo libre. La batería ya es tocable fuera del juego</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -4991,6 +5012,7 @@
             <UID>70</UID>
             <ID>70</ID>
             <Name>JM.2 — Permitir seleccionar música de fondo en modo libre</Name>
+			<Notes>[FUERA DE ALCANCE] Música de fondo en modo libre. Depende de JM.1</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -5045,6 +5067,7 @@
             <UID>71</UID>
             <ID>71</ID>
             <Name>JM.3 — Permitir tocar sin música en modo libre</Name>
+			<Notes>[FUERA DE ALCANCE] Tocar sin música. Depende de JM.1</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -5093,6 +5116,7 @@
             <UID>72</UID>
             <ID>72</ID>
             <Name>JY — Crear sistema de calibración de latencia entre golpe y música</Name>
+			<Notes>[FUERA DE ALCANCE] Calibración de latencia. Ya resuelta: p90 de +4.07 ms</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -5146,6 +5170,7 @@
             <UID>73</UID>
             <ID>73</ID>
             <Name>JW.6 — Ajustar ventanas de precisión después de pruebas de usuarios</Name>
+			<Notes>[FUERA DE ALCANCE] Ajustar ventanas tras pruebas. Requiere iteración que no cabe</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -5195,6 +5220,7 @@
             <UID>74</UID>
             <ID>74</ID>
             <Name>JI.5 — Integrar juego de ritmo completo con flujo general de la experiencia</Name>
+			<Notes>[FUERA DE ALCANCE] Integrar con el flujo general. Depende de los menús</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -6371,6 +6397,7 @@
             <UID>96</UID>
             <ID>96</ID>
             <Name>MR.1 — Investigar características musicales adecuadas para la experiencia planteada</Name>
+			<Notes>[FUERA DE ALCANCE] Investigar características musicales</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -6420,6 +6447,7 @@
             <UID>97</UID>
             <ID>97</ID>
             <Name>MR.2 — Analizar BPM utilizados en las referencias encontradas</Name>
+			<Notes>[FUERA DE ALCANCE] Analizar BPM de referencias</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -6469,6 +6497,7 @@
             <UID>98</UID>
             <ID>98</ID>
             <Name>MR.3 — Analizar compases y patrones rítmicos apropiados para principiantes</Name>
+			<Notes>[FUERA DE ALCANCE] Analizar compases para principiantes</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -6518,6 +6547,7 @@
             <UID>99</UID>
             <ID>99</ID>
             <Name>MR.4 — Definir estilos musicales que utilizará el proyecto</Name>
+			<Notes>[FUERA DE ALCANCE] Definir estilos musicales. Se recorta a una pista</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -6577,6 +6607,7 @@
             <UID>100</UID>
             <ID>100</ID>
             <Name>MR.5 — Definir duración de las pistas musicales</Name>
+			<Notes>[FUERA DE ALCANCE] Definir duración de las pistas</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -6930,6 +6961,7 @@
             <UID>107</UID>
             <ID>107</ID>
             <Name>MB.2 — Definir momentos donde se utilizarán golpes suaves, medios o fuertes</Name>
+			<Notes>[FUERA DE ALCANCE] Momentos de intensidad en el patrón</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -6979,6 +7011,7 @@
             <UID>108</UID>
             <ID>108</ID>
             <Name>MB.3 — Crear versiones de dificultad Tutorial, Fácil e Intermedio del patrón</Name>
+			<Notes>[FUERA DE ALCANCE] Tres versiones de dificultad. Las dificultades se recortaron en R14</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -7082,6 +7115,7 @@
             <UID>110</UID>
             <ID>110</ID>
             <Name>MB.5 — Probar primer beatmap junto con el desarrollador</Name>
+			<Notes>[FUERA DE ALCANCE] Probar el beatmap con el desarrollador. Se cubre en QT.7</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -7136,6 +7170,7 @@
             <UID>111</UID>
             <ID>111</ID>
             <Name>MB.6 — Corregir patrones que resulten poco cómodos o confusos</Name>
+			<Notes>[FUERA DE ALCANCE] Corregir patrones. Requiere iteración que no cabe</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -7185,6 +7220,7 @@
             <UID>112</UID>
             <ID>112</ID>
             <Name>MA.1 — Crear o seleccionar pistas adicionales</Name>
+			<Notes>[FUERA DE ALCANCE] Pistas adicionales. Con una basta para demostrar</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -7234,6 +7270,7 @@
             <UID>113</UID>
             <ID>113</ID>
             <Name>MA.2 — Preparar pistas para modo libre</Name>
+			<Notes>[FUERA DE ALCANCE] Pistas para modo libre. El modo libre se recortó en R14</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -7278,6 +7315,7 @@
             <UID>114</UID>
             <ID>114</ID>
             <Name>MN.1 — Normalizar formato, frecuencia de muestreo y volumen de todas las pistas</Name>
+			<Notes>[FUERA DE ALCANCE] Normalizar todas las pistas. Solo hay una</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -7327,6 +7365,7 @@
             <UID>115</UID>
             <ID>115</ID>
             <Name>MN.2 — Documentar BPM, duración, compás y finalidad de cada pista</Name>
+			<Notes>[FUERA DE ALCANCE] Documentar BPM y compás de cada pista. Se cubre en MP.2 y MP.3</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -7465,6 +7504,7 @@
             <UID>118</UID>
             <ID>118</ID>
             <Name>SP.2 — Investigar bancos de sonidos compatibles con la licencia del proyecto</Name>
+			<Notes>[FUERA DE ALCANCE] Investigar bancos de sonidos. El pack actual ya cubre el kit</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -7872,6 +7912,7 @@
             <UID>126</UID>
             <ID>126</ID>
             <Name>SE.2 — Eliminar ruidos innecesarios de las muestras</Name>
+			<Notes>[FUERA DE ALCANCE] Eliminar ruidos. Las muestras del pack vienen limpias</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -8023,6 +8064,7 @@
             <UID>129</UID>
             <ID>129</ID>
             <Name>SM.1 — Crear Audio Mixer dentro de Unity</Name>
+			<Notes>[FUERA DE ALCANCE] AUDIO MIXER: añade un nodo al camino del audio y obligaría a remedir la latencia, que es la medida 4 y la única ya ganada con margen</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -8071,6 +8113,7 @@
             <UID>130</UID>
             <ID>130</ID>
             <Name>SM.2 — Separar canales de batería, música, ambiente e interfaz</Name>
+			<Notes>[FUERA DE ALCANCE] Depende de SM.1</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -8326,6 +8369,7 @@
             <UID>135</UID>
             <ID>135</ID>
             <Name>SU — Buscar y preparar sonidos para botones, aciertos y errores</Name>
+			<Notes>[FUERA DE ALCANCE] Sonidos de interfaz</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -8374,6 +8418,7 @@
             <UID>136</UID>
             <ID>136</ID>
             <Name>SA.1 — Buscar o producir sonidos ambientales para el escenario</Name>
+			<Notes>[FUERA DE ALCANCE] Sonidos ambientales del escenario</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -8423,6 +8468,7 @@
             <UID>137</UID>
             <ID>137</ID>
             <Name>SA.2 — Integrar ambiente sonoro con escenario final</Name>
+			<Notes>[FUERA DE ALCANCE] Depende de SA.1</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -8477,6 +8523,7 @@
             <UID>138</UID>
             <ID>138</ID>
             <Name>SC.1 — Crear controles independientes de volumen para música, batería y ambiente</Name>
+			<Notes>[FUERA DE ALCANCE] Controles de volumen por canal. Ninguna medida los pide</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -8530,6 +8577,7 @@
             <UID>139</UID>
             <ID>139</ID>
             <Name>SC.2 — Realizar mezcla general de audio</Name>
+			<Notes>[FUERA DE ALCANCE] Mezcla general. Misma razón</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -8893,6 +8941,7 @@
             <UID>146</UID>
             <ID>146</ID>
             <Name>IW.4 — Crear wireframe del tutorial</Name>
+			<Notes>[FUERA DE ALCANCE] Wireframe del tutorial. Se implementa directo</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -8997,6 +9046,7 @@
             <UID>148</UID>
             <ID>148</ID>
             <Name>IW.6 — Crear wireframe de resultados</Name>
+			<Notes>[FUERA DE ALCANCE] Wireframe de resultados. Ya existe como prototipo</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -9046,6 +9096,7 @@
             <UID>149</UID>
             <ID>149</ID>
             <Name>IS.1 — Crear interfaz para selección de canción y dificultad</Name>
+			<Notes>[FUERA DE ALCANCE] Selección de canción y dificultad. Hay una canción y no hay dificultades</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -9095,6 +9146,7 @@
             <UID>150</UID>
             <ID>150</ID>
             <Name>IS.2 — Diseñar menú de configuración</Name>
+			<Notes>[FUERA DE ALCANCE] Diseñar menú de configuración</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -9144,6 +9196,7 @@
             <UID>151</UID>
             <ID>151</ID>
             <Name>IS.3 — Diseñar controles para volumen de música, batería y ambiente</Name>
+			<Notes>[FUERA DE ALCANCE] Diseñar controles de volumen. Depende de SC</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -9192,6 +9245,7 @@
             <UID>152</UID>
             <ID>152</ID>
             <Name>IS.4 — Diseñar menú de pausa</Name>
+			<Notes>[FUERA DE ALCANCE] Diseñar menú de pausa. Depende de II.5</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -9240,6 +9294,7 @@
             <UID>153</UID>
             <ID>153</ID>
             <Name>IS.5 — Diseñar pantalla de confirmación para salir o reiniciar</Name>
+			<Notes>[FUERA DE ALCANCE] Pantalla de confirmación de salida</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -9289,6 +9344,7 @@
             <UID>154</UID>
             <ID>154</ID>
             <Name>IS.6 — Diseñar presentación de resultados finales</Name>
+			<Notes>[FUERA DE ALCANCE] Diseñar resultados. La pantalla ya existe como prototipo</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -9338,6 +9394,7 @@
             <UID>155</UID>
             <ID>155</ID>
             <Name>IE — Definir estilo visual general de la interfaz</Name>
+			<Notes>[FUERA DE ALCANCE] Estilo visual general. Las pantallas ya existen como diseño</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -9748,6 +9805,7 @@
             <UID>163</UID>
             <ID>163</ID>
             <Name>II.1 — Importar recursos gráficos de Canva/Figma a Unity</Name>
+			<Notes>[FUERA DE ALCANCE] Importar recursos de Canva/Figma. Se implementa directo en Unity</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -9919,6 +9977,7 @@
             <UID>166</UID>
             <ID>166</ID>
             <Name>II.4 — Implementar configuración de volumen</Name>
+			<Notes>[FUERA DE ALCANCE] Configuración de volumen. Depende de los canales recortados en SC</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -9973,6 +10032,7 @@
             <UID>167</UID>
             <ID>167</ID>
             <Name>II.5 — Implementar menú de pausa</Name>
+			<Notes>[FUERA DE ALCANCE] Menú de pausa. La pausa se recortó en R14</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -10184,6 +10244,7 @@
             <UID>171</UID>
             <ID>171</ID>
             <Name>IR.3 — Corregir problemas de navegación encontrados en pruebas</Name>
+			<Notes>[FUERA DE ALCANCE] Corregir navegación tras pruebas. Requiere iteración que no cabe</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -10277,6 +10338,7 @@
             <UID>173</UID>
             <ID>173</ID>
             <Name>AE.1 — Investigar qué tipo de entorno puede favorecer la experiencia propuesta</Name>
+			<Notes>[FUERA DE ALCANCE] Investigar tipo de entorno. Se decide al elegir los assets</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -10326,6 +10388,7 @@
             <UID>174</UID>
             <ID>174</ID>
             <Name>AE.2 — Comparar posibles ambientes: naturaleza, estudio musical, espacio minimalista y otros</Name>
+			<Notes>[FUERA DE ALCANCE] Comparar ambientes. Misma razón</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -10375,6 +10438,7 @@
             <UID>175</UID>
             <ID>175</ID>
             <Name>AE.3 — Definir dirección artística general del escenario</Name>
+			<Notes>[FUERA DE ALCANCE] Dirección artística. Misma razón</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -10424,6 +10488,7 @@
             <UID>176</UID>
             <ID>176</ID>
             <Name>AC.1 — Investigar teoría del color y su relación con la percepción emocional, concentración y confort visual dentro de entornos virtuales</Name>
+			<Notes>[FUERA DE ALCANCE] Teoría del color. YA EXISTE el documento de paleta del equipo</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -10473,6 +10538,7 @@
             <UID>177</UID>
             <ID>177</ID>
             <Name>AC.2 — Definir paleta de colores y criterios para aplicarla en los modelos 3D y el entorno según la experiencia emocional propuesta</Name>
+			<Notes>[FUERA DE ALCANCE] La paleta ya está definida en ese documento</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -10532,6 +10598,7 @@
             <UID>178</UID>
             <ID>178</ID>
             <Name>AC.3 — Crear moodboard visual del escenario incorporando la dirección artística y la paleta de colores seleccionada</Name>
+			<Notes>[FUERA DE ALCANCE] Moodboard. No sirve a ninguna medida</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -10586,6 +10653,7 @@
             <UID>179</UID>
             <ID>179</ID>
             <Name>AA.1 — Crear lista de todos los assets 3D necesarios</Name>
+			<Notes>[FUERA DE ALCANCE] Catálogo de assets. Se buscan directamente los que se van a usar</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -10634,6 +10702,7 @@
             <UID>180</UID>
             <ID>180</ID>
             <Name>AA.2 — Definir límites de polígonos y rendimiento adecuados para VR</Name>
+			<Notes>[FUERA DE ALCANCE] Límites de polígonos. Ya están escritos en el diseño técnico del proyecto</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -10786,6 +10855,7 @@
             <UID>183</UID>
             <ID>183</ID>
             <Name>AB.1 — Buscar modelo de batería adecuado</Name>
+			<Notes>[FUERA DE ALCANCE] Modelo de batería. El kit de primitivas ya funciona y está medido</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -10835,6 +10905,7 @@
             <UID>184</UID>
             <ID>184</ID>
             <Name>AB.2 — Revisar licencia del modelo de batería</Name>
+			<Notes>[FUERA DE ALCANCE] Depende de AB.1</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -10884,6 +10955,7 @@
             <UID>185</UID>
             <ID>185</ID>
             <Name>AB.3 — Buscar o crear modelos definitivos de baquetas</Name>
+			<Notes>[FUERA DE ALCANCE] Modelos de baquetas. Las actuales cumplen</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -10933,6 +11005,7 @@
             <UID>186</UID>
             <ID>186</ID>
             <Name>AB.4 — Optimizar modelo de batería para VR</Name>
+			<Notes>[FUERA DE ALCANCE] Depende de AB.1</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -10986,6 +11059,7 @@
             <UID>187</UID>
             <ID>187</ID>
             <Name>AB.5 — Optimizar materiales y texturas de la batería considerando la paleta de colores establecida</Name>
+			<Notes>[FUERA DE ALCANCE] Depende de AB.1</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -11040,6 +11114,7 @@
             <UID>188</UID>
             <ID>188</ID>
             <Name>AB.6 — Preparar batería definitiva para integración en Unity</Name>
+			<Notes>[FUERA DE ALCANCE] Depende de AB.1</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -11143,6 +11218,7 @@
             <UID>190</UID>
             <ID>190</ID>
             <Name>AP.2 — Determinar posición del jugador y batería dentro del escenario</Name>
+			<Notes>[FUERA DE ALCANCE] Posición del jugador. Ya resuelta: el kit está medido y calibrado</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -11197,6 +11273,7 @@
             <UID>191</UID>
             <ID>191</ID>
             <Name>AP.3 — Aplicar la paleta de colores seleccionada a modelos, materiales y elementos principales del escenario</Name>
+			<Notes>[FUERA DE ALCANCE] Aplicar la paleta. Se cubre al componer en AP.1</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -11355,6 +11432,7 @@
             <UID>194</UID>
             <ID>194</ID>
             <Name>AD.1 — Añadir elementos ambientales secundarios</Name>
+			<Notes>[FUERA DE ALCANCE] Elementos ambientales secundarios</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -11404,6 +11482,7 @@
             <UID>195</UID>
             <ID>195</ID>
             <Name>AD.2 — Reducir objetos que puedan distraer al usuario</Name>
+			<Notes>[FUERA DE ALCANCE] Depende de AD.1</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -11501,6 +11580,7 @@
             <UID>197</UID>
             <ID>197</ID>
             <Name>AO.1 — Optimizar texturas del escenario para VR</Name>
+			<Notes>[FUERA DE ALCANCE] Optimizar texturas. Se cubre eligiendo assets ya optimizados</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -11550,6 +11630,7 @@
             <UID>198</UID>
             <ID>198</ID>
             <Name>AO.2 — Configurar LOD en objetos que lo requieran</Name>
+			<Notes>[FUERA DE ALCANCE] LOD. Innecesario con una escena de pocos objetos</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -11599,6 +11680,7 @@
             <UID>199</UID>
             <ID>199</ID>
             <Name>AO.3 — Revisar cantidad de luces en tiempo real</Name>
+			<Notes>[FUERA DE ALCANCE] Revisar luces en tiempo real. Se cubre en AL.2</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -11647,6 +11729,7 @@
             <UID>200</UID>
             <ID>200</ID>
             <Name>AO.4 — Preparar iluminación horneada cuando sea conveniente</Name>
+			<Notes>[FUERA DE ALCANCE] Iluminación horneada. Se cubre en AL.2</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -11750,6 +11833,7 @@
             <UID>202</UID>
             <ID>202</ID>
             <Name>AO.6 — Optimizar escenario hasta cumplir rendimiento esperado</Name>
+			<Notes>[FUERA DE ALCANCE] Optimizar hasta cumplir. Se cubre en AO.5 si la medición falla</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -11799,6 +11883,7 @@
             <UID>203</UID>
             <ID>203</ID>
             <Name>AR.1 — Revisar ambiente visual con el responsable de experiencia emocional para comprobar que colores, iluminación y escenario sean coherentes con la experiencia propuesta</Name>
+			<Notes>[FUERA DE ALCANCE] Revisión cruzada con experiencia emocional</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -11857,6 +11942,7 @@
             <UID>204</UID>
             <ID>204</ID>
             <Name>AR.2 — Realizar ajustes finales de ambientación</Name>
+			<Notes>[FUERA DE ALCANCE] Ajustes finales de ambientación</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -12823,6 +12909,7 @@
             <UID>223</UID>
             <ID>223</ID>
             <Name>QT.2 — Crear plan de pruebas del juego de ritmo</Name>
+			<Notes>[FUERA DE ALCANCE] Plan de pruebas del juego de ritmo. Se cubre con QT.7</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -12877,6 +12964,7 @@
             <UID>224</UID>
             <ID>224</ID>
             <Name>QT.3 — Crear plan de pruebas de interfaz</Name>
+			<Notes>[FUERA DE ALCANCE] Plan de pruebas de interfaz. Se cubre con QT.8</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -12930,6 +13018,7 @@
             <UID>225</UID>
             <ID>225</ID>
             <Name>QT.4 — Crear plan de pruebas de audio</Name>
+			<Notes>[FUERA DE ALCANCE] Plan de pruebas de audio. La latencia ya se midió con su protocolo</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -12984,6 +13073,7 @@
             <UID>226</UID>
             <ID>226</ID>
             <Name>QT.5 — Crear plan de pruebas de rendimiento VR</Name>
+			<Notes>[FUERA DE ALCANCE] Plan de pruebas de rendimiento. Se cubre con QV.3</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -13900,6 +13990,7 @@
             <UID>244</UID>
             <ID>244</ID>
             <Name>QD.1 — Crear documentación de arquitectura del software</Name>
+			<Notes>[FUERA DE ALCANCE] Documentación de arquitectura. YA EXISTEN la guía de 8 capítulos y los specs</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -13954,6 +14045,7 @@
             <UID>245</UID>
             <ID>245</ID>
             <Name>QD.2 — Crear diagrama del flujo general de la aplicación</Name>
+			<Notes>[FUERA DE ALCANCE] Diagrama de flujo. Se cubre en el informe final</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -14008,6 +14100,7 @@
             <UID>246</UID>
             <ID>246</ID>
             <Name>QD.3 — Documentar funcionamiento del sistema de detección de golpes</Name>
+			<Notes>[FUERA DE ALCANCE] Documentar detección de golpes. Está en la guía y en el spec</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -14057,6 +14150,7 @@
             <UID>247</UID>
             <ID>247</ID>
             <Name>QD.4 — Documentar funcionamiento del juego de ritmo</Name>
+			<Notes>[FUERA DE ALCANCE] Documentar el juego de ritmo. Está en su spec y su plan</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -14106,6 +14200,7 @@
             <UID>248</UID>
             <ID>248</ID>
             <Name>QD.5 — Documentar sistema de intensidad de los golpes</Name>
+			<Notes>[FUERA DE ALCANCE] Documentar intensidad. Está en la guía</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -14159,6 +14254,7 @@
             <UID>249</UID>
             <ID>249</ID>
             <Name>QD.6 — Documentar selección y fundamentación del entorno virtual</Name>
+			<Notes>[FUERA DE ALCANCE] Documentar el entorno. El entorno se recortó a integración</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -14208,6 +14304,7 @@
             <UID>250</UID>
             <ID>250</ID>
             <Name>QD.7 — Documentar fundamentación de la música utilizada</Name>
+			<Notes>[FUERA DE ALCANCE] Documentar la música. Se cubre con MP.3</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -14257,6 +14354,7 @@
             <UID>251</UID>
             <ID>251</ID>
             <Name>QD.8 — Documentar diseño y funcionamiento de la interfaz</Name>
+			<Notes>[FUERA DE ALCANCE] Documentar la interfaz. Se cubre en el informe final</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -14404,6 +14502,7 @@
             <UID>254</UID>
             <ID>254</ID>
             <Name>QF.1 — Preparar capturas de pantalla del proyecto</Name>
+			<Notes>[FUERA DE ALCANCE] Capturas de pantalla. Se obtienen al preparar QX</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
@@ -14453,6 +14552,7 @@
             <UID>255</UID>
             <ID>255</ID>
             <Name>QF.2 — Grabar evidencia en video del funcionamiento</Name>
+			<Notes>[FUERA DE ALCANCE] Video de evidencia. Misma razón</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T16:22:00</CreateDate>
