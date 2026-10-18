@@ -497,6 +497,49 @@ Una actividad borrada no deja rastro de por qué se quitó.
 `gen_validacion.py` **sigue produciendo la sección 3.1**, que el equipo decidió retirar el
 21-sep. Correrlo sobrescribe esa decisión. Hay un aviso en el propio script.
 
+## Métricas de sesión — 18-oct-2026
+
+`DM.1` terminada. Cierra la **medida de éxito 9**, que estaba en cero.
+
+| | |
+|---|---|
+| Spec | `docs/superpowers/specs/2026-10-18-metricas-de-sesion-design.md` |
+| Plan | `docs/superpowers/plans/2026-10-18-metricas-de-sesion.md` |
+| Código | `SessionStats.cs` · volcado en `Scoreboard.cs` |
+| Evidencia | `entregables/mediciones/sesion_*.json` |
+
+### Dos constancias, no una
+
+- **Contra la rejilla** — desviación típica de los desfases. Qué tan parejo se pega al patrón.
+- **Propia** — desviación típica de los intervalos entre golpes. Qué tan estable es su pulso.
+
+**Se puede ir 30 ms atrasado todo el tiempo y tener un pulso perfectamente estable.** Hay una
+prueba que lo verifica, y es la que impide que alguien las implemente iguales sin que nadie
+lo note.
+
+### La amplitud de movimiento queda fuera
+
+La medida 9 la nombraba, pero es un dato de rehabilitación de miembro superior. El equipo
+retiró ese marco antes del corte de medio curso, y sin él la amplitud mide algo que el
+proyecto ya no declara. Las dos métricas rítmicas **no necesitan respaldo clínico**: medir si
+alguien toca a tiempo es una observación de ejecución musical.
+
+### El archivo lleva los datos crudos
+
+Además del resumen va el arreglo completo de desfases. Un informe que solo lleva promedios no
+se puede reanalizar, y el informe final (`QI.1`) va a necesitar gráficas.
+
+### DEUDA: el enfoque del proyecto cambió y los documentos no
+
+El equipo retiró el marco de **rehabilitación motriz** y se quedó con el **emocional**, antes
+del corte de medio curso. Ocho documentos siguen afirmando lo contrario: la carta sponsor con
+41 menciones, el acta con 48, y este mismo `CLAUDE.md` en «Motriz primario, emocional
+secundario».
+
+No es un cambio nuevo — es que los documentos nunca alcanzaron una decisión ya tomada.
+**Pendiente de redactar.** Si la docente cruza la carta sponsor con lo que el equipo presenta,
+encuentra la contradicción sin explicación.
+
 ## Tareas de clase entregadas
 
 | Fecha | Tarea | Carpeta |

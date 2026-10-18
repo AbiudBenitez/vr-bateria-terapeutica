@@ -122,6 +122,14 @@ NUEVAS = {
     "DM.1": (9, "Exportar las métricas de sesión a JSON: precisión temporal y constancia"),
 }
 
+# TERMINADA el 18-oct-2026.
+#
+# La amplitud de movimiento que la medida 9 nombraba queda fuera: el equipo retiró el marco de
+# rehabilitación motriz antes del corte de medio curso, y sin ese marco la amplitud mide algo
+# que el proyecto ya no declara. Las dos métricas rítmicas que sí se exportan no necesitan
+# respaldo clínico.
+NUEVAS_HECHAS = {"DM.1"}
+
 # Lo que se recorta, agrupado por la razón.
 RECORTADAS = {
     # --- Entorno 3D: el área deja de modelar ---
