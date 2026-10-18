@@ -1,0 +1,414 @@
+{
+    "totalGolpes": 68,
+    "agendasTardias": 68,
+    "registros": [
+        {
+            "dspImpacto": 7.084652987798055,
+            "dspAhora": 7.093333333333334,
+            "velocidad": 2.349712371826172,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 7.619277334531148,
+            "dspAhora": 7.621333333333333,
+            "velocidad": 1.3842434883117676,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 8.149100542386373,
+            "dspAhora": 8.149333333333333,
+            "velocidad": 0.8418123722076416,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 9.102224349339803,
+            "dspAhora": 9.109333333333334,
+            "velocidad": 2.6275475025177,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 9.572977696418763,
+            "dspAhora": 9.578666666666667,
+            "velocidad": 1.156622052192688,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 10.031047079086305,
+            "dspAhora": 10.037333333333333,
+            "velocidad": 3.724374532699585,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 10.530625472386678,
+            "dspAhora": 10.538666666666666,
+            "velocidad": 1.8553247451782227,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 11.020979036331175,
+            "dspAhora": 11.024,
+            "velocidad": 4.565374374389648,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 11.554692879915237,
+            "dspAhora": 11.568,
+            "velocidad": 2.100367546081543,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 12.078772667884828,
+            "dspAhora": 12.08,
+            "velocidad": 3.305407762527466,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 12.540003215471902,
+            "dspAhora": 12.549333333333334,
+            "velocidad": 2.433012008666992,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 13.040124629000822,
+            "dspAhora": 13.050666666666667,
+            "velocidad": 3.9394619464874269,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 13.49395547358195,
+            "dspAhora": 13.498666666666667,
+            "velocidad": 3.586012363433838,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 14.033761352539063,
+            "dspAhora": 14.037333333333333,
+            "velocidad": 2.8729333877563478,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 14.521021490097047,
+            "dspAhora": 14.528,
+            "velocidad": 1.7414944171905518,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 15.10779334282875,
+            "dspAhora": 15.12,
+            "velocidad": 3.932868003845215,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 15.576222728093466,
+            "dspAhora": 15.578666666666667,
+            "velocidad": 3.3184003829956056,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 16.068848279953003,
+            "dspAhora": 16.08,
+            "velocidad": 3.4482481479644777,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 16.595340615749359,
+            "dspAhora": 16.608,
+            "velocidad": 1.7117314338684083,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 17.096467665990195,
+            "dspAhora": 17.104,
+            "velocidad": 4.092438220977783,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 17.550903621673585,
+            "dspAhora": 17.552,
+            "velocidad": 2.6581642627716066,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 18.04897050201893,
+            "dspAhora": 18.064,
+            "velocidad": 3.774827241897583,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 18.563299751917524,
+            "dspAhora": 18.565333333333336,
+            "velocidad": 1.9471766948699952,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 19.075388343493147,
+            "dspAhora": 19.082666666666669,
+            "velocidad": 3.6463465690612795,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 19.558715593338016,
+            "dspAhora": 19.568,
+            "velocidad": 2.2240793704986574,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 20.069785450458526,
+            "dspAhora": 20.08,
+            "velocidad": 3.5929114818573,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 20.302025195121766,
+            "dspAhora": 20.304,
+            "velocidad": 0.4260523319244385,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 20.58153176689148,
+            "dspAhora": 20.592,
+            "velocidad": 1.4336698055267335,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 21.09885468864441,
+            "dspAhora": 21.104,
+            "velocidad": 3.4937193393707277,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 21.548920102119447,
+            "dspAhora": 21.552,
+            "velocidad": 2.47105073928833,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 22.04821966679891,
+            "dspAhora": 22.053333333333336,
+            "velocidad": 3.62253737449646,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 22.541224450747174,
+            "dspAhora": 22.554666666666667,
+            "velocidad": 1.22664475440979,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 23.06564899412791,
+            "dspAhora": 23.066666666666668,
+            "velocidad": 3.3636999130249025,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 23.5735381787618,
+            "dspAhora": 23.578666666666668,
+            "velocidad": 0.9943336844444275,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 24.07088969373703,
+            "dspAhora": 24.08,
+            "velocidad": 2.8919084072113039,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 24.586478096961977,
+            "dspAhora": 24.592,
+            "velocidad": 1.7182724475860596,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 25.074815364837645,
+            "dspAhora": 25.082666666666669,
+            "velocidad": 3.4132394790649416,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 25.54648397254944,
+            "dspAhora": 25.552,
+            "velocidad": 1.9712284803390504,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 26.057829692840575,
+            "dspAhora": 26.064,
+            "velocidad": 2.0270252227783205,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 26.6200959444046,
+            "dspAhora": 26.624,
+            "velocidad": 0.9663677215576172,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 27.10376070912679,
+            "dspAhora": 27.104,
+            "velocidad": 3.9146316051483156,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 27.568941393613817,
+            "dspAhora": 27.578666666666668,
+            "velocidad": 2.0337636470794679,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 28.117363735198976,
+            "dspAhora": 28.122666666666669,
+            "velocidad": 2.6576359272003176,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 28.58665404319763,
+            "dspAhora": 28.592,
+            "velocidad": 1.674707055091858,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 29.09068008931478,
+            "dspAhora": 29.093333333333335,
+            "velocidad": 3.796574592590332,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 29.56808838430047,
+            "dspAhora": 29.578666666666668,
+            "velocidad": 2.018521308898926,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 30.103788001378378,
+            "dspAhora": 30.106666666666667,
+            "velocidad": 2.4635252952575685,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 30.583410136222839,
+            "dspAhora": 30.592,
+            "velocidad": 1.5109243392944337,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 31.085204614480337,
+            "dspAhora": 31.093333333333335,
+            "velocidad": 3.6402106285095217,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 31.528678265889487,
+            "dspAhora": 31.536,
+            "velocidad": 2.1013858318328859,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 32.03889402254423,
+            "dspAhora": 32.053333333333338,
+            "velocidad": 1.7868789434432984,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 32.57304588445028,
+            "dspAhora": 32.576,
+            "velocidad": 1.0225086212158204,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 33.05865478626887,
+            "dspAhora": 33.06666666666667,
+            "velocidad": 4.0793046951293949,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 33.575517065684,
+            "dspAhora": 33.584,
+            "velocidad": 2.235440492630005,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 34.14048609860738,
+            "dspAhora": 34.14933333333333,
+            "velocidad": 2.0203211307525636,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 34.61395665931702,
+            "dspAhora": 34.624,
+            "velocidad": 1.5053107738494874,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 35.098929623285929,
+            "dspAhora": 35.104,
+            "velocidad": 3.994321346282959,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 35.57095170307159,
+            "dspAhora": 35.57866666666666,
+            "velocidad": 2.465425729751587,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 36.058850094795229,
+            "dspAhora": 36.064,
+            "velocidad": 4.05247163772583,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 36.599149934768679,
+            "dspAhora": 36.608,
+            "velocidad": 2.372915506362915,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 37.07451275380453,
+            "dspAhora": 37.077333333333339,
+            "velocidad": 3.4918508529663088,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 37.560310877799988,
+            "dspAhora": 37.568,
+            "velocidad": 2.7608110904693605,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 38.05594135522843,
+            "dspAhora": 38.064,
+            "velocidad": 4.259343147277832,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 38.591912321090699,
+            "dspAhora": 38.592,
+            "velocidad": 1.3750721216201783,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 39.06458029238383,
+            "dspAhora": 39.06666666666667,
+            "velocidad": 3.64920711517334,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 39.536818863213067,
+            "dspAhora": 39.552,
+            "velocidad": 1.914778232574463,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 40.05364693832398,
+            "dspAhora": 40.064,
+            "velocidad": 3.2505502700805666,
+            "agendaTardia": true
+        },
+        {
+            "dspImpacto": 40.77848563575745,
+            "dspAhora": 40.784,
+            "velocidad": 0.46918487548828127,
+            "agendaTardia": true
+        }
+    ]
+}
