@@ -21,6 +21,13 @@ import xml.etree.ElementTree as ET
 
 NS = "{http://schemas.microsoft.com/project}"
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# SE MIRAN LOS DOS PORCENTAJES, no solo PercentComplete.
+#
+# El 18 de octubre este guardian informo de que no habia caido ningun hito mientras JB.2
+# acababa de perder su PercentWorkComplete. Solo miraba uno de los dos, y el que se cayo fue
+# el otro: el que alimenta el valor ganado, que es la mitad del metodo del documento de
+# costos. Perderlo en silencio corrompe la cifra sin que nadie lo note.
+#
 # VIGILA EL CRONOGRAMA OPERATIVO, que es el que el equipo abre en ProjectLibre.
 #
 # Hasta el 18 de octubre apuntaba al de 257 tareas, que desde el recorte de alcance es
@@ -51,8 +58,13 @@ def leer():
             continue
         du = t.find(NS + "Duration")
         pc = t.find(NS + "PercentComplete")
-        out[k] = (du is not None and du.text == "PT0H0M0S",
-                  int(pc.text) if pc is not None and pc.text else 0)
+        pw = t.find(NS + "PercentWorkComplete")
+        # El MINIMO de los dos porcentajes. Una tarea con avance 100 y trabajo 0 no esta
+        # completa: el porcentaje de trabajo es el que alimenta el valor ganado, y darla por
+        # buena mirando solo el otro es como se perdio JB.2 sin que nadie lo notara.
+        p1 = int(pc.text) if pc is not None and pc.text else 0
+        p2 = int(pw.text) if pw is not None and pw.text else 0
+        out[k] = (du is not None and du.text == "PT0H0M0S", min(p1, p2))
     return out
 
 

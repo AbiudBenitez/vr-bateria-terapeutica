@@ -12,7 +12,7 @@
     <CurrencyDigits>2</CurrencyDigits>
     <CurrencySymbol>$</CurrencySymbol>
     <CurrencySymbolPosition>0</CurrencySymbolPosition>
-    <CalendarUID>28</CalendarUID>
+    <CalendarUID>34</CalendarUID>
     <DefaultStartTime>02:00:00</DefaultStartTime>
     <DefaultFinishTime>11:00:00</DefaultFinishTime>
     <MinutesPerDay>480</MinutesPerDay>
@@ -43,7 +43,7 @@
     <MoveCompletedEndsForward>0</MoveCompletedEndsForward>
     <BaselineForEarnedValue>0</BaselineForEarnedValue>
     <AutoAddNewResourcesAndTasks>1</AutoAddNewResourcesAndTasks>
-    <CurrentDate>2026-10-18T04:41:00</CurrentDate>
+    <CurrentDate>2026-10-18T06:26:00</CurrentDate>
     <MicrosoftProjectServerURL>1</MicrosoftProjectServerURL>
     <Autolink>1</Autolink>
     <NewTaskStartDate>0</NewTaskStartDate>
@@ -735,7 +735,7 @@
         </Calendar>
         <Calendar>
             <UID>10</UID>
-            <Name>Standard</Name>
+            <Name>Estandar[Imported][Imported][Imported]</Name>
             <IsBaseCalendar>1</IsBaseCalendar>
             <WeekDays>
                 <WeekDay>
@@ -905,7 +905,7 @@
         </Calendar>
         <Calendar>
             <UID>12</UID>
-            <Name>Night Shift</Name>
+            <Name>Turno nocturno[Imported][Imported][Imported]</Name>
             <IsBaseCalendar>1</IsBaseCalendar>
             <WeekDays>
                 <WeekDay>
@@ -990,7 +990,7 @@
         </Calendar>
         <Calendar>
             <UID>13</UID>
-            <Name>Standard[Imported]</Name>
+            <Name>Estandar[Imported][Imported][Imported][Imported]</Name>
             <IsBaseCalendar>1</IsBaseCalendar>
             <WeekDays>
                 <WeekDay>
@@ -1160,7 +1160,7 @@
         </Calendar>
         <Calendar>
             <UID>15</UID>
-            <Name>Night Shift[Imported]</Name>
+            <Name>Turno nocturno[Imported][Imported][Imported][Imported]</Name>
             <IsBaseCalendar>1</IsBaseCalendar>
             <WeekDays>
                 <WeekDay>
@@ -1245,7 +1245,7 @@
         </Calendar>
         <Calendar>
             <UID>16</UID>
-            <Name>Standard[Imported][Imported]</Name>
+            <Name>Standard</Name>
             <IsBaseCalendar>1</IsBaseCalendar>
             <WeekDays>
                 <WeekDay>
@@ -1415,7 +1415,7 @@
         </Calendar>
         <Calendar>
             <UID>18</UID>
-            <Name>Night Shift[Imported][Imported]</Name>
+            <Name>Night Shift</Name>
             <IsBaseCalendar>1</IsBaseCalendar>
             <WeekDays>
                 <WeekDay>
@@ -1500,7 +1500,7 @@
         </Calendar>
         <Calendar>
             <UID>19</UID>
-            <Name>Standard[Imported][Imported][Imported]</Name>
+            <Name>Standard[Imported]</Name>
             <IsBaseCalendar>1</IsBaseCalendar>
             <WeekDays>
                 <WeekDay>
@@ -1670,7 +1670,7 @@
         </Calendar>
         <Calendar>
             <UID>21</UID>
-            <Name>Night Shift[Imported][Imported][Imported]</Name>
+            <Name>Night Shift[Imported]</Name>
             <IsBaseCalendar>1</IsBaseCalendar>
             <WeekDays>
                 <WeekDay>
@@ -1755,7 +1755,7 @@
         </Calendar>
         <Calendar>
             <UID>22</UID>
-            <Name>Standard[Imported][Imported][Imported][Imported]</Name>
+            <Name>Standard[Imported][Imported]</Name>
             <IsBaseCalendar>1</IsBaseCalendar>
             <WeekDays>
                 <WeekDay>
@@ -1925,7 +1925,7 @@
         </Calendar>
         <Calendar>
             <UID>24</UID>
-            <Name>Night Shift[Imported][Imported][Imported][Imported]</Name>
+            <Name>Night Shift[Imported][Imported]</Name>
             <IsBaseCalendar>1</IsBaseCalendar>
             <WeekDays>
                 <WeekDay>
@@ -2010,7 +2010,7 @@
         </Calendar>
         <Calendar>
             <UID>25</UID>
-            <Name>Standard[Imported][Imported][Imported][Imported][Imported]</Name>
+            <Name>Standard[Imported][Imported][Imported]</Name>
             <IsBaseCalendar>1</IsBaseCalendar>
             <WeekDays>
                 <WeekDay>
@@ -2180,7 +2180,7 @@
         </Calendar>
         <Calendar>
             <UID>27</UID>
-            <Name>Night Shift[Imported][Imported][Imported][Imported][Imported]</Name>
+            <Name>Night Shift[Imported][Imported][Imported]</Name>
             <IsBaseCalendar>1</IsBaseCalendar>
             <WeekDays>
                 <WeekDay>
@@ -2265,6 +2265,516 @@
         </Calendar>
         <Calendar>
             <UID>28</UID>
+            <Name>Standard[Imported][Imported][Imported][Imported]</Name>
+            <IsBaseCalendar>1</IsBaseCalendar>
+            <WeekDays>
+                <WeekDay>
+                    <DayType>1</DayType>
+                    <DayWorking>0</DayWorking>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>2</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>3</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>4</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>5</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>6</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>7</DayType>
+                    <DayWorking>0</DayWorking>
+                </WeekDay>
+            </WeekDays>
+        </Calendar>
+        <Calendar>
+            <UID>29</UID>
+            <Name>24 Hours[Imported][Imported][Imported][Imported][Imported][Imported][Imported][Imported][Imported]</Name>
+            <IsBaseCalendar>1</IsBaseCalendar>
+            <WeekDays>
+                <WeekDay>
+                    <DayType>1</DayType>
+                    <DayWorking>0</DayWorking>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>2</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>3</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>4</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>5</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>6</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>7</DayType>
+                    <DayWorking>0</DayWorking>
+                </WeekDay>
+            </WeekDays>
+        </Calendar>
+        <Calendar>
+            <UID>30</UID>
+            <Name>Night Shift[Imported][Imported][Imported][Imported]</Name>
+            <IsBaseCalendar>1</IsBaseCalendar>
+            <WeekDays>
+                <WeekDay>
+                    <DayType>1</DayType>
+                    <DayWorking>0</DayWorking>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>2</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>3</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>4</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>5</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>6</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>7</DayType>
+                    <DayWorking>0</DayWorking>
+                </WeekDay>
+            </WeekDays>
+        </Calendar>
+        <Calendar>
+            <UID>31</UID>
+            <Name>Standard[Imported][Imported][Imported][Imported][Imported]</Name>
+            <IsBaseCalendar>1</IsBaseCalendar>
+            <WeekDays>
+                <WeekDay>
+                    <DayType>1</DayType>
+                    <DayWorking>0</DayWorking>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>2</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>3</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>4</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>5</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>6</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>7</DayType>
+                    <DayWorking>0</DayWorking>
+                </WeekDay>
+            </WeekDays>
+        </Calendar>
+        <Calendar>
+            <UID>32</UID>
+            <Name>24 Hours[Imported][Imported][Imported][Imported][Imported][Imported][Imported][Imported][Imported][Imported]</Name>
+            <IsBaseCalendar>1</IsBaseCalendar>
+            <WeekDays>
+                <WeekDay>
+                    <DayType>1</DayType>
+                    <DayWorking>0</DayWorking>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>2</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>3</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>4</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>5</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>6</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>7</DayType>
+                    <DayWorking>0</DayWorking>
+                </WeekDay>
+            </WeekDays>
+        </Calendar>
+        <Calendar>
+            <UID>33</UID>
+            <Name>Night Shift[Imported][Imported][Imported][Imported][Imported]</Name>
+            <IsBaseCalendar>1</IsBaseCalendar>
+            <WeekDays>
+                <WeekDay>
+                    <DayType>1</DayType>
+                    <DayWorking>0</DayWorking>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>2</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>3</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>4</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>5</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>6</DayType>
+                    <DayWorking>1</DayWorking>
+                    <WorkingTimes>
+                        <WorkingTime>
+                            <FromTime>08:00:00</FromTime>
+                            <ToTime>12:00:00</ToTime>
+                        </WorkingTime>
+                        <WorkingTime>
+                            <FromTime>13:00:00</FromTime>
+                            <ToTime>17:00:00</ToTime>
+                        </WorkingTime>
+                    </WorkingTimes>
+                </WeekDay>
+                <WeekDay>
+                    <DayType>7</DayType>
+                    <DayWorking>0</DayWorking>
+                </WeekDay>
+            </WeekDays>
+        </Calendar>
+        <Calendar>
+            <UID>34</UID>
             <Name>Diana — Director de proyecto</Name>
             <IsBaseCalendar>1</IsBaseCalendar>
             <WeekDays>
@@ -2441,6 +2951,26 @@
                 <Exception>
                     <EnteredByOccurrences>0</EnteredByOccurrences>
                     <TimePeriod>
+                        <FromDate>2026-09-25T00:00:00</FromDate>
+                        <ToDate>2026-09-26T23:59:00</ToDate>
+                    </TimePeriod>
+                    <Occurrences>1</Occurrences>
+                    <Type>1</Type>
+                    <DayWorking>0</DayWorking>
+                </Exception>
+                <Exception>
+                    <EnteredByOccurrences>0</EnteredByOccurrences>
+                    <TimePeriod>
+                        <FromDate>2026-09-26T00:00:00</FromDate>
+                        <ToDate>2026-09-27T23:59:00</ToDate>
+                    </TimePeriod>
+                    <Occurrences>1</Occurrences>
+                    <Type>1</Type>
+                    <DayWorking>0</DayWorking>
+                </Exception>
+                <Exception>
+                    <EnteredByOccurrences>0</EnteredByOccurrences>
+                    <TimePeriod>
                         <FromDate>2026-11-16T00:00:00</FromDate>
                         <ToDate>2026-11-17T23:59:00</ToDate>
                     </TimePeriod>
@@ -2528,6 +3058,26 @@
                     <Type>1</Type>
                     <DayWorking>0</DayWorking>
                 </Exception>
+                <Exception>
+                    <EnteredByOccurrences>0</EnteredByOccurrences>
+                    <TimePeriod>
+                        <FromDate>2026-11-25T00:00:00</FromDate>
+                        <ToDate>2026-11-26T23:59:00</ToDate>
+                    </TimePeriod>
+                    <Occurrences>1</Occurrences>
+                    <Type>1</Type>
+                    <DayWorking>0</DayWorking>
+                </Exception>
+                <Exception>
+                    <EnteredByOccurrences>0</EnteredByOccurrences>
+                    <TimePeriod>
+                        <FromDate>2026-11-26T00:00:00</FromDate>
+                        <ToDate>2026-11-27T23:59:00</ToDate>
+                    </TimePeriod>
+                    <Occurrences>1</Occurrences>
+                    <Type>1</Type>
+                    <DayWorking>0</DayWorking>
+                </Exception>
             </Exceptions>
         </Calendar>
     </Calendars>
@@ -2538,7 +3088,7 @@
             <Name>D. Desarrollo VR y batería</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1</WBS>
             <OutlineNumber>1</OutlineNumber>
             <OutlineLevel>1</OutlineLevel>
@@ -2582,7 +3132,7 @@
             <Name>DP.1 — Crear el proyecto base en Unity y definir la versión que utilizará todo el equipo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.1</WBS>
             <OutlineNumber>1.1</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -2627,7 +3177,7 @@
             <Name>DP.2 — Configurar repositorio y estructura inicial de carpetas del proyecto</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.2</WBS>
             <OutlineNumber>1.2</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -2677,7 +3227,7 @@
             <Name>DP.3 — Configurar control de versiones y reglas para evitar conflictos entre desarrolladores</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.3</WBS>
             <OutlineNumber>1.3</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -2727,7 +3277,7 @@
             <Name>DX.1 — Instalar y configurar paquetes XR necesarios para realidad virtual</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.4</WBS>
             <OutlineNumber>1.4</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -2777,7 +3327,7 @@
             <Name>DX.2 — Configurar OpenXR y compatibilidad con el visor VR seleccionado</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.5</WBS>
             <OutlineNumber>1.5</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -2827,7 +3377,7 @@
             <Name>DX.3 — Crear escena técnica inicial para realizar pruebas de VR</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.6</WBS>
             <OutlineNumber>1.6</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -2877,7 +3427,7 @@
             <Name>DX.4 — Configurar XR Origin, cámara y seguimiento de cabeza</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.7</WBS>
             <OutlineNumber>1.7</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -2927,7 +3477,7 @@
             <Name>DX.5 — Configurar seguimiento de los controles derecho e izquierdo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.8</WBS>
             <OutlineNumber>1.8</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -2977,7 +3527,7 @@
             <Name>DX.6 — Comprobar escala, altura y posición del jugador dentro del entorno VR</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.9</WBS>
             <OutlineNumber>1.9</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -3027,7 +3577,7 @@
             <Name>DB.1 — Crear versión provisional de las baquetas para pruebas</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.11</WBS>
             <OutlineNumber>1.10</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -3077,7 +3627,7 @@
             <Name>DB.3 — Ajustar posición de agarre de cada baqueta en los controles VR</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.13</WBS>
             <OutlineNumber>1.11</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -3132,7 +3682,7 @@
             <Name>DT.1 — Crear batería provisional con objetos simples para comenzar pruebas</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.14</WBS>
             <OutlineNumber>1.12</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -3182,7 +3732,7 @@
             <Name>DT.2 — Definir todos los componentes interactivos de la batería: snare, kick, toms, hi-hat, crash y ride</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.15</WBS>
             <OutlineNumber>1.13</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -3232,7 +3782,7 @@
             <Name>DG.1 — Crear sistema general de detección de golpe entre baqueta y batería</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.17</WBS>
             <OutlineNumber>1.14</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -3292,7 +3842,7 @@
             <Name>DG.2 — Identificar automáticamente qué pieza de la batería fue golpeada</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.18</WBS>
             <OutlineNumber>1.15</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -3342,7 +3892,7 @@
             <Name>DG.3 — Detectar velocidad de movimiento de la baqueta antes del impacto</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.19</WBS>
             <OutlineNumber>1.16</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -3392,7 +3942,7 @@
             <Name>DG.4 — Convertir la velocidad de la baqueta en un valor de intensidad de golpe</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.20</WBS>
             <OutlineNumber>1.17</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -3442,7 +3992,7 @@
             <Name>DG.5 — Establecer niveles de intensidad suave, media y fuerte</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.21</WBS>
             <OutlineNumber>1.18</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -3492,7 +4042,7 @@
             <Name>DG.6 — Implementar sistema para evitar golpes duplicados provocados por una misma colisión</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.22</WBS>
             <OutlineNumber>1.19</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -3542,7 +4092,7 @@
             <Name>DH.1 — Configurar vibración háptica del controlador al golpear la batería</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.23</WBS>
             <OutlineNumber>1.20</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -3592,7 +4142,7 @@
             <Name>DH.2 — Ajustar la intensidad háptica de acuerdo con la fuerza del golpe</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.24</WBS>
             <OutlineNumber>1.21</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -3647,7 +4197,7 @@
             <Name>DG.7 — Crear evento general DrumHit que informe instrumento, intensidad y tiempo del golpe</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.25</WBS>
             <OutlineNumber>1.22</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -3702,7 +4252,7 @@
             <Name>DG.8 — Implementar soporte independiente para golpe con baqueta izquierda y derecha</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.26</WBS>
             <OutlineNumber>1.23</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -3752,7 +4302,7 @@
             <Name>DG.9 — Ajustar sensibilidad de las colisiones de batería</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.28</WBS>
             <OutlineNumber>1.24</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -3802,7 +4352,7 @@
             <Name>DT.4 — Incorporar modelo 3D definitivo de la batería</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.29</WBS>
             <OutlineNumber>1.25</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -3866,7 +4416,7 @@
             <Name>DT.5 — Reconfigurar colliders utilizando el modelo definitivo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.30</WBS>
             <OutlineNumber>1.26</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -3915,7 +4465,7 @@
             <Name>DT.6 — Ajustar posición y dimensiones de batería para una postura cómoda en VR</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.31</WBS>
             <OutlineNumber>1.27</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -3970,7 +4520,7 @@
             <Name>DR.1 — Realizar primera prueba completa de interacción física de la batería</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.32</WBS>
             <OutlineNumber>1.28</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -4065,7 +4615,7 @@
             <Name>DR.2 — Corregir errores detectados durante la primera prueba de batería</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>1.33</WBS>
             <OutlineNumber>1.29</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -4115,13 +4665,13 @@
             <Name>DM.1 — Exportar las métricas de sesión: precisión temporal y constancia</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-10-17T11:19:00</CreateDate>
+            <CreateDate>2026-10-16T23:19:00</CreateDate>
             <WBS>1.30</WBS>
             <OutlineNumber>1.30</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-22T11:00:00</Start>
-            <Stop>2026-09-22T16:00:00</Stop><Finish>2026-09-22T16:00:00</Finish>
+            <Stop>2026-09-22T11:00:00</Stop><Finish>2026-09-22T11:00:00</Finish>
             <Duration>PT4H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -4165,7 +4715,7 @@
             <Name>J. Juego de ritmo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>2</WBS>
             <OutlineNumber>2</OutlineNumber>
             <OutlineLevel>1</OutlineLevel>
@@ -4208,7 +4758,7 @@
             <Name>JA.1 — Definir técnicamente cómo funcionará el juego de ritmo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>2.1</WBS>
             <OutlineNumber>2.1</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -4253,7 +4803,7 @@
             <Name>JA.2 — Definir los datos necesarios para representar una nota musical dentro del juego</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>2.2</WBS>
             <OutlineNumber>2.2</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -4303,7 +4853,7 @@
             <Name>JA.3 — Diseñar estructura de datos para canciones y beatmaps</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>2.3</WBS>
             <OutlineNumber>2.3</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -4353,7 +4903,7 @@
             <Name>JT.1 — Crear sistema de reloj musical independiente de los FPS</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>2.4</WBS>
             <OutlineNumber>2.4</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -4403,7 +4953,7 @@
             <Name>JT.2 — Implementar cálculo de BPM y duración de cada beat</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>2.5</WBS>
             <OutlineNumber>2.5</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -4453,7 +5003,7 @@
             <Name>JT.3 — Implementar cálculo de compases y subdivisiones rítmicas</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>2.6</WBS>
             <OutlineNumber>2.6</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -4503,21 +5053,23 @@
             <Name>JB.1 — Crear prototipo de beatmap manual</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>2.8</WBS>
             <OutlineNumber>2.7</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-09T11:00:00</Start>
-            <Stop>2026-09-09T11:00:00</Stop><Finish>2026-09-09T11:00:00</Finish>
-            <Duration>PT0H0M0S</Duration>
+            <Finish>2026-09-09T17:00:00</Finish>
+            <Duration>PT5H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
+            <Stop>2026-09-09T17:00:00</Stop>
+            <Resume>2026-09-10T08:00:00</Resume>
             <ResumeValid>0</ResumeValid>
             <EffortDriven>1</EffortDriven>
             <Recurring>0</Recurring>
             <OverAllocated>0</OverAllocated>
             <Estimated>0</Estimated>
-            <Milestone>0</Milestone>
+            <Milestone>1</Milestone>
             <Summary>0</Summary>
             <Critical>1</Critical>
             <IsSubproject>0</IsSubproject>
@@ -4551,21 +5103,23 @@
             <Name>JB.2 — Crear sistema que cargue un beatmap</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>2.9</WBS>
             <OutlineNumber>2.8</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-09T11:00:00</Start>
-            <Stop>2026-09-09T11:00:00</Stop><Finish>2026-09-09T11:00:00</Finish>
+            <Finish>2026-09-09T11:00:00</Finish>
             <Duration>PT0H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
+            <Stop>2026-09-09T11:00:00</Stop>
+            <Resume>2026-09-09T11:00:00</Resume>
             <ResumeValid>0</ResumeValid>
             <EffortDriven>1</EffortDriven>
             <Recurring>0</Recurring>
             <OverAllocated>0</OverAllocated>
             <Estimated>0</Estimated>
-            <Milestone>0</Milestone>
+            <Milestone>1</Milestone>
             <Summary>0</Summary>
             <Critical>1</Critical>
             <IsSubproject>0</IsSubproject>
@@ -4599,7 +5153,7 @@
             <Name>JB.3 — Sincronizar beatmap con reproducción de música</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>2.10</WBS>
             <OutlineNumber>2.9</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -4659,7 +5213,7 @@
             <Name>JN.1 — Crear representación visual provisional de las notas</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>2.11</WBS>
             <OutlineNumber>2.10</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -4709,7 +5263,7 @@
             <Name>JN.2 — Crear sistema que indique qué componente de la batería debe golpearse</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>2.12</WBS>
             <OutlineNumber>2.11</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -4759,7 +5313,7 @@
             <Name>JW.1 — Definir ventanas temporales Perfect, Good y Miss</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>2.13</WBS>
             <OutlineNumber>2.12</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -4809,7 +5363,7 @@
             <Name>JW.2 — Programar detección de golpes correctos</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>2.14</WBS>
             <OutlineNumber>2.13</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -4864,7 +5418,7 @@
             <Name>JW.5 — Programar detección de notas no golpeadas</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>2.17</WBS>
             <OutlineNumber>2.14</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -4912,7 +5466,7 @@
             <Name>JP.1 — Crear sistema básico de puntuación</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>2.18</WBS>
             <OutlineNumber>2.15</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -4967,7 +5521,7 @@
             <Name>JP.3 — Crear cálculo de precisión porcentual del usuario</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>2.20</WBS>
             <OutlineNumber>2.16</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -5015,7 +5569,7 @@
             <Name>JI.1 — Integrar evento DrumHit de la batería VR con el juego de ritmo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>2.22</WBS>
             <OutlineNumber>2.17</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -5070,7 +5624,7 @@
             <Name>E. Experiencia emocional</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>3</WBS>
             <OutlineNumber>3</OutlineNumber>
             <OutlineLevel>1</OutlineLevel>
@@ -5114,7 +5668,7 @@
             <Name>EO.1 — Definir objetivo general de la experiencia emocional</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>3.1</WBS>
             <OutlineNumber>3.1</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -5159,7 +5713,7 @@
             <Name>EO.2 — Definir alcance y límites del proyecto respecto al concepto de terapia</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>3.2</WBS>
             <OutlineNumber>3.2</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -5209,7 +5763,7 @@
             <Name>EB.1 — Buscar bibliografía científica sobre música y regulación emocional</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>3.3</WBS>
             <OutlineNumber>3.3</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -5254,7 +5808,7 @@
             <Name>EB.2 — Buscar bibliografía científica sobre percusión y expresión emocional</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>3.4</WBS>
             <OutlineNumber>3.4</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -5299,7 +5853,7 @@
             <Name>EB.3 — Buscar investigaciones sobre juegos de ritmo relacionados con bienestar y expresión emocional</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>3.5</WBS>
             <OutlineNumber>3.5</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -5344,7 +5898,7 @@
             <Name>EB.4 — Seleccionar estudios científicos que realmente sustentarán el proyecto</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>3.6</WBS>
             <OutlineNumber>3.6</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -5404,7 +5958,7 @@
             <Name>EB.5 — Crear matriz bibliográfica de artículos, objetivo, metodología y resultados</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>3.7</WBS>
             <OutlineNumber>3.7</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -5454,7 +6008,7 @@
             <Name>EE.1 — Definir qué emociones serán abordadas dentro de la simulación</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>3.8</WBS>
             <OutlineNumber>3.8</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -5504,7 +6058,7 @@
             <Name>EE.2 — Definir qué actividades se relacionarán con cada emoción</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>3.9</WBS>
             <OutlineNumber>3.9</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -5554,7 +6108,7 @@
             <Name>EE.3 — Determinar duración aproximada de una sesión</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>3.10</WBS>
             <OutlineNumber>3.10</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -5604,7 +6158,7 @@
             <Name>ER — Investigar postura, comodidad y ergonomía durante actividades de percusión VR</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>3.11</WBS>
             <OutlineNumber>3.11</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -5654,7 +6208,7 @@
             <Name>EG.1 — Redactar el guion de introducción general de la terapia</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>3.12</WBS>
             <OutlineNumber>3.12</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -5709,7 +6263,7 @@
             <Name>EG.2 — Redactar las instrucciones específicas de la actividad terapéutica</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>3.13</WBS>
             <OutlineNumber>3.13</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -5764,7 +6318,7 @@
             <Name>EF — Diseñar flujo completo de experiencia desde ingreso hasta finalización</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>3.14</WBS>
             <OutlineNumber>3.14</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -5829,7 +6383,7 @@
             <Name>EG.3 — Redactar el guion del tutorial introductorio</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>3.15</WBS>
             <OutlineNumber>3.15</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -5884,7 +6438,7 @@
             <Name>EI — Definir cómo se utilizarán el ritmo y la intensidad de los golpes para expresar las emociones seleccionadas</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>3.16</WBS>
             <OutlineNumber>3.16</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -5939,7 +6493,7 @@
             <Name>EG.4 — Redactar el guion de cierre de la experiencia terapéutica</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>3.17</WBS>
             <OutlineNumber>3.17</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -5989,7 +6543,7 @@
             <Name>ET.1 — Redactar la fundamentación teórica de la propuesta terapéutica</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>3.18</WBS>
             <OutlineNumber>3.18</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -6044,7 +6598,7 @@
             <Name>ET.2 — Revisar y actualizar la fundamentación según el funcionamiento final del prototipo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>3.19</WBS>
             <OutlineNumber>3.19</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -6098,7 +6652,7 @@
             <Name>M. Música</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>4</WBS>
             <OutlineNumber>4</OutlineNumber>
             <OutlineLevel>1</OutlineLevel>
@@ -6141,7 +6695,7 @@
             <Name>ML.1 — Determinar si se utilizará música original, libre de derechos o licenciada</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>4.6</WBS>
             <OutlineNumber>4.1</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -6186,7 +6740,7 @@
             <Name>ML.2 — Investigar licencias de las pistas o recursos musicales considerados</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>4.7</WBS>
             <OutlineNumber>4.2</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -6236,7 +6790,7 @@
             <Name>MP.1 — Crear o seleccionar primera pista musical de prueba</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>4.8</WBS>
             <OutlineNumber>4.3</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -6296,7 +6850,7 @@
             <Name>MP.2 — Determinar BPM exacto de la primera pista</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>4.9</WBS>
             <OutlineNumber>4.4</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -6344,7 +6898,7 @@
             <Name>MP.3 — Identificar estructura musical de la primera pista</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>4.10</WBS>
             <OutlineNumber>4.5</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -6392,7 +6946,7 @@
             <Name>MB.1 — Crear patrón básico de batería para la primera pista</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>4.11</WBS>
             <OutlineNumber>4.6</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -6442,7 +6996,7 @@
             <Name>MB.4 — Convertir patrón rítmico en información utilizable para el beatmap</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>4.14</WBS>
             <OutlineNumber>4.7</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -6497,7 +7051,7 @@
             <Name>S. Sonido</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>5</WBS>
             <OutlineNumber>5</OutlineNumber>
             <OutlineLevel>1</OutlineLevel>
@@ -6540,7 +7094,7 @@
             <Name>SP.1 — Crear lista de todos los sonidos necesarios para el proyecto</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>5.1</WBS>
             <OutlineNumber>5.1</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -6585,7 +7139,7 @@
             <Name>SB.1 — Buscar sonido de kick</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>5.3</WBS>
             <OutlineNumber>5.2</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -6633,7 +7187,7 @@
             <Name>SB.2 — Buscar sonido de snare</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>5.4</WBS>
             <OutlineNumber>5.3</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -6681,7 +7235,7 @@
             <Name>SB.3 — Buscar sonidos de toms</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>5.5</WBS>
             <OutlineNumber>5.4</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -6729,7 +7283,7 @@
             <Name>SB.4 — Buscar sonidos de hi-hat abierto y cerrado</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>5.6</WBS>
             <OutlineNumber>5.5</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -6777,7 +7331,7 @@
             <Name>SB.5 — Buscar sonidos de crash y ride</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>5.7</WBS>
             <OutlineNumber>5.6</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -6825,7 +7379,7 @@
             <Name>SB.6 — Seleccionar tres niveles de intensidad para cada componente principal</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>5.8</WBS>
             <OutlineNumber>5.7</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -6895,7 +7449,7 @@
             <Name>SE.1 — Editar inicio y final de cada muestra para evitar retrasos</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>5.9</WBS>
             <OutlineNumber>5.8</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -6945,7 +7499,7 @@
             <Name>SE.3 — Normalizar volumen de las muestras de batería</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>5.11</WBS>
             <OutlineNumber>5.9</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -6995,7 +7549,7 @@
             <Name>SE.4 — Exportar sonidos en formato apropiado para Unity</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>5.12</WBS>
             <OutlineNumber>5.10</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -7048,7 +7602,7 @@
             <Name>SI.1 — Integrar sonidos de batería con sistema DrumHit</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>5.15</WBS>
             <OutlineNumber>5.11</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -7103,7 +7657,7 @@
             <Name>SI.2 — Asignar sonidos diferentes según intensidad del golpe</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>5.16</WBS>
             <OutlineNumber>5.12</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -7158,7 +7712,7 @@
             <Name>SI.3 — Configurar volumen espacial de la batería dentro del entorno VR</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>5.17</WBS>
             <OutlineNumber>5.13</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -7208,7 +7762,7 @@
             <Name>SI.4 — Medir retraso perceptible entre impacto y reproducción del sonido</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>5.18</WBS>
             <OutlineNumber>5.14</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -7258,7 +7812,7 @@
             <Name>I. Interfaz / UX/UI</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>6</WBS>
             <OutlineNumber>6</OutlineNumber>
             <OutlineLevel>1</OutlineLevel>
@@ -7302,7 +7856,7 @@
             <Name>IM.1 — Definir mapa completo de pantallas de la aplicación</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>6.1</WBS>
             <OutlineNumber>6.1</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -7357,7 +7911,7 @@
             <Name>IM.2 — Definir navegación entre menú, experiencia guiada, juego y modo libre</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>6.2</WBS>
             <OutlineNumber>6.2</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -7407,7 +7961,7 @@
             <Name>IW.1 — Crear wireframe del menú principal</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>6.3</WBS>
             <OutlineNumber>6.3</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -7457,7 +8011,7 @@
             <Name>IW.2 — Crear wireframe de selección de modo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>6.4</WBS>
             <OutlineNumber>6.4</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -7507,7 +8061,7 @@
             <Name>IW.3 — Crear wireframe de selección emocional</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>6.5</WBS>
             <OutlineNumber>6.5</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -7562,7 +8116,7 @@
             <Name>IW.5 — Crear wireframe de pantalla previa al juego</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>6.7</WBS>
             <OutlineNumber>6.6</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -7612,7 +8166,7 @@
             <Name>IG.1 — Diseñar indicadores visuales de Perfect, Good y Miss</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>6.16</WBS>
             <OutlineNumber>6.7</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -7662,7 +8216,7 @@
             <Name>IG.2 — Diseñar representación definitiva de las notas del juego</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>6.17</WBS>
             <OutlineNumber>6.8</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -7717,7 +8271,7 @@
             <Name>IG.3 — Diseñar indicadores para señalar el tambor que debe golpearse</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>6.18</WBS>
             <OutlineNumber>6.9</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -7767,7 +8321,7 @@
             <Name>IT.1 — Diseñar tutorial visual sobre cómo sujetar las baquetas</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>6.19</WBS>
             <OutlineNumber>6.10</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -7821,7 +8375,7 @@
             <Name>IT.2 — Diseñar tutorial para explicar cómo seguir el ritmo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>6.20</WBS>
             <OutlineNumber>6.11</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -7869,7 +8423,7 @@
             <Name>IT.3 — Diseñar tutorial para explicar la intensidad de los golpes</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>6.21</WBS>
             <OutlineNumber>6.12</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -7918,7 +8472,7 @@
             <Name>IT.4 — Implementar flujo del tutorial completo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>6.22</WBS>
             <OutlineNumber>6.13</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -7977,7 +8531,7 @@
             <Name>II.2 — Implementar menú principal dentro de Unity</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>6.24</WBS>
             <OutlineNumber>6.14</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -8051,7 +8605,7 @@
             <Name>II.3 — Implementar interacción con botones utilizando controlador VR</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>6.25</WBS>
             <OutlineNumber>6.15</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -8104,7 +8658,7 @@
             <Name>II.6 — Implementar pantalla de resultados</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>6.28</WBS>
             <OutlineNumber>6.16</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -8163,7 +8717,7 @@
             <Name>IR.1 — Revisar legibilidad de textos dentro del visor VR</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>6.29</WBS>
             <OutlineNumber>6.17</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -8212,7 +8766,7 @@
             <Name>IR.2 — Revisar tamaño, distancia y posición de paneles</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>6.30</WBS>
             <OutlineNumber>6.18</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -8260,7 +8814,7 @@
             <Name>A. Entorno 3D y assets</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>7</WBS>
             <OutlineNumber>7</OutlineNumber>
             <OutlineLevel>1</OutlineLevel>
@@ -8269,6 +8823,7 @@
             <Finish>2026-10-13T11:00:00</Finish>
             <Duration>PT52H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
+            <Stop>2026-09-16T11:00:00</Stop>
             <ResumeValid>0</ResumeValid>
             <EffortDriven>1</EffortDriven>
             <Recurring>0</Recurring>
@@ -8281,9 +8836,8 @@
             <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
-            <PercentComplete>82</PercentComplete>
-            <PercentWorkComplete>82</PercentWorkComplete>
-            <RemainingDuration>PT9H10M35S</RemainingDuration>
+            <PercentComplete>100</PercentComplete>
+            <PercentWorkComplete>100</PercentWorkComplete>
             <ConstraintType>0</ConstraintType>
             <CalendarUID>-1</CalendarUID>
             <ConstraintDate>1970-01-01T00:00:00</ConstraintDate>
@@ -8304,7 +8858,7 @@
             <Name>AA.3 — Buscar assets de entorno compatibles con el estilo elegido</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>7.9</WBS>
             <OutlineNumber>7.1</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -8370,7 +8924,7 @@
             <Name>AA.4 — Revisar licencias de los assets seleccionados</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>7.10</WBS>
             <OutlineNumber>7.2</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -8421,7 +8975,7 @@
             <Name>AP.1 — Crear primera composición del escenario en Unity</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>7.17</WBS>
             <OutlineNumber>7.3</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -8477,7 +9031,7 @@
             <Name>AL.1 — Configurar iluminación inicial considerando la paleta de colores establecida</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>7.20</WBS>
             <OutlineNumber>7.4</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -8542,7 +9096,7 @@
             <Name>AL.2 — Configurar iluminación definitiva y ambiente visual</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>7.21</WBS>
             <OutlineNumber>7.5</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -8593,15 +9147,17 @@
             <Name>AS — Crear límites visuales de seguridad del espacio de interacción</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>7.24</WBS>
             <OutlineNumber>7.6</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-21T16:00:00</Start>
-            <Stop>2026-09-22T11:00:00</Stop><Finish>2026-09-22T11:00:00</Finish>
+            <Finish>2026-09-22T11:00:00</Finish>
             <Duration>PT4H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
+            <Stop>2026-09-22T11:00:00</Stop>
+            <Resume>2026-09-22T11:00:00</Resume>
             <ResumeValid>0</ResumeValid>
             <EffortDriven>1</EffortDriven>
             <Recurring>0</Recurring>
@@ -8616,7 +9172,6 @@
             <FixedCostAccrual>3</FixedCostAccrual>
             <PercentComplete>100</PercentComplete>
             <PercentWorkComplete>100</PercentWorkComplete>
-            <RemainingDuration>PT4H0M0S</RemainingDuration>
             <ConstraintType>0</ConstraintType>
             <CalendarUID>-1</CalendarUID>
             <ConstraintDate>1970-01-01T00:00:00</ConstraintDate>
@@ -8625,6 +9180,7 @@
             <LevelingDelay>0</LevelingDelay>
             <LevelingDelayFormat>7</LevelingDelayFormat>
             <IgnoreResourceCalendar>0</IgnoreResourceCalendar>
+            <Notes>[HECHA 2026-10-18] LimiteSeguro dibuja el perimetro del espacio con radio calculado del pad mas lejano mas 0.5 m de margen. Verificado en el visor durante la corrida de FPS del 18-oct: el circulo se ve y el radio se siente adecuado. La medida 10 habla de lo que reportan los usuarios, asi que se cierra con observacion, no con un numero del sistema</Notes>
             <HideBar>0</HideBar>
             <Rollup>0</Rollup>
             <EarnedValueMethod>0</EarnedValueMethod>
@@ -8640,22 +9196,24 @@
             </PredecessorLink>
             <Active>1</Active>
             <Manual>0</Manual>
-        <Notes>[HECHA 2026-10-18] LimiteSeguro dibuja el perimetro del espacio con radio calculado del pad mas lejano mas 0.5 m de margen. Verificado en el visor durante la corrida de FPS del 18-oct: el circulo se ve y el radio se siente adecuado. La medida 10 habla de lo que reportan los usuarios, asi que se cierra con observacion, no con un numero del sistema</Notes></Task>
+        </Task>
         <Task>
             <UID>119</UID>
             <ID>119</ID>
             <Name>AO.5 — Evaluar FPS del escenario en el visor objetivo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>7.29</WBS>
             <OutlineNumber>7.7</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-25T11:00:00</Start>
-            <Stop>2026-09-28T11:00:00</Stop><Finish>2026-09-28T11:00:00</Finish>
+            <Finish>2026-09-28T11:00:00</Finish>
             <Duration>PT8H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
+            <Stop>2026-09-28T11:00:00</Stop>
+            <Resume>2026-09-28T11:00:00</Resume>
             <ResumeValid>0</ResumeValid>
             <EffortDriven>1</EffortDriven>
             <Recurring>0</Recurring>
@@ -8670,7 +9228,6 @@
             <FixedCostAccrual>3</FixedCostAccrual>
             <PercentComplete>100</PercentComplete>
             <PercentWorkComplete>100</PercentWorkComplete>
-            <RemainingDuration>PT8H0M0S</RemainingDuration>
             <ConstraintType>0</ConstraintType>
             <CalendarUID>-1</CalendarUID>
             <ConstraintDate>1970-01-01T00:00:00</ConstraintDate>
@@ -8679,6 +9236,7 @@
             <LevelingDelay>0</LevelingDelay>
             <LevelingDelayFormat>7</LevelingDelayFormat>
             <IgnoreResourceCalendar>0</IgnoreResourceCalendar>
+            <Notes>[HECHA 2026-10-18] Medido en el visor sobre el entorno definitivo: 12949 fotogramas, 12946 en vsync (100.0 %), 3 vsync perdidos (0.02 %) contra un criterio del 5 %. Evidencia en entregables/mediciones/fps_20261018_060703.json</Notes>
             <HideBar>0</HideBar>
             <Rollup>0</Rollup>
             <EarnedValueMethod>0</EarnedValueMethod>
@@ -8689,14 +9247,14 @@
             </PredecessorLink>
             <Active>1</Active>
             <Manual>0</Manual>
-        <Notes>[HECHA 2026-10-18] Medido en el visor sobre el entorno definitivo: 12949 fotogramas, 12946 en vsync (100.0 %), 3 vsync perdidos (0.02 %) contra un criterio del 5 %. Evidencia en entregables/mediciones/fps_20261018_060703.json</Notes></Task>
+        </Task>
         <Task>
             <UID>120</UID>
             <ID>120</ID>
             <Name>Q. QA, documentación y gestión</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8</WBS>
             <OutlineNumber>8</OutlineNumber>
             <OutlineLevel>1</OutlineLevel>
@@ -8717,9 +9275,9 @@
             <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
-            <PercentComplete>42</PercentComplete>
-            <PercentWorkComplete>42</PercentWorkComplete>
-            <RemainingDuration>PT78H57M16S</RemainingDuration>
+            <PercentComplete>43</PercentComplete>
+            <PercentWorkComplete>43</PercentWorkComplete>
+            <RemainingDuration>PT76H53M15S</RemainingDuration>
             <ConstraintType>0</ConstraintType>
             <CalendarUID>-1</CalendarUID>
             <ConstraintDate>1970-01-01T00:00:00</ConstraintDate>
@@ -8740,7 +9298,7 @@
             <Name>QP.1 — Definir alcance general del proyecto</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.1</WBS>
             <OutlineNumber>8.1</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -8785,7 +9343,7 @@
             <Name>QP.2 — Definir objetivos generales y específicos</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.2</WBS>
             <OutlineNumber>8.2</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -8835,7 +9393,7 @@
             <Name>QP.3 — Identificar entregables principales del proyecto</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.3</WBS>
             <OutlineNumber>8.3</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -8890,7 +9448,7 @@
             <Name>QP.4 — Elaborar EDT/WBS completa de tareas</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.4</WBS>
             <OutlineNumber>8.4</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -8940,7 +9498,7 @@
             <Name>QP.5 — Asignar responsables principales para cada tarea</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.5</WBS>
             <OutlineNumber>8.5</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -8990,7 +9548,7 @@
             <Name>QP.6 — Establecer dependencias entre tareas</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.6</WBS>
             <OutlineNumber>8.6</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -9040,7 +9598,7 @@
             <Name>QP.7 — Crear cronograma inicial del proyecto</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.7</WBS>
             <OutlineNumber>8.7</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -9100,7 +9658,7 @@
             <Name>QP.8 — Crear diagrama de Gantt</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.8</WBS>
             <OutlineNumber>8.8</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -9150,7 +9708,7 @@
             <Name>QP.9 — Identificar ruta crítica del proyecto</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.9</WBS>
             <OutlineNumber>8.9</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -9200,7 +9758,7 @@
             <Name>QG.1 — Crear lista de riesgos técnicos, académicos y de tiempo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.10</WBS>
             <OutlineNumber>8.10</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -9255,7 +9813,7 @@
             <Name>QG.2 — Definir acciones de mitigación para cada riesgo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.11</WBS>
             <OutlineNumber>8.11</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -9304,7 +9862,7 @@
             <Name>QR.1 — Definir requisitos funcionales de la simulación</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.12</WBS>
             <OutlineNumber>8.12</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -9354,7 +9912,7 @@
             <Name>QR.2 — Definir requisitos no funcionales</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.13</WBS>
             <OutlineNumber>8.13</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -9404,7 +9962,7 @@
             <Name>QR.3 — Crear criterios de aceptación para cada requisito</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.14</WBS>
             <OutlineNumber>8.14</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -9459,7 +10017,7 @@
             <Name>QR.4 — Crear matriz de trazabilidad entre requisitos y funcionalidades</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.15</WBS>
             <OutlineNumber>8.15</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -9509,7 +10067,7 @@
             <Name>QE.1 — Establecer formato para documentar errores</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.16</WBS>
             <OutlineNumber>8.16</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -9554,7 +10112,7 @@
             <Name>QT.1 — Crear plan de pruebas de batería VR</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.17</WBS>
             <OutlineNumber>8.17</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -9608,7 +10166,7 @@
             <Name>QT.6 — Realizar pruebas unitarias de batería</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.22</WBS>
             <OutlineNumber>8.18</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -9664,17 +10222,15 @@
             <Name>QT.7 — Realizar pruebas del sistema de ritmo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.23</WBS>
             <OutlineNumber>8.19</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-22T11:00:00</Start>
-            <Finish>2026-09-22T11:00:00</Finish>
+            <Stop>2026-09-22T11:00:00</Stop><Finish>2026-09-22T11:00:00</Finish>
             <Duration>PT0H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
-            <Stop>2026-09-22T11:00:00</Stop>
-            <Resume>2026-09-22T11:00:00</Resume>
             <ResumeValid>0</ResumeValid>
             <EffortDriven>1</EffortDriven>
             <Recurring>0</Recurring>
@@ -9688,7 +10244,7 @@
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
             <PercentComplete>100</PercentComplete>
-            <PercentWorkComplete>0</PercentWorkComplete>
+            <PercentWorkComplete>100</PercentWorkComplete>
             <ConstraintType>0</ConstraintType>
             <CalendarUID>-1</CalendarUID>
             <ConstraintDate>1970-01-01T00:00:00</ConstraintDate>
@@ -9785,7 +10341,7 @@
             <Name>QT.8 — Realizar pruebas con usuarios del prototipo integrado</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.24</WBS>
             <OutlineNumber>8.20</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -9829,7 +10385,7 @@
             <Name>QE.2 — Registrar errores, observaciones y sugerencias de usuarios</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.25</WBS>
             <OutlineNumber>8.21</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -9883,7 +10439,7 @@
             <Name>QE.3 — Clasificar errores por gravedad y prioridad</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.26</WBS>
             <OutlineNumber>8.22</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -9931,7 +10487,7 @@
             <Name>QE.4 — Asignar errores a las áreas correspondientes</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.27</WBS>
             <OutlineNumber>8.23</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -9979,7 +10535,7 @@
             <Name>QE.5 — Verificar corrección de errores críticos</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.28</WBS>
             <OutlineNumber>8.24</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -10033,7 +10589,7 @@
             <Name>QV.1 — Realizar prueba completa desde inicio hasta final de una sesión</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.29</WBS>
             <OutlineNumber>8.25</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -10082,7 +10638,7 @@
             <Name>QV.2 — Evaluar estabilidad y presencia de cierres inesperados</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.30</WBS>
             <OutlineNumber>8.26</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -10131,15 +10687,17 @@
             <Name>QV.3 — Medir FPS del proyecto en el visor objetivo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.31</WBS>
             <OutlineNumber>8.27</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-25T11:00:00</Start>
-            <Stop>2026-09-25T17:00:00</Stop><Finish>2026-09-25T17:00:00</Finish>
+            <Finish>2026-09-25T17:00:00</Finish>
             <Duration>PT5H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
+            <Stop>2026-09-25T17:00:00</Stop>
+            <Resume>2026-09-28T08:00:00</Resume>
             <ResumeValid>0</ResumeValid>
             <EffortDriven>1</EffortDriven>
             <Recurring>0</Recurring>
@@ -10154,7 +10712,6 @@
             <FixedCostAccrual>3</FixedCostAccrual>
             <PercentComplete>100</PercentComplete>
             <PercentWorkComplete>100</PercentWorkComplete>
-            <RemainingDuration>PT5H0M0S</RemainingDuration>
             <ConstraintType>0</ConstraintType>
             <CalendarUID>-1</CalendarUID>
             <ConstraintDate>1970-01-01T00:00:00</ConstraintDate>
@@ -10163,6 +10720,7 @@
             <LevelingDelay>0</LevelingDelay>
             <LevelingDelayFormat>7</LevelingDelayFormat>
             <IgnoreResourceCalendar>0</IgnoreResourceCalendar>
+            <Notes>[HECHA 2026-10-18] Misma corrida que AO.5, desde QA. 71.9 fps de media, mediana y p99 en 13.9 ms, que es el intervalo exacto de vsync a 72 Hz</Notes>
             <HideBar>0</HideBar>
             <Rollup>0</Rollup>
             <EarnedValueMethod>0</EarnedValueMethod>
@@ -10178,14 +10736,14 @@
             </PredecessorLink>
             <Active>1</Active>
             <Manual>0</Manual>
-        <Notes>[HECHA 2026-10-18] Misma corrida que AO.5, desde QA. 71.9 fps de media, mediana y p99 en 13.9 ms, que es el intervalo exacto de vsync a 72 Hz</Notes></Task>
+        </Task>
         <Task>
             <UID>148</UID>
             <ID>148</ID>
             <Name>QV.4 — Evaluar latencia entre golpe físico, sonido y detección</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.32</WBS>
             <OutlineNumber>8.28</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -10244,7 +10802,7 @@
             <Name>QV.5 — Evaluar comodidad de la experiencia VR</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.33</WBS>
             <OutlineNumber>8.29</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -10293,7 +10851,7 @@
             <Name>QC.1 — Registrar versiones importantes del proyecto</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.34</WBS>
             <OutlineNumber>8.30</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -10341,7 +10899,7 @@
             <Name>QC.2 — Documentar avances semanales</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.35</WBS>
             <OutlineNumber>8.31</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -10386,7 +10944,7 @@
             <Name>QC.3 — Mantener actualizada la bibliografía del proyecto</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.36</WBS>
             <OutlineNumber>8.32</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -10436,17 +10994,15 @@
             <Name>QC.4 — Mantener registro de assets y sus licencias</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.37</WBS>
             <OutlineNumber>8.33</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-08T14:00:00</Start>
-            <Finish>2026-09-08T14:00:00</Finish>
+            <Stop>2026-09-08T14:00:00</Stop><Finish>2026-09-08T14:00:00</Finish>
             <Duration>PT0H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
-            <Stop>2026-09-08T14:00:00</Stop>
-            <Resume>2026-09-08T14:00:00</Resume>
             <ResumeValid>0</ResumeValid>
             <EffortDriven>1</EffortDriven>
             <Recurring>0</Recurring>
@@ -10460,7 +11016,7 @@
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
             <PercentComplete>100</PercentComplete>
-            <PercentWorkComplete>0</PercentWorkComplete>
+            <PercentWorkComplete>100</PercentWorkComplete>
             <ConstraintType>0</ConstraintType>
             <CalendarUID>-1</CalendarUID>
             <ConstraintDate>1970-01-01T00:00:00</ConstraintDate>
@@ -10487,7 +11043,7 @@
             <Name>QC.5 — Mantener registro de música y licencias utilizadas</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.38</WBS>
             <OutlineNumber>8.34</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -10535,7 +11091,7 @@
             <Name>QM.1 — Elaborar manual básico de usuario</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.47</WBS>
             <OutlineNumber>8.35</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -10584,7 +11140,7 @@
             <Name>QM.2 — Elaborar manual técnico de instalación y ejecución</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.48</WBS>
             <OutlineNumber>8.36</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -10633,7 +11189,7 @@
             <Name>QI.1 — Analizar resultados obtenidos durante las pruebas</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.51</WBS>
             <OutlineNumber>8.37</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -10687,7 +11243,7 @@
             <Name>QI.2 — Redactar apartado de resultados del proyecto</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.52</WBS>
             <OutlineNumber>8.38</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -10736,7 +11292,7 @@
             <Name>QI.3 — Redactar conclusiones y limitaciones</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.53</WBS>
             <OutlineNumber>8.39</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -10785,7 +11341,7 @@
             <Name>QI.4 — Integrar todas las secciones del informe final</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.54</WBS>
             <OutlineNumber>8.40</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -10954,7 +11510,7 @@
             <Name>QI.5 — Revisar redacción, ortografía, referencias y formato</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.55</WBS>
             <OutlineNumber>8.41</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -11018,7 +11574,7 @@
             <Name>QB.1 — Generar build candidata a versión final</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.56</WBS>
             <OutlineNumber>8.42</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -11092,7 +11648,7 @@
             <Name>QB.2 — Probar build final en el visor VR objetivo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.57</WBS>
             <OutlineNumber>8.43</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -11141,7 +11697,7 @@
             <Name>QB.3 — Corregir errores críticos encontrados en build final</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.58</WBS>
             <OutlineNumber>8.44</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -11190,7 +11746,7 @@
             <Name>QB.4 — Generar versión definitiva del videojuego</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.59</WBS>
             <OutlineNumber>8.45</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -11238,7 +11794,7 @@
             <Name>QX — Preparar presentación y demostración final del proyecto</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T16:22:00</CreateDate>
+            <CreateDate>2026-09-19T04:22:00</CreateDate>
             <WBS>8.60</WBS>
             <OutlineNumber>8.46</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
@@ -11352,7 +11908,7 @@
             <StandardRateFormat>3</StandardRateFormat>
             <OvertimeRate>88.6099999999999994315658113919198513031005859375</OvertimeRate>
             <OvertimeRateFormat>3</OvertimeRateFormat>
-            <CalendarUID>29</CalendarUID>
+            <CalendarUID>35</CalendarUID>
             <Notes>1.5 salarios mínimos por hora. Tarifa base: $39.38/h.</Notes>
             <IsGeneric>0</IsGeneric>
             <IsInactive>0</IsInactive>
@@ -11380,7 +11936,7 @@
             <StandardRateFormat>3</StandardRateFormat>
             <OvertimeRate>76.780000000000001136868377216160297393798828125</OvertimeRate>
             <OvertimeRateFormat>3</OvertimeRateFormat>
-            <CalendarUID>30</CalendarUID>
+            <CalendarUID>36</CalendarUID>
             <Notes>1.3 salarios mínimos por hora. Tarifa base: $39.38/h.</Notes>
             <IsGeneric>0</IsGeneric>
             <IsInactive>0</IsInactive>
@@ -11408,7 +11964,7 @@
             <StandardRateFormat>3</StandardRateFormat>
             <OvertimeRate>76.780000000000001136868377216160297393798828125</OvertimeRate>
             <OvertimeRateFormat>3</OvertimeRateFormat>
-            <CalendarUID>31</CalendarUID>
+            <CalendarUID>37</CalendarUID>
             <Notes>1.3 salarios mínimos por hora. Tarifa base: $39.38/h.</Notes>
             <IsGeneric>0</IsGeneric>
             <IsInactive>0</IsInactive>
@@ -11436,7 +11992,7 @@
             <StandardRateFormat>3</StandardRateFormat>
             <OvertimeRate>88.6099999999999994315658113919198513031005859375</OvertimeRate>
             <OvertimeRateFormat>3</OvertimeRateFormat>
-            <CalendarUID>32</CalendarUID>
+            <CalendarUID>38</CalendarUID>
             <Notes>1.5 salarios mínimos por hora. Tarifa base: $39.38/h.</Notes>
             <IsGeneric>0</IsGeneric>
             <IsInactive>0</IsInactive>
@@ -11464,7 +12020,7 @@
             <StandardRateFormat>3</StandardRateFormat>
             <OvertimeRate>76.780000000000001136868377216160297393798828125</OvertimeRate>
             <OvertimeRateFormat>3</OvertimeRateFormat>
-            <CalendarUID>33</CalendarUID>
+            <CalendarUID>39</CalendarUID>
             <Notes>1.3 salarios mínimos por hora. Tarifa base: $39.38/h.</Notes>
             <IsGeneric>0</IsGeneric>
             <IsInactive>0</IsInactive>
@@ -11492,7 +12048,7 @@
             <StandardRateFormat>3</StandardRateFormat>
             <OvertimeRate>70.8900000000000005684341886080801486968994140625</OvertimeRate>
             <OvertimeRateFormat>3</OvertimeRateFormat>
-            <CalendarUID>34</CalendarUID>
+            <CalendarUID>40</CalendarUID>
             <Notes>1.2 salarios mínimos por hora. Tarifa base: $39.38/h.</Notes>
             <IsGeneric>0</IsGeneric>
             <IsInactive>0</IsInactive>
@@ -11520,7 +12076,7 @@
             <StandardRateFormat>3</StandardRateFormat>
             <OvertimeRate>70.8900000000000005684341886080801486968994140625</OvertimeRate>
             <OvertimeRateFormat>3</OvertimeRateFormat>
-            <CalendarUID>35</CalendarUID>
+            <CalendarUID>41</CalendarUID>
             <Notes>1.2 salarios mínimos por hora. Tarifa base: $39.38/h.</Notes>
             <IsGeneric>0</IsGeneric>
             <IsInactive>0</IsInactive>
@@ -11548,7 +12104,7 @@
             <StandardRateFormat>3</StandardRateFormat>
             <OvertimeRate>106.31999999999999317878973670303821563720703125</OvertimeRate>
             <OvertimeRateFormat>3</OvertimeRateFormat>
-            <CalendarUID>36</CalendarUID>
+            <CalendarUID>42</CalendarUID>
             <Notes>1.8 salarios mínimos por hora. Tarifa base: $39.38/h.</Notes>
             <IsGeneric>0</IsGeneric>
             <IsInactive>0</IsInactive>
@@ -11576,7 +12132,7 @@
             <StandardRateFormat>3</StandardRateFormat>
             <OvertimeRate>76.780000000000001136868377216160297393798828125</OvertimeRate>
             <OvertimeRateFormat>3</OvertimeRateFormat>
-            <CalendarUID>37</CalendarUID>
+            <CalendarUID>43</CalendarUID>
             <Notes>1.3 salarios mínimos por hora. Tarifa base: $39.38/h.</Notes>
             <IsGeneric>0</IsGeneric>
             <IsInactive>0</IsInactive>
@@ -11604,7 +12160,7 @@
             <StandardRateFormat>3</StandardRateFormat>
             <OvertimeRate>64.9800000000000039790393202565610408782958984375</OvertimeRate>
             <OvertimeRateFormat>3</OvertimeRateFormat>
-            <CalendarUID>38</CalendarUID>
+            <CalendarUID>44</CalendarUID>
             <Notes>1.1 salarios mínimos por hora. Tarifa base: $39.38/h.</Notes>
             <IsGeneric>0</IsGeneric>
             <IsInactive>0</IsInactive>
@@ -11632,7 +12188,7 @@
             <StandardRateFormat>3</StandardRateFormat>
             <OvertimeRate>59.07000000000000028421709430404007434844970703125</OvertimeRate>
             <OvertimeRateFormat>3</OvertimeRateFormat>
-            <CalendarUID>39</CalendarUID>
+            <CalendarUID>45</CalendarUID>
             <Notes>1.0 salarios mínimos por hora. Tarifa base: $39.38/h.</Notes>
             <IsGeneric>0</IsGeneric>
             <IsInactive>0</IsInactive>
@@ -11660,7 +12216,7 @@
             <StandardRateFormat>3</StandardRateFormat>
             <OvertimeRate>88.6099999999999994315658113919198513031005859375</OvertimeRate>
             <OvertimeRateFormat>3</OvertimeRateFormat>
-            <CalendarUID>40</CalendarUID>
+            <CalendarUID>46</CalendarUID>
             <Notes>1.5 salarios mínimos por hora. Tarifa base: $39.38/h.</Notes>
             <IsGeneric>0</IsGeneric>
             <IsInactive>0</IsInactive>
@@ -11688,7 +12244,7 @@
             <StandardRateFormat>3</StandardRateFormat>
             <OvertimeRate>129.960000000000007958078640513122081756591796875</OvertimeRate>
             <OvertimeRateFormat>3</OvertimeRateFormat>
-            <CalendarUID>41</CalendarUID>
+            <CalendarUID>47</CalendarUID>
             <Notes>2.2 salarios mínimos por hora. Tarifa base: $39.38/h.</Notes>
             <IsGeneric>0</IsGeneric>
             <IsInactive>0</IsInactive>
@@ -12469,7 +13025,7 @@
             <UID>31</UID>
             <TaskUID>31</TaskUID>
             <ResourceUID>-65535</ResourceUID>
-            <Finish>2026-09-22T16:00:00</Finish>
+            <Finish>2026-09-22T11:00:00</Finish>
             <HasFixedRateUnits>1</HasFixedRateUnits>
             <FixedMaterial>0</FixedMaterial>
             <RemainingWork>PT4H0M0S</RemainingWork>
@@ -12719,14 +13275,23 @@
             <UID>39</UID>
             <TaskUID>39</TaskUID>
             <ResourceUID>1</ResourceUID>
-            <Finish>2026-09-09T11:00:00</Finish>
+            <Finish>2026-09-09T17:00:00</Finish>
             <HasFixedRateUnits>1</HasFixedRateUnits>
             <FixedMaterial>0</FixedMaterial>
             <Start>2026-09-09T11:00:00</Start>
-            <Stop>1969-12-31T18:00:00</Stop>
-            <Resume>1969-12-31T18:00:00</Resume>
+            <Stop>2026-09-09T17:00:00</Stop>
+            <Resume>2026-09-10T08:00:00</Resume>
             <Units>1</Units>
-            <WorkContour>0</WorkContour>
+            <Work>PT5H0M0S</Work>
+            <WorkContour>8</WorkContour>
+            <TimephasedData>
+                <Type>2</Type>
+                <UID>39</UID>
+                <Start>2026-09-09T11:00:00</Start>
+                <Finish>2026-09-09T17:00:00</Finish>
+                <Unit>3</Unit>
+                <Value>PT5H0M0S</Value>
+            </TimephasedData>
         </Assignment>
         <Assignment>
             <UID>40</UID>
@@ -12736,8 +13301,8 @@
             <HasFixedRateUnits>1</HasFixedRateUnits>
             <FixedMaterial>0</FixedMaterial>
             <Start>2026-09-09T11:00:00</Start>
-            <Stop>1969-12-31T18:00:00</Stop>
-            <Resume>1969-12-31T18:00:00</Resume>
+            <Stop>2026-09-09T11:00:00</Stop>
+            <Resume>2026-09-09T11:00:00</Resume>
             <Units>1</Units>
             <WorkContour>0</WorkContour>
         </Assignment>
@@ -14985,28 +15550,19 @@
             <Finish>2026-09-22T11:00:00</Finish>
             <HasFixedRateUnits>1</HasFixedRateUnits>
             <FixedMaterial>0</FixedMaterial>
-            <RemainingWork>PT4H0M0S</RemainingWork>
             <Start>2026-09-21T16:00:00</Start>
-            <Stop>1969-12-31T18:00:00</Stop>
-            <Resume>1969-12-31T18:00:00</Resume>
+            <Stop>2026-09-22T11:00:00</Stop>
+            <Resume>2026-09-22T11:00:00</Resume>
             <Units>1</Units>
             <Work>PT4H0M0S</Work>
             <WorkContour>0</WorkContour>
             <TimephasedData>
-                <Type>1</Type>
+                <Type>2</Type>
                 <UID>118</UID>
                 <Start>2026-09-21T16:00:00</Start>
-                <Finish>2026-09-22T16:00:00</Finish>
+                <Finish>2026-09-22T11:00:00</Finish>
                 <Unit>3</Unit>
-                <Value>PT1H0M0S</Value>
-            </TimephasedData>
-            <TimephasedData>
-                <Type>1</Type>
-                <UID>118</UID>
-                <Start>2026-09-22T16:00:00</Start>
-                <Finish>2026-09-23T03:00:00</Finish>
-                <Unit>3</Unit>
-                <Value>PT3H0M0S</Value>
+                <Value>PT4H0M0S</Value>
             </TimephasedData>
         </Assignment>
         <Assignment>
@@ -15016,15 +15572,14 @@
             <Finish>2026-09-28T11:00:00</Finish>
             <HasFixedRateUnits>1</HasFixedRateUnits>
             <FixedMaterial>0</FixedMaterial>
-            <RemainingWork>PT8H0M0S</RemainingWork>
             <Start>2026-09-25T11:00:00</Start>
-            <Stop>1969-12-31T18:00:00</Stop>
-            <Resume>1969-12-31T18:00:00</Resume>
+            <Stop>2026-09-28T11:00:00</Stop>
+            <Resume>2026-09-28T11:00:00</Resume>
             <Units>1</Units>
             <Work>PT8H0M0S</Work>
             <WorkContour>0</WorkContour>
             <TimephasedData>
-                <Type>1</Type>
+                <Type>2</Type>
                 <UID>119</UID>
                 <Start>2026-09-25T11:00:00</Start>
                 <Finish>2026-09-26T11:00:00</Finish>
@@ -15032,10 +15587,10 @@
                 <Value>PT5H0M0S</Value>
             </TimephasedData>
             <TimephasedData>
-                <Type>1</Type>
+                <Type>2</Type>
                 <UID>119</UID>
-                <Start>2026-09-28T11:00:00</Start>
-                <Finish>2026-09-28T22:00:00</Finish>
+                <Start>2026-09-27T11:00:00</Start>
+                <Finish>2026-09-28T11:00:00</Finish>
                 <Unit>3</Unit>
                 <Value>PT3H0M0S</Value>
             </TimephasedData>
@@ -15242,7 +15797,15 @@
                 <Type>1</Type>
                 <UID>120</UID>
                 <Start>2026-10-08T08:00:00</Start>
-                <Finish>2026-10-09T01:00:00</Finish>
+                <Finish>2026-10-09T08:00:00</Finish>
+                <Unit>3</Unit>
+                <Value>PT8H0M0S</Value>
+            </TimephasedData>
+            <TimephasedData>
+                <Type>1</Type>
+                <UID>120</UID>
+                <Start>2026-10-09T08:00:00</Start>
+                <Finish>2026-10-10T01:00:00</Finish>
                 <Unit>3</Unit>
                 <Value>PT8H0M0S</Value>
             </TimephasedData>
@@ -15693,8 +16256,8 @@
             <HasFixedRateUnits>1</HasFixedRateUnits>
             <FixedMaterial>0</FixedMaterial>
             <Start>2026-09-22T11:00:00</Start>
-            <Stop>2026-09-22T11:00:00</Stop>
-            <Resume>2026-09-22T11:00:00</Resume>
+            <Stop>1969-12-31T18:00:00</Stop>
+            <Resume>1969-12-31T18:00:00</Resume>
             <Units>1</Units>
             <WorkContour>0</WorkContour>
         </Assignment>
@@ -15862,18 +16425,17 @@
             <Finish>2026-09-25T17:00:00</Finish>
             <HasFixedRateUnits>1</HasFixedRateUnits>
             <FixedMaterial>0</FixedMaterial>
-            <RemainingWork>PT5H0M0S</RemainingWork>
             <Start>2026-09-25T11:00:00</Start>
-            <Stop>1969-12-31T18:00:00</Stop>
-            <Resume>1969-12-31T18:00:00</Resume>
+            <Stop>2026-09-25T17:00:00</Stop>
+            <Resume>2026-09-28T08:00:00</Resume>
             <Units>1</Units>
             <Work>PT5H0M0S</Work>
             <WorkContour>0</WorkContour>
             <TimephasedData>
-                <Type>1</Type>
+                <Type>2</Type>
                 <UID>147</UID>
                 <Start>2026-09-25T11:00:00</Start>
-                <Finish>2026-09-26T04:00:00</Finish>
+                <Finish>2026-09-25T17:00:00</Finish>
                 <Unit>3</Unit>
                 <Value>PT5H0M0S</Value>
             </TimephasedData>
@@ -15997,8 +16559,8 @@
             <HasFixedRateUnits>1</HasFixedRateUnits>
             <FixedMaterial>0</FixedMaterial>
             <Start>2026-09-08T14:00:00</Start>
-            <Stop>2026-09-08T14:00:00</Stop>
-            <Resume>2026-09-08T14:00:00</Resume>
+            <Stop>1969-12-31T18:00:00</Stop>
+            <Resume>1969-12-31T18:00:00</Resume>
             <Units>1</Units>
             <WorkContour>0</WorkContour>
         </Assignment>
