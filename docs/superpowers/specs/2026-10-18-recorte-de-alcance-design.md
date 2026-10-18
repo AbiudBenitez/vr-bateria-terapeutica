@@ -61,9 +61,12 @@ son el destino. Recortar contra las medidas se defiende; recortar contra el relo
 | Entorno 3D | 1 | 6 | 25 | 7 |
 | Música | 2 | 5 | 13 | 7 |
 | **Sonido** | **13** | **1** | **9** | **14** |
-| **TOTAL** | **105** | **51** | **101** | **157** |
+| Subtotal | 105 | 51 | 101 | 156 |
+| Métricas de sesión (nueva, §5) | — | 1 | — | 1 |
+| **TOTAL** | **105** | **52** | **101** | **157** |
 
-Más una actividad nueva: exportar las métricas de sesión (§5). **De 257 actividades a 157.**
+Las 257 originales se reparten en 105 hechas, 51 que sobreviven y 101 recortadas. La actividad
+de métricas no existía en el plan original y se añade. **De 257 actividades a 157.**
 
 El ritmo exigido baja a **2.7 actividades diarias entre siete personas** hasta el 13 de
 noviembre, que sí cabe.
