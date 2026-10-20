@@ -175,3 +175,62 @@ LO QUE NO SE USA
   Las variantes con nieve quedan excluidas por codigo. El proyecto se quedo con
   el enfoque emocional y una escena nevada lee como fria, que empuja justo al
   lado contrario de la calma que se busca.
+
+================================================================================
+AVL DRUMKITS - RED ZEPPELIN (2023 repack)
+================================================================================
+
+Fuente:   https://www.bandshed.net/avldrumkits/
+LICENCIA: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)
+
+QUE PERMITE, Y QUE NO CONTAGIA
+
+  CC BY-SA permite cualquier uso, incluido el comercial. La aplicacion NO queda
+  obligada a licenciarse bajo CC BY-SA: la propia licencia dice que incluir la
+  obra en una "Collection" no obliga a licenciar la coleccion bajo sus terminos.
+  Un proyecto Unity que reproduce los WAV sin alterarlos es exactamente eso.
+
+  SI se modifican las muestras -recortar ataques, normalizar, remuestrear- eso
+  es una "Adaptation" y los WAV derivados quedan bajo CC BY-SA. No es problema,
+  pero hay que declararlo.
+
+  La pagina del autor dice que la atribucion solo hace falta si se modifican los
+  samples. Esa es su lectura informal: la licencia la exige siempre que se
+  DISTRIBUYA la obra, y meter los WAV en la aplicacion es distribuirlos. Por eso
+  esta este apartado.
+
+QUE SE USA
+
+  35 muestras en Assets/Audio/Kit, cinco capas de velocidad por pieza:
+
+    Bombo     Kick            TomBajo   FloorTom
+    Tarola    Snare           HiHat     HatClosed
+    TomAlto   Tom             Platillo  Ride
+    Crash     Zildjian 20"
+
+  UNA ARTICULACION POR PIEZA, a proposito. Mezclarlas dentro de una pieza haria
+  que un golpe suave de tarola pudiera sacar un rim click, que no se parece en
+  nada a una tarola suave: SampleSelector elige a lo largo de un eje continuo y
+  no distingue articulaciones.
+
+  55 muestras mas en Assets/Audio/Articulaciones, sin usar todavia: SideStick,
+  SnareEdge, HatSemi, HatSwish, HatPedal, RideBell, RideShank, TomEdge,
+  FloorTomEdge, Splash y ChinaCrash. Quedan importadas para la idea de cambiar
+  de articulacion con un boton del mando.
+
+HALLAZGO AL VERIFICAR EL KIT
+
+  El centroide espectral NO sigue a la velocidad en ninguna de las seis piezas,
+  y en cinco va al reves:
+
+    Kick    capa suave 1025 Hz  ->  capa fuerte  811 Hz
+    Snare   capa suave 4688 Hz  ->  capa fuerte 4150 Hz
+    Tom     capa suave 2170 Hz  ->  capa fuerte 1652 Hz
+    Ride    capa suave 3363 Hz  ->  capa fuerte 2296 Hz
+
+  Un golpe fuerte tiene mas cuerpo y menos baqueta. Es correcto acusticamente;
+  lo que estaba mal era la suposicion de que mas fuerte es mas brillante.
+
+  El RMS si sigue a la velocidad, monotono en las seis. Por eso AnalizarKit
+  ordena ahora por energia y no por brillo. Con el orden anterior, un golpe
+  fuerte elegia la muestra mas suave.
