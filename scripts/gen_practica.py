@@ -19,7 +19,14 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import patrones
 
-SR = 48000          # tasa nativa del visor, la misma del kit
+# LA TASA SE TOMA DEL KIT, no se impone.
+#
+# Estaba clavada a 48000 porque es la tasa nativa del visor y el kit de Dustyroom coincidia.
+# El kit de AVL Red Zeppelin esta a 44100, y el generador abortaba diciendo que el archivo
+# "se esperaba" a 48000: un mensaje que culpa al kit de no cumplir una suposicion del script.
+# Unity remuestrea al reproducir, asi que lo unico que importa es que la pista y las muestras
+# compartan tasa entre si.
+SR = None           # se fija al leer la primera muestra
 
 # Nivel del acompañamiento. Es REFERENCIA, no protagonista: tiene que oírse sin tapar los
 # golpes del jugador, que suenan a nivel completo.
@@ -36,7 +43,11 @@ SALIDA = os.path.join(UNITY, "Assets", "Audio", "Practica")
 # jugador golpea. Con semilla fija la pista sigue siendo idéntica cada vez que se genera, que
 # es lo que permite que una medición de hoy valga para el archivo de mañana.
 SEMILLA = 20261018
-MUESTRAS = {"HiHat": "Hat5-", "Bombo": "Kick8-", "Tarola": "Snare7-"}
+# NO SE FIJA EL PREFIJO DEL ARCHIVO. La version anterior buscaba "Hat5-", "Kick8-" y
+# "Snare7-", que eran los nombres del kit de Dustyroom. Al cambiar a AVL Red Zeppelin no
+# encontro nada y el error ("No encontre muestras de HiHat") parecia que faltaba la carpeta,
+# cuando lo que fallaba era el nombre. Se lee lo que haya en cada carpeta de pieza.
+PIEZAS = ("HiHat", "Bombo", "Tarola")
 CUANTAS = 6          # de cada pieza; más variedad no se nota y alarga la carga
 
 
@@ -64,7 +75,7 @@ def decodificar(crudo, ancho):
 def muestras_de(pieza):
     """Las primeras CUANTAS muestras de la pieza, ordenadas por nombre."""
     import glob as _glob
-    rutas = sorted(_glob.glob(os.path.join(KIT, pieza, MUESTRAS[pieza] + "*.wav")))
+    rutas = sorted(_glob.glob(os.path.join(KIT, pieza, "*.wav")))
     if not rutas:
         raise SystemExit(f"No encontré muestras de {pieza} en {KIT}")
     return [leer_muestra(r) for r in rutas[:CUANTAS]]
@@ -78,12 +89,31 @@ def leer_muestra(ruta):
     x = decodificar(crudo, ancho)
     if canales > 1:
         x = x.reshape(-1, canales).mean(axis=1)
-    if sr != SR:
-        raise SystemExit(f"{ruta} está a {sr} Hz y se esperaba {SR}")
+    global SR
+    if SR is None:
+        SR = sr
+    elif sr != SR:
+        raise SystemExit(f"{ruta} está a {sr} Hz y el resto del kit a {SR}. "
+                         "Todas las muestras tienen que compartir tasa.")
     pico = np.max(np.abs(x))
     if pico:
         x = x / pico
     return recortar_al_ataque(x)
+
+
+def fijar_tasa():
+    """Lee la tasa del kit antes de sintetizar nada.
+
+    Se hace de una vez y al principio: si se dejara a la primera lectura perezosa, la
+    sintesis arrancaria con SR todavia en None y reventaria calculando el largo del bufer.
+    """
+    import glob as _glob
+    for pieza in PIEZAS:
+        rutas = sorted(_glob.glob(os.path.join(KIT, pieza, "*.wav")))
+        if rutas:
+            leer_muestra(rutas[0])
+            return
+    raise SystemExit(f"No hay ninguna muestra bajo {KIT}")
 
 
 def recortar_al_ataque(x, umbral=0.2):
@@ -177,6 +207,7 @@ def beatmap_de(nombre, patron):
 
 
 def main():
+    fijar_tasa()
     os.makedirs(SALIDA, exist_ok=True)
     indice = []
     for nombre, patron in patrones.PATRONES.items():
