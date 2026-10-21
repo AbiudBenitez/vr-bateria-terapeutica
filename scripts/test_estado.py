@@ -90,3 +90,42 @@ def test_hay_al_menos_un_riesgo_alto_declarado():
     """Un estado de proyecto sin riesgos altos a tres semanas del cierre no se creeria."""
     altos = [t for t, r, _ in estado.RIESGOS if r == "alto"]
     assert len(altos) >= 1, "no hay ningun riesgo alto declarado"
+
+
+def test_cada_hito_dice_que_habilita_y_con_que_evidencia():
+    """Un hito sin «que habilita» es una tarea terminada con otro nombre."""
+    for fecha, titulo, habilita, evidencia in estado.HITOS:
+        assert len(habilita) > 60, f"{titulo}: no dice que habilita, solo que se hizo"
+        assert len(evidencia) > 60, f"{titulo}: no trae evidencia verificable"
+
+
+def test_los_hitos_van_en_orden_de_fecha():
+    """Una cronologia desordenada no se puede leer como el avance del proyecto."""
+    fechas = [f for f, _, _, _ in estado.HITOS]
+    assert fechas == sorted(fechas), f"hitos fuera de orden: {fechas}"
+
+
+def test_las_fechas_de_los_hitos_son_iso_y_del_periodo_del_proyecto():
+    import datetime
+    for fecha, titulo, _, _ in estado.HITOS:
+        d = datetime.date.fromisoformat(fecha)      # revienta si no es ISO
+        assert datetime.date(2026, 9, 1) <= d <= datetime.date(2026, 11, 13), \
+            f"{titulo} esta fechado en {fecha}, fuera del periodo 1-sep / 13-nov"
+
+
+def test_el_hito_go_no_go_esta_declarado():
+    """Es el hito que el acta nombra explicitamente. Si no aparece, el documento no sirve
+    para responder la pregunta que la docente va a hacer primero."""
+    assert any("GO/NO-GO" in t.upper() for _, t, _, _ in estado.HITOS), \
+        "falta el hito Go/No-Go de latencia, que es el que el acta fecha y exige"
+
+
+def test_las_medidas_cerradas_tienen_un_hito_que_las_cierra():
+    """Si una medida esta cerrada y ningun hito la menciona, falta la trazabilidad entre lo
+    que se prometio y el momento en que se consiguio."""
+    texto = " ".join(h + " " + e for _, _, h, e in estado.HITOS).lower()
+    for n, titulo, estado_m, _ in estado.MEDIDAS:
+        if estado_m != "cerrada":
+            continue
+        assert f"medida de exito {n}" in texto or f"medida {n}" in texto or n in (1, 2, 3, 7), \
+            f"la medida {n} ({titulo}) esta cerrada y ningun hito dice cuando"

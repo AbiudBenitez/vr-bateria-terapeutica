@@ -98,32 +98,62 @@ def doc():
     neutro.table(d, ["Área", "Hechas", "Faltan", "Total", "Avance"], filas,
                  widths=[5.5, 2.2, 2.2, 2.2, 2.4], fs=9.0)
     neutro.P(d)
+    pend_q = next(p for a, _, p in estado.AVANCE if a.startswith("QA"))
+    pend_tot = sum(p for _, _, p in estado.AVANCE)
     neutro.P(d,
-             "Cinco de las ocho áreas están cerradas. Las 37 actividades pendientes se "
-             "concentran en dos: QA con 24 e interfaz con 9. Es la misma concentración que el "
-             "análisis de ruta crítica señaló en septiembre, y la baja del riesgo R14 la "
-             "agravó al dejar la dirección y la coordinación dentro de QA.")
+             f"Seis de las ocho áreas están cerradas. De las {pend_tot} actividades "
+             f"pendientes, {pend_q} son de QA, documentación y gestión: el "
+             f"{100.0 * pend_q / max(1, pend_tot):.0f} %. Al cerrarse interfaz y sonido la "
+             "concentración empeoró en proporción aunque bajara en número absoluto. Es la "
+             "misma concentración que el análisis de ruta crítica señaló en septiembre, y la "
+             "baja del riesgo R14 la agravó al dejar la dirección y la coordinación dentro "
+             "de QA.")
 
     # ---------------------------------------------------------------- 6
-    neutro.H(d, "6. Qué hace el prototipo", 1)
+    neutro.H(d, "6. Hitos alcanzados", 1)
+    neutro.P(d,
+             "Un hito no es una tarea terminada: es un punto a partir del cual el proyecto "
+             "puede hacer algo que antes no podía. Por eso cada uno dice qué habilita y no "
+             "solo qué se hizo. De las "
+             f"{sum(h for _, h, _ in estado.AVANCE) + pend_tot} actividades del cronograma "
+             f"hay {sum(h for _, h, _ in estado.AVANCE)} cerradas; estos son los "
+             f"{len(estado.HITOS)} momentos en que el proyecto cambió de estado.")
+    neutro.P(d)
+    neutro.P(d,
+             "Las fechas son las de la evidencia, no las del plan. El hito de latencia estaba "
+             "fechado en la semana 4, el 25 de septiembre, y se cerró el 17 de octubre: tres "
+             "semanas tarde. Ponerlo en su fecha real es lo que permite ver dónde se gastó la "
+             "holgura.")
+    neutro.table(d, ["Fecha", "Hito", "Qué habilita", "Evidencia"],
+                 [[f, t, q, e] for f, t, q, e in estado.HITOS],
+                 widths=[1.5, 3.3, 5.0, 5.7], fs=8.0)
+    neutro.P(d)
+    neutro.P(d,
+             "El cronograma marca además 21 hitos formales de duración cero, de los que 17 "
+             "están cerrados. Conviene revisarlos tras cada guardado desde ProjectLibre: la "
+             "herramienta deriva el porcentaje de la duración, así que un hito sin duración "
+             "vuelve a cero solo. Para eso está scripts/hitos.py.")
+
+    # ---------------------------------------------------------------- 7
+    neutro.H(d, "7. Qué hace el prototipo", 1)
     neutro.table(d, ["Pieza", "Estado verificado"],
                  [[a, b] for a, b in estado.PROTOTIPO],
                  widths=[4.2, 11.3], fs=9.0)
 
     # ---------------------------------------------------------------- 7
-    neutro.H(d, "7. Lo que queda, por riesgo", 1)
+    neutro.H(d, "8. Lo que queda, por riesgo", 1)
     neutro.table(d, ["Bloque", "Riesgo", "Qué falta", "Responsable"],
                  [[a, b, c, e] for a, b, c, e in estado.PENDIENTE],
                  widths=[3.4, 1.4, 8.0, 2.7], fs=8.5)
 
     # ---------------------------------------------------------------- 8
-    neutro.H(d, "8. Riesgos vivos", 1)
+    neutro.H(d, "9. Riesgos vivos", 1)
     neutro.table(d, ["Riesgo", "Nivel", "Situación y mitigación"],
                  [[a, b, c] for a, b, c in estado.RIESGOS],
                  widths=[3.6, 1.4, 10.5], fs=8.5)
 
     # ---------------------------------------------------------------- 9
-    neutro.H(d, "9. Dónde está cada cosa", 1)
+    neutro.H(d, "10. Dónde está cada cosa", 1)
     neutro.P(d,
              "Los doce documentos del proyecto y qué responde cada uno. Los marcados como "
              "vigentes con sustituciones siguen valiendo: lo que cambió está en el documento "
@@ -133,7 +163,7 @@ def doc():
                  widths=[5.0, 10.5], fs=8.5)
 
     # ---------------------------------------------------------------- 10
-    neutro.H(d, "10. Firmas", 1)
+    neutro.H(d, "11. Firmas", 1)
     neutro.P(d,
              "Con la firma de este documento el equipo deja constancia del estado del proyecto "
              "a la fecha indicada.")

@@ -50,6 +50,57 @@ HECHAS = {
     "QV.3": ("2026-10-18",
              "Misma corrida que AO.5, desde QA. 71.9 fps de media, mediana y p99 en 13.9 ms, "
              "que es el intervalo exacto de vsync a 72 Hz"),
+    # --- cierre del 21 de octubre -------------------------------------------------------
+    "IT.2": ("2026-10-20",
+             "PasoSeguirPulso con EcoRitmico: 8 notas, 3 aciertos necesarios, ventanas de "
+             "25 y 60 ms. Rediseñado como acompañamiento el 20-oct porque la version "
+             "anterior callaba el metronomo al empezar el turno del usuario y pedia "
+             "reproducir de memoria: fallaba 0 de 9 corridas. Pruebas en "
+             "TutorialPasosTests y EcoRitmicoTests"),
+    "IT.3": ("2026-10-20",
+             "PasoIntensidades: exige los tres niveles suave, medio y fuerte, con el umbral "
+             "de velocidad en cada pad y no global, porque un bombo se golpea mas fuerte que "
+             "un hi-hat. Assets/Scripts/Tutorial/PasoIntensidades.cs"),
+    "IT.4": ("2026-10-20",
+             "TutorialRunner conduce los cuatro pasos con baqueta fantasma y rotulo, y "
+             "FlujoApp lo arranca desde el menu y lleva a resultados. RegistroTutorial "
+             "vuelca a JSON los intentos, el tiempo por paso, el tiempo hasta el primer "
+             "golpe y el desfase de cada golpe: es la evidencia de la medida de exito 6"),
+    "II.2": ("2026-10-20",
+             "ConstruirMenu levanta TOCAR, TUTORIAL y SALIR como pads con disco y rotulo, "
+             "cableando los diez campos de FlujoApp. EscenaCompletaTests comprueba el "
+             "montaje entero, incluido que el marcador se apague fuera de Tocando"),
+    "II.3": ("2026-10-20",
+             "Los botones se golpean con las baquetas por el MISMO camino de deteccion que "
+             "el kit: StickTracker los lleva en su lista y PadDeMenu filtra que el golpe "
+             "venga de una mano. No hay un segundo mecanismo de entrada que mantener"),
+    "II.6": ("2026-10-20",
+             "PanelResultados y TextoResultados: el resultado dicho en palabras y no solo "
+             "en cifras. Pruebas en TextoResultadosTests"),
+    "IR.1": ("2026-10-20",
+             "Tamaños MEDIDOS sobre la escena, no estimados. JudgePopup en 0.00556, que con "
+             "el factor 36 de TMP da 0.200 de cuerpo, el mismo que el Indicador validado en "
+             "el visor; el rotulo del tutorial en 0.85, escalado desde el 0.50 validado al "
+             "pasar de 0.50 m de los ojos a 0.87; marcador e Indicador con autoajuste. "
+             "LosTamanosDeTextoSonLosValidados los fija, porque tres correcciones seguidas "
+             "no habian llegado nunca a la escena"),
+    "IR.2": ("2026-10-20",
+             "Tres posiciones corregidas con medida. El panel del marcador se ancla al kit "
+             "en coordenadas de MUNDO tras encontrarse a dieciseis metros por heredar una "
+             "posicion local; el rotulo del tutorial pasa del bombo -31 cm fuera del eje, "
+             "16 mas alto y 45 cm mas cerca- al punto exacto del marcador; y el promedio "
+             "que situa el panel deja de contar los botones del menu. Con sus pruebas de "
+             "escena"),
+    "SB.5": ("2026-10-19",
+             "Crash y Platillo (ride) con cinco capas de velocidad cada uno, del kit AVL "
+             "Drumkits Red Zeppelin bajo CC BY-SA 3.0. El crash entro como septima pieza el "
+             "19-oct: Assets/Audio/Piezas/Crash.asset y Platillo.asset"),
+    "QV.4": ("2026-10-17",
+             "Hito Go/No-Go del acta, medido con el protocolo del clic fisico: p90 de "
+             "+4.07 ms dentro de la ventana de -10 a +25 ms. Ocho corridas en "
+             "entregables/mediciones/latencia_20261017_*.json. El desfase negativo es "
+             "valido: la prediccion del plano armado adelanta el sonido"),
+
     "AS":   ("2026-10-18",
              "LimiteSeguro dibuja el perimetro del espacio con radio calculado del pad mas "
              "lejano mas 0.5 m de margen. Verificado en el visor durante la corrida de FPS "

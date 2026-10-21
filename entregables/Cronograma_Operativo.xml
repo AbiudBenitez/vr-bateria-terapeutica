@@ -7337,7 +7337,7 @@
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-07T11:00:00</Start>
-            <Finish>2026-09-07T11:00:00</Finish>
+            <Stop>2026-09-07T11:00:00</Stop><Finish>2026-09-07T11:00:00</Finish>
             <Duration>PT0H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -7352,8 +7352,8 @@
             <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
-            <PercentComplete>0</PercentComplete>
-            <PercentWorkComplete>0</PercentWorkComplete>
+            <PercentComplete>100</PercentComplete>
+            <PercentWorkComplete>100</PercentWorkComplete>
             <ConstraintType>0</ConstraintType>
             <CalendarUID>-1</CalendarUID>
             <ConstraintDate>1970-01-01T00:00:00</ConstraintDate>
@@ -7372,7 +7372,7 @@
             </PredecessorLink>
             <Active>1</Active>
             <Manual>0</Manual>
-        </Task>
+        <Notes>[HECHA 2026-10-19] Crash y Platillo (ride) con cinco capas de velocidad cada uno, del kit AVL Drumkits Red Zeppelin bajo CC BY-SA 3.0. El crash entro como septima pieza el 19-oct: Assets/Audio/Piezas/Crash.asset y Platillo.asset</Notes></Task>
         <Task>
             <UID>85</UID>
             <ID>85</ID>
@@ -8381,7 +8381,7 @@
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-11T11:00:00</Start>
-            <Finish>2026-09-11T11:00:00</Finish>
+            <Stop>2026-09-11T11:00:00</Stop><Finish>2026-09-11T11:00:00</Finish>
             <Duration>PT0H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -8396,8 +8396,8 @@
             <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
-            <PercentComplete>0</PercentComplete>
-            <PercentWorkComplete>0</PercentWorkComplete>
+            <PercentComplete>100</PercentComplete>
+            <PercentWorkComplete>100</PercentWorkComplete>
             <ConstraintType>5</ConstraintType>
             <CalendarUID>-1</CalendarUID>
             <ConstraintDate>2026-09-14T12:00:00</ConstraintDate>
@@ -8416,7 +8416,7 @@
             </PredecessorLink>
             <Active>1</Active>
             <Manual>0</Manual>
-        </Task>
+        <Notes>[HECHA 2026-10-20] PasoSeguirPulso con EcoRitmico: 8 notas, 3 aciertos necesarios, ventanas de 25 y 60 ms. Rediseñado como acompañamiento el 20-oct porque la version anterior callaba el metronomo al empezar el turno del usuario y pedia reproducir de memoria: fallaba 0 de 9 corridas. Pruebas en TutorialPasosTests y EcoRitmicoTests</Notes></Task>
         <Task>
             <UID>105</UID>
             <ID>105</ID>
@@ -8429,7 +8429,7 @@
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-17T11:00:00</Start>
-            <Finish>2026-09-18T11:00:00</Finish>
+            <Stop>2026-09-18T11:00:00</Stop><Finish>2026-09-18T11:00:00</Finish>
             <Duration>PT8H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -8444,8 +8444,8 @@
             <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
-            <PercentComplete>0</PercentComplete>
-            <PercentWorkComplete>0</PercentWorkComplete>
+            <PercentComplete>100</PercentComplete>
+            <PercentWorkComplete>100</PercentWorkComplete>
             <RemainingDuration>PT8H0M0S</RemainingDuration>
             <ConstraintType>0</ConstraintType>
             <CalendarUID>-1</CalendarUID>
@@ -8465,7 +8465,7 @@
             </PredecessorLink>
             <Active>1</Active>
             <Manual>0</Manual>
-        </Task>
+        <Notes>[HECHA 2026-10-20] PasoIntensidades: exige los tres niveles suave, medio y fuerte, con el umbral de velocidad en cada pad y no global, porque un bombo se golpea mas fuerte que un hi-hat. Assets/Scripts/Tutorial/PasoIntensidades.cs</Notes></Task>
         <Task>
             <UID>106</UID>
             <ID>106</ID>
@@ -8478,7 +8478,7 @@
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-18T11:00:00</Start>
-            <Finish>2026-09-22T11:00:00</Finish>
+            <Stop>2026-09-22T11:00:00</Stop><Finish>2026-09-22T11:00:00</Finish>
             <Duration>PT16H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -8493,8 +8493,8 @@
             <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
-            <PercentComplete>0</PercentComplete>
-            <PercentWorkComplete>0</PercentWorkComplete>
+            <PercentComplete>100</PercentComplete>
+            <PercentWorkComplete>100</PercentWorkComplete>
             <RemainingDuration>PT16H0M0S</RemainingDuration>
             <ConstraintType>5</ConstraintType>
             <CalendarUID>-1</CalendarUID>
@@ -8524,7 +8524,7 @@
             </PredecessorLink>
             <Active>1</Active>
             <Manual>0</Manual>
-        </Task>
+        <Notes>[HECHA 2026-10-20] TutorialRunner conduce los cuatro pasos con baqueta fantasma y rotulo, y FlujoApp lo arranca desde el menu y lleva a resultados. RegistroTutorial vuelca a JSON los intentos, el tiempo por paso, el tiempo hasta el primer golpe y el desfase de cada golpe: es la evidencia de la medida de exito 6</Notes></Task>
         <Task>
             <UID>107</UID>
             <ID>107</ID>
@@ -8537,7 +8537,7 @@
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-21T14:00:00</Start>
-            <Finish>2026-09-22T11:00:00</Finish>
+            <Stop>2026-09-22T11:00:00</Stop><Finish>2026-09-22T11:00:00</Finish>
             <Duration>PT6H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -8552,8 +8552,8 @@
             <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
-            <PercentComplete>0</PercentComplete>
-            <PercentWorkComplete>0</PercentWorkComplete>
+            <PercentComplete>100</PercentComplete>
+            <PercentWorkComplete>100</PercentWorkComplete>
             <RemainingDuration>PT6H0M0S</RemainingDuration>
             <ConstraintType>0</ConstraintType>
             <CalendarUID>-1</CalendarUID>
@@ -8598,7 +8598,7 @@
             </PredecessorLink>
             <Active>1</Active>
             <Manual>0</Manual>
-        </Task>
+        <Notes>[HECHA 2026-10-20] ConstruirMenu levanta TOCAR, TUTORIAL y SALIR como pads con disco y rotulo, cableando los diez campos de FlujoApp. EscenaCompletaTests comprueba el montaje entero, incluido que el marcador se apague fuera de Tocando</Notes></Task>
         <Task>
             <UID>108</UID>
             <ID>108</ID>
@@ -8611,7 +8611,7 @@
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-22T14:00:00</Start>
-            <Finish>2026-09-22T14:00:00</Finish>
+            <Stop>2026-09-22T14:00:00</Stop><Finish>2026-09-22T14:00:00</Finish>
             <Duration>PT0H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -8626,8 +8626,8 @@
             <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
-            <PercentComplete>0</PercentComplete>
-            <PercentWorkComplete>0</PercentWorkComplete>
+            <PercentComplete>100</PercentComplete>
+            <PercentWorkComplete>100</PercentWorkComplete>
             <ConstraintType>0</ConstraintType>
             <CalendarUID>-1</CalendarUID>
             <ConstraintDate>1970-01-01T00:00:00</ConstraintDate>
@@ -8651,7 +8651,7 @@
             </PredecessorLink>
             <Active>1</Active>
             <Manual>0</Manual>
-        </Task>
+        <Notes>[HECHA 2026-10-20] Los botones se golpean con las baquetas por el MISMO camino de deteccion que el kit: StickTracker los lleva en su lista y PadDeMenu filtra que el golpe venga de una mano. No hay un segundo mecanismo de entrada que mantener</Notes></Task>
         <Task>
             <UID>109</UID>
             <ID>109</ID>
@@ -8664,7 +8664,7 @@
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-18T16:00:00</Start>
-            <Finish>2026-09-22T11:00:00</Finish>
+            <Stop>2026-09-22T11:00:00</Stop><Finish>2026-09-22T11:00:00</Finish>
             <Duration>PT12H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -8679,8 +8679,8 @@
             <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
-            <PercentComplete>0</PercentComplete>
-            <PercentWorkComplete>0</PercentWorkComplete>
+            <PercentComplete>100</PercentComplete>
+            <PercentWorkComplete>100</PercentWorkComplete>
             <RemainingDuration>PT12H0M0S</RemainingDuration>
             <ConstraintType>0</ConstraintType>
             <CalendarUID>-1</CalendarUID>
@@ -8710,7 +8710,7 @@
             </PredecessorLink>
             <Active>1</Active>
             <Manual>0</Manual>
-        </Task>
+        <Notes>[HECHA 2026-10-20] PanelResultados y TextoResultados: el resultado dicho en palabras y no solo en cifras. Pruebas en TextoResultadosTests</Notes></Task>
         <Task>
             <UID>110</UID>
             <ID>110</ID>
@@ -8723,7 +8723,7 @@
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-22T14:00:00</Start>
-            <Finish>2026-09-23T11:00:00</Finish>
+            <Stop>2026-09-23T11:00:00</Stop><Finish>2026-09-23T11:00:00</Finish>
             <Duration>PT6H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -8738,8 +8738,8 @@
             <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
-            <PercentComplete>0</PercentComplete>
-            <PercentWorkComplete>0</PercentWorkComplete>
+            <PercentComplete>100</PercentComplete>
+            <PercentWorkComplete>100</PercentWorkComplete>
             <RemainingDuration>PT6H0M0S</RemainingDuration>
             <ConstraintType>0</ConstraintType>
             <CalendarUID>-1</CalendarUID>
@@ -8759,7 +8759,7 @@
             </PredecessorLink>
             <Active>1</Active>
             <Manual>0</Manual>
-        </Task>
+        <Notes>[HECHA 2026-10-20] Tamaños MEDIDOS sobre la escena, no estimados. JudgePopup en 0.00556, que con el factor 36 de TMP da 0.200 de cuerpo, el mismo que el Indicador validado en el visor; el rotulo del tutorial en 0.85, escalado desde el 0.50 validado al pasar de 0.50 m de los ojos a 0.87; marcador e Indicador con autoajuste. LosTamanosDeTextoSonLosValidados los fija, porque tres correcciones seguidas no habian llegado nunca a la escena</Notes></Task>
         <Task>
             <UID>111</UID>
             <ID>111</ID>
@@ -8772,7 +8772,7 @@
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-23T11:00:00</Start>
-            <Finish>2026-09-23T11:00:00</Finish>
+            <Stop>2026-09-23T11:00:00</Stop><Finish>2026-09-23T11:00:00</Finish>
             <Duration>PT0H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -8787,8 +8787,8 @@
             <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
-            <PercentComplete>0</PercentComplete>
-            <PercentWorkComplete>0</PercentWorkComplete>
+            <PercentComplete>100</PercentComplete>
+            <PercentWorkComplete>100</PercentWorkComplete>
             <ConstraintType>0</ConstraintType>
             <CalendarUID>-1</CalendarUID>
             <ConstraintDate>1970-01-01T00:00:00</ConstraintDate>
@@ -8807,7 +8807,7 @@
             </PredecessorLink>
             <Active>1</Active>
             <Manual>0</Manual>
-        </Task>
+        <Notes>[HECHA 2026-10-20] Tres posiciones corregidas con medida. El panel del marcador se ancla al kit en coordenadas de MUNDO tras encontrarse a dieciseis metros por heredar una posicion local; el rotulo del tutorial pasa del bombo -31 cm fuera del eje, 16 mas alto y 45 cm mas cerca- al punto exacto del marcador; y el promedio que situa el panel deja de contar los botones del menu. Con sus pruebas de escena</Notes></Task>
         <Task>
             <UID>112</UID>
             <ID>112</ID>
@@ -10749,7 +10749,7 @@
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-22T11:00:00</Start>
-            <Finish>2026-09-23T11:00:00</Finish>
+            <Stop>2026-09-23T11:00:00</Stop><Finish>2026-09-23T11:00:00</Finish>
             <Duration>PT8H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -10764,8 +10764,8 @@
             <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
-            <PercentComplete>0</PercentComplete>
-            <PercentWorkComplete>0</PercentWorkComplete>
+            <PercentComplete>100</PercentComplete>
+            <PercentWorkComplete>100</PercentWorkComplete>
             <RemainingDuration>PT8H0M0S</RemainingDuration>
             <ConstraintType>0</ConstraintType>
             <CalendarUID>-1</CalendarUID>
@@ -10795,7 +10795,7 @@
             </PredecessorLink>
             <Active>1</Active>
             <Manual>0</Manual>
-        </Task>
+        <Notes>[HECHA 2026-10-17] Hito Go/No-Go del acta, medido con el protocolo del clic fisico: p90 de +4.07 ms dentro de la ventana de -10 a +25 ms. Ocho corridas en entregables/mediciones/latencia_20261017_*.json. El desfase negativo es valido: la prediccion del plano armado adelanta el sonido</Notes></Task>
         <Task>
             <UID>149</UID>
             <ID>149</ID>

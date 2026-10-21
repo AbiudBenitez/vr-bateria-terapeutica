@@ -18,7 +18,7 @@ Salen de los archivos de medicion del visor y del cronograma. Un documento de es
 numeros tecleados queda desfasado el mismo dia, y peor: nadie sabe cuando dejo de ser cierto.
 """
 
-FECHA = "20 de octubre de 2026"
+FECHA = "21 de octubre de 2026"
 
 # --- las tres decisiones que reorientaron el proyecto ------------------------------------
 
@@ -120,11 +120,101 @@ AVANCE = [
     ("Desarrollo VR",               28,  2),
     ("Entorno 3D",                   7,  0),
     ("Experiencia emocional",       18,  1),
-    ("Interfaz",                     9,  9),
+    ("Interfaz",                    17,  1),
     ("Juego de ritmo",              17,  0),
     ("Musica",                       7,  0),
-    ("QA, documentacion y gestion", 22, 24),
-    ("Sonido",                      13,  1),
+    ("QA, documentacion y gestion", 23, 23),
+    ("Sonido",                      14,  0),
+]
+
+# --- los hitos alcanzados ----------------------------------------------------------------
+#
+# UN HITO NO ES UNA TAREA TERMINADA. Es un punto a partir del cual el proyecto puede hacer algo
+# que antes no podia, y por eso cada uno lleva QUE HABILITA y no solo que se hizo. De las 158
+# actividades, 131 estan cerradas; esta lista son los doce momentos en que el proyecto cambio
+# de estado.
+#
+# LAS FECHAS SON LAS DE LA EVIDENCIA, no las del plan. El hito de latencia estaba fechado en la
+# semana 4, el 25 de septiembre, y se cerro el 17 de octubre: tres semanas tarde. Ponerlo en su
+# fecha real es lo que permite ver que la holgura se gasto ahi.
+
+HITOS = [
+    ("2026-09-16", "El pad suena al golpearlo",
+     "Habilita medir latencia, que es el riesgo dominante del acta. Sin un golpe que suene no "
+     "hay nada que cronometrar.",
+     "Capitulo 4 cerrado: deteccion por plano armado, haptico y volumen segun la fuerza del "
+     "golpe. 21 pruebas EditMode en verde."),
+
+    ("2026-10-17", "Latencia por debajo de 30 ms  [HITO GO/NO-GO DEL ACTA]",
+     "Cierra la medida de exito 4 y despeja el riesgo dominante. Si hubiera fallado, el valor "
+     "terapeutico se caia y el proyecto habria tenido que replantearse.",
+     "Protocolo del clic fisico: p90 de +4.07 ms contra una ventana de -10 a +25 ms. Ocho "
+     "corridas en entregables/mediciones/latencia_20261017_*.json. El acta lo fechaba en la "
+     "semana 4, el 25 de septiembre: se cerro con tres semanas de retraso."),
+
+    ("2026-10-17", "Reloj musical sin deriva",
+     "Habilita todo el juego de ritmo. Un reloj que se desvia hace que el beatmap se despegue "
+     "de la musica, y entonces lo que se mide es el reloj y no al jugador.",
+     "Desvio de 0.0 ms sostenido durante 205 segundos contra un metronomo de 120 BPM exactos, "
+     "generado y no buscado. El criterio era menos de 20 ms sin crecer."),
+
+    ("2026-10-17", "Juego de ritmo jugable",
+     "Habilita las pruebas con usuarios: a partir de aqui hay algo que jugar de principio a "
+     "fin, no una demostracion de piezas suelta.",
+     "Beatmap sobre musica real medida, juicio en milisegundos y no en fracciones de pulso, "
+     "marcador y veredicto sobre el pad golpeado. 79 pruebas en verde."),
+
+    ("2026-10-18", "72 fps sostenidos en el visor",
+     "Cierra la medida de exito 5. Por debajo de la frecuencia del panel la experiencia produce "
+     "malestar, asi que es tambien condicion de la medida 10.",
+     "12949 fotogramas medidos en el visor: 12946 en vsync, 3 vsync perdidos. 0.02 % contra un "
+     "criterio del 5 %. entregables/mediciones/fps_20261018_060703.json"),
+
+    ("2026-10-18", "Metricas de sesion en JSON",
+     "Cierra la medida de exito 9, que estaba en cero, y es la materia prima del informe final: "
+     "sin los desfases crudos no se puede reanalizar nada.",
+     "Dos constancias distintas y no una: contra la rejilla y propia. Se puede ir 30 ms "
+     "atrasado todo el tiempo y tener un pulso perfectamente estable, y hay una prueba que "
+     "impide implementarlas iguales."),
+
+    ("2026-10-18", "Entorno de bosque al amanecer",
+     "Habilita el encuadre emocional. Un escenario de concierto empuja a la activacion, que es "
+     "lo contrario de lo que el proyecto busca.",
+     "Assets libres con su licencia verificada una por una, dos regimenes distintos, "
+     "atribucion en entregables/ATRIBUCION_entorno.txt. Sostiene los 72 fps."),
+
+    ("2026-10-19", "Kit de siete piezas",
+     "Cierra el area de sonido: con el crash y el ride ya no falta ninguna pieza del kit.",
+     "AVL Drumkits Red Zeppelin bajo CC BY-SA 3.0, cinco capas de velocidad por pieza. La "
+     "separacion entre centros se calcula y hay una prueba que prohibe el solape: un golpe en "
+     "la zona compartida disparaba dos piezas a la vez."),
+
+    ("2026-10-19", "Flujo completo de la aplicacion",
+     "Habilita QT.8, las pruebas con usuarios, que es la cola de la que depende el informe "
+     "final. Era el ultimo bloqueo de esa cadena.",
+     "Menu, tutorial, partida y pantalla de resultados, con FlujoApp como unico conductor y "
+     "una tabla de transiciones probada sin escena."),
+
+    ("2026-10-20", "Diagnostico que sobrevive al visor",
+     "Habilita depurar en el Quest. Antes de esto, un fallo en el visor no dejaba ningun "
+     "rastro y cada hipotesis costaba compilar, instalar, ponerse el visor y volver.",
+     "Debug.Log NO llega a logcat en el Quest, verificado contra 293 lineas de log sin una "
+     "sola entrada de Unity, y las excepciones comparten ese canal. La Traza escribe a archivo "
+     "y se recoge con el mismo quest.sh pull que trae las metricas."),
+
+    ("2026-10-20", "El montaje de la escena se verifica en batchmode",
+     "Habilita corregir cableado sin gastar sesiones de visor. Cinco pruebas de un solo dia se "
+     "habian ido en defectos de cableado y no de diseno.",
+     "EscenaCompletaTests comprueba el montaje entero: que no queden andamios, que cada pad "
+     "tenga geometria, que ningun componente ignore una pieza del kit y que los valores "
+     "afinados hayan llegado de verdad a la escena."),
+
+    ("2026-10-21", "Pistas de practica y pistas visuales de anticipacion",
+     "Habilita practicar sin musica y leer el ritmo sin levantar la vista del pad, que es lo "
+     "que la prueba con usuarios va a medir.",
+     "Cuatro pistas de practica de 80 a 120 BPM. Aro de cuenta atras sobre cada pad con el "
+     "veredicto en el borde, acumulando hasta cuatro notas seguidas, y aviso en el borde de la "
+     "vision para las piezas que quedan fuera del campo de vision."),
 ]
 
 # --- lo que el prototipo hace hoy, con numeros -------------------------------------------
@@ -156,9 +246,10 @@ PENDIENTE = [
      "redaccion del informe final (QI.1 a QI.5). Es una cadena: nada empieza hasta que lo "
      "anterior termina, y el informe es la cola.",
      "Diana, con apoyo de gerencia"),
-    ("Interfaz", "medio",
-     "Nueve actividades. El menu ya esta construido; faltan la pantalla de resultados acabada y "
-     "la revision de legibilidad con usuarios.",
+    ("Interfaz", "bajo",
+     "De nueve actividades queda UNA: el tutorial visual de como sujetar las baquetas (IT.1). "
+     "Menu, botones con el control, pantalla de resultados y las dos revisiones de legibilidad "
+     "y de paneles se cerraron el 20 de octubre con sus pruebas de escena.",
      "Sarai"),
     ("Build final y correccion de errores", "medio",
      "QB.1 a QB.4 y QE.2 a QE.5. Dependen de que QT.8 produzca los errores que corregir.",
@@ -201,7 +292,9 @@ RIESGOS = [
      "retraso en cualquiera lo arrastra todo. Mitigacion: los manuales y la presentacion se "
      "pueden escribir en paralelo, sin esperar."),
     ("Carga concentrada en QA", "alto",
-     "24 de las 37 actividades pendientes son de QA, documentacion y gestion. Es la misma "
+     "23 de las 27 actividades pendientes son de QA, documentacion y gestion: el 85 %. Al "
+     "cerrarse interfaz y sonido la concentracion EMPEORO en proporcion, aunque bajara en "
+     "numero absoluto. Es la misma "
      "concentracion que el analisis de ruta critica senalo en septiembre, y la baja de R14 la "
      "empeoro. Mitigacion: los manuales se pueden repartir."),
     ("Sin validacion externa", "asumido",
