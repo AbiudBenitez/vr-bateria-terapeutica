@@ -39,3 +39,6 @@ proyecto-unity/Builds/
 
 # Estado local del vigilante de hitos
 scripts/.hitos_completos.json
+
+# Configuracion local de Claude Code: no es del proyecto
+.claude/

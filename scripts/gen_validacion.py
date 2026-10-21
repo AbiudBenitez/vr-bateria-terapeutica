@@ -71,12 +71,17 @@ LIMITACIONES = [
 ]
 
 
-# AVISO: la carta entregada NO lleva la sección 3.1.
+# LA SECCION 3.1 YA NO SE GENERA.
 #
 # El equipo decidió el 21-sep retirar la nota que conciliaba las cifras del documento de medio
-# curso con las del cronograma. Este generador la sigue produciendo, de modo que correrlo
-# SOBRESCRIBE esa decisión. Si se regenera, hay que volver a quitarla a mano o revertir el
-# archivo con git.
+# curso con las del cronograma. Durante un mes este generador la siguió produciendo y el aviso
+# que había aquí decía que, si alguien regeneraba, tenía que volver a quitarla a mano. Un
+# generador que contradice una decisión del equipo y lo compensa con un comentario es una
+# trampa: funciona hasta que la pisa quien no leyó el comentario.
+#
+# Además su premisa caducó. Conciliaba 117 contra la cifra del cronograma porque la hoja de
+# control y el cronograma se habían desincronizado; los dos cronogramas se sincronizan ahora
+# con scripts/sincronizar_crono.py, que tiene sus propias pruebas.
 
 
 def carta():
@@ -155,19 +160,6 @@ def carta():
         widths=[6.0, 5.0, 5.0], fs=9.0,
     )
 
-    neutro.H(doc, "3.1 Nota sobre las cifras", 2)
-    neutro.P(doc,
-             "El documento de compromiso de medio curso declara 117 actividades terminadas. "
-             f"El cronograma registra {r['hechas']}. La diferencia se debe a que la hoja de "
-             "control del equipo y el cronograma se mantuvieron por separado y se "
-             "desincronizaron: la hoja no reflejaba el avance del área de desarrollo, y el "
-             "cronograma no reflejaba el avance documental de las demás áreas.")
-    neutro.P(doc,
-             f"La cifra de {r['hechas']} es la unión de ambas fuentes, no la intersección: no "
-             "se descarta el registro de ninguna. Se cita esta y no la de 117 porque es la "
-             "única que un tercero puede reproducir abriendo el cronograma. "
-             f"Quedan {len(r['desfase'])} actividades terminadas y verificables en el "
-             "repositorio que la hoja de control todavía no había registrado.")
 
     neutro.H(doc, "4. Hito Go/No-Go de latencia", 1)
     neutro.P(doc,
@@ -250,13 +242,6 @@ def carta():
     return ruta, r
 
 
-if __name__ == "__main__":
-    ruta, r = carta()
-    print(f"  {os.path.basename(ruta)}")
-    print(f"    cifra citada: {r['hechas']} de {r['total']} ({r['pct']:.0f} %)")
-    print(f"    desfase declarado: {len(r['desfase'])} actividades")
-
-
 def lista():
     """
     La lista de verificación, regenerada desde el cronograma.
@@ -325,3 +310,46 @@ def lista():
     ruta = os.path.join(SALIDA, "08_Lista_Verificacion_Compromisos.docx")
     doc.save(ruta)
     return ruta
+
+
+# -----------------------------------------------------------------------------------------
+# SEGURO CONTRA REGENERAR UN ENTREGABLE YA FECHADO
+#
+# Los documentos 07 y 08 llevan fecha del 21 de septiembre de 2026, corte del 18, y lineas de
+# firma. Las cifras, en cambio, se LEEN del cronograma, que avanza: hoy el mismo generador
+# produciria 130 de 157 bajo una fecha de hace un mes. Eso no es actualizar un documento, es
+# fabricar uno incoherente, y con una firma debajo.
+#
+# La convencion del proyecto es la contraria: lo que cambia va en un documento nuevo y el
+# original se conserva en entregables/superados/. Asi se hizo con el recorte y con el cambio
+# de enfoque.
+#
+# Por eso hay que pedirlo a proposito, y diciendo con que fecha.
+#
+# El __main__ estaba ADEMAS colocado antes de def lista(), de modo que el documento 08 no se
+# podia regenerar desde la linea de comandos en absoluto.
+
+def main(argv):
+    if "--regenerar" not in argv:
+        r = validacion.resumen()
+        print("  No se ha escrito nada. Los documentos 07 y 08 estan fechados el "
+              f"{HOY}, con corte del 18 de septiembre.")
+        print(f"  El cronograma va hoy por {r['hechas']} de {r['total']} "
+              f"({r['pct']:.0f} %), que NO es la cifra con la que se entregaron.")
+        print()
+        print("  Si de verdad quieres reescribirlos con las cifras de hoy:")
+        print("      1. copia los actuales a entregables/superados/")
+        print("      2. cambia HOY y el corte del avance en este script")
+        print("      3. vuelve a correrlo con --regenerar")
+        print()
+        print("  El avance vigente se publica en 12_Estado_del_Proyecto.docx, que para eso")
+        print("  existe: scripts/gen_estado.py.")
+        return 1
+
+    for ruta in (carta()[0], lista()):
+        print(f"  {os.path.basename(ruta)}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main(sys.argv[1:]))
