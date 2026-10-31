@@ -423,8 +423,9 @@ se pierde al reiniciar el visor.
 
 ## Recorte de alcance — 18-oct-2026
 
-El proyecto pasa de **257 a 158 actividades**. 100 recortadas, 12 que estaban hechas sin
-registrar, 1 añadida.
+El proyecto pasa de **257 a 156 actividades**. 102 recortadas, 12 que estaban hechas sin
+registrar, 1 añadida. Las dos últimas —`DT.4` y `DT.5`— se recortaron el 22-oct, al revisar
+los enlaces que el recorte rompía: ver la sección de ruta crítica v3.
 
 | | |
 |---|---|
@@ -496,6 +497,56 @@ Una actividad borrada no deja rastro de por qué se quitó.
 
 `gen_validacion.py` **sigue produciendo la sección 3.1**, que el equipo decidió retirar el
 21-sep. Correrlo sobrescribe esa decisión. Hay un aviso en el propio script.
+
+## Ruta crítica v3 — recalculada tras el recorte, 22-oct-2026
+
+`rc257.py` seguía calculando sobre las 257 actividades: desde el 18-oct describía un proyecto
+que ya no existe. `rc_recorte.py` recalcula sobre las vivas **sin tocar** aquel, para poder
+comparar una línea base contra la otra.
+
+| | |
+|---|---|
+| Datos | `scripts/rc_recorte.py` — tres redes y la revisión de los enlaces heredados |
+| Figuras | `scripts/fig_rc3.py` → `entregables/figuras-ruta-critica-v3/` |
+| Documento | `entregables/Ruta_Critica_257_Tareas_v3.docx`. La v2 pasó a `superados/` |
+
+### Las cuatro lecturas
+
+| Red | Actividades | Duración | Críticas |
+|---|---|---|---|
+| Línea base anterior | 257 | 38.25 d | 29 |
+| Recortada, **reconectando** (vigente) | 155 | 29.25 d | 24 |
+| Recortada, borrando sin reconectar | 155 | 23.00 d | 15 |
+| **Lo que falta**, desde el 22-oct | 25 | **14.00 d** | 8 |
+
+### El punto que no es obvio
+
+Al cortar una actividad intermedia sus sucesoras quedan colgando. Si nadie decide qué pasa con
+cada enlace, **la sucesora flota al día cero y la red se acorta sola**: son los 6.25 días entre
+las dos lecturas de en medio. La regla adoptada es el puente — cortada B en `A → B → C`, se
+conecta `A → C`—, y cada enlace heredado se revisó a mano.
+
+El recorte rompe **58 enlaces en 32 actividades**; 16 quedan sin ningún antecedente vivo, pero
+**15 de esas 16 ya estaban terminadas**, así que la herencia no mueve ninguna fecha. Se
+retiraron 10 enlaces heredados que no se sostenían (`REVISADAS`) y se declaró 1 que el puente
+no podía encontrar (`ANADIDAS`): `QC.4 ← AA.3`.
+
+### La criticidad se mudó
+
+Antes pasaba por el entorno 3D, que es justo lo que se recortó. Ahora:
+
+`EB.1 → EB.4 → EE.1 → EE.2 → EG.2 → EF → EG.4 → IM.1 → IM.2 → IW.3 → II.2 → II.3 → IR.1 → IR.2 → QT.8 → QE.2 → QI.1 … QI.5 → QX`
+
+### Lo que falta, que es lo que sirve para dirigir
+
+**25 pendientes, 23 de ellas de QA y documentación.** Cadena crítica
+`QT.8 → QE.2 → QI.1 → QI.2 → QI.3 → QI.4 → QI.5 → QX`: pruebas con usuarios e informe final.
+Termina el **11-nov** contra el 13 comprometido — **2 días hábiles de margen**, sin tocar la
+reserva del 17 al 20. El riesgo del proyecto dejó de ser técnico y pasó a ser de redacción y
+de disponibilidad de usuarios de prueba.
+
+**Pendiente:** rebasear el valor ganado contra las 155 del alcance vigente. Medido contra las
+257 originales el avance aparenta ser menor de lo que es.
 
 ## Métricas de sesión — 18-oct-2026
 

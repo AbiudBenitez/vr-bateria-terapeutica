@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='utf-8'?>
 <Project xmlns="http://schemas.microsoft.com/project">
     <SaveVersion>14</SaveVersion>
     <Name>Cronograma_VR_Bateria.xml</Name>
     <Title>Cronograma_VR_Bateria.xml</Title>
-    <Manager></Manager>
+    <Manager />
     <ScheduleFromStart>1</ScheduleFromStart>
     <StartDate>2026-09-07T08:00:00</StartDate>
     <FinishDate>2026-09-07T08:00:00</FinishDate>
@@ -52,7 +52,7 @@
     <ActualsInSync>0</ActualsInSync>
     <RemoveFileProperties>0</RemoveFileProperties>
     <AdminProject>0</AdminProject>
-    <ExtendedAttributes/>
+    <ExtendedAttributes />
     <Calendars>
         <Calendar>
             <UID>1</UID>
@@ -3084,7 +3084,7 @@
     <Tasks>
         <Task>
             <UID>1</UID>
-            <ID>1</ID>
+            <ID>0</ID>
             <Name>D. Desarrollo VR y batería</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -3128,7 +3128,7 @@
         </Task>
         <Task>
             <UID>2</UID>
-            <ID>2</ID>
+            <ID>1</ID>
             <Name>DP.1 — Crear el proyecto base en Unity y definir la versión que utilizará todo el equipo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -3173,7 +3173,7 @@
         </Task>
         <Task>
             <UID>3</UID>
-            <ID>3</ID>
+            <ID>2</ID>
             <Name>DP.2 — Configurar repositorio y estructura inicial de carpetas del proyecto</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -3223,7 +3223,7 @@
         </Task>
         <Task>
             <UID>4</UID>
-            <ID>4</ID>
+            <ID>3</ID>
             <Name>DP.3 — Configurar control de versiones y reglas para evitar conflictos entre desarrolladores</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -3273,7 +3273,7 @@
         </Task>
         <Task>
             <UID>5</UID>
-            <ID>5</ID>
+            <ID>4</ID>
             <Name>DX.1 — Instalar y configurar paquetes XR necesarios para realidad virtual</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -3323,7 +3323,7 @@
         </Task>
         <Task>
             <UID>6</UID>
-            <ID>6</ID>
+            <ID>5</ID>
             <Name>DX.2 — Configurar OpenXR y compatibilidad con el visor VR seleccionado</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -3373,7 +3373,7 @@
         </Task>
         <Task>
             <UID>7</UID>
-            <ID>7</ID>
+            <ID>6</ID>
             <Name>DX.3 — Crear escena técnica inicial para realizar pruebas de VR</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -3423,7 +3423,7 @@
         </Task>
         <Task>
             <UID>8</UID>
-            <ID>8</ID>
+            <ID>7</ID>
             <Name>DX.4 — Configurar XR Origin, cámara y seguimiento de cabeza</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -3473,7 +3473,7 @@
         </Task>
         <Task>
             <UID>9</UID>
-            <ID>9</ID>
+            <ID>8</ID>
             <Name>DX.5 — Configurar seguimiento de los controles derecho e izquierdo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -3523,7 +3523,7 @@
         </Task>
         <Task>
             <UID>10</UID>
-            <ID>10</ID>
+            <ID>9</ID>
             <Name>DX.6 — Comprobar escala, altura y posición del jugador dentro del entorno VR</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -3573,7 +3573,7 @@
         </Task>
         <Task>
             <UID>11</UID>
-            <ID>11</ID>
+            <ID>10</ID>
             <Name>DB.1 — Crear versión provisional de las baquetas para pruebas</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -3623,7 +3623,7 @@
         </Task>
         <Task>
             <UID>12</UID>
-            <ID>12</ID>
+            <ID>11</ID>
             <Name>DB.3 — Ajustar posición de agarre de cada baqueta en los controles VR</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -3678,7 +3678,7 @@
         </Task>
         <Task>
             <UID>13</UID>
-            <ID>13</ID>
+            <ID>12</ID>
             <Name>DT.1 — Crear batería provisional con objetos simples para comenzar pruebas</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -3728,7 +3728,7 @@
         </Task>
         <Task>
             <UID>14</UID>
-            <ID>14</ID>
+            <ID>13</ID>
             <Name>DT.2 — Definir todos los componentes interactivos de la batería: snare, kick, toms, hi-hat, crash y ride</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -3778,7 +3778,7 @@
         </Task>
         <Task>
             <UID>15</UID>
-            <ID>15</ID>
+            <ID>14</ID>
             <Name>DG.1 — Crear sistema general de detección de golpe entre baqueta y batería</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -3838,7 +3838,7 @@
         </Task>
         <Task>
             <UID>16</UID>
-            <ID>16</ID>
+            <ID>15</ID>
             <Name>DG.2 — Identificar automáticamente qué pieza de la batería fue golpeada</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -3888,7 +3888,7 @@
         </Task>
         <Task>
             <UID>17</UID>
-            <ID>17</ID>
+            <ID>16</ID>
             <Name>DG.3 — Detectar velocidad de movimiento de la baqueta antes del impacto</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -3938,7 +3938,7 @@
         </Task>
         <Task>
             <UID>18</UID>
-            <ID>18</ID>
+            <ID>17</ID>
             <Name>DG.4 — Convertir la velocidad de la baqueta en un valor de intensidad de golpe</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -3988,7 +3988,7 @@
         </Task>
         <Task>
             <UID>19</UID>
-            <ID>19</ID>
+            <ID>18</ID>
             <Name>DG.5 — Establecer niveles de intensidad suave, media y fuerte</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -4038,7 +4038,7 @@
         </Task>
         <Task>
             <UID>20</UID>
-            <ID>20</ID>
+            <ID>19</ID>
             <Name>DG.6 — Implementar sistema para evitar golpes duplicados provocados por una misma colisión</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -4088,7 +4088,7 @@
         </Task>
         <Task>
             <UID>21</UID>
-            <ID>21</ID>
+            <ID>20</ID>
             <Name>DH.1 — Configurar vibración háptica del controlador al golpear la batería</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -4138,7 +4138,7 @@
         </Task>
         <Task>
             <UID>22</UID>
-            <ID>22</ID>
+            <ID>21</ID>
             <Name>DH.2 — Ajustar la intensidad háptica de acuerdo con la fuerza del golpe</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -4193,7 +4193,7 @@
         </Task>
         <Task>
             <UID>23</UID>
-            <ID>23</ID>
+            <ID>22</ID>
             <Name>DG.7 — Crear evento general DrumHit que informe instrumento, intensidad y tiempo del golpe</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -4248,7 +4248,7 @@
         </Task>
         <Task>
             <UID>24</UID>
-            <ID>24</ID>
+            <ID>23</ID>
             <Name>DG.8 — Implementar soporte independiente para golpe con baqueta izquierda y derecha</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -4298,7 +4298,7 @@
         </Task>
         <Task>
             <UID>25</UID>
-            <ID>25</ID>
+            <ID>24</ID>
             <Name>DG.9 — Ajustar sensibilidad de las colisiones de batería</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -4347,121 +4347,8 @@
             <Manual>0</Manual>
         </Task>
         <Task>
-            <UID>26</UID>
-            <ID>26</ID>
-            <Name>DT.4 — Incorporar modelo 3D definitivo de la batería</Name>
-            <Type>1</Type>
-            <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T04:22:00</CreateDate>
-            <WBS>1.29</WBS>
-            <OutlineNumber>1.25</OutlineNumber>
-            <OutlineLevel>2</OutlineLevel>
-            <Priority>500</Priority>
-            <Start>2026-09-16T14:00:00</Start>
-            <Finish>2026-09-17T11:00:00</Finish>
-            <Duration>PT6H0M0S</Duration>
-            <DurationFormat>7</DurationFormat>
-            <ResumeValid>0</ResumeValid>
-            <EffortDriven>1</EffortDriven>
-            <Recurring>0</Recurring>
-            <OverAllocated>0</OverAllocated>
-            <Estimated>0</Estimated>
-            <Milestone>0</Milestone>
-            <Summary>0</Summary>
-            <Critical>1</Critical>
-            <IsSubproject>0</IsSubproject>
-            <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
-            <ExternalTask>0</ExternalTask>
-            <FixedCostAccrual>3</FixedCostAccrual>
-            <PercentComplete>0</PercentComplete>
-            <PercentWorkComplete>0</PercentWorkComplete>
-            <RemainingDuration>PT6H0M0S</RemainingDuration>
-            <ConstraintType>0</ConstraintType>
-            <CalendarUID>-1</CalendarUID>
-            <ConstraintDate>1970-01-01T00:00:00</ConstraintDate>
-            <LevelAssignments>0</LevelAssignments>
-            <LevelingCanSplit>0</LevelingCanSplit>
-            <LevelingDelay>0</LevelingDelay>
-            <LevelingDelayFormat>7</LevelingDelayFormat>
-            <IgnoreResourceCalendar>0</IgnoreResourceCalendar>
-            <HideBar>0</HideBar>
-            <Rollup>0</Rollup>
-            <EarnedValueMethod>0</EarnedValueMethod>
-            <PredecessorLink>
-                <PredecessorUID>57</PredecessorUID>
-                <Type>1</Type>
-                <CrossProject>0</CrossProject>
-            </PredecessorLink>
-            <PredecessorLink>
-                <PredecessorUID>56</PredecessorUID>
-                <Type>1</Type>
-                <CrossProject>0</CrossProject>
-            </PredecessorLink>
-            <PredecessorLink>
-                <PredecessorUID>58</PredecessorUID>
-                <Type>1</Type>
-                <CrossProject>0</CrossProject>
-            </PredecessorLink>
-            <PredecessorLink>
-                <PredecessorUID>25</PredecessorUID>
-                <Type>1</Type>
-                <CrossProject>0</CrossProject>
-            </PredecessorLink>
-            <Active>1</Active>
-            <Manual>0</Manual>
-        </Task>
-        <Task>
-            <UID>27</UID>
-            <ID>27</ID>
-            <Name>DT.5 — Reconfigurar colliders utilizando el modelo definitivo</Name>
-            <Type>1</Type>
-            <IsNull>0</IsNull>
-            <CreateDate>2026-09-19T04:22:00</CreateDate>
-            <WBS>1.30</WBS>
-            <OutlineNumber>1.26</OutlineNumber>
-            <OutlineLevel>2</OutlineLevel>
-            <Priority>500</Priority>
-            <Start>2026-09-07T08:00:00</Start>
-            <Finish>2026-09-07T11:00:00</Finish>
-            <Duration>PT3H0M0S</Duration>
-            <DurationFormat>7</DurationFormat>
-            <ResumeValid>0</ResumeValid>
-            <EffortDriven>1</EffortDriven>
-            <Recurring>0</Recurring>
-            <OverAllocated>0</OverAllocated>
-            <Estimated>0</Estimated>
-            <Milestone>0</Milestone>
-            <Summary>0</Summary>
-            <Critical>1</Critical>
-            <IsSubproject>0</IsSubproject>
-            <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
-            <ExternalTask>0</ExternalTask>
-            <FixedCostAccrual>3</FixedCostAccrual>
-            <PercentComplete>0</PercentComplete>
-            <PercentWorkComplete>0</PercentWorkComplete>
-            <RemainingDuration>PT3H0M0S</RemainingDuration>
-            <ConstraintType>0</ConstraintType>
-            <CalendarUID>-1</CalendarUID>
-            <ConstraintDate>1970-01-01T00:00:00</ConstraintDate>
-            <LevelAssignments>0</LevelAssignments>
-            <LevelingCanSplit>0</LevelingCanSplit>
-            <LevelingDelay>0</LevelingDelay>
-            <LevelingDelayFormat>7</LevelingDelayFormat>
-            <IgnoreResourceCalendar>0</IgnoreResourceCalendar>
-            <HideBar>0</HideBar>
-            <Rollup>0</Rollup>
-            <EarnedValueMethod>0</EarnedValueMethod>
-            <PredecessorLink>
-                <PredecessorUID>26</PredecessorUID>
-                <Type>1</Type>
-                <CrossProject>0</CrossProject>
-            </PredecessorLink>
-            <Active>1</Active>
-            <Manual>0</Manual>
-        </Task>
-        <Task>
             <UID>28</UID>
-            <ID>28</ID>
+            <ID>25</ID>
             <Name>DT.6 — Ajustar posición y dimensiones de batería para una postura cómoda en VR</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -4501,22 +4388,12 @@
             <HideBar>0</HideBar>
             <Rollup>0</Rollup>
             <EarnedValueMethod>0</EarnedValueMethod>
-            <PredecessorLink>
-                <PredecessorUID>27</PredecessorUID>
-                <Type>1</Type>
-                <CrossProject>0</CrossProject>
-            </PredecessorLink>
-            <PredecessorLink>
-                <PredecessorUID>62</PredecessorUID>
-                <Type>1</Type>
-                <CrossProject>0</CrossProject>
-            </PredecessorLink>
             <Active>1</Active>
             <Manual>0</Manual>
-        </Task>
+        <PredecessorLink><PredecessorUID>57</PredecessorUID><Type>1</Type><CrossProject>0</CrossProject></PredecessorLink><PredecessorLink><PredecessorUID>56</PredecessorUID><Type>1</Type><CrossProject>0</CrossProject></PredecessorLink><PredecessorLink><PredecessorUID>58</PredecessorUID><Type>1</Type><CrossProject>0</CrossProject></PredecessorLink><PredecessorLink><PredecessorUID>25</PredecessorUID><Type>1</Type><CrossProject>0</CrossProject></PredecessorLink><PredecessorLink><PredecessorUID>62</PredecessorUID><Type>1</Type><CrossProject>0</CrossProject></PredecessorLink></Task>
         <Task>
             <UID>29</UID>
-            <ID>29</ID>
+            <ID>26</ID>
             <Name>DR.1 — Realizar primera prueba completa de interacción física de la batería</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -4611,7 +4488,7 @@
         </Task>
         <Task>
             <UID>30</UID>
-            <ID>30</ID>
+            <ID>27</ID>
             <Name>DR.2 — Corregir errores detectados durante la primera prueba de batería</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -4661,7 +4538,7 @@
         </Task>
         <Task>
             <UID>31</UID>
-            <ID>31</ID>
+            <ID>28</ID>
             <Name>DM.1 — Exportar las métricas de sesión: precisión temporal y constancia</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -4711,7 +4588,7 @@
         </Task>
         <Task>
             <UID>32</UID>
-            <ID>32</ID>
+            <ID>29</ID>
             <Name>J. Juego de ritmo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -4754,7 +4631,7 @@
         </Task>
         <Task>
             <UID>33</UID>
-            <ID>33</ID>
+            <ID>30</ID>
             <Name>JA.1 — Definir técnicamente cómo funcionará el juego de ritmo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -4799,7 +4676,7 @@
         </Task>
         <Task>
             <UID>34</UID>
-            <ID>34</ID>
+            <ID>31</ID>
             <Name>JA.2 — Definir los datos necesarios para representar una nota musical dentro del juego</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -4849,7 +4726,7 @@
         </Task>
         <Task>
             <UID>35</UID>
-            <ID>35</ID>
+            <ID>32</ID>
             <Name>JA.3 — Diseñar estructura de datos para canciones y beatmaps</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -4899,7 +4776,7 @@
         </Task>
         <Task>
             <UID>36</UID>
-            <ID>36</ID>
+            <ID>33</ID>
             <Name>JT.1 — Crear sistema de reloj musical independiente de los FPS</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -4949,7 +4826,7 @@
         </Task>
         <Task>
             <UID>37</UID>
-            <ID>37</ID>
+            <ID>34</ID>
             <Name>JT.2 — Implementar cálculo de BPM y duración de cada beat</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -4999,7 +4876,7 @@
         </Task>
         <Task>
             <UID>38</UID>
-            <ID>38</ID>
+            <ID>35</ID>
             <Name>JT.3 — Implementar cálculo de compases y subdivisiones rítmicas</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -5049,7 +4926,7 @@
         </Task>
         <Task>
             <UID>39</UID>
-            <ID>39</ID>
+            <ID>36</ID>
             <Name>JB.1 — Crear prototipo de beatmap manual</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -5099,7 +4976,7 @@
         </Task>
         <Task>
             <UID>40</UID>
-            <ID>40</ID>
+            <ID>37</ID>
             <Name>JB.2 — Crear sistema que cargue un beatmap</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -5149,7 +5026,7 @@
         </Task>
         <Task>
             <UID>41</UID>
-            <ID>41</ID>
+            <ID>38</ID>
             <Name>JB.3 — Sincronizar beatmap con reproducción de música</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -5209,7 +5086,7 @@
         </Task>
         <Task>
             <UID>42</UID>
-            <ID>42</ID>
+            <ID>39</ID>
             <Name>JN.1 — Crear representación visual provisional de las notas</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -5259,7 +5136,7 @@
         </Task>
         <Task>
             <UID>43</UID>
-            <ID>43</ID>
+            <ID>40</ID>
             <Name>JN.2 — Crear sistema que indique qué componente de la batería debe golpearse</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -5309,7 +5186,7 @@
         </Task>
         <Task>
             <UID>44</UID>
-            <ID>44</ID>
+            <ID>41</ID>
             <Name>JW.1 — Definir ventanas temporales Perfect, Good y Miss</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -5359,7 +5236,7 @@
         </Task>
         <Task>
             <UID>45</UID>
-            <ID>45</ID>
+            <ID>42</ID>
             <Name>JW.2 — Programar detección de golpes correctos</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -5414,7 +5291,7 @@
         </Task>
         <Task>
             <UID>46</UID>
-            <ID>46</ID>
+            <ID>43</ID>
             <Name>JW.5 — Programar detección de notas no golpeadas</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -5462,7 +5339,7 @@
         </Task>
         <Task>
             <UID>47</UID>
-            <ID>47</ID>
+            <ID>44</ID>
             <Name>JP.1 — Crear sistema básico de puntuación</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -5517,7 +5394,7 @@
         </Task>
         <Task>
             <UID>48</UID>
-            <ID>48</ID>
+            <ID>45</ID>
             <Name>JP.3 — Crear cálculo de precisión porcentual del usuario</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -5565,7 +5442,7 @@
         </Task>
         <Task>
             <UID>49</UID>
-            <ID>49</ID>
+            <ID>46</ID>
             <Name>JI.1 — Integrar evento DrumHit de la batería VR con el juego de ritmo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -5620,7 +5497,7 @@
         </Task>
         <Task>
             <UID>50</UID>
-            <ID>50</ID>
+            <ID>47</ID>
             <Name>E. Experiencia emocional</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -5664,7 +5541,7 @@
         </Task>
         <Task>
             <UID>51</UID>
-            <ID>51</ID>
+            <ID>48</ID>
             <Name>EO.1 — Definir objetivo general de la experiencia emocional</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -5709,7 +5586,7 @@
         </Task>
         <Task>
             <UID>52</UID>
-            <ID>52</ID>
+            <ID>49</ID>
             <Name>EO.2 — Definir alcance y límites del proyecto respecto al concepto de terapia</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -5759,7 +5636,7 @@
         </Task>
         <Task>
             <UID>53</UID>
-            <ID>53</ID>
+            <ID>50</ID>
             <Name>EB.1 — Buscar bibliografía científica sobre música y regulación emocional</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -5804,7 +5681,7 @@
         </Task>
         <Task>
             <UID>54</UID>
-            <ID>54</ID>
+            <ID>51</ID>
             <Name>EB.2 — Buscar bibliografía científica sobre percusión y expresión emocional</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -5849,7 +5726,7 @@
         </Task>
         <Task>
             <UID>55</UID>
-            <ID>55</ID>
+            <ID>52</ID>
             <Name>EB.3 — Buscar investigaciones sobre juegos de ritmo relacionados con bienestar y expresión emocional</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -5894,7 +5771,7 @@
         </Task>
         <Task>
             <UID>56</UID>
-            <ID>56</ID>
+            <ID>53</ID>
             <Name>EB.4 — Seleccionar estudios científicos que realmente sustentarán el proyecto</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -5954,7 +5831,7 @@
         </Task>
         <Task>
             <UID>57</UID>
-            <ID>57</ID>
+            <ID>54</ID>
             <Name>EB.5 — Crear matriz bibliográfica de artículos, objetivo, metodología y resultados</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -6004,7 +5881,7 @@
         </Task>
         <Task>
             <UID>58</UID>
-            <ID>58</ID>
+            <ID>55</ID>
             <Name>EE.1 — Definir qué emociones serán abordadas dentro de la simulación</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -6054,7 +5931,7 @@
         </Task>
         <Task>
             <UID>59</UID>
-            <ID>59</ID>
+            <ID>56</ID>
             <Name>EE.2 — Definir qué actividades se relacionarán con cada emoción</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -6104,7 +5981,7 @@
         </Task>
         <Task>
             <UID>60</UID>
-            <ID>60</ID>
+            <ID>57</ID>
             <Name>EE.3 — Determinar duración aproximada de una sesión</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -6154,7 +6031,7 @@
         </Task>
         <Task>
             <UID>61</UID>
-            <ID>61</ID>
+            <ID>58</ID>
             <Name>ER — Investigar postura, comodidad y ergonomía durante actividades de percusión VR</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -6204,7 +6081,7 @@
         </Task>
         <Task>
             <UID>62</UID>
-            <ID>62</ID>
+            <ID>59</ID>
             <Name>EG.1 — Redactar el guion de introducción general de la terapia</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -6259,7 +6136,7 @@
         </Task>
         <Task>
             <UID>63</UID>
-            <ID>63</ID>
+            <ID>60</ID>
             <Name>EG.2 — Redactar las instrucciones específicas de la actividad terapéutica</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -6314,7 +6191,7 @@
         </Task>
         <Task>
             <UID>64</UID>
-            <ID>64</ID>
+            <ID>61</ID>
             <Name>EF — Diseñar flujo completo de experiencia desde ingreso hasta finalización</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -6379,7 +6256,7 @@
         </Task>
         <Task>
             <UID>65</UID>
-            <ID>65</ID>
+            <ID>62</ID>
             <Name>EG.3 — Redactar el guion del tutorial introductorio</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -6434,7 +6311,7 @@
         </Task>
         <Task>
             <UID>66</UID>
-            <ID>66</ID>
+            <ID>63</ID>
             <Name>EI — Definir cómo se utilizarán el ritmo y la intensidad de los golpes para expresar las emociones seleccionadas</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -6489,7 +6366,7 @@
         </Task>
         <Task>
             <UID>67</UID>
-            <ID>67</ID>
+            <ID>64</ID>
             <Name>EG.4 — Redactar el guion de cierre de la experiencia terapéutica</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -6539,7 +6416,7 @@
         </Task>
         <Task>
             <UID>68</UID>
-            <ID>68</ID>
+            <ID>65</ID>
             <Name>ET.1 — Redactar la fundamentación teórica de la propuesta terapéutica</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -6594,7 +6471,7 @@
         </Task>
         <Task>
             <UID>69</UID>
-            <ID>69</ID>
+            <ID>66</ID>
             <Name>ET.2 — Revisar y actualizar la fundamentación según el funcionamiento final del prototipo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -6648,7 +6525,7 @@
         </Task>
         <Task>
             <UID>70</UID>
-            <ID>70</ID>
+            <ID>67</ID>
             <Name>M. Música</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -6691,7 +6568,7 @@
         </Task>
         <Task>
             <UID>71</UID>
-            <ID>71</ID>
+            <ID>68</ID>
             <Name>ML.1 — Determinar si se utilizará música original, libre de derechos o licenciada</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -6736,7 +6613,7 @@
         </Task>
         <Task>
             <UID>72</UID>
-            <ID>72</ID>
+            <ID>69</ID>
             <Name>ML.2 — Investigar licencias de las pistas o recursos musicales considerados</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -6786,7 +6663,7 @@
         </Task>
         <Task>
             <UID>73</UID>
-            <ID>73</ID>
+            <ID>70</ID>
             <Name>MP.1 — Crear o seleccionar primera pista musical de prueba</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -6846,7 +6723,7 @@
         </Task>
         <Task>
             <UID>74</UID>
-            <ID>74</ID>
+            <ID>71</ID>
             <Name>MP.2 — Determinar BPM exacto de la primera pista</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -6894,7 +6771,7 @@
         </Task>
         <Task>
             <UID>75</UID>
-            <ID>75</ID>
+            <ID>72</ID>
             <Name>MP.3 — Identificar estructura musical de la primera pista</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -6942,7 +6819,7 @@
         </Task>
         <Task>
             <UID>76</UID>
-            <ID>76</ID>
+            <ID>73</ID>
             <Name>MB.1 — Crear patrón básico de batería para la primera pista</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -6992,7 +6869,7 @@
         </Task>
         <Task>
             <UID>77</UID>
-            <ID>77</ID>
+            <ID>74</ID>
             <Name>MB.4 — Convertir patrón rítmico en información utilizable para el beatmap</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -7047,7 +6924,7 @@
         </Task>
         <Task>
             <UID>78</UID>
-            <ID>78</ID>
+            <ID>75</ID>
             <Name>S. Sonido</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -7090,7 +6967,7 @@
         </Task>
         <Task>
             <UID>79</UID>
-            <ID>79</ID>
+            <ID>76</ID>
             <Name>SP.1 — Crear lista de todos los sonidos necesarios para el proyecto</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -7135,7 +7012,7 @@
         </Task>
         <Task>
             <UID>80</UID>
-            <ID>80</ID>
+            <ID>77</ID>
             <Name>SB.1 — Buscar sonido de kick</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -7183,7 +7060,7 @@
         </Task>
         <Task>
             <UID>81</UID>
-            <ID>81</ID>
+            <ID>78</ID>
             <Name>SB.2 — Buscar sonido de snare</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -7231,7 +7108,7 @@
         </Task>
         <Task>
             <UID>82</UID>
-            <ID>82</ID>
+            <ID>79</ID>
             <Name>SB.3 — Buscar sonidos de toms</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -7279,7 +7156,7 @@
         </Task>
         <Task>
             <UID>83</UID>
-            <ID>83</ID>
+            <ID>80</ID>
             <Name>SB.4 — Buscar sonidos de hi-hat abierto y cerrado</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -7327,7 +7204,7 @@
         </Task>
         <Task>
             <UID>84</UID>
-            <ID>84</ID>
+            <ID>81</ID>
             <Name>SB.5 — Buscar sonidos de crash y ride</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -7375,7 +7252,7 @@
         <Notes>[HECHA 2026-10-19] Crash y Platillo (ride) con cinco capas de velocidad cada uno, del kit AVL Drumkits Red Zeppelin bajo CC BY-SA 3.0. El crash entro como septima pieza el 19-oct: Assets/Audio/Piezas/Crash.asset y Platillo.asset</Notes></Task>
         <Task>
             <UID>85</UID>
-            <ID>85</ID>
+            <ID>82</ID>
             <Name>SB.6 — Seleccionar tres niveles de intensidad para cada componente principal</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -7445,7 +7322,7 @@
         </Task>
         <Task>
             <UID>86</UID>
-            <ID>86</ID>
+            <ID>83</ID>
             <Name>SE.1 — Editar inicio y final de cada muestra para evitar retrasos</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -7495,7 +7372,7 @@
         </Task>
         <Task>
             <UID>87</UID>
-            <ID>87</ID>
+            <ID>84</ID>
             <Name>SE.3 — Normalizar volumen de las muestras de batería</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -7545,7 +7422,7 @@
         </Task>
         <Task>
             <UID>88</UID>
-            <ID>88</ID>
+            <ID>85</ID>
             <Name>SE.4 — Exportar sonidos en formato apropiado para Unity</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -7598,7 +7475,7 @@
         </Task>
         <Task>
             <UID>89</UID>
-            <ID>89</ID>
+            <ID>86</ID>
             <Name>SI.1 — Integrar sonidos de batería con sistema DrumHit</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -7653,7 +7530,7 @@
         </Task>
         <Task>
             <UID>90</UID>
-            <ID>90</ID>
+            <ID>87</ID>
             <Name>SI.2 — Asignar sonidos diferentes según intensidad del golpe</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -7708,7 +7585,7 @@
         </Task>
         <Task>
             <UID>91</UID>
-            <ID>91</ID>
+            <ID>88</ID>
             <Name>SI.3 — Configurar volumen espacial de la batería dentro del entorno VR</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -7758,7 +7635,7 @@
         </Task>
         <Task>
             <UID>92</UID>
-            <ID>92</ID>
+            <ID>89</ID>
             <Name>SI.4 — Medir retraso perceptible entre impacto y reproducción del sonido</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -7808,7 +7685,7 @@
         </Task>
         <Task>
             <UID>93</UID>
-            <ID>93</ID>
+            <ID>90</ID>
             <Name>I. Interfaz / UX/UI</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -7852,7 +7729,7 @@
         </Task>
         <Task>
             <UID>94</UID>
-            <ID>94</ID>
+            <ID>91</ID>
             <Name>IM.1 — Definir mapa completo de pantallas de la aplicación</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -7907,7 +7784,7 @@
         </Task>
         <Task>
             <UID>95</UID>
-            <ID>95</ID>
+            <ID>92</ID>
             <Name>IM.2 — Definir navegación entre menú, experiencia guiada, juego y modo libre</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -7957,7 +7834,7 @@
         </Task>
         <Task>
             <UID>96</UID>
-            <ID>96</ID>
+            <ID>93</ID>
             <Name>IW.1 — Crear wireframe del menú principal</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -8007,7 +7884,7 @@
         </Task>
         <Task>
             <UID>97</UID>
-            <ID>97</ID>
+            <ID>94</ID>
             <Name>IW.2 — Crear wireframe de selección de modo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -8057,7 +7934,7 @@
         </Task>
         <Task>
             <UID>98</UID>
-            <ID>98</ID>
+            <ID>95</ID>
             <Name>IW.3 — Crear wireframe de selección emocional</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -8112,7 +7989,7 @@
         </Task>
         <Task>
             <UID>99</UID>
-            <ID>99</ID>
+            <ID>96</ID>
             <Name>IW.5 — Crear wireframe de pantalla previa al juego</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -8162,7 +8039,7 @@
         </Task>
         <Task>
             <UID>100</UID>
-            <ID>100</ID>
+            <ID>97</ID>
             <Name>IG.1 — Diseñar indicadores visuales de Perfect, Good y Miss</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -8212,7 +8089,7 @@
         </Task>
         <Task>
             <UID>101</UID>
-            <ID>101</ID>
+            <ID>98</ID>
             <Name>IG.2 — Diseñar representación definitiva de las notas del juego</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -8267,7 +8144,7 @@
         </Task>
         <Task>
             <UID>102</UID>
-            <ID>102</ID>
+            <ID>99</ID>
             <Name>IG.3 — Diseñar indicadores para señalar el tambor que debe golpearse</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -8317,7 +8194,7 @@
         </Task>
         <Task>
             <UID>103</UID>
-            <ID>103</ID>
+            <ID>100</ID>
             <Name>IT.1 — Diseñar tutorial visual sobre cómo sujetar las baquetas</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -8371,7 +8248,7 @@
         </Task>
         <Task>
             <UID>104</UID>
-            <ID>104</ID>
+            <ID>101</ID>
             <Name>IT.2 — Diseñar tutorial para explicar cómo seguir el ritmo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -8419,7 +8296,7 @@
         <Notes>[HECHA 2026-10-20] PasoSeguirPulso con EcoRitmico: 8 notas, 3 aciertos necesarios, ventanas de 25 y 60 ms. Rediseñado como acompañamiento el 20-oct porque la version anterior callaba el metronomo al empezar el turno del usuario y pedia reproducir de memoria: fallaba 0 de 9 corridas. Pruebas en TutorialPasosTests y EcoRitmicoTests</Notes></Task>
         <Task>
             <UID>105</UID>
-            <ID>105</ID>
+            <ID>102</ID>
             <Name>IT.3 — Diseñar tutorial para explicar la intensidad de los golpes</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -8468,7 +8345,7 @@
         <Notes>[HECHA 2026-10-20] PasoIntensidades: exige los tres niveles suave, medio y fuerte, con el umbral de velocidad en cada pad y no global, porque un bombo se golpea mas fuerte que un hi-hat. Assets/Scripts/Tutorial/PasoIntensidades.cs</Notes></Task>
         <Task>
             <UID>106</UID>
-            <ID>106</ID>
+            <ID>103</ID>
             <Name>IT.4 — Implementar flujo del tutorial completo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -8527,7 +8404,7 @@
         <Notes>[HECHA 2026-10-20] TutorialRunner conduce los cuatro pasos con baqueta fantasma y rotulo, y FlujoApp lo arranca desde el menu y lleva a resultados. RegistroTutorial vuelca a JSON los intentos, el tiempo por paso, el tiempo hasta el primer golpe y el desfase de cada golpe: es la evidencia de la medida de exito 6</Notes></Task>
         <Task>
             <UID>107</UID>
-            <ID>107</ID>
+            <ID>104</ID>
             <Name>II.2 — Implementar menú principal dentro de Unity</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -8601,7 +8478,7 @@
         <Notes>[HECHA 2026-10-20] ConstruirMenu levanta TOCAR, TUTORIAL y SALIR como pads con disco y rotulo, cableando los diez campos de FlujoApp. EscenaCompletaTests comprueba el montaje entero, incluido que el marcador se apague fuera de Tocando</Notes></Task>
         <Task>
             <UID>108</UID>
-            <ID>108</ID>
+            <ID>105</ID>
             <Name>II.3 — Implementar interacción con botones utilizando controlador VR</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -8654,7 +8531,7 @@
         <Notes>[HECHA 2026-10-20] Los botones se golpean con las baquetas por el MISMO camino de deteccion que el kit: StickTracker los lleva en su lista y PadDeMenu filtra que el golpe venga de una mano. No hay un segundo mecanismo de entrada que mantener</Notes></Task>
         <Task>
             <UID>109</UID>
-            <ID>109</ID>
+            <ID>106</ID>
             <Name>II.6 — Implementar pantalla de resultados</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -8713,7 +8590,7 @@
         <Notes>[HECHA 2026-10-20] PanelResultados y TextoResultados: el resultado dicho en palabras y no solo en cifras. Pruebas en TextoResultadosTests</Notes></Task>
         <Task>
             <UID>110</UID>
-            <ID>110</ID>
+            <ID>107</ID>
             <Name>IR.1 — Revisar legibilidad de textos dentro del visor VR</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -8762,7 +8639,7 @@
         <Notes>[HECHA 2026-10-20] Tamaños MEDIDOS sobre la escena, no estimados. JudgePopup en 0.00556, que con el factor 36 de TMP da 0.200 de cuerpo, el mismo que el Indicador validado en el visor; el rotulo del tutorial en 0.85, escalado desde el 0.50 validado al pasar de 0.50 m de los ojos a 0.87; marcador e Indicador con autoajuste. LosTamanosDeTextoSonLosValidados los fija, porque tres correcciones seguidas no habian llegado nunca a la escena</Notes></Task>
         <Task>
             <UID>111</UID>
-            <ID>111</ID>
+            <ID>108</ID>
             <Name>IR.2 — Revisar tamaño, distancia y posición de paneles</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -8810,7 +8687,7 @@
         <Notes>[HECHA 2026-10-20] Tres posiciones corregidas con medida. El panel del marcador se ancla al kit en coordenadas de MUNDO tras encontrarse a dieciseis metros por heredar una posicion local; el rotulo del tutorial pasa del bombo -31 cm fuera del eje, 16 mas alto y 45 cm mas cerca- al punto exacto del marcador; y el promedio que situa el panel deja de contar los botones del menu. Con sus pruebas de escena</Notes></Task>
         <Task>
             <UID>112</UID>
-            <ID>112</ID>
+            <ID>109</ID>
             <Name>A. Entorno 3D y assets</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -8854,7 +8731,7 @@
         </Task>
         <Task>
             <UID>113</UID>
-            <ID>113</ID>
+            <ID>110</ID>
             <Name>AA.3 — Buscar assets de entorno compatibles con el estilo elegido</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -8920,7 +8797,7 @@
         </Task>
         <Task>
             <UID>114</UID>
-            <ID>114</ID>
+            <ID>111</ID>
             <Name>AA.4 — Revisar licencias de los assets seleccionados</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -8971,7 +8848,7 @@
         </Task>
         <Task>
             <UID>115</UID>
-            <ID>115</ID>
+            <ID>112</ID>
             <Name>AP.1 — Crear primera composición del escenario en Unity</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -9027,7 +8904,7 @@
         </Task>
         <Task>
             <UID>116</UID>
-            <ID>116</ID>
+            <ID>113</ID>
             <Name>AL.1 — Configurar iluminación inicial considerando la paleta de colores establecida</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -9092,7 +8969,7 @@
         </Task>
         <Task>
             <UID>117</UID>
-            <ID>117</ID>
+            <ID>114</ID>
             <Name>AL.2 — Configurar iluminación definitiva y ambiente visual</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -9143,7 +9020,7 @@
         </Task>
         <Task>
             <UID>118</UID>
-            <ID>118</ID>
+            <ID>115</ID>
             <Name>AS — Crear límites visuales de seguridad del espacio de interacción</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -9199,7 +9076,7 @@
         </Task>
         <Task>
             <UID>119</UID>
-            <ID>119</ID>
+            <ID>116</ID>
             <Name>AO.5 — Evaluar FPS del escenario en el visor objetivo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -9250,7 +9127,7 @@
         </Task>
         <Task>
             <UID>120</UID>
-            <ID>120</ID>
+            <ID>117</ID>
             <Name>Q. QA, documentación y gestión</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -9294,7 +9171,7 @@
         </Task>
         <Task>
             <UID>121</UID>
-            <ID>121</ID>
+            <ID>118</ID>
             <Name>QP.1 — Definir alcance general del proyecto</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -9339,7 +9216,7 @@
         </Task>
         <Task>
             <UID>122</UID>
-            <ID>122</ID>
+            <ID>119</ID>
             <Name>QP.2 — Definir objetivos generales y específicos</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -9389,7 +9266,7 @@
         </Task>
         <Task>
             <UID>123</UID>
-            <ID>123</ID>
+            <ID>120</ID>
             <Name>QP.3 — Identificar entregables principales del proyecto</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -9444,7 +9321,7 @@
         </Task>
         <Task>
             <UID>124</UID>
-            <ID>124</ID>
+            <ID>121</ID>
             <Name>QP.4 — Elaborar EDT/WBS completa de tareas</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -9494,7 +9371,7 @@
         </Task>
         <Task>
             <UID>125</UID>
-            <ID>125</ID>
+            <ID>122</ID>
             <Name>QP.5 — Asignar responsables principales para cada tarea</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -9544,7 +9421,7 @@
         </Task>
         <Task>
             <UID>126</UID>
-            <ID>126</ID>
+            <ID>123</ID>
             <Name>QP.6 — Establecer dependencias entre tareas</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -9594,7 +9471,7 @@
         </Task>
         <Task>
             <UID>127</UID>
-            <ID>127</ID>
+            <ID>124</ID>
             <Name>QP.7 — Crear cronograma inicial del proyecto</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -9654,7 +9531,7 @@
         </Task>
         <Task>
             <UID>128</UID>
-            <ID>128</ID>
+            <ID>125</ID>
             <Name>QP.8 — Crear diagrama de Gantt</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -9704,7 +9581,7 @@
         </Task>
         <Task>
             <UID>129</UID>
-            <ID>129</ID>
+            <ID>126</ID>
             <Name>QP.9 — Identificar ruta crítica del proyecto</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -9754,7 +9631,7 @@
         </Task>
         <Task>
             <UID>130</UID>
-            <ID>130</ID>
+            <ID>127</ID>
             <Name>QG.1 — Crear lista de riesgos técnicos, académicos y de tiempo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -9809,7 +9686,7 @@
         </Task>
         <Task>
             <UID>131</UID>
-            <ID>131</ID>
+            <ID>128</ID>
             <Name>QG.2 — Definir acciones de mitigación para cada riesgo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -9858,7 +9735,7 @@
         </Task>
         <Task>
             <UID>132</UID>
-            <ID>132</ID>
+            <ID>129</ID>
             <Name>QR.1 — Definir requisitos funcionales de la simulación</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -9908,7 +9785,7 @@
         </Task>
         <Task>
             <UID>133</UID>
-            <ID>133</ID>
+            <ID>130</ID>
             <Name>QR.2 — Definir requisitos no funcionales</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -9958,7 +9835,7 @@
         </Task>
         <Task>
             <UID>134</UID>
-            <ID>134</ID>
+            <ID>131</ID>
             <Name>QR.3 — Crear criterios de aceptación para cada requisito</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -10013,7 +9890,7 @@
         </Task>
         <Task>
             <UID>135</UID>
-            <ID>135</ID>
+            <ID>132</ID>
             <Name>QR.4 — Crear matriz de trazabilidad entre requisitos y funcionalidades</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -10063,7 +9940,7 @@
         </Task>
         <Task>
             <UID>136</UID>
-            <ID>136</ID>
+            <ID>133</ID>
             <Name>QE.1 — Establecer formato para documentar errores</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -10108,7 +9985,7 @@
         </Task>
         <Task>
             <UID>137</UID>
-            <ID>137</ID>
+            <ID>134</ID>
             <Name>QT.1 — Crear plan de pruebas de batería VR</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -10162,7 +10039,7 @@
         </Task>
         <Task>
             <UID>138</UID>
-            <ID>138</ID>
+            <ID>135</ID>
             <Name>QT.6 — Realizar pruebas unitarias de batería</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -10218,7 +10095,7 @@
         </Task>
         <Task>
             <UID>139</UID>
-            <ID>139</ID>
+            <ID>136</ID>
             <Name>QT.7 — Realizar pruebas del sistema de ritmo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -10337,7 +10214,7 @@
         </Task>
         <Task>
             <UID>140</UID>
-            <ID>140</ID>
+            <ID>137</ID>
             <Name>QT.8 — Realizar pruebas con usuarios del prototipo integrado</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -10381,7 +10258,7 @@
         </Task>
         <Task>
             <UID>141</UID>
-            <ID>141</ID>
+            <ID>138</ID>
             <Name>QE.2 — Registrar errores, observaciones y sugerencias de usuarios</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -10435,7 +10312,7 @@
         </Task>
         <Task>
             <UID>142</UID>
-            <ID>142</ID>
+            <ID>139</ID>
             <Name>QE.3 — Clasificar errores por gravedad y prioridad</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -10483,7 +10360,7 @@
         </Task>
         <Task>
             <UID>143</UID>
-            <ID>143</ID>
+            <ID>140</ID>
             <Name>QE.4 — Asignar errores a las áreas correspondientes</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -10531,7 +10408,7 @@
         </Task>
         <Task>
             <UID>144</UID>
-            <ID>144</ID>
+            <ID>141</ID>
             <Name>QE.5 — Verificar corrección de errores críticos</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -10585,7 +10462,7 @@
         </Task>
         <Task>
             <UID>145</UID>
-            <ID>145</ID>
+            <ID>142</ID>
             <Name>QV.1 — Realizar prueba completa desde inicio hasta final de una sesión</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -10634,7 +10511,7 @@
         </Task>
         <Task>
             <UID>146</UID>
-            <ID>146</ID>
+            <ID>143</ID>
             <Name>QV.2 — Evaluar estabilidad y presencia de cierres inesperados</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -10683,7 +10560,7 @@
         </Task>
         <Task>
             <UID>147</UID>
-            <ID>147</ID>
+            <ID>144</ID>
             <Name>QV.3 — Medir FPS del proyecto en el visor objetivo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -10739,7 +10616,7 @@
         </Task>
         <Task>
             <UID>148</UID>
-            <ID>148</ID>
+            <ID>145</ID>
             <Name>QV.4 — Evaluar latencia entre golpe físico, sonido y detección</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -10798,7 +10675,7 @@
         <Notes>[HECHA 2026-10-17] Hito Go/No-Go del acta, medido con el protocolo del clic fisico: p90 de +4.07 ms dentro de la ventana de -10 a +25 ms. Ocho corridas en entregables/mediciones/latencia_20261017_*.json. El desfase negativo es valido: la prediccion del plano armado adelanta el sonido</Notes></Task>
         <Task>
             <UID>149</UID>
-            <ID>149</ID>
+            <ID>146</ID>
             <Name>QV.5 — Evaluar comodidad de la experiencia VR</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -10847,7 +10724,7 @@
         </Task>
         <Task>
             <UID>150</UID>
-            <ID>150</ID>
+            <ID>147</ID>
             <Name>QC.1 — Registrar versiones importantes del proyecto</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -10895,7 +10772,7 @@
         </Task>
         <Task>
             <UID>151</UID>
-            <ID>151</ID>
+            <ID>148</ID>
             <Name>QC.2 — Documentar avances semanales</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -10940,7 +10817,7 @@
         </Task>
         <Task>
             <UID>152</UID>
-            <ID>152</ID>
+            <ID>149</ID>
             <Name>QC.3 — Mantener actualizada la bibliografía del proyecto</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -10990,7 +10867,7 @@
         </Task>
         <Task>
             <UID>153</UID>
-            <ID>153</ID>
+            <ID>150</ID>
             <Name>QC.4 — Mantener registro de assets y sus licencias</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -11039,7 +10916,7 @@
         </Task>
         <Task>
             <UID>154</UID>
-            <ID>154</ID>
+            <ID>151</ID>
             <Name>QC.5 — Mantener registro de música y licencias utilizadas</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -11087,7 +10964,7 @@
         </Task>
         <Task>
             <UID>155</UID>
-            <ID>155</ID>
+            <ID>152</ID>
             <Name>QM.1 — Elaborar manual básico de usuario</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -11136,7 +11013,7 @@
         </Task>
         <Task>
             <UID>156</UID>
-            <ID>156</ID>
+            <ID>153</ID>
             <Name>QM.2 — Elaborar manual técnico de instalación y ejecución</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -11185,7 +11062,7 @@
         </Task>
         <Task>
             <UID>157</UID>
-            <ID>157</ID>
+            <ID>154</ID>
             <Name>QI.1 — Analizar resultados obtenidos durante las pruebas</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -11239,7 +11116,7 @@
         </Task>
         <Task>
             <UID>158</UID>
-            <ID>158</ID>
+            <ID>155</ID>
             <Name>QI.2 — Redactar apartado de resultados del proyecto</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -11288,7 +11165,7 @@
         </Task>
         <Task>
             <UID>159</UID>
-            <ID>159</ID>
+            <ID>156</ID>
             <Name>QI.3 — Redactar conclusiones y limitaciones</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -11337,7 +11214,7 @@
         </Task>
         <Task>
             <UID>160</UID>
-            <ID>160</ID>
+            <ID>157</ID>
             <Name>QI.4 — Integrar todas las secciones del informe final</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -11506,7 +11383,7 @@
         </Task>
         <Task>
             <UID>161</UID>
-            <ID>161</ID>
+            <ID>158</ID>
             <Name>QI.5 — Revisar redacción, ortografía, referencias y formato</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -11570,7 +11447,7 @@
         </Task>
         <Task>
             <UID>162</UID>
-            <ID>162</ID>
+            <ID>159</ID>
             <Name>QB.1 — Generar build candidata a versión final</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -11644,7 +11521,7 @@
         </Task>
         <Task>
             <UID>163</UID>
-            <ID>163</ID>
+            <ID>160</ID>
             <Name>QB.2 — Probar build final en el visor VR objetivo</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -11693,7 +11570,7 @@
         </Task>
         <Task>
             <UID>164</UID>
-            <ID>164</ID>
+            <ID>161</ID>
             <Name>QB.3 — Corregir errores críticos encontrados en build final</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -11742,7 +11619,7 @@
         </Task>
         <Task>
             <UID>165</UID>
-            <ID>165</ID>
+            <ID>162</ID>
             <Name>QB.4 — Generar versión definitiva del videojuego</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -11790,7 +11667,7 @@
         </Task>
         <Task>
             <UID>166</UID>
-            <ID>166</ID>
+            <ID>163</ID>
             <Name>QX — Preparar presentación y demostración final del proyecto</Name>
             <Type>1</Type>
             <IsNull>0</IsNull>
@@ -11871,8 +11748,8 @@
             <Type>1</Type>
             <IsNull>0</IsNull>
             <Initials>N</Initials>
-            <Group></Group>
-            <EmailAddress></EmailAddress>
+            <Group />
+            <EmailAddress />
             <MaxUnits>1</MaxUnits>
             <PeakUnits>1</PeakUnits>
             <OverAllocated>0</OverAllocated>
@@ -11886,7 +11763,7 @@
             <IsInactive>0</IsInactive>
             <IsEnterprise>0</IsEnterprise>
             <IsBudget>0</IsBudget>
-            <AvailabilityPeriods/>
+            <AvailabilityPeriods />
         </Resource>
         <Resource>
             <UID>1</UID>
@@ -11896,7 +11773,7 @@
             <IsNull>0</IsNull>
             <Initials>Ben</Initials>
             <Group>Juego de ritmo</Group>
-            <EmailAddress></EmailAddress>
+            <EmailAddress />
             <MaxUnits>1</MaxUnits>
             <PeakUnits>1</PeakUnits>
             <OverAllocated>0</OverAllocated>
@@ -11914,7 +11791,7 @@
             <IsInactive>0</IsInactive>
             <IsEnterprise>0</IsEnterprise>
             <IsBudget>0</IsBudget>
-            <AvailabilityPeriods/>
+            <AvailabilityPeriods />
         </Resource>
         <Resource>
             <UID>2</UID>
@@ -11924,7 +11801,7 @@
             <IsNull>0</IsNull>
             <Initials>Kim</Initials>
             <Group>Entorno 3D y assets</Group>
-            <EmailAddress></EmailAddress>
+            <EmailAddress />
             <MaxUnits>1</MaxUnits>
             <PeakUnits>1</PeakUnits>
             <OverAllocated>0</OverAllocated>
@@ -11942,7 +11819,7 @@
             <IsInactive>0</IsInactive>
             <IsEnterprise>0</IsEnterprise>
             <IsBudget>0</IsBudget>
-            <AvailabilityPeriods/>
+            <AvailabilityPeriods />
         </Resource>
         <Resource>
             <UID>3</UID>
@@ -11952,7 +11829,7 @@
             <IsNull>0</IsNull>
             <Initials>Sar</Initials>
             <Group>Interfaz / UX/UI</Group>
-            <EmailAddress></EmailAddress>
+            <EmailAddress />
             <MaxUnits>1</MaxUnits>
             <PeakUnits>1</PeakUnits>
             <OverAllocated>0</OverAllocated>
@@ -11970,7 +11847,7 @@
             <IsInactive>0</IsInactive>
             <IsEnterprise>0</IsEnterprise>
             <IsBudget>0</IsBudget>
-            <AvailabilityPeriods/>
+            <AvailabilityPeriods />
         </Resource>
         <Resource>
             <UID>4</UID>
@@ -11980,7 +11857,7 @@
             <IsNull>0</IsNull>
             <Initials>Mis</Initials>
             <Group>Desarrollo VR y batería</Group>
-            <EmailAddress></EmailAddress>
+            <EmailAddress />
             <MaxUnits>1</MaxUnits>
             <PeakUnits>1</PeakUnits>
             <OverAllocated>0</OverAllocated>
@@ -11998,7 +11875,7 @@
             <IsInactive>0</IsInactive>
             <IsEnterprise>0</IsEnterprise>
             <IsBudget>0</IsBudget>
-            <AvailabilityPeriods/>
+            <AvailabilityPeriods />
         </Resource>
         <Resource>
             <UID>5</UID>
@@ -12008,7 +11885,7 @@
             <IsNull>0</IsNull>
             <Initials>Mar</Initials>
             <Group>Experiencia emocional</Group>
-            <EmailAddress></EmailAddress>
+            <EmailAddress />
             <MaxUnits>1</MaxUnits>
             <PeakUnits>1</PeakUnits>
             <OverAllocated>0</OverAllocated>
@@ -12026,7 +11903,7 @@
             <IsInactive>0</IsInactive>
             <IsEnterprise>0</IsEnterprise>
             <IsBudget>0</IsBudget>
-            <AvailabilityPeriods/>
+            <AvailabilityPeriods />
         </Resource>
         <Resource>
             <UID>6</UID>
@@ -12036,7 +11913,7 @@
             <IsNull>0</IsNull>
             <Initials>Jav</Initials>
             <Group>Música</Group>
-            <EmailAddress></EmailAddress>
+            <EmailAddress />
             <MaxUnits>1</MaxUnits>
             <PeakUnits>1</PeakUnits>
             <OverAllocated>0</OverAllocated>
@@ -12054,7 +11931,7 @@
             <IsInactive>0</IsInactive>
             <IsEnterprise>0</IsEnterprise>
             <IsBudget>0</IsBudget>
-            <AvailabilityPeriods/>
+            <AvailabilityPeriods />
         </Resource>
         <Resource>
             <UID>7</UID>
@@ -12064,7 +11941,7 @@
             <IsNull>0</IsNull>
             <Initials>Chr</Initials>
             <Group>Sonido</Group>
-            <EmailAddress></EmailAddress>
+            <EmailAddress />
             <MaxUnits>1</MaxUnits>
             <PeakUnits>1</PeakUnits>
             <OverAllocated>0</OverAllocated>
@@ -12082,7 +11959,7 @@
             <IsInactive>0</IsInactive>
             <IsEnterprise>0</IsEnterprise>
             <IsBudget>0</IsBudget>
-            <AvailabilityPeriods/>
+            <AvailabilityPeriods />
         </Resource>
         <Resource>
             <UID>8</UID>
@@ -12092,7 +11969,7 @@
             <IsNull>0</IsNull>
             <Initials>Dia</Initials>
             <Group>QA, documentación y gestión</Group>
-            <EmailAddress></EmailAddress>
+            <EmailAddress />
             <MaxUnits>1</MaxUnits>
             <PeakUnits>1</PeakUnits>
             <OverAllocated>0</OverAllocated>
@@ -12110,7 +11987,7 @@
             <IsInactive>0</IsInactive>
             <IsEnterprise>0</IsEnterprise>
             <IsBudget>0</IsBudget>
-            <AvailabilityPeriods/>
+            <AvailabilityPeriods />
         </Resource>
         <Resource>
             <UID>9</UID>
@@ -12120,7 +11997,7 @@
             <IsNull>0</IsNull>
             <Initials>Dia</Initials>
             <Group>QA, documentación y gestión</Group>
-            <EmailAddress></EmailAddress>
+            <EmailAddress />
             <MaxUnits>1</MaxUnits>
             <PeakUnits>1</PeakUnits>
             <OverAllocated>0</OverAllocated>
@@ -12138,7 +12015,7 @@
             <IsInactive>0</IsInactive>
             <IsEnterprise>0</IsEnterprise>
             <IsBudget>0</IsBudget>
-            <AvailabilityPeriods/>
+            <AvailabilityPeriods />
         </Resource>
         <Resource>
             <UID>10</UID>
@@ -12148,7 +12025,7 @@
             <IsNull>0</IsNull>
             <Initials>Dia</Initials>
             <Group>QA, documentación y gestión</Group>
-            <EmailAddress></EmailAddress>
+            <EmailAddress />
             <MaxUnits>1</MaxUnits>
             <PeakUnits>1</PeakUnits>
             <OverAllocated>0</OverAllocated>
@@ -12166,7 +12043,7 @@
             <IsInactive>0</IsInactive>
             <IsEnterprise>0</IsEnterprise>
             <IsBudget>0</IsBudget>
-            <AvailabilityPeriods/>
+            <AvailabilityPeriods />
         </Resource>
         <Resource>
             <UID>11</UID>
@@ -12176,7 +12053,7 @@
             <IsNull>0</IsNull>
             <Initials>Dia</Initials>
             <Group>QA, documentación y gestión</Group>
-            <EmailAddress></EmailAddress>
+            <EmailAddress />
             <MaxUnits>1</MaxUnits>
             <PeakUnits>1</PeakUnits>
             <OverAllocated>0</OverAllocated>
@@ -12194,7 +12071,7 @@
             <IsInactive>0</IsInactive>
             <IsEnterprise>0</IsEnterprise>
             <IsBudget>0</IsBudget>
-            <AvailabilityPeriods/>
+            <AvailabilityPeriods />
         </Resource>
         <Resource>
             <UID>12</UID>
@@ -12204,7 +12081,7 @@
             <IsNull>0</IsNull>
             <Initials>Dia</Initials>
             <Group>QA, documentación y gestión</Group>
-            <EmailAddress></EmailAddress>
+            <EmailAddress />
             <MaxUnits>1</MaxUnits>
             <PeakUnits>1</PeakUnits>
             <OverAllocated>0</OverAllocated>
@@ -12222,7 +12099,7 @@
             <IsInactive>0</IsInactive>
             <IsEnterprise>0</IsEnterprise>
             <IsBudget>0</IsBudget>
-            <AvailabilityPeriods/>
+            <AvailabilityPeriods />
         </Resource>
         <Resource>
             <UID>13</UID>
@@ -12232,7 +12109,7 @@
             <IsNull>0</IsNull>
             <Initials>Dia</Initials>
             <Group>QA, documentación y gestión</Group>
-            <EmailAddress></EmailAddress>
+            <EmailAddress />
             <MaxUnits>1</MaxUnits>
             <PeakUnits>1</PeakUnits>
             <OverAllocated>0</OverAllocated>
@@ -12250,7 +12127,7 @@
             <IsInactive>0</IsInactive>
             <IsEnterprise>0</IsEnterprise>
             <IsBudget>0</IsBudget>
-            <AvailabilityPeriods/>
+            <AvailabilityPeriods />
         </Resource>
     </Resources>
     <Assignments>

@@ -2,20 +2,20 @@
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from neutro import *
-import pdm, edt
+import pdm, edt, costos
 
 doc = nuevo()
 portada(doc,
  "ACTA CONSTITUTIVA DEL PROYECTO",
  "Simulación de batería en realidad virtual\ncon enfoque de musicoterapia",
- [("Versión","3.0"),
-  ("Fecha","3 de septiembre de 2026"),
-  ("Sustituye a","Versión 2.0 del 31 de agosto de 2026"),
+ [("Versión","4.0"),
+  ("Fecha","22 de octubre de 2026"),
+  ("Sustituye a","Versión 3.0 del 3 de septiembre de 2026"),
   ("Unidad de aprendizaje","Administración de Proyectos de Software"),
   ("Docente y patrocinadora","Dra. Leticia Amalia Neira Tovar"),
   ("Equipo","Equipo A"),
   ("Periodo del proyecto","1 de septiembre al 13 de noviembre de 2026"),
-  ("Presupuesto total","$384,201 MXN")])
+  ("Presupuesto total","$%s MXN" % format(round(costos.PRESUPUESTO), ",d"))])
 
 # ---------------------------------------------------------------- control
 H(doc,"Control del documento",1)
@@ -23,7 +23,23 @@ table(doc,["Versión","Fecha","Autor","Descripción del cambio"],[
  ("1.0","27 ago 2026","Equipo A","Versión inicial presentada."),
  ("2.0","31 ago 2026","Equipo A","Incorporación del enfoque terapéutico, perfiles requeridos, desglose del presupuesto, diagrama de Gantt y trabajo simultáneo."),
  ("3.0","3 sep 2026","Equipo A","Estructura de desglose del trabajo con criterios de aceptación por paquete. Reasignación del paquete 3.3 y adelanto del 3.1. Corrección de la ruta crítica declarada. Actualización del riesgo del asesor terapéutico. Anexo de asignación por paquete."),
+ ("4.0","22 oct 2026","Equipo A","Plan financiero rehecho sobre el modelo de costos vigente: tarifa anclada al salario mínimo por tratarse de practicantes, sin costos no laborales y sin reserva monetaria. El presupuesto baja de $384,201 a $%s. El plan financiero deja de ser una tabla escrita a mano y se deriva del módulo de costos." % format(round(costos.PRESUPUESTO), ",d")),
 ],widths=[1.8,2.4,2.6,9.2],fs=9.5)
+
+H(doc,"Cambios respecto de la versión 3.0",2)
+P(doc,"Esta versión corrige una sola cosa, y la corrige de raíz: el presupuesto. El costeo detallado que "
+  "el equipo realizó el 14 de septiembre dejó obsoleta la cifra del acta, y el acta no se actualizó. "
+  "Durante cinco semanas los dos documentos declararon presupuestos distintos para el mismo proyecto.")
+table(doc,["#","Cambio","Razón"],[
+ ("1","La tarifa deja de calcularse dividiendo un sueldo mensual de mercado entre 173.33 horas y pasa a anclarse al salario mínimo vigente, escalado por responsabilidad.",
+  "El equipo son practicantes bajo convenio escolar, no empleados de planta. Dividir un mensual entre 173.33 horas arroja el costo patronal de quien cobra días de descanso, que un practicante no cobra."),
+ ("2","Los costos no laborales pasan a cero: ni equipo, ni licencias, ni operación.",
+  "Los dos visores son préstamo de la Facultad, las estaciones de trabajo son de los integrantes, y los assets, las muestras y el software se usan en su versión libre o gratuita. El proyecto no compra nada."),
+ ("3","Desaparece la reserva de contingencia del 10 % en dinero.",
+  "Ningún riesgo del registro tiene impacto monetario, porque el proyecto no compra ni contrata. La reserva pasa a expresarse en días hábiles de cronograma, que es donde los riesgos sí golpean."),
+ ("4","El plan financiero se genera desde el módulo de costos y deja de ser una tabla escrita a mano.",
+  "La cifra vivía copiada en dos lugares y por eso se separó. Ahora el acta lee el mismo dato que el documento de costos: si uno cambia, el otro cambia al regenerarse."),
+],widths=[0.8,7.4,7.8],fs=9)
 
 H(doc,"Cambios respecto de la versión 2.0",2)
 P(doc,"Los cambios de esta versión provienen de dos fuentes: las observaciones de la patrocinadora sobre la "
@@ -57,8 +73,9 @@ P(doc,"El fin principal es motriz: trabajar amplitud, coordinación y sincroniza
   "miembro superior. El beneficio emocional derivado de la ejecución musical se considera secundario y no se "
   "mide como objetivo del proyecto.")
 P(doc,"El proyecto se desarrolla en 11 semanas, del 1 de septiembre al 13 de noviembre de 2026, con un "
-  "presupuesto total de $384,201 MXN. La red de precedencias arroja una duración de 50 días hábiles frente a "
-  "los 53 disponibles, más una semana de reserva de gestión antes del inicio de exámenes.")
+  "presupuesto total de $%s MXN. La red de precedencias arroja una duración de 50 días hábiles frente a "
+  "los 53 disponibles, más una semana de reserva de gestión antes del inicio de exámenes."
+  % format(round(costos.PRESUPUESTO), ",d"))
 table(doc,["Concepto","Valor"],[
  ("Duración de la red de actividades","50 días hábiles"),
  ("Ventana disponible","53 días hábiles"),
@@ -67,7 +84,7 @@ table(doc,["Concepto","Valor"],[
  ("Actividades de la red","27"),
  ("Rutas críticas","2, que convergen en la build candidata"),
  ("Equipo","8 roles internos y 1 asesor externo"),
- ("Presupuesto total","$384,201 MXN"),
+ ("Presupuesto total","$%s MXN" % format(round(costos.PRESUPUESTO), ",d")),
 ],widths=[7.0,9.0],fs=10)
 
 # ================================================================ 2

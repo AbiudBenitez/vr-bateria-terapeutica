@@ -3,7 +3,7 @@ import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from neutro import *
 from docx import Document
-import pdm, edt
+import pdm, edt, costos
 
 doc = Document('/tmp/_acta_c.docx')
 
@@ -34,53 +34,74 @@ P(doc,"En la versión 2.0 el artista tridimensional concentraba los paquetes 3.2
 
 # ---------------------------------------------------------------- financiero
 H(doc,"4.10 Plan financiero",2)
-P(doc,"Las tarifas por hora se obtienen del salario mensual de mercado del área metropolitana de Monterrey "
-  "para 2026, dividido entre 173.33 horas laborables al mes. El costo de cada rol resulta de multiplicar su "
-  "tarifa por las horas efectivas, calculadas como semanas activas por 40 horas por el porcentaje de esfuerzo.")
-H(doc,"4.10.1 Personal",3)
-table(doc,["Rol","$ / hora","Esfuerzo","Semanas","Horas","Costo (MXN)"],[
- ("Director de proyecto","375","25 %","11","110","41,250"),
- ("Gerente de proyecto","277","40 %","11","176","48,752"),
- ("Coordinador","173","40 %","11","176","30,448"),
- ("Desarrollador de realidad virtual","260","70 %","9","252","65,520"),
- ("Diseñador de interacción / UX-XR","219","50 %","8","160","35,040"),
- ("Artista y modelador tridimensional","185","50 %","7","140","25,900"),
- ("Diseñador de audio","162","40 %","6","96","15,552"),
- ("Analista de métricas","196","30 %","7","84","16,464"),
- ("Subtotal del equipo interno","","","","1,194","278,926"),
- ("Asesor terapéutico externo","900","por sesión","—","24","21,600"),
- ("Total de personal","","","","1,218","300,526"),
-],widths=[5.6,2.0,1.9,1.7,1.7,3.1],fs=9.5)
-H(doc,"4.10.2 Equipo, licencias y operación",3)
-table(doc,["Concepto","Detalle","Costo (MXN)"],[
- ("Visor Meta Quest 3","Equipo principal de desarrollo y pruebas","11,999"),
- ("Visor Meta Quest 3S","Segundo equipo, compatibilidad y sesiones simultáneas","6,999"),
- ("Depreciación de equipo de cómputo","Parte proporcional del uso durante el periodo","8,000"),
- ("Periféricos y accesorios","Cables, soportes, protectores faciales y baterías","2,500"),
- ("Subtotal de equipo","","29,498"),
- ("Recursos gráficos con licencia","Modelos, texturas y materiales","4,500"),
- ("Librería de muestras de audio","Grabaciones de percusión con licencia","3,000"),
- ("Subtotal de licencias","","7,500"),
- ("Traslados y logística","Sesiones con el asesor y pruebas con usuarios","6,000"),
- ("Consumibles e impresión","Documentación, consentimientos y material de pruebas","1,500"),
- ("Servicios digitales","Almacenamiento, control de versiones y colaboración","2,250"),
- ("Imprevistos menores de operación","Gastos operativos no clasificados","2,000"),
- ("Subtotal de operación","","11,750"),
-],widths=[5.4,7.8,2.8],fs=9.5)
-H(doc,"4.10.3 Resumen",3)
-table(doc,["Concepto","Monto (MXN)","% del total"],[
- ("Personal","300,526","78.2 %"),
- ("Equipo","29,498","7.7 %"),
- ("Licencias","7,500","2.0 %"),
- ("Operación","11,750","3.1 %"),
- ("Subtotal de costos directos","349,274","90.9 %"),
- ("Reserva de contingencia, 10 % de los costos directos","34,927","9.1 %"),
- ("Presupuesto total","384,201","100 %"),
-],widths=[8.6,3.8,3.6],fs=10)
-P(doc,"Del presupuesto total, $48,748 corresponden a desembolso efectivo (equipo, licencias y operación) y "
-  "el resto a costo imputado del trabajo del equipo. La reserva de contingencia cubre desviaciones dentro "
-  "del alcance aprobado; un cambio de alcance requiere autorización de la patrocinadora y no se financia con "
-  "esta reserva.")
+P(doc,"El equipo son practicantes bajo convenio escolar, no empleados de planta. Por eso la tarifa se "
+  "ancla al salario mínimo general vigente —$%s diarios entre %d horas de jornada, es decir $%.2f por "
+  "hora— y cada perfil es un múltiplo de ese salario según la responsabilidad que asume. La tarifa media "
+  "del proyecto resulta de $%.2f por hora, equivalente a %.2f salarios mínimos."
+  % (format(costos.SM_DIARIO, ",.2f"), costos.HDIA, costos.SM_HORA,
+     costos.TARIFA_MED, costos.TARIFA_MED / costos.SM_HORA))
+P(doc,"No se divide un sueldo mensual entre 173.33 horas. Ese cociente arroja el costo patronal de un "
+  "trabajador de planta, que cobra los días de descanso; un practicante no los cobra, y usarlo infló el "
+  "presupuesto de las dos versiones anteriores de esta acta.")
+
+H(doc,"4.10.1 Tarifa por perfil",3)
+table(doc,["Perfil","Múltiplo del salario mínimo","$ / hora","Por qué ese múltiplo"],
+ [(rol, "%.1f" % mult, "$%.2f" % (mult * costos.SM_HORA), razon)
+  for rol, (mult, razon) in sorted(costos.PERFIL_BASE.items(), key=lambda x: -x[1][0])],
+ widths=[4.2,2.6,1.8,7.4],fs=8.5)
+
+H(doc,"4.10.2 Mano de obra por perfil",3)
+P(doc,"El costeo es ascendente: se parte de las actividades de la lista de trabajo del equipo, se suman "
+  "sus horas por perfil y se multiplican por la tarifa. Las %s horas de esfuerzo salen de ahí, no de "
+  "estimar semanas por porcentaje de dedicación."
+  % format(int(costos.HORAS_TOT), ",d"))
+_fil = sorted(costos.POR_PERFIL.items(), key=lambda x: -x[1][2])
+table(doc,["Perfil","Actividades","Horas","Costo (MXN)"],
+ [(rol, n, "%.0f" % h, "$%s" % format(round(c), ",d")) for rol, (n, h, c) in _fil] +
+ [("Total", sum(v[0] for _, v in _fil), "%.0f" % costos.HORAS_TOT,
+   "$%s" % format(round(costos.MANO_OBRA), ",d"))],
+ widths=[6.4,2.6,2.4,4.6],fs=9)
+
+H(doc,"4.10.3 Recursos que no cuestan",3)
+P(doc,"El proyecto no compra nada. Lo que en las versiones anteriores figuraba como equipo, licencias y "
+  "operación —$48,748 de desembolso declarado— corresponde en realidad a recursos prestados o de uso "
+  "libre.")
+table(doc,["Recurso","Para qué","De dónde sale"], list(costos.PROPORCIONADOS),
+ widths=[4.6,6.4,5.0],fs=9)
+table(doc,["Recurso de uso libre","Condición"], list(costos.SIN_COSTO),
+ widths=[6.0,10.0],fs=9)
+
+H(doc,"4.10.4 Resumen del presupuesto",3)
+table(doc,["Concepto","Monto (MXN)"],[
+ ("Mano de obra", "$%s" % format(round(costos.MANO_OBRA), ",d")),
+ ("Costos no laborales", "$%s" % format(round(costos.NO_LAB_TOT), ",d")),
+ ("Subtotal de costos directos", "$%s" % format(round(costos.DIRECTOS), ",d")),
+ ("Reserva de contingencia monetaria", "$0"),
+ ("Presupuesto total", "$%s" % format(round(costos.PRESUPUESTO), ",d")),
+],widths=[9.0,7.0],fs=10)
+
+P(doc,"El presupuesto es costo imputado del trabajo del equipo: ningún integrante desembolsa esa cantidad, "
+  "y sirve para dimensionar lo que el proyecto valdría si se contratara. La evolución de la cifra a lo "
+  "largo del proyecto está documentada y cada corrección la acercó a lo que el proyecto realmente es:")
+table(doc,["Versión del cálculo","Supuesto","Presupuesto"],
+ [(e[0], e[2], "$%s" % format(round(costos.HORAS_TOT * e[1]), ",d")) for e in costos.ESCENARIOS],
+ widths=[4.4,8.4,3.2],fs=9)
+
+H(doc,"4.10.5 La reserva va en días, no en pesos",3)
+P(doc,"Como el proyecto no compra ni contrata, ningún riesgo del registro tiene impacto monetario: todos "
+  "golpean el calendario o degradan el alcance. Por eso no hay reserva de contingencia en dinero y sí la "
+  "hay en cronograma. El valor monetario esperado de los riesgos se expresa en días hábiles y vale %.2f "
+  "días, contra una reserva de %.2f: alcanza, con margen, salvo que tres riesgos se materialicen juntos."
+  % (costos.EMV_DIAS, costos.RESERVA_CRONO))
+P(doc,"Advertencia que conviene no perder de vista: si los riesgos R1, R2 y R5 ocurrieran a la vez serían "
+  "quince días y la reserva no alcanzaría.")
+
+P(doc,"Nota sobre las dos bases de cálculo. El esfuerzo de este plan financiero se cuenta sobre la lista "
+  "de trabajo que el equipo ejecuta día a día, que es más detallada que los 42 paquetes de la sección 4.3. "
+  "La reserva de cronograma que aquí se cita, de %.2f días, pertenece a esa misma base. La duración de 50 "
+  "días hábiles y los 3 de margen que declara la sección 4.8 corresponden a la red de 27 actividades de "
+  "esta acta. Son dos vistas del mismo proyecto a distinto grano, y conviene no mezclarlas al comparar "
+  "cifras." % costos.RESERVA_CRONO)
 
 # ---------------------------------------------------------------- calidad
 H(doc,"4.11 Plan de calidad",2)
@@ -154,7 +175,7 @@ bullets(doc,[
 H(doc,"5.4 Restricciones",2)
 bullets(doc,[
  "El proyecto debe terminar el 13 de noviembre de 2026. Los exámenes inician el 23 de noviembre.",
- "El presupuesto total no excede $384,201 MXN.",
+ "El presupuesto total no excede $%s MXN, y es costo imputado: el proyecto no compra ni contrata." % format(round(costos.PRESUPUESTO), ",d"),
  "La aplicación se ejecuta en visor autónomo, sin equipo de cómputo conectado.",
  "La interacción se realiza mediante los controles del visor, no mediante seguimiento de manos.",
  "El proyecto no contempla componente de servidor: las métricas se exportan a archivo local.",

@@ -3170,6 +3170,7 @@
             <UID>30</UID>
             <ID>30</ID>
             <Name>DT.4 — Incorporar modelo 3D definitivo de la batería</Name>
+			<Notes>[FUERA DE ALCANCE] Incorporar el modelo 3D definitivo. Su insumo era el modelado de la batería (AB.1 a AB.6), que este mismo recorte retiró: el área de entorno dejó de modelar y pasó a integrar assets libres. El kit de primitivas ya funciona y está medido, que es el argumento con el que se cortó AB.1. Mantenerla viva prometía un modelo que nadie iba a entregar</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T10:22:00</CreateDate>
@@ -3229,6 +3230,7 @@
             <UID>31</UID>
             <ID>31</ID>
             <Name>DT.5 — Reconfigurar colliders utilizando el modelo definitivo</Name>
+			<Notes>[FUERA DE ALCANCE] Reajustar los planos de golpe a ese modelo. Sin DT.4 no hay modelo nuevo al que reajustar nada; los planos actuales son los que están medidos y validados</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T10:22:00</CreateDate>

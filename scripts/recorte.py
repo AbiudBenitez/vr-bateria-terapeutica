@@ -105,10 +105,6 @@ SOBREVIVEN = {
     "QV.5": (10,   "Comodidad de la experiencia"),
     "QX":   (None, "Presentación y demostración final"),
 
-    # Desarrollo VR
-    "DT.4": (None, "Incorporar el modelo 3D cuando llegue del área de entorno"),
-    "DT.5": (None, "Reajustar los planos de golpe a ese modelo"),
-
     # Experiencia emocional
     "ET.2": (None, "Actualizar la fundamentación a lo que el prototipo realmente mide"),
 }
@@ -158,6 +154,15 @@ RECORTADAS = {
     "AP.3": "Aplicar la paleta. Se cubre al componer en AP.1",
     "AR.1": "Revisión cruzada con experiencia emocional",
     "AR.2": "Ajustes finales de ambientación",
+
+    # --- Desarrollo VR: el modelo definitivo que esperaban ya no va a llegar ---
+    "DT.4": "Incorporar el modelo 3D definitivo. Su insumo era el modelado de la batería "
+            "(AB.1 a AB.6), que este mismo recorte retiró: el área de entorno dejó de modelar "
+            "y pasó a integrar assets libres. El kit de primitivas ya funciona y está medido, "
+            "que es el argumento con el que se cortó AB.1. Mantenerla viva prometía un modelo "
+            "que nadie iba a entregar",
+    "DT.5": "Reajustar los planos de golpe a ese modelo. Sin DT.4 no hay modelo nuevo al que "
+            "reajustar nada; los planos actuales son los que están medidos y validados",
 
     # --- Sonido ---
     "SA.1": "Sonidos ambientales del escenario",
