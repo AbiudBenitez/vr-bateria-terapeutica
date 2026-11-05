@@ -117,7 +117,7 @@ MEDIDAS = [
 # --- el avance, por area ------------------------------------------------------------------
 
 AVANCE = [
-    ("Desarrollo VR",               28,  2),
+    ("Desarrollo VR",               28,  0),
     ("Entorno 3D",                   7,  0),
     ("Experiencia emocional",       18,  1),
     ("Interfaz",                    17,  1),
@@ -126,6 +126,11 @@ AVANCE = [
     ("QA, documentacion y gestion", 23, 23),
     ("Sonido",                      14,  0),
 ]
+
+# Se CALCULAN de AVANCE y no se escriben: la version anterior decia "23 de las 27" cuando ya
+# eran 25, porque DT.4 y DT.5 se recortaron el 22 de octubre y nadie actualizo la frase.
+_PEND_TOT = sum(p for _, _, p in AVANCE)
+_PEND_QA = next(p for a, _, p in AVANCE if a.startswith("QA"))
 
 # --- los hitos alcanzados ----------------------------------------------------------------
 #
@@ -292,9 +297,10 @@ RIESGOS = [
      "retraso en cualquiera lo arrastra todo. Mitigacion: los manuales y la presentacion se "
      "pueden escribir en paralelo, sin esperar."),
     ("Carga concentrada en QA", "alto",
-     "23 de las 27 actividades pendientes son de QA, documentacion y gestion: el 85 %. Al "
-     "cerrarse interfaz y sonido la concentracion EMPEORO en proporcion, aunque bajara en "
-     "numero absoluto. Es la misma "
+     f"{_PEND_QA} de las {_PEND_TOT} actividades pendientes son de QA, documentacion y "
+     f"gestion: el {100.0 * _PEND_QA / max(1, _PEND_TOT):.0f} %. Al cerrarse interfaz, sonido "
+     "y desarrollo VR la concentracion EMPEORO en proporcion, aunque bajara en numero "
+     "absoluto. Es la misma "
      "concentracion que el analisis de ruta critica senalo en septiembre, y la baja de R14 la "
      "empeoro. Mitigacion: los manuales se pueden repartir."),
     ("Sin validacion externa", "asumido",
