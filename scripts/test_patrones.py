@@ -7,6 +7,22 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import patrones
 
 
+def _piezas_del_jugador(p):
+    """
+    Las piezas que el jugador toca, venga el patrón de una sola figura o de un ciclo.
+
+    Los patrones de acentos declaran `jugador_ciclo` —una figura por tramo de ocho compases—
+    en vez de `jugador`. La prueba miraba solo `jugador` y reventaba con KeyError en los tres
+    de acentos desde que entraron, el 6 de noviembre.
+    """
+    if "jugador" in p:
+        return set(p["jugador"])
+    piezas = set()
+    for figura in p["jugador_ciclo"]:
+        piezas |= set(figura)
+    return piezas
+
+
 def test_el_acompanamiento_y_el_jugador_no_se_solapan():
     """
     Si la pista tocara lo mismo que el jugador, este no distinguiría su golpe del de la pista
@@ -14,7 +30,7 @@ def test_el_acompanamiento_y_el_jugador_no_se_solapan():
     """
     for nombre, p in patrones.PATRONES.items():
         piezas_acc = set(p["acompanamiento"])
-        piezas_jug = set(p["jugador"])
+        piezas_jug = _piezas_del_jugador(p)
         assert not (piezas_acc & piezas_jug), \
             f"{nombre}: la pieza {piezas_acc & piezas_jug} suena y se toca a la vez"
 
@@ -40,14 +56,21 @@ def test_el_rock_basico_tiene_la_forma_de_la_partitura():
     ], f"el patrón no coincide con la partitura: {primer_compas}"
 
 
-def test_el_acompanamiento_marca_los_pulsos():
+def test_el_acompanamiento_suena_cuatro_veces_por_compas():
     """
     En corcheas el fondo sonaba 1.6 veces por cada golpe del jugador y competía en lugar de
-    guiar. La referencia va en pulsos, como un metrónomo.
+    guiar. La referencia va a cuatro golpes por compás, como un metrónomo.
+
+    No exige que caigan en los PULSOS: los patrones de contratiempo ponen la referencia
+    ENTRE los pulsos a propósito, y es todo el ejercicio. Lo que no se negocia es la
+    densidad, que es lo que hacía que el fondo compitiera.
     """
     for nombre, p in patrones.PATRONES.items():
-        assert p["acompanamiento"]["HiHat"] == patrones.PULSOS, \
-            f"{nombre}: el acompañamiento no marca los cuatro pulsos"
+        golpes = p["acompanamiento"]["HiHat"]
+        assert golpes in (patrones.PULSOS, patrones.CONTRATIEMPOS), \
+            f"{nombre}: la referencia no va en pulsos ni en contratiempos: {golpes}"
+        assert len(golpes) == 4, \
+            f"{nombre}: el acompañamiento suena {len(golpes)} veces por compás, no cuatro"
 
 
 def test_el_fondo_nunca_suena_mas_que_el_jugador_en_los_patrones_de_rock():

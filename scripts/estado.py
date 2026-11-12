@@ -18,7 +18,7 @@ Salen de los archivos de medicion del visor y del cronograma. Un documento de es
 numeros tecleados queda desfasado el mismo dia, y peor: nadie sabe cuando dejo de ser cierto.
 """
 
-FECHA = "21 de octubre de 2026"
+FECHA = "11 de noviembre de 2026"
 
 # --- las tres decisiones que reorientaron el proyecto ------------------------------------
 
@@ -116,28 +116,63 @@ MEDIDAS = [
 
 # --- el avance, por area ------------------------------------------------------------------
 
-AVANCE = [
-    ("Desarrollo VR",               28,  0),
-    ("Entorno 3D",                   7,  0),
-    ("Experiencia emocional",       18,  1),
-    ("Interfaz",                    17,  1),
-    ("Juego de ritmo",              17,  0),
-    ("Musica",                       7,  0),
-    ("QA, documentacion y gestion", 23, 23),
-    ("Sonido",                      14,  0),
-]
+# NO SE ESCRIBE A MANO. Sale de Cronograma_Operativo.xml, que es el alcance vigente.
+#
+# La version escrita a mano decia 23 cerradas en QA cuando ya eran 27: el 11 de noviembre se
+# verifico que QG.2, QT.1, QM.2 y QC.1 ya estaban hechas y su evidencia existia desde antes.
+# Dos veces se quedo desfasada esta tabla; a la tercera se calcula.
 
-# Se CALCULAN de AVANCE y no se escriben: la version anterior decia "23 de las 27" cuando ya
-# eran 25, porque DT.4 y DT.5 se recortaron el 22 de octubre y nadie actualizo la frase.
+_NOMBRE_CORTO = {
+    "D. Desarrollo VR y batería":        "Desarrollo VR",
+    "A. Entorno 3D y assets":            "Entorno 3D",
+    "E. Experiencia emocional":          "Experiencia emocional",
+    "I. Interfaz / UX/UI":               "Interfaz",
+    "J. Juego de ritmo":                 "Juego de ritmo",
+    "M. Música":                         "Musica",
+    "Q. QA, documentación y gestión":    "QA, documentacion y gestion",
+    "S. Sonido":                         "Sonido",
+}
+
+
+def _avance_del_cronograma():
+    """[(area, cerradas, pendientes)] leido del cronograma operativo."""
+    import os
+    import xml.etree.ElementTree as ET
+
+    ns = "{http://schemas.microsoft.com/project}"
+    ruta = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..",
+                        "entregables", "Cronograma_Operativo.xml")
+
+    def txt(e, n):
+        x = e.find(ns + n)
+        return x.text if x is not None else None
+
+    filas, area = {}, None
+    for e in ET.parse(ruta).getroot().findall(ns + "Tasks/" + ns + "Task"):
+        nombre = txt(e, "Name") or ""
+        if txt(e, "Summary") == "1" and txt(e, "OutlineLevel") == "1":
+            area = _NOMBRE_CORTO.get(nombre.strip())
+            assert area, "area sin nombre corto en estado.py: %r" % nombre
+            filas[area] = [0, 0]
+        elif area and txt(e, "Summary") != "1":
+            if txt(e, "PercentComplete") == "100":
+                filas[area][0] += 1
+            else:
+                filas[area][1] += 1
+    return sorted((a, h, p) for a, (h, p) in filas.items())
+
+
+AVANCE = _avance_del_cronograma()
+
 _PEND_TOT = sum(p for _, _, p in AVANCE)
 _PEND_QA = next(p for a, _, p in AVANCE if a.startswith("QA"))
 
 # --- los hitos alcanzados ----------------------------------------------------------------
 #
 # UN HITO NO ES UNA TAREA TERMINADA. Es un punto a partir del cual el proyecto puede hacer algo
-# que antes no podia, y por eso cada uno lleva QUE HABILITA y no solo que se hizo. De las 158
-# actividades, 131 estan cerradas; esta lista son los doce momentos en que el proyecto cambio
-# de estado.
+# que antes no podia, y por eso cada uno lleva QUE HABILITA y no solo que se hizo. De las 156
+# actividades del alcance vigente hay 135 cerradas; esta lista son los momentos en que el
+# proyecto cambio de estado.
 #
 # LAS FECHAS SON LAS DE LA EVIDENCIA, no las del plan. El hito de latencia estaba fechado en la
 # semana 4, el 25 de septiembre, y se cerro el 17 de octubre: tres semanas tarde. Ponerlo en su
@@ -220,6 +255,24 @@ HITOS = [
      "Cuatro pistas de practica de 80 a 120 BPM. Aro de cuenta atras sobre cada pad con el "
      "veredicto en el borde, acumulando hasta cuatro notas seguidas, y aviso en el borde de la "
      "vision para las piezas que quedan fuera del campo de vision."),
+
+    ("2026-11-06", "Un usuario puede usar el prototipo sin nadie al lado",
+     "Habilita QT.8. Hasta aqui una sesion de prueba necesitaba a alguien explicando por donde "
+     "iba la aplicacion, y eso contamina lo que la prueba mide: no se distingue lo que el "
+     "usuario entendio solo de lo que le dijeron.",
+     "Menu de cinco opciones, pantalla de informacion, modo libre con su salida senalada, "
+     "selector de dos pantallas (que ritmo y que tan rapido), cortinilla de bienvenida y de "
+     "despedida, y un tutorial que explica antes de pedir, con el kit bajado a cuatro piezas "
+     "para que quepa entero a la vista."),
+
+    ("2026-11-11", "El cronograma dice cuando pasaron las cosas",
+     "Habilita dirigir. Un cronograma con las fechas del plan no sirve para decidir: hasta "
+     "aqui el Gantt mostraba el proyecto terminado el 6 de octubre y nadie podia ver que la "
+     "cadena de QA no habia arrancado.",
+     "Las 135 actividades cerradas llevan su fecha de registro con la evidencia que la "
+     "sostiene (scripts/cierres.py), y las 21 pendientes van replanificadas del 12 al 20 de "
+     "noviembre con 15 traslapes declarados uno por uno (scripts/replan.py). 26 pruebas "
+     "impiden que una cerrada vuelva a llevar su fecha planeada."),
 ]
 
 # --- lo que el prototipo hace hoy, con numeros -------------------------------------------

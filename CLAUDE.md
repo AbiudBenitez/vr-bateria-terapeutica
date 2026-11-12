@@ -591,6 +591,73 @@ No es un cambio nuevo — es que los documentos nunca alcanzaron una decisión y
 **Pendiente de redactar.** Si la docente cruza la carta sponsor con lo que el equipo presenta,
 encuentra la contradicción sin explicación.
 
+## Rebaseline del cronograma — 11-nov-2026
+
+Los dos cronogramas no tenían **ni una fecha en noviembre**. Programaban todo lo antes posible
+desde el 7-sep y nunca se les volvió a dar fecha: el Gantt mostraba el proyecto terminado el
+6-oct (operativo) y el 19-oct (ProjectLibre), con 25 actividades sin arrancar.
+
+| | |
+|---|---|
+| Documento | `entregables/13_Rebaseline_Cronograma.docx` |
+| Fechas de cierre | `scripts/cierres.py` — una por actividad, con su evidencia |
+| Replan | `scripts/replan.py` — las 21 pendientes, del 12 al 20-nov |
+| Escritura | `scripts/rebaselinear.py` — idempotente, escribe los dos XML |
+| Pruebas | `scripts/test_rebaseline.py` — 26 |
+
+### El defecto de origen
+
+`marcar_hechas.py` cerraba cada actividad con `Stop = Finish`, o sea copiaba la fecha
+**planeada**; la real quedaba solo dentro de la nota `[HECHA aaaa-mm-dd]`. Desviación medida:
+de tres a seis semanas. **Corregido**: `<Stop>` lleva la fecha de `HECHAS`.
+
+### La regla de las fechas de registro
+
+La fecha de una actividad cerrada es la del **artefacto verificable más temprano que la
+demuestra cerrada**: un commit con su asunto, un entregable con su nombre, una medición con su
+archivo. 135 actividades en 13 días de cierre.
+
+**Los dos días de mayor cierre son un sábado y un domingo.** El 17 y el 18 de octubre
+concentran 57 de las 135, el 42 %. Quedan abiertos como excepción del calendario del
+cronograma; solo se abren los fines de semana en que alguna actividad cierra, porque abrir uno
+que nadie usa mueve el cálculo de los inicios sin que ninguna evidencia lo pida.
+
+### Cuatro actividades estaban hechas y nadie las había reclamado
+
+`QG.2` (respuestas de los 18 riesgos), `QT.1` (30 casos de prueba), `QM.2`
+(`BateriaVR/README.md` es el manual técnico) y `QC.1` (registro de versiones). Avance vigente:
+**135 de 156, el 87 %**. Pendientes 21, de ellas **19 de QA**.
+
+### El replan: 14 días de cadena en 7 disponibles
+
+Del corte del 22-oct al 11-nov pasaron **14 días hábiles exactos**, que es justo lo que medía
+la red remanente: el presupuesto entero de lo que falta se gastó sin arrancar la cadena.
+
+Caben traslapando, no recortando: **15 traslapes declarados uno por uno con su razón**, cada
+actividad conserva duración y alcance. Cadena 14 → 7 d. Cierre **20-nov**.
+
+**Sale con holgura cero y consume la reserva completa.** Un día de retraso empuja al 23-nov,
+inicio de exámenes. Arranca con `QT.8`, y los usuarios siguen sin reclutar: R18 es el único
+punto de falla que importa.
+
+### Ojo al tocar los cronogramas
+
+- Todas las actividades llevan `ConstraintType 4` (no antes de) con `ConstraintDate`, y
+  `HonorConstraints 1` en la cabecera. Sin eso, al recalcular se van de nuevo a septiembre.
+- El calendario del proyecto **no tiene el mismo UID en los dos archivos**: 34 en el operativo
+  y 19 en el de ProjectLibre. Se lee de la cabecera, no se supone.
+- `estado.AVANCE` ya no se escribe a mano: se lee del operativo. Se había quedado desfasado
+  dos veces.
+- `Ruta_Critica_257_Tareas_v3.docx` sigue siendo el artefacto del 22-oct y **no** se regeneró:
+  su fecha de corte está en el texto. El documento 13 es el que reporta el estado del 11-nov.
+
+### Dos pruebas que ya estaban rojas
+
+`test_patrones.py` fallaba desde el commit del 6-nov: miraba `p["jugador"]` y los tres
+patrones de acentos declaran `jugador_ciclo`, y exigía el acompañamiento en los pulsos cuando
+los de contratiempo lo ponen **entre** ellos a propósito. Corregidas las pruebas, no los datos.
+108 pruebas de documentación, 0 fallidas.
+
 ## Tareas de clase entregadas
 
 | Fecha | Tarea | Carpeta |

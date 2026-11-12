@@ -107,6 +107,31 @@ HECHAS = {
              "del 18-oct: el circulo se ve y el radio se siente adecuado. La medida 10 habla "
              "de lo que reportan los usuarios, asi que se cierra con observacion, no con un "
              "numero del sistema"),
+
+    # --- verificadas el 11 de noviembre, al rebasear el cronograma --------------------------
+    # Las cuatro estaban marcadas como pendientes y su evidencia ya existia. No es un cierre
+    # nuevo: es que nadie las habia reclamado. La fecha es la del artefacto, no la de hoy.
+    "QG.2": ("2026-09-18",
+             "Los 18 riesgos de scripts/pruebas.py llevan estrategia y accion de respuesta: "
+             "0 sin respuesta. Publicados en 04_Planes_Costos_Calidad_Riesgos.docx (11.1 a "
+             "11.7) y en entregables/pmbok/11_Riesgos.docx"),
+
+    "QT.1": ("2026-09-18",
+             "Plan de pruebas con 30 casos: 14 de caja blanca y 16 de caja negra en "
+             "scripts/pruebas.py, con su criterio de aceptacion. Publicados en "
+             "04_Planes_Costos_Calidad_Riesgos.docx (8.1 a 8.3) y en "
+             "entregables/pmbok/08_Calidad.docx"),
+
+    "QM.2": ("2026-10-21",
+             "BateriaVR/README.md: version de Unity, los dos paquetes del Asset Store que "
+             "faltan al clonar y como reponerlos, orden de los constructores de escena, como "
+             "correr las pruebas en batchmode, compilar e instalar el APK con quest.sh y como "
+             "depurar en el visor. Es el manual tecnico de instalacion y ejecucion"),
+
+    "QC.1": ("2026-11-10",
+             "Registro de versiones en tres lugares: historial de los dos repositorios (121 "
+             "y 136 commits), entregables/superados/ con 11 versiones anteriores conservadas, "
+             "y las tablas de evolucion de CLAUDE.md para presupuesto, red y enfoque"),
 }
 
 # Escritas pero SIN VERIFICAR. No se marcan: el codigo existe, la medicion no.
@@ -147,11 +172,17 @@ def main():
             continue
 
         nuevo = b
-        # Stop = Finish: es de donde ProjectLibre deduce que la tarea cerro.
+        # <Stop> lleva la fecha REAL de cierre, no la planeada.
+        #
+        # Hasta el 11-nov-2026 aqui se escribia `Stop = Finish`, o sea la fecha del plan. El
+        # efecto fue que las 131 actividades cerradas aparecian entre 3 y 6 semanas antes de
+        # cuando pasaron y el proyecto entero se veia terminado en octubre. La fecha real ya
+        # estaba en esta misma tabla y se tiraba. Ver scripts/cierres.py.
+        real = "%sT17:00:00" % HECHAS[k][0]
         if "<Stop>" in nuevo:
-            nuevo = re.sub(r"<Stop>.*?</Stop>", "<Stop>%s</Stop>" % fin.group(1), nuevo)
+            nuevo = re.sub(r"<Stop>.*?</Stop>", "<Stop>%s</Stop>" % real, nuevo)
         else:
-            nuevo = nuevo.replace("<Finish>", "<Stop>%s</Stop><Finish>" % fin.group(1), 1)
+            nuevo = nuevo.replace("<Finish>", "<Stop>%s</Stop><Finish>" % real, 1)
 
         nuevo = re.sub(r"<PercentComplete>\d+</PercentComplete>",
                        "<PercentComplete>100</PercentComplete>", nuevo)
