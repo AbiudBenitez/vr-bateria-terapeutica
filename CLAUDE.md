@@ -881,6 +881,60 @@ No existe la carpeta de memoria; nada guardado. Todo lo anterior salió de los r
 
 181 pruebas de documentación, 0 fallidas.
 
+## QB.1 y ET.2 cerradas — 18-nov-2026
+
+**Avance 138 de 155, el 89 %.** 17 pendientes.
+
+### ET.2 — documento 18, revisión de la fundamentación
+
+| | |
+|---|---|
+| Documento | `entregables/18_Revision_Fundamentacion.docx` |
+| Datos | `scripts/fundamentacion.py` — 8 afirmaciones, 4 consecuencias |
+| Pruebas | `scripts/test_fundamentacion.py` — 12 |
+
+Las 8 afirmaciones de la fundamentación revisadas contra lo que el prototipo hace:
+**3 sostenidas, 3 acotadas, 2 retiradas.** La original no se edita; se conserva en
+`docs/investigacion/evidencia-musicoterapia.md`.
+
+De los cuatro marcos de NMT **solo PSE se sostiene entero** —y el prototipo hace más de lo
+prometido: aro de anticipación por nota más aviso periférico—. `RAS` queda sin la rampa de
+tempo, `TIMP` se retira con el marco motriz, y el **iso-principio se retira**: no hay
+implementación de rampa ni nada que mida el tempo espontáneo del usuario. `ITempoMap` deja la
+puerta abierta y hay una prueba de dos tramos que pasa, pero falta la implementación.
+
+Y **dos de las cinco métricas prometidas no existen**: la simetría izquierda/derecha necesita
+que el registro guarde de qué pieza vino cada golpe, y no lo guarda; la adherencia necesita
+varias sesiones del mismo usuario, que es el dato que no se puede atribuir.
+
+### QB.1 — build candidata
+
+`Builds/bateria.apk`, 65.1 MB, 18-nov 12:10. **XR verificado dentro del APK**: `boot.config`
+con `xrsdk-pre-init-library=UnityOpenXR`, más `libUnityOpenXR.so`, `libopenxr_loader.so` y el
+manifiesto del subsistema. `QB.2` —probarla en el visor— sigue pendiente.
+
+### Batchmode ya no se lleva las referencias de OpenXR
+
+Era una tarea manual en el `README`: «revisa después y revierte con git». Dos problemas: hay
+que acordarse, y cuando te acuerdas **el APK ya se compiló**. Costó dos builds y un rato de
+dudar si el APK servía.
+
+`BuildAPK` las anota antes, las repone después haya ido bien o mal, y **se niega a compilar si
+al empezar ya faltaban**: compilar sin ellas da un APK que puede no entrar en realidad virtual
+y eso no se nota hasta ponerse el visor. Verificado: tras la build con la guarda,
+`ProjectSettings` quedó intacto.
+
+Una corrida de **pruebas** en batchmode no pasa por el compilador, así que ahí el despojo sigue
+ocurriendo y sigue habiendo que revertirlo a mano. Está dicho en el `README` y en el §8 del
+manual técnico.
+
+### `quest.sh` no contaba el cable
+
+`conectado()` buscaba solo `:5555`, así que con el cable puesto y el visor respondiendo todos
+los comandos decían «Sin conexión». Corregido.
+
+193 pruebas de documentación, 0 fallidas.
+
 ## Tareas de clase entregadas
 
 | Fecha | Tarea | Carpeta |

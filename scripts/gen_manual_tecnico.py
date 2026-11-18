@@ -301,10 +301,16 @@ def doc():
               "  -batchmode -runTests -testPlatform EditMode -projectpath \"$PWD\" \\\n"
               "  -testResults /tmp/res.xml -logFile /tmp/tests.log" % D["unity"])
     neutro.P(d,
-        "Después de cualquier corrida en batchmode, revisa ProjectSettings/ProjectSettings."
-        "asset: batchmode sin realidad virtual se lleva las referencias de los recursos "
-        "precargados de OpenXR. Si salen borradas, deshaz ese archivo con git y vuelve a "
-        "dejarlo como estaba.", bold=True)
+        "Batchmode sin realidad virtual se lleva de ProjectSettings las referencias de los "
+        "recursos precargados de OpenXR. El compilador del proyecto ya lo maneja: las anota "
+        "antes, las repone después haya ido bien o mal, y se niega a compilar si al empezar ya "
+        "faltaban, porque compilar sin ellas produce un APK que puede no entrar en realidad "
+        "virtual y eso no se nota hasta ponerse el visor.", bold=True)
+    neutro.P(d,
+        "Una corrida de PRUEBAS en batchmode no pasa por el compilador, así que ahí el despojo "
+        "sigue ocurriendo sin que nadie lo repare. Si tras correr las pruebas el archivo "
+        "aparece modificado, deshazlo con git:")
+    bloque(d, "git checkout -- ProjectSettings/ProjectSettings.asset")
 
     # ------------------------------------------------------------------ 9
     neutro.H(d, "9. Depurar dentro del visor", 1)

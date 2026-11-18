@@ -140,6 +140,26 @@ HECHAS = {
              "palabras, siete problemas por sintoma, y que se guarda y que no. Los rotulos "
              "salen del repo Unity, no se teclean. 28 pruebas en scripts/test_manuales.py"),
 
+    "QB.1": ("2026-11-18",
+             "Builds/bateria.apk, 65.1 MB, compilado el 18-nov 12:10 con BuildAPK.DesdeLinea "
+             "en batchmode. Android, IL2CPP, ARM64, Vulkan, URP movil, paquete "
+             "mx.uanl.fime.bateriavr version 0.1.0. XR verificado DENTRO del APK: boot.config "
+             "lleva xrsdk-pre-init-library=UnityOpenXR y el paquete incluye "
+             "libUnityOpenXR.so, libopenxr_loader.so y el manifiesto del subsistema. "
+             "ProjectSettings quedo intacto tras compilar, que es lo que la guarda nueva "
+             "garantiza. Probarla en el visor es QB.2 y sigue pendiente"),
+
+    "ET.2": ("2026-11-18",
+             "entregables/18_Revision_Fundamentacion.docx: las 8 afirmaciones de la "
+             "fundamentacion revisadas una por una contra lo que el prototipo hace, con "
+             "veredicto y con que se comprueba cada una. 3 sostenidas, 3 acotadas, 2 "
+             "retiradas. De los cuatro marcos de NMT solo PSE se sostiene entero; el "
+             "iso-principio se retira porque no hay implementacion de rampa de tempo ni nada "
+             "que mida el tempo espontaneo del usuario. Cuatro consecuencias para QI.3 y la "
+             "fundamentacion reescrita en un parrafo. La original no se edita: se conserva en "
+             "docs/investigacion/evidencia-musicoterapia.md. 12 pruebas en "
+             "scripts/test_fundamentacion.py"),
+
     "QC.1": ("2026-11-10",
              "Registro de versiones en tres lugares: historial de los dos repositorios (121 "
              "y 136 commits), entregables/superados/ con 11 versiones anteriores conservadas, "
