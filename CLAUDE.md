@@ -787,6 +787,45 @@ primera que un participante ve.
 
 157 pruebas de documentación, 0 fallidas.
 
+## Presentación final — documento 17, 18-nov-2026
+
+Borrador de `QX`, la última actividad del proyecto. **`QX` no se cierra con esto**: cuelga de
+`QI.4`, `QI.5`, `QB.4` y `QV.1`, y falta el `.pptx` y el ensayo.
+
+| | |
+|---|---|
+| Documento | `entregables/17_Presentacion_Final.docx` — 3 302 palabras, 13 tablas |
+| Datos | `scripts/presentacion.py` — 10 bloques, 26 min, 8 pasos de demo |
+| Pruebas | `scripts/test_presentacion.py` — 21 |
+
+### El arco no es cronológico
+
+Qué se prometió → **qué se descubrió** → qué se entregó → qué se aprendió. Las tres decisiones
+que reorientaron el proyecto van **antes** de los resultados, porque los resultados se
+entienden a partir de ellas.
+
+`RECORTE_SI_FALTA_TIEMPO` declara el orden en que se recorta si el tiempo asignado es menor.
+**Los bloques 3 y 8 no están en esa lista** —las tres decisiones y lo que no salió— y hay dos
+pruebas que lo impiden: sin ellos queda una presentación de producto, no de administración de
+proyectos.
+
+### El guion de la demo lleva el riesgo de cada paso
+
+Ocho pasos, 190 s. El orden **no es el del menú**: es el que enseña el recorrido completo sin
+repetir pantalla y sin depender de acertar un golpe difícil en vivo. Cada paso declara qué
+puede salir mal, con prueba que lo exige.
+
+El paso 1 necesita la **marca de tutorial visto borrada** o no se puede enseñar; está en la
+lista de comprobaciones previas, donde cada punto es algo que ya falló una vez.
+
+### Las cifras salen de las fuentes, no del guion
+
+`estado.py` (medidas, decisiones, hitos, avance), `costos.py` (presupuesto y EMV),
+`sesiones.py` (las 39 sesiones), `manual_datos.py` (pruebas del prototipo), `replan.py` (el
+desborde). Un guion con cifras tecleadas es el sitio donde una cifra vieja llega al proyector.
+
+178 pruebas de documentación, 0 fallidas.
+
 ## Tareas de clase entregadas
 
 | Fecha | Tarea | Carpeta |
