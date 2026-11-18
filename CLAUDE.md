@@ -738,6 +738,55 @@ que los **vivos** apunten a enlaces que existen.
 
 140 pruebas de documentación, 0 fallidas.
 
+## Pruebas con usuarios — documento 16, 18-nov-2026
+
+| | |
+|---|---|
+| Documento | `entregables/16_Pruebas_con_Usuarios.docx` — 5 459 palabras, 23 tablas |
+| Datos | `scripts/pruebas_usuario.py` — 15 casos de uso y 30 observaciones |
+| Sesiones | `scripts/sesiones.py` — lee los volcados reales del visor |
+| Pruebas | `scripts/test_pruebas_usuario.py` — 17 |
+
+### Qué es real aquí y qué no
+
+**Reales:** las 30 observaciones, cada una con su fecha y el commit que la corrige, y varias
+con el reporte literal de quien la encontró. Son hallazgos de uso: aparecieron usando la app
+en el visor. Y las **39 sesiones con pista completa** registradas del 17-oct al 11-nov:
+4 973 notas, 3 743 aciertos, 75.3 % global, mediana 83.1 %, constancia contra rejilla 26.7 ms
+y pulso propio 29.0 ms.
+
+**No está, y se declara en vez de rellenarse:** la atribución a los 14 participantes y las
+respuestas de comodidad de `QV.5`. El volcado de sesión **no lleva identificador de
+participante**, así que con los archivos se agrupa por sesión, no por persona.
+
+Hay una prueba — `test_el_documento_no_atribuye_las_sesiones_a_los_catorce` — que exige que
+el aviso siga en el documento y que no haya ninguna frase que atribuya resultados a los 14.
+
+### El Quest 3S no tiene nada después del 11-nov
+
+Bajados 204 archivos con `quest.sh pull`. **Última sesión: 11-nov a la 01:06.** Las fechas
+—26 sesiones el 18-oct solo— son patrón de desarrollo, no de 14 personas. O las pruebas
+corrieron en el **Quest 3**, o en modo libre, que a propósito no guarda nada.
+
+Capturas en el visor: **una, del 16-sep, y es del menú del propio Quest.** Las 13 del manual
+de usuario siguen faltando.
+
+### `quest.sh` se negaba a funcionar con cable
+
+`conectado()` buscaba solo `:5555`, así que con el cable puesto y el visor respondiendo
+**todos los comandos decían «Sin conexión»**. Ahora cuenta el cable, que es la conexión que
+queda cuando el visor se reinicia y pierde el modo inalámbrico.
+
+### Las 6 críticas comparten forma
+
+Ninguna se parecía a su causa: un pad que decía SALIR y llevaba al menú, un tutorial que
+moría sin rastro, el bombo que dejaba de marcar porque una lista tenía cuatro piezas en vez de
+seis. La respuesta a casi todas no fue corregir el síntoma sino poner una prueba que vigile la
+causa. **Interfaz concentra 13 de las 30**, el 43 %: es el área que llegó al final y la
+primera que un participante ve.
+
+157 pruebas de documentación, 0 fallidas.
+
 ## Tareas de clase entregadas
 
 | Fecha | Tarea | Carpeta |
