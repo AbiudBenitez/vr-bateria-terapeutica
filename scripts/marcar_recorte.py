@@ -68,9 +68,31 @@ def marcar():
 
 
 if __name__ == "__main__":
+    # `marcar()` solo devuelve las que ESCRIBIO en esta corrida: salta las que ya tenian la
+    # marca. La version anterior restaba esas del total y las imprimia como "NO ENCONTRADAS EN
+    # EL CRONOGRAMA", asi que una corrida normal -donde solo cambia una- sacaba una lista de
+    # 102 claves con pinta de error. El script es idempotente a proposito; lo que hay que
+    # distinguir es lo que se escribio, lo que ya estaba y lo que de verdad falta.
     ms = marcar()
-    print(f"  {len(ms)} actividades marcadas como fuera de alcance")
-    print(f"  esperadas: {len(recorte.RECORTADAS)}")
-    faltan = set(recorte.RECORTADAS) - set(ms)
-    if faltan:
-        print(f"  NO ENCONTRADAS EN EL CRONOGRAMA: {sorted(faltan)}")
+    with open(RUTA, encoding="utf-8", errors="ignore") as fh:
+        texto = fh.read()
+    presentes, ausentes = set(), []
+    for bloque in re.findall(r"<Task>.*?</Task>", texto, re.S):
+        nm = re.search(r"<Name>(.*?)</Name>", bloque, re.S)
+        if not nm:
+            continue
+        k = clave(nm.group(1))
+        if k in recorte.RECORTADAS and MARCA in bloque:
+            presentes.add(k)
+    ausentes = sorted(set(recorte.RECORTADAS) - presentes)
+
+    print("  marcadas en esta corrida: %d" % len(ms))
+    if ms:
+        for k in sorted(ms):
+            print("     %-6s %s" % (k, recorte.RECORTADAS[k][:72]))
+    print("  ya estaban marcadas:      %d" % (len(presentes) - len(set(ms))))
+    print("  total con marca:          %d de %d" % (len(presentes), len(recorte.RECORTADAS)))
+    if ausentes:
+        print("  SIN MARCA O AUSENTES DEL ARCHIVO: %s" % ausentes)
+    else:
+        print("  Todas las recortadas llevan su razon en el campo de notas.")

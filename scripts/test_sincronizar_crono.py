@@ -44,10 +44,14 @@ def test_la_unica_ausencia_es_la_que_el_recorte_anadio():
 def test_el_alcance_de_cada_uno_es_el_que_le_toca():
     """Si estos numeros cambian, alguien movio el alcance y no solo el avance."""
     op, pl = cargar()
-    # 156 y no 158: DT.4 y DT.5 se recortaron el 22 de octubre al revisar los enlaces
-    # que el recorte rompia. Si vuelve a cambiar, el alcance se movio y hay que decidirlo,
-    # no ajustar la prueba sin mirar por que.
-    assert len(op) == 156, "el operativo tiene %d actividades, se esperaban 156" % len(op)
+    # 155, y cada baja esta decidida y escrita:
+    #   de 158 a 156  DT.4 y DT.5, el 22-oct, al revisar los enlaces que el recorte rompia
+    #   de 156 a 155  IT.1, el 18-nov. Las baquetas van solidarias al control porque el acta
+    #                 descarto la fisica de agarre por latencia, asi que no hay agarre que
+    #                 ensenar. Su sucesora IT.4 se habia cerrado el 20-oct con ella abierta.
+    # Si vuelve a cambiar, el alcance se movio y hay que DECIDIRLO y escribir la razon aqui,
+    # no ajustar el numero sin mirar por que.
+    assert len(op) == 155, "el operativo tiene %d actividades, se esperaban 155" % len(op)
     assert len(pl) == 257, "el de ProjectLibre tiene %d, se esperaban 257" % len(pl)
 
 

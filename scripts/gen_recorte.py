@@ -26,11 +26,16 @@ def por_area(claves):
 
 def doc():
     f = validacion.fusion()
-    hechas_previas = sum(1 for t in f.values() if t["hecha"])
     r = recorte.resumen()
 
+    # EL TOTAL SALE DEL ALCANCE, no del avance. La version anterior sumaba las terminadas,
+    # leidas del cronograma de hoy, asi que el total crecia cada vez que se cerraba una
+    # actividad: el 17-oct daba 155 y el 18-nov daba 197.
+    total_nuevo = 257 - r["recortadas"] + r["nuevas"]
+
+    # Y el avance del dia del recorte es un dato historico, declarado en recorte.py.
+    hechas_previas = recorte.HECHAS_AL_RECORTE
     hechas = hechas_previas + r["ya_hechas"]
-    total_nuevo = hechas + r["sobreviven"] + r["nuevas"]
 
     d = neutro.nuevo()
     neutro.portada(
@@ -197,6 +202,17 @@ def doc():
         "Pruebas con usuarios que respalden las medidas de interacción y seguridad.",
         "El informe final completo, conforme a PMBOK.",
     ])
+
+    neutro.H(d, "7.1 Recortes posteriores a este documento", 2)
+    neutro.P(d,
+        f"El {recorte.FECHA_RECORTE} este recorte dejó el alcance en 158 actividades. El "
+        f"vigente son {total_nuevo}, y la diferencia son tres actividades cortadas después, "
+        "cada una con su fecha y su razón. Se anotan aquí para que el número de este documento "
+        "y el del cronograma no se contradigan sin explicación.")
+    neutro.table(d, ["Cuándo", "Cuáles", "Por qué"],
+                 [[cuando, ", ".join(claves), razon]
+                  for cuando, claves, razon in recorte.RECORTES_POSTERIORES],
+                 widths=[3.0, 2.0, 10.0], fs=9)
 
     neutro.H(d, "8. Acuerdos y firmas", 1)
     neutro.P(d, "El equipo acuerda lo contenido en este documento:")

@@ -76,3 +76,36 @@ def test_la_medida_retirada_no_la_sirve_nadie():
     sirven = [k for k, (m, _) in recorte.SOBREVIVEN.items() if m == recorte.MEDIDA_RETIRADA]
     assert not sirven, \
         f"estas sobreviven sirviendo a la medida retirada: {sirven}"
+
+
+def test_el_total_del_alcance_no_depende_del_avance():
+    """El defecto: total = hechas + sobreviven + nuevas.
+
+    `hechas` se leia del cronograma de HOY, asi que cada actividad cerrada sumaba una al TOTAL
+    del alcance. El 17-oct daba 155 y el 18-nov daba 197. El total sale del alcance: 257 menos
+    las recortadas, mas las nuevas.
+    """
+    r = recorte.resumen()
+    assert 257 - r["recortadas"] + r["nuevas"] == 155
+
+
+def test_el_avance_del_dia_del_recorte_esta_declarado_y_no_se_recalcula():
+    assert recorte.HECHAS_AL_RECORTE == 93
+    assert "octubre" in recorte.FECHA_RECORTE
+
+
+def test_todo_recorte_posterior_esta_declarado_con_su_razon():
+    """Si el alcance cambia otra vez, va aqui: es lo que explica 155 contra las 158 de aquel dia."""
+    declaradas = [k for _, claves, _ in recorte.RECORTES_POSTERIORES for k in claves]
+    assert declaradas, "no hay recortes posteriores declarados"
+    assert len(declaradas) == len(set(declaradas))
+    for cuando, claves, razon in recorte.RECORTES_POSTERIORES:
+        assert "2026" in cuando, cuando
+        assert claves
+        assert len(razon) > 30, "el recorte de %s no dice por que" % ", ".join(claves)
+        for k in claves:
+            assert k in recorte.RECORTADAS, \
+                "%s se declara recortada despues y no esta en RECORTADAS" % k
+    assert 158 - len(declaradas) == 257 - recorte.resumen()["recortadas"] + \
+        recorte.resumen()["nuevas"], \
+        "las 158 de aquel dia menos los recortes posteriores no dan el alcance vigente"

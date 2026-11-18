@@ -10009,6 +10009,7 @@
             <UID>159</UID>
             <ID>159</ID>
             <Name>IT.1 — Diseñar tutorial visual sobre cómo sujetar las baquetas</Name>
+			<Notes>[FUERA DE ALCANCE] Tutorial de cómo sujetar las baquetas. Van solidarias al control: no hay agarre que enseñar. Misma decisión del acta que dejó fuera DB.4 y DO, tomada por latencia</Notes>
             <Type>1</Type>
             <IsNull>0</IsNull>
             <CreateDate>2026-09-20T10:22:00</CreateDate>

@@ -826,6 +826,61 @@ desborde). Un guion con cifras tecleadas es el sitio donde una cifra vieja llega
 
 178 pruebas de documentación, 0 fallidas.
 
+## IT.1 fuera de alcance y auditoría del recorte — 18-nov-2026
+
+`IT.1`, el tutorial de cómo sujetar las baquetas, **sobrevivió al recorte del 18-oct por
+descuido**. La decisión que lo deja sin objeto estaba escrita desde el 21-sep, en la carta de
+validación:
+
+> «Las baquetas van solidarias al control. El acta descartó el agarre porque los controles
+> entregan háptico y una lectura confiable de velocidad; añadir física introduciría el paso de
+> simulación en el camino del golpe y degradaría la latencia.»
+
+Con las baquetas solidarias **no hay agarre que enseñar**. Y la evidencia de que nunca se
+necesitó: su sucesora `IT.4` —implementar el flujo del tutorial— **cerró el 20-oct con `IT.1`
+abierta**. Una predecesora cuya sucesora ya terminó no era una predecesora.
+
+**Alcance vigente: 155.** 257 → 158 (17-oct) → 156 (DT.4 y DT.5, 22-oct) → 155 (IT.1, 18-nov).
+El área de Interfaz queda **cerrada**: no le queda ninguna actividad.
+
+### Los dos cronogramas se tocan de maneras distintas
+
+| | |
+|---|---|
+| `Cronograma_ProjectLibre.xml` | La recortada **se queda**, con `[FUERA DE ALCANCE]` y la razón. `marcar_recorte.py` |
+| `Cronograma_Operativo.xml` | Solo lo que se va a ejecutar: la recortada **se saca**. `sanear_operativo.py` (nuevo) |
+
+`sanear_operativo.py` se lleva las tres cosas que una tarea arrastra al salir —su bloque, los
+`PredecessorLink` de otras que la apuntan y sus `Assignment`— y **se niega a sacar una tarea
+con sucesoras abiertas**: ahí el puente es una decisión, no una limpieza.
+
+### Lo que la auditoría encontró
+
+**Ninguna otra pendiente tiene la firma de `IT.1`** (sucesoras todas cerradas). `JY`, `SM.1`
+el Audio Mixer, `DB.4` la física de baquetas y `DO` agarrar y soltar están correctamente
+recortadas con su razón. La medida 6 sigue con 10 actividades vivas, así que cortar `IT.1` no
+la pone en riesgo.
+
+**`QM.1`, `QM.2` y `QV.3` cerraron con `QV.1` abierta.** `QV.1` es la corrida completa de QA.
+Los dos manuales se escribieron del código y del flujo, no de una corrida observada: **cuando
+`QV.1` corra hay que revisar los dos manuales contra lo que encuentre.**
+
+**El total del documento 10 crecía con el avance.** `gen_recorte.py` calculaba
+`total = hechas + sobreviven + nuevas` con `hechas` leído del cronograma de hoy, así que cada
+actividad cerrada sumaba una al **total del alcance**: daba 155 el 17-oct y **197** el 18-nov.
+Ahora el total sale del alcance y el avance de aquel día se declara con su fecha
+(`HECHAS_AL_RECORTE = 93`). Tres pruebas lo vigilan, una de ellas que `158 − 3 = 155`.
+
+**`marcar_recorte.py` mentía en su informe.** Solo devuelve las que escribió, y el resumen
+restaba esas del total e imprimía el resto como «NO ENCONTRADAS EN EL CRONOGRAMA»: una corrida
+normal sacaba 102 claves con pinta de error. Ahora distingue escritas, ya marcadas y ausentes.
+
+### La memoria del proyecto está vacía
+
+No existe la carpeta de memoria; nada guardado. Todo lo anterior salió de los repositorios.
+
+181 pruebas de documentación, 0 fallidas.
+
 ## Tareas de clase entregadas
 
 | Fecha | Tarea | Carpeta |

@@ -25,6 +25,28 @@ MEDIDAS = {
 
 MEDIDA_RETIRADA = 8
 
+# AVANCE EL DIA DEL RECORTE. Se declara, no se recalcula.
+#
+# `gen_recorte.py` calculaba el total del documento como hechas + sobreviven + nuevas, con
+# `hechas` leido del cronograma de HOY. El efecto: cada actividad que se cerraba sumaba una al
+# TOTAL del alcance. La formula solo era cierta el dia que se escribio: el 17-oct daba 155 y
+# el 18-nov daba 197.
+#
+# El total sale del alcance -257 menos las recortadas, mas las nuevas- y el avance de ese dia
+# es un dato historico con su fecha.
+HECHAS_AL_RECORTE = 93
+FECHA_RECORTE = "17 de octubre de 2026"
+
+# Recortes posteriores al 17-oct, que es por lo que el alcance vigente no es el que este
+# documento declaro aquel dia. Cada uno con su fecha y su razon.
+RECORTES_POSTERIORES = [
+    ("22 de octubre de 2026", ["DT.4", "DT.5"],
+     "Al revisar los enlaces que el recorte rompia"),
+    ("18 de noviembre de 2026", ["IT.1"],
+     "Las baquetas van solidarias al control: el acta descarto la fisica de agarre por "
+     "latencia, asi que no hay agarre que ensenar"),
+]
+
 # Actividades terminadas que el área responsable nunca registró.
 #
 # Se hicieron desde desarrollo VR mientras se construía la batería, y el área de sonido las
@@ -70,7 +92,6 @@ SOBREVIVEN = {
     "II.6": (9,    "Pantalla de resultados: es donde se ven las métricas"),
     "IR.1": (6,    "Legibilidad en el visor. El análisis ya existe; falta corregir"),
     "IR.2": (6,    "Tamaño, distancia y posición de los paneles"),
-    "IT.1": (6,    "Tutorial: cómo sujetar las baquetas"),
     "IT.2": (6,    "Tutorial: cómo seguir el ritmo"),
     "IT.3": (6,    "Tutorial: cómo funciona la intensidad del golpe"),
     "IT.4": (6,    "Implementar el flujo del tutorial"),
@@ -226,6 +247,21 @@ RECORTADAS = {
     "DB.2": "Baquetas interactuables. Van solidarias al control, decisión del acta",
     "DB.4": "Física de baquetas. No hay física que ajustar",
     "DO":   "Agarrar y soltar objetos. Misma decisión del acta",
+
+    # Recortada el 18-nov, no el 18-oct: sobrevivió al recorte por descuido.
+    #
+    # El acta descartó la física de agarre porque los controles ya entregan háptico y una
+    # lectura confiable de velocidad, y añadir simulación metería un paso más en el camino del
+    # golpe: degradaría la latencia, que es el riesgo dominante. Esa decisión está escrita en
+    # la carta de validación del 21-sep y es la que dejó DB.4 y DO fuera.
+    #
+    # Con las baquetas solidarias al control NO HAY NADA QUE ENSEÑAR sobre cómo sujetarlas: se
+    # sujeta el control, y eso lo cubre la sección 1.2 del manual de usuario. Un paso de
+    # tutorial para esto seria una pantalla que el participante tiene que pasar sin aprender
+    # nada, y el tutorial se mide por el tiempo hasta el primer golpe.
+    "IT.1": "Tutorial de cómo sujetar las baquetas. Van solidarias al control: no hay agarre "
+            "que enseñar. Misma decisión del acta que dejó fuera DB.4 y DO, tomada por "
+            "latencia",
     "DT.3": "Colliders por componente. La detección es por plano armado",
 
     # --- Juego de ritmo: ya recortadas por R14 ---

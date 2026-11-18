@@ -304,11 +304,6 @@ PENDIENTE = [
      "redaccion del informe final (QI.1 a QI.5). Es una cadena: nada empieza hasta que lo "
      "anterior termina, y el informe es la cola.",
      "Diana, con apoyo de gerencia"),
-    ("Interfaz", "bajo",
-     "De nueve actividades queda UNA: el tutorial visual de como sujetar las baquetas (IT.1). "
-     "Menu, botones con el control, pantalla de resultados y las dos revisiones de legibilidad "
-     "y de paneles se cerraron el 20 de octubre con sus pruebas de escena.",
-     "Sarai"),
     ("Build final y correccion de errores", "medio",
      "QB.1 a QB.4 y QE.2 a QE.5. Dependen de que QT.8 produzca los errores que corregir.",
      "QA"),
