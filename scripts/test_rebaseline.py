@@ -21,7 +21,9 @@ import rebaselinear as RB
 import replan as RP
 
 NS = "{http://schemas.microsoft.com/project}"
-HOY = D.date(2026, 11, 11)
+# HOY ES HOY DE VERDAD, no una constante. Escrita a mano se quedo en el 11 de noviembre y la
+# prueba declaro "en el futuro" un cierre del 18 que ya habia pasado.
+HOY = D.date.today()
 ARRANQUE_PROYECTO = D.date(2026, 9, 1)
 
 
@@ -187,13 +189,36 @@ class ElCronogramaLlevaLasFechasReales(unittest.TestCase):
 
 class ElReplanCierraDentroDeLaReserva(unittest.TestCase):
 
-    def test_cierra_el_veinte_de_noviembre_o_antes(self):
-        self.assertLessEqual(RP.CIERRE, RP.RESERVA,
-                             "el replan cierra el %s, pasada la reserva del %s"
-                             % (RP.CIERRE, RP.RESERVA))
+    def test_si_el_plan_no_cabe_lo_declara(self):
+        """La prueba NO exige que quepa: exige que el modulo no lo disimule.
 
-    def test_no_cae_en_semana_de_examenes(self):
-        self.assertLess(RP.CIERRE, RP.EXAMENES)
+        Exigir que quepa obliga a que alguien recorte el plan hasta que el numero cuadre, y asi
+        se llega a un cronograma que nadie puede cumplir y que nadie puede desmentir porque sus
+        cifras son consistentes. Lo que no se negocia es que, si no cabe, el modulo diga cuanto
+        se pasa y por que.
+        """
+        self.assertEqual(RP.DESBORDA, RP.CIERRE > RP.META)
+        if not RP.DESBORDA:
+            self.assertEqual(RP.AVISO, "")
+            self.assertEqual(RP.DIAS_DE_DESBORDE, 0)
+            return
+        self.assertGreater(RP.DIAS_DE_DESBORDE, 0)
+        self.assertIn("NO CABE", RP.AVISO)
+        self.assertIn(str(RP.CIERRE), RP.AVISO)
+        self.assertIn(str(RP.META), RP.AVISO)
+
+    def test_el_arranque_sale_de_la_fecha_de_estado(self):
+        """El defecto que esto impide: la fecha de estado avanza y el plan se queda detras."""
+        self.assertGreaterEqual(RP.ARRANQUE, RP.CORTE)
+        self.assertLess(RP.ARRANQUE.weekday(), 5, "el arranque cae en fin de semana")
+        self.assertEqual(RB.CORTE, RP.CORTE, "hay dos fechas de estado y pueden divergir")
+
+    def test_la_fecha_de_estado_alcanza_al_cierre_mas_reciente(self):
+        """Una fecha de estado anterior al ultimo cierre deja el plan programando el pasado."""
+        ultimo = max(D.date.fromisoformat(f) for f, _ in CI.CIERRES.values())
+        self.assertGreaterEqual(RP.CORTE, ultimo,
+                                "hay cierres del %s y la fecha de estado es del %s: corre el "
+                                "replan otra vez" % (ultimo, RP.CORTE))
 
     def test_el_traslape_acorta_la_cadena_sin_recortar_duraciones(self):
         self.assertLess(RP.TOTAL, 14.0)
@@ -201,12 +226,20 @@ class ElReplanCierraDentroDeLaReserva(unittest.TestCase):
         self.assertAlmostEqual(suma_replan, sum(R.T[k]["dur"] for k in RP.PENDIENTES),
                                msg="ninguna duracion se recorto; solo se traslapo")
 
-    def test_cada_traslape_apunta_a_un_enlace_que_existe(self):
-        for (k, p) in RP.TRASLAPES:
+    def test_cada_traslape_vivo_apunta_a_un_enlace_que_existe(self):
+        """Solo los VIVOS. Uno cuyo antecedente cerro deja de aplicar y no por eso es falso."""
+        for (k, p) in RP.VIVOS:
             self.assertIn(k, RP.PRE, "%s no es una actividad pendiente" % k)
             self.assertIn(p, RP.PRE[k],
                           "se declara un traslape %s <- %s y ese enlace no esta en la red"
                           % (k, p))
+
+    def test_los_traslapes_que_dejaron_de_aplicar_estan_declarados(self):
+        """Se separan, no se borran: si la actividad se reabre, la razon vuelve a hacer falta."""
+        for (k, p) in RP.MOOT:
+            self.assertTrue(k not in RP.PENDIENTES or p not in RP.PENDIENTES,
+                            "%s <- %s esta en MOOT y las dos siguen pendientes" % (k, p))
+        self.assertEqual(set(RP.TRASLAPES), set(RP.VIVOS) | set(RP.MOOT))
 
     def test_cada_traslape_dice_por_que_se_sostiene(self):
         for (k, p), (_, _, razon) in RP.TRASLAPES.items():

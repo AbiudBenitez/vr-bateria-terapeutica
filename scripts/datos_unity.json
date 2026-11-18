@@ -1,0 +1,165 @@
+{
+  "archivos": 39,
+  "ausentes": [
+    {
+      "id": "35361",
+      "nombre": "Fantasy Forest Environment — Free Sample"
+    },
+    {
+      "id": "265300",
+      "nombre": "Low Poly Trees and Vegetation Pack"
+    }
+  ],
+  "constructores": [
+    [
+      "Batería → Cablear juego de ritmo",
+      "crea el panel del marcador"
+    ],
+    [
+      "Batería → Construir kit de 7 piezas",
+      "recablea TODO consumidor de pads"
+    ],
+    [
+      "Batería → Montar tutorial",
+      "se ancla al panel del marcador"
+    ],
+    [
+      "Batería → Construir menú",
+      "quita el andamio que el tutorial deja"
+    ]
+  ],
+  "empresa": "UANL FIME",
+  "estados": [
+    "Bienvenida",
+    "Tutorial",
+    "Menu",
+    "Info",
+    "Seleccion",
+    "Velocidad",
+    "Libre",
+    "Tocando",
+    "Resultados",
+    "Saliendo"
+  ],
+  "eventos": [
+    "TutorialTerminado",
+    "PedirTutorial",
+    "PedirTocar",
+    "PedirInfo",
+    "PedirLibre",
+    "PedirCancion",
+    "PedirSalir",
+    "CancionTerminada",
+    "PedirOtraVez",
+    "PedirMenu",
+    "PedirRitmo"
+  ],
+  "filas": {
+    "Info": {
+      "2": [
+        "MENÚ",
+        "PedirMenu"
+      ]
+    },
+    "Menu": {
+      "0": [
+        "TUTORIAL",
+        "PedirTutorial"
+      ],
+      "1": [
+        "INFO",
+        "PedirInfo"
+      ],
+      "2": [
+        "TOCAR",
+        "PedirTocar"
+      ],
+      "3": [
+        "LIBRE",
+        "PedirLibre"
+      ],
+      "4": [
+        "SALIR",
+        "PedirSalir"
+      ]
+    },
+    "Resultados": {
+      "1": [
+        "OTRA VEZ",
+        "PedirOtraVez"
+      ],
+      "3": [
+        "MENÚ",
+        "PedirMenu"
+      ]
+    },
+    "Seleccion": {
+      "2": [
+        "MENÚ",
+        "PedirMenu"
+      ]
+    },
+    "Velocidad": {
+      "2": [
+        "MENÚ",
+        "PedirMenu"
+      ]
+    }
+  },
+  "menu": {
+    "(raíz)": [
+      "Ajustar importación de los samples",
+      "Analizar kit",
+      "Cablear cortinilla",
+      "Cablear juego de ritmo",
+      "Compilar APK",
+      "Compilar APK de diagnóstico",
+      "Construir beatmap de demostración",
+      "Construir beatmap sobre música real",
+      "Construir escena del reloj musical",
+      "Construir indicador de golpes",
+      "Construir kit de 7 piezas",
+      "Construir menú",
+      "Importar pistas de práctica",
+      "Montar sondas de medición",
+      "Montar tutorial",
+      "Olvidar que el tutorial se vio (solo editor)",
+      "Reconstruir visual del pad"
+    ],
+    "Entorno": [
+      "Amanecer suave",
+      "Bosque al amanecer",
+      "Bosque de noche",
+      "Claro (el original)",
+      "Claro low-poly (amanecer)",
+      "Claro low-poly (noche)",
+      "Claro sin árboles (amanecer)",
+      "Claro sin árboles (noche)",
+      "Convertir bosque a URP",
+      "Noche",
+      "Noche con gradas"
+    ]
+  },
+  "paquete": "mx.uanl.fime.bateriavr",
+  "parametrizadas": 3,
+  "plazas": 5,
+  "producto": "BateriaVR",
+  "pruebas": 370,
+  "repo": "BateriaVR",
+  "tutorial": {
+    "pasos": [
+      "PasoPrimerGolpe",
+      "PasoRecorrerKit",
+      "PasoSeguirPulso",
+      "PasoIntensidades"
+    ],
+    "recorrido": [
+      "HiHat",
+      "Tarola",
+      "Bombo",
+      "Platillo"
+    ]
+  },
+  "unity": "6000.5.10f1",
+  "version": "0.1.0"
+}

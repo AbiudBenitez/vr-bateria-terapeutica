@@ -149,8 +149,25 @@ def doc():
         "Caben traslapando, y traslapar no es recortar: cada actividad conserva su duración y "
         "su alcance, y lo que cambia es que arranca antes de que su antecedente termine. Se "
         "declararon %d traslapes, uno por uno, cada uno con la razón por la que se sostiene. "
-        "La cadena baja de %.0f a %.0f días hábiles y el proyecto cierra el %s."
-        % (len(RP.TRASLAPES), 14.0, RP.TOTAL, larga(RP.CIERRE)))
+        "La cadena baja de %.0f a %.0f días hábiles."
+        % (len(RP.TRASLAPES), 14.0, RP.TOTAL))
+    neutro.P(d,
+        "Con la fecha de estado del %s, el arranque es el %s y el cierre calculado es el %s."
+        % (larga(RB.CORTE), larga(RP.ARRANQUE), larga(RP.CIERRE)))
+    if RP.DESBORDA:
+        neutro.P(d,
+            "ESTE PLAN NO CABE. Cierra %d días hábiles después del %s, que es el fin de la "
+            "reserva de gestión, y entra en la semana de exámenes. Traslapar la cadena de 14 a "
+            "%.0f días no alcanza cuando solo quedan %d días hábiles hasta el fin de la "
+            "reserva."
+            % (RP.DIAS_DE_DESBORDE, larga(RP.META), RP.TOTAL,
+               habiles(RB.CORTE, RP.META)), bold=True)
+        neutro.P(d,
+            "La causa no es el cálculo: es que la cadena no ha arrancado. QT.8, las pruebas "
+            "con usuarios, sigue sin registrar, y ninguna de las ocho actividades del informe "
+            "final puede empezar antes. Si el trabajo avanzó y no está registrado, hay que "
+            "registrarlo y volver a correr el replan; si no avanzó, la fecha de cierre del "
+            "proyecto se movió y es eso lo que hay que reportar.")
 
     pordia, cierran = {}, {}
     for k, (i, f) in RP.CALENDARIO.items():
@@ -175,13 +192,23 @@ def doc():
 
     # ------------------------------------------------------------------ 5
     neutro.H(d, "5. Lo que este plan no disimula", 1)
-    neutro.bullets(d, [
-        "Sale con holgura cero. El cierre cae el último día de la reserva de gestión, así que "
-        "cualquier retraso de un día empuja el proyecto al 23 de noviembre, que es el inicio "
-        "de exámenes.",
-
+    avisos = []
+    if RP.DESBORDA:
+        avisos.append(
+            "No cabe en la reserva. Cierra el %s, %d días hábiles después del fin de la "
+            "reserva de gestión, dentro de la semana de exámenes. No se recortó el plan para "
+            "que la fecha cuadrara: un cronograma recortado hasta que el número encaja es uno "
+            "que nadie puede cumplir y que nadie puede desmentir."
+            % (larga(RP.CIERRE), RP.DIAS_DE_DESBORDE))
+    else:
+        avisos.append(
+            "Sale con holgura cero. El cierre cae el último día de la reserva de gestión, así "
+            "que cualquier retraso de un día empuja el proyecto al 23 de noviembre, que es el "
+            "inicio de exámenes.")
+    avisos.append(
         "Consume la reserva completa. La reserva de gestión del 16 al 20 de noviembre existe "
-        "justamente para esto, y queda declarado que se usó: no es margen que siga disponible.",
+        "justamente para esto, y queda declarado que se usó: no es margen que siga disponible.")
+    neutro.bullets(d, avisos + [
 
         "Arranca con pruebas con usuarios, y los usuarios no están reclutados. Es el riesgo "
         "R18 del registro y es el único punto de falla que importa: nada de la cadena de "

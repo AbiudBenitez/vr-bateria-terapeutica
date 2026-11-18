@@ -122,11 +122,23 @@ HECHAS = {
              "04_Planes_Costos_Calidad_Riesgos.docx (8.1 a 8.3) y en "
              "entregables/pmbok/08_Calidad.docx"),
 
-    "QM.2": ("2026-10-21",
-             "BateriaVR/README.md: version de Unity, los dos paquetes del Asset Store que "
-             "faltan al clonar y como reponerlos, orden de los constructores de escena, como "
-             "correr las pruebas en batchmode, compilar e instalar el APK con quest.sh y como "
-             "depurar en el visor. Es el manual tecnico de instalacion y ejecucion"),
+    "QM.2": ("2026-11-18",
+             "entregables/14_Manual_Tecnico.docx, 13 secciones y 11 tablas: que necesitas, "
+             "instalar desde cero con los dos paquetes del Asset Store ausentes, los 28 "
+             "comandos del menu del editor y el orden obligatorio de los cuatro "
+             "constructores, compilar, instalar en el visor, DESINSTALAR con lo que se pierde, "
+             "seis modificaciones previstas, correr las 370 pruebas, depurar en el visor, las "
+             "tres reglas del codigo, estructura, licencias y ocho problemas conocidos. "
+             "Generado por scripts/gen_manual_tecnico.py desde los datos del repo Unity. "
+             "BateriaVR/README.md queda como referencia rapida"),
+
+    "QM.1": ("2026-11-18",
+             "entregables/15_Manual_Usuario.docx, 8 secciones escritas para el participante "
+             "de QT.8: ponerse el visor, el aviso de malestar y que se puede parar, los cuatro "
+             "pasos del tutorial, la fila de pads con el rotulo que cada uno dice de verdad, "
+             "elegir ritmo y velocidad, los aros y el veredicto, modo libre, los resultados en "
+             "palabras, siete problemas por sintoma, y que se guarda y que no. Los rotulos "
+             "salen del repo Unity, no se teclean. 28 pruebas en scripts/test_manuales.py"),
 
     "QC.1": ("2026-11-10",
              "Registro de versiones en tres lugares: historial de los dos repositorios (121 "

@@ -43,7 +43,7 @@ AQUI = os.path.dirname(os.path.abspath(__file__))
 OPERATIVO = os.path.join(AQUI, "..", "entregables", "Cronograma_Operativo.xml")
 PROJECTLIBRE = os.path.join(AQUI, "..", "entregables", "Cronograma_ProjectLibre.xml")
 
-CORTE = D.date(2026, 11, 11)      # fecha de estado
+CORTE = RP.CORTE                  # fecha de estado, declarada en replan.py
 CIERRE = RP.CIERRE                # 2026-11-20, calculado por el replan
 ABIERTOS = {D.date.fromisoformat(x) for x in CI.FINES_DE_SEMANA_TRABAJADOS}
 

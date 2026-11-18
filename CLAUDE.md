@@ -658,6 +658,86 @@ patrones de acentos declaran `jugador_ciclo`, y exigía el acompañamiento en lo
 los de contratiempo lo ponen **entre** ellos a propósito. Corregidas las pruebas, no los datos.
 108 pruebas de documentación, 0 fallidas.
 
+## Manuales — 18-nov-2026
+
+Cierran `QM.2` (manual técnico) y `QM.1` (manual de usuario). Los dos en Word editable,
+generados por script desde los datos del repo Unity.
+
+| | |
+|---|---|
+| Spec | `docs/superpowers/specs/2026-11-17-manuales-design.md` |
+| Técnico | `entregables/14_Manual_Tecnico.docx` — 13 secciones, 11 tablas, 3 006 palabras |
+| Usuario | `entregables/15_Manual_Usuario.docx` — 8 secciones, para el participante de `QT.8` |
+| Datos | `scripts/manual_datos.py` + `scripts/datos_unity.json` (caché) |
+| Capturas | `scripts/capturas.py` — manifiesto de 13 pantallas |
+| Pruebas | `scripts/test_manuales.py` — 30 |
+
+### Los datos del repo Unity salen de una caché, no del repo
+
+El espejo `proyecto-unity/` de esta carpeta quedó en septiembre: no tiene `Flujo` ni
+`Tutorial`, así que no sirve. Y leer el repo real deja los generadores inservibles para quien
+no lo tenga clonado en la misma ruta.
+
+```
+python3 scripts/manual_datos.py --refrescar   # reescribe datos_unity.json
+```
+
+Ruta por `BATERIAVR_REPO`, con `~/Documents/code/Unity/BateriaVR` por omisión. Una prueba
+compara la caché contra el repo **cuando el repo está presente**; cuando no, se salta.
+
+Se extraen: versión de Unity, producto y versión, identificador del paquete, los 28 comandos
+del menú `Batería`, los 10 estados y los 11 eventos de `EstadoApp`, la fila de 5 rótulos por
+pantalla, los 4 pasos del tutorial, las pruebas y los dos paquetes del Asset Store ausentes.
+
+**JSON solo admite texto como clave.** La plaza 0 se guardaba como `"0"` y `fila.get(0)` no
+encontraba nada: los dos manuales salieron con la tabla de rótulos entera en guiones, sin un
+solo error. Se normaliza en `cargar()`, no en cada consumidor.
+
+### Las capturas: 13 declaradas, 0 tomadas
+
+El lector pidió capturas reales, no diagramas. El generador **pone la imagen si existe y un
+recuadro rotulado si no**, porque un hueco silencioso en un manual de usuario se entrega y uno
+rotulado se arregla. Ciclo: botón de Oculus + gatillo derecho en el visor →
+`./scripts/quest.sh capturas` → renombrar con el nombre del manifiesto → regenerar.
+
+### Dos comandos nuevos en `quest.sh`
+
+- `uninstall` — **pide confirmación escribiendo SI** y avisa cuántos archivos de datos se
+  pierden. Desinstalar borra la evidencia de `QT.8`, que no se puede repetir.
+- `capturas` — baja `/sdcard/Oculus/Screenshots/` a `entregables/capturas/`.
+
+No se usa `adb shell screencap`: en el Quest devuelve el buffer de un ojo con la distorsión de
+lente aplicada. Las buenas son las del propio sistema del visor.
+
+### El `README` del repo Unity decía 210 pruebas
+
+Son **370 métodos** en 39 archivos, más 3 parametrizadas por escena. Lo dejó corto por 160 el
+trabajo de noviembre. Corregido, y hay una prueba aquí que vigila esa cifra: es el único sitio
+del proyecto donde se teclea a mano.
+
+### El plan dejó de caber, y ahora lo dice
+
+Al cerrar `QM.1` la fecha de estado pasó al **18-nov** y el arranque del replan sale de ella,
+no de una constante aparte —que es exactamente cómo el cronograma acabó programando trabajo
+pendiente en el pasado—. Resultado: **cierra el 26-nov, 4 días hábiles pasada la reserva y
+dentro de la semana de exámenes.**
+
+`replan.py` declara `DESBORDA`, `DIAS_DE_DESBORDE` y `AVISO`, y la prueba **no exige que
+quepa**: exige que si no cabe, el módulo diga cuánto se pasa y por qué. Exigir que quepa
+obliga a recortar el plan hasta que el número cuadre, y así se llega a un cronograma que nadie
+puede cumplir y que nadie puede desmentir.
+
+La causa no es el cálculo: **`QT.8` sigue sin registrar** y las ocho actividades del informe
+final cuelgan de ella.
+
+### `TRASLAPES`, `VIVOS` y `MOOT`
+
+Un traslape cuyo antecedente cerró deja de aplicar y no por eso es falso. Se separa en `MOOT`
+en vez de borrarse: si la actividad se reabre, la razón vuelve a hacer falta. La prueba exige
+que los **vivos** apunten a enlaces que existen.
+
+140 pruebas de documentación, 0 fallidas.
+
 ## Tareas de clase entregadas
 
 | Fecha | Tarea | Carpeta |

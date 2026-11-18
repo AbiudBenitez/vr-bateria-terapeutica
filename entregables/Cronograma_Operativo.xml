@@ -6,7 +6,7 @@
     <Manager />
     <ScheduleFromStart>1</ScheduleFromStart>
     <StartDate>2026-09-02T08:00:00</StartDate>
-    <FinishDate>2026-11-20T17:00:00</FinishDate>
+    <FinishDate>2026-11-26T17:00:00</FinishDate>
     <FYStartDate>1</FYStartDate>
     <CriticalSlackLimit>0</CriticalSlackLimit>
     <CurrencyDigits>2</CurrencyDigits>
@@ -43,7 +43,7 @@
     <MoveCompletedEndsForward>0</MoveCompletedEndsForward>
     <BaselineForEarnedValue>0</BaselineForEarnedValue>
     <AutoAddNewResourcesAndTasks>1</AutoAddNewResourcesAndTasks>
-    <StatusDate>2026-11-11T17:00:00</StatusDate><CurrentDate>2026-11-11T17:00:00</CurrentDate>
+    <StatusDate>2026-11-18T17:00:00</StatusDate><CurrentDate>2026-11-18T17:00:00</CurrentDate>
     <MicrosoftProjectServerURL>1</MicrosoftProjectServerURL>
     <Autolink>1</Autolink>
     <NewTaskStartDate>0</NewTaskStartDate>
@@ -5648,7 +5648,7 @@
             <OutlineLevel>1</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-10-16T08:00:00</Start>
-            <Finish>2026-11-16T17:00:00</Finish>
+            <Finish>2026-11-20T17:00:00</Finish>
             <Duration>PT80H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -6621,8 +6621,8 @@
             <OutlineNumber>3.19</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
-            <Start>2026-11-16T08:00:00</Start>
-            <Finish>2026-11-16T17:00:00</Finish>
+            <Start>2026-11-20T08:00:00</Start>
+            <Finish>2026-11-20T17:00:00</Finish>
             <Duration>PT8H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -6642,7 +6642,7 @@
             <RemainingDuration>PT8H0M0S</RemainingDuration>
             <ConstraintType>4</ConstraintType>
             <CalendarUID>-1</CalendarUID>
-            <ConstraintDate>2026-11-16T08:00:00</ConstraintDate>
+            <ConstraintDate>2026-11-20T08:00:00</ConstraintDate>
             <LevelAssignments>0</LevelAssignments>
             <LevelingCanSplit>0</LevelingCanSplit>
             <LevelingDelay>0</LevelingDelay>
@@ -7836,7 +7836,7 @@
             <OutlineLevel>1</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-10-17T08:00:00</Start>
-            <Finish>2026-11-12T17:00:00</Finish>
+            <Finish>2026-11-18T17:00:00</Finish>
             <Duration>PT61H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -8344,8 +8344,8 @@
             <OutlineNumber>6.10</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
-            <Start>2026-11-12T08:00:00</Start>
-            <Finish>2026-11-12T17:00:00</Finish>
+            <Start>2026-11-18T08:00:00</Start>
+            <Finish>2026-11-18T17:00:00</Finish>
             <Duration>PT8H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -8365,7 +8365,7 @@
             <RemainingDuration>PT8H0M0S</RemainingDuration>
             <ConstraintType>4</ConstraintType>
             <CalendarUID>-1</CalendarUID>
-            <ConstraintDate>2026-11-12T08:00:00</ConstraintDate>
+            <ConstraintDate>2026-11-18T08:00:00</ConstraintDate>
             <LevelAssignments>0</LevelAssignments>
             <LevelingCanSplit>0</LevelingCanSplit>
             <LevelingDelay>0</LevelingDelay>
@@ -9278,7 +9278,7 @@
             <OutlineLevel>1</OutlineLevel>
             <Priority>500</Priority>
             <Start>2026-09-02T08:00:00</Start>
-            <Finish>2026-11-20T17:00:00</Finish>
+            <Finish>2026-11-26T17:00:00</Finish>
             <Duration>PT136H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -10364,8 +10364,8 @@
             <OutlineNumber>8.20</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
-            <Start>2026-11-12T08:00:00</Start>
-            <Finish>2026-11-13T17:00:00</Finish>
+            <Start>2026-11-18T08:00:00</Start>
+            <Finish>2026-11-19T17:00:00</Finish>
             <Duration>PT16H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -10385,7 +10385,7 @@
             <RemainingDuration>PT16H0M0S</RemainingDuration>
             <ConstraintType>4</ConstraintType>
             <CalendarUID>-1</CalendarUID>
-            <ConstraintDate>2026-11-12T08:00:00</ConstraintDate>
+            <ConstraintDate>2026-11-18T08:00:00</ConstraintDate>
             <LevelAssignments>0</LevelAssignments>
             <LevelingCanSplit>0</LevelingCanSplit>
             <LevelingDelay>0</LevelingDelay>
@@ -10408,8 +10408,8 @@
             <OutlineNumber>8.21</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
-            <Start>2026-11-13T08:00:00</Start>
-            <Finish>2026-11-13T17:00:00</Finish>
+            <Start>2026-11-19T08:00:00</Start>
+            <Finish>2026-11-19T17:00:00</Finish>
             <Duration>PT8H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -10429,7 +10429,7 @@
             <RemainingDuration>PT8H0M0S</RemainingDuration>
             <ConstraintType>4</ConstraintType>
             <CalendarUID>-1</CalendarUID>
-            <ConstraintDate>2026-11-13T08:00:00</ConstraintDate>
+            <ConstraintDate>2026-11-19T08:00:00</ConstraintDate>
             <LevelAssignments>0</LevelAssignments>
             <LevelingCanSplit>0</LevelingCanSplit>
             <LevelingDelay>0</LevelingDelay>
@@ -10462,8 +10462,8 @@
             <OutlineNumber>8.22</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
-            <Start>2026-11-16T08:00:00</Start>
-            <Finish>2026-11-16T17:00:00</Finish>
+            <Start>2026-11-20T08:00:00</Start>
+            <Finish>2026-11-20T17:00:00</Finish>
             <Duration>PT0H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -10482,7 +10482,7 @@
             <PercentWorkComplete>0</PercentWorkComplete>
             <ConstraintType>4</ConstraintType>
             <CalendarUID>-1</CalendarUID>
-            <ConstraintDate>2026-11-16T08:00:00</ConstraintDate>
+            <ConstraintDate>2026-11-20T08:00:00</ConstraintDate>
             <LevelAssignments>0</LevelAssignments>
             <LevelingCanSplit>0</LevelingCanSplit>
             <LevelingDelay>0</LevelingDelay>
@@ -10510,8 +10510,8 @@
             <OutlineNumber>8.23</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
-            <Start>2026-11-16T08:00:00</Start>
-            <Finish>2026-11-16T17:00:00</Finish>
+            <Start>2026-11-20T08:00:00</Start>
+            <Finish>2026-11-20T17:00:00</Finish>
             <Duration>PT0H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -10530,7 +10530,7 @@
             <PercentWorkComplete>0</PercentWorkComplete>
             <ConstraintType>4</ConstraintType>
             <CalendarUID>-1</CalendarUID>
-            <ConstraintDate>2026-11-16T08:00:00</ConstraintDate>
+            <ConstraintDate>2026-11-20T08:00:00</ConstraintDate>
             <LevelAssignments>0</LevelAssignments>
             <LevelingCanSplit>0</LevelingCanSplit>
             <LevelingDelay>0</LevelingDelay>
@@ -10558,8 +10558,8 @@
             <OutlineNumber>8.24</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
-            <Start>2026-11-17T08:00:00</Start>
-            <Finish>2026-11-17T17:00:00</Finish>
+            <Start>2026-11-23T08:00:00</Start>
+            <Finish>2026-11-23T17:00:00</Finish>
             <Duration>PT3H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -10579,7 +10579,7 @@
             <RemainingDuration>PT3H0M0S</RemainingDuration>
             <ConstraintType>4</ConstraintType>
             <CalendarUID>-1</CalendarUID>
-            <ConstraintDate>2026-11-17T08:00:00</ConstraintDate>
+            <ConstraintDate>2026-11-23T08:00:00</ConstraintDate>
             <LevelAssignments>0</LevelAssignments>
             <LevelingCanSplit>0</LevelingCanSplit>
             <LevelingDelay>0</LevelingDelay>
@@ -10612,8 +10612,8 @@
             <OutlineNumber>8.25</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
-            <Start>2026-11-18T08:00:00</Start>
-            <Finish>2026-11-18T17:00:00</Finish>
+            <Start>2026-11-24T08:00:00</Start>
+            <Finish>2026-11-24T17:00:00</Finish>
             <Duration>PT6H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -10633,7 +10633,7 @@
             <RemainingDuration>PT6H0M0S</RemainingDuration>
             <ConstraintType>4</ConstraintType>
             <CalendarUID>-1</CalendarUID>
-            <ConstraintDate>2026-11-18T08:00:00</ConstraintDate>
+            <ConstraintDate>2026-11-24T08:00:00</ConstraintDate>
             <LevelAssignments>0</LevelAssignments>
             <LevelingCanSplit>0</LevelingCanSplit>
             <LevelingDelay>0</LevelingDelay>
@@ -10661,8 +10661,8 @@
             <OutlineNumber>8.26</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
-            <Start>2026-11-18T08:00:00</Start>
-            <Finish>2026-11-18T17:00:00</Finish>
+            <Start>2026-11-24T08:00:00</Start>
+            <Finish>2026-11-24T17:00:00</Finish>
             <Duration>PT1H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -10682,7 +10682,7 @@
             <RemainingDuration>PT1H0M0S</RemainingDuration>
             <ConstraintType>4</ConstraintType>
             <CalendarUID>-1</CalendarUID>
-            <ConstraintDate>2026-11-18T08:00:00</ConstraintDate>
+            <ConstraintDate>2026-11-24T08:00:00</ConstraintDate>
             <LevelAssignments>0</LevelAssignments>
             <LevelingCanSplit>0</LevelingCanSplit>
             <LevelingDelay>0</LevelingDelay>
@@ -10825,8 +10825,8 @@
             <OutlineNumber>8.29</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
-            <Start>2026-11-13T08:00:00</Start>
-            <Finish>2026-11-13T17:00:00</Finish>
+            <Start>2026-11-19T08:00:00</Start>
+            <Finish>2026-11-19T17:00:00</Finish>
             <Duration>PT8H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -10846,7 +10846,7 @@
             <RemainingDuration>PT8H0M0S</RemainingDuration>
             <ConstraintType>4</ConstraintType>
             <CalendarUID>-1</CalendarUID>
-            <ConstraintDate>2026-11-13T08:00:00</ConstraintDate>
+            <ConstraintDate>2026-11-19T08:00:00</ConstraintDate>
             <LevelAssignments>0</LevelAssignments>
             <LevelingCanSplit>0</LevelingCanSplit>
             <LevelingDelay>0</LevelingDelay>
@@ -11114,8 +11114,8 @@
             <OutlineNumber>8.35</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
-            <Start>2026-11-19T08:00:00</Start>
-            <Finish>2026-11-20T17:00:00</Finish>
+            <Start>2026-11-17T08:00:00</Start>
+            <Stop>2026-11-18T17:00:00</Stop><Finish>2026-11-18T17:00:00</Finish>
             <Duration>PT9H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -11130,12 +11130,12 @@
             <IsSubprojectReadOnly>0</IsSubprojectReadOnly>
             <ExternalTask>0</ExternalTask>
             <FixedCostAccrual>3</FixedCostAccrual>
-            <PercentComplete>0</PercentComplete>
-            <PercentWorkComplete>0</PercentWorkComplete>
-            <RemainingDuration>PT9H0M0S</RemainingDuration>
+            <PercentComplete>100</PercentComplete>
+            <PercentWorkComplete>100</PercentWorkComplete>
+            
             <ConstraintType>4</ConstraintType>
             <CalendarUID>-1</CalendarUID>
-            <ConstraintDate>2026-11-19T08:00:00</ConstraintDate>
+            <ConstraintDate>2026-11-17T08:00:00</ConstraintDate>
             <LevelAssignments>0</LevelAssignments>
             <LevelingCanSplit>0</LevelingCanSplit>
             <LevelingDelay>0</LevelingDelay>
@@ -11151,7 +11151,7 @@
             </PredecessorLink>
             <Active>1</Active>
             <Manual>0</Manual>
-        </Task>
+        <Notes>[HECHA 2026-11-18] entregables/15_Manual_Usuario.docx, 8 secciones escritas para el participante de QT.8: ponerse el visor, el aviso de malestar y que se puede parar, los cuatro pasos del tutorial, la fila de pads con el rotulo que cada uno dice de verdad, elegir ritmo y velocidad, los aros y el veredicto, modo libre, los resultados en palabras, siete problemas por sintoma, y que se guarda y que no. Los rotulos salen del repo Unity, no se teclean. 28 pruebas en scripts/test_manuales.py</Notes><Resume>2026-11-18T17:00:00</Resume><ActualStart>2026-11-17T08:00:00</ActualStart><ActualFinish>2026-11-18T17:00:00</ActualFinish><ActualDuration>PT9H0M0S</ActualDuration></Task>
         <Task>
             <UID>156</UID>
             <ID>153</ID>
@@ -11163,8 +11163,8 @@
             <OutlineNumber>8.36</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
-            <Start>2026-10-21T08:00:00</Start>
-            <Stop>2026-10-21T17:00:00</Stop><Finish>2026-10-21T17:00:00</Finish>
+            <Start>2026-11-18T08:00:00</Start>
+            <Stop>2026-11-18T17:00:00</Stop><Finish>2026-11-18T17:00:00</Finish>
             <Duration>PT1H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -11184,7 +11184,7 @@
             
             <ConstraintType>4</ConstraintType>
             <CalendarUID>-1</CalendarUID>
-            <ConstraintDate>2026-10-21T08:00:00</ConstraintDate>
+            <ConstraintDate>2026-11-18T08:00:00</ConstraintDate>
             <LevelAssignments>0</LevelAssignments>
             <LevelingCanSplit>0</LevelingCanSplit>
             <LevelingDelay>0</LevelingDelay>
@@ -11200,7 +11200,7 @@
             </PredecessorLink>
             <Active>1</Active>
             <Manual>0</Manual>
-        <Notes>[HECHA 2026-10-21] BateriaVR/README.md: version de Unity, los dos paquetes del Asset Store que faltan al clonar y como reponerlos, orden de los constructores de escena, como correr las pruebas en batchmode, compilar e instalar el APK con quest.sh y como depurar en el visor. Es el manual tecnico de instalacion y ejecucion</Notes><Resume>2026-10-21T17:00:00</Resume><ActualStart>2026-10-21T08:00:00</ActualStart><ActualFinish>2026-10-21T17:00:00</ActualFinish><ActualDuration>PT1H0M0S</ActualDuration></Task>
+        <Notes>[HECHA 2026-10-21] BateriaVR/README.md: version de Unity, los dos paquetes del Asset Store que faltan al clonar y como reponerlos, orden de los constructores de escena, como correr las pruebas en batchmode, compilar e instalar el APK con quest.sh y como depurar en el visor. Es el manual tecnico de instalacion y ejecucion</Notes><Resume>2026-11-18T17:00:00</Resume><ActualStart>2026-11-18T08:00:00</ActualStart><ActualFinish>2026-11-18T17:00:00</ActualFinish><ActualDuration>PT1H0M0S</ActualDuration></Task>
         <Task>
             <UID>157</UID>
             <ID>154</ID>
@@ -11212,8 +11212,8 @@
             <OutlineNumber>8.37</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
-            <Start>2026-11-13T08:00:00</Start>
-            <Finish>2026-11-16T17:00:00</Finish>
+            <Start>2026-11-19T08:00:00</Start>
+            <Finish>2026-11-20T17:00:00</Finish>
             <Duration>PT16H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -11233,7 +11233,7 @@
             <RemainingDuration>PT16H0M0S</RemainingDuration>
             <ConstraintType>4</ConstraintType>
             <CalendarUID>-1</CalendarUID>
-            <ConstraintDate>2026-11-13T08:00:00</ConstraintDate>
+            <ConstraintDate>2026-11-19T08:00:00</ConstraintDate>
             <LevelAssignments>0</LevelAssignments>
             <LevelingCanSplit>0</LevelingCanSplit>
             <LevelingDelay>0</LevelingDelay>
@@ -11266,8 +11266,8 @@
             <OutlineNumber>8.38</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
-            <Start>2026-11-16T08:00:00</Start>
-            <Finish>2026-11-17T17:00:00</Finish>
+            <Start>2026-11-20T08:00:00</Start>
+            <Finish>2026-11-23T17:00:00</Finish>
             <Duration>PT16H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -11287,7 +11287,7 @@
             <RemainingDuration>PT16H0M0S</RemainingDuration>
             <ConstraintType>4</ConstraintType>
             <CalendarUID>-1</CalendarUID>
-            <ConstraintDate>2026-11-16T08:00:00</ConstraintDate>
+            <ConstraintDate>2026-11-20T08:00:00</ConstraintDate>
             <LevelAssignments>0</LevelAssignments>
             <LevelingCanSplit>0</LevelingCanSplit>
             <LevelingDelay>0</LevelingDelay>
@@ -11315,8 +11315,8 @@
             <OutlineNumber>8.39</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
-            <Start>2026-11-17T08:00:00</Start>
-            <Finish>2026-11-17T17:00:00</Finish>
+            <Start>2026-11-23T08:00:00</Start>
+            <Finish>2026-11-23T17:00:00</Finish>
             <Duration>PT8H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -11336,7 +11336,7 @@
             <RemainingDuration>PT8H0M0S</RemainingDuration>
             <ConstraintType>4</ConstraintType>
             <CalendarUID>-1</CalendarUID>
-            <ConstraintDate>2026-11-17T08:00:00</ConstraintDate>
+            <ConstraintDate>2026-11-23T08:00:00</ConstraintDate>
             <LevelAssignments>0</LevelAssignments>
             <LevelingCanSplit>0</LevelingCanSplit>
             <LevelingDelay>0</LevelingDelay>
@@ -11364,8 +11364,8 @@
             <OutlineNumber>8.40</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
-            <Start>2026-11-18T08:00:00</Start>
-            <Finish>2026-11-19T17:00:00</Finish>
+            <Start>2026-11-24T08:00:00</Start>
+            <Finish>2026-11-25T17:00:00</Finish>
             <Duration>PT20H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -11385,7 +11385,7 @@
             <RemainingDuration>PT20H0M0S</RemainingDuration>
             <ConstraintType>4</ConstraintType>
             <CalendarUID>-1</CalendarUID>
-            <ConstraintDate>2026-11-18T08:00:00</ConstraintDate>
+            <ConstraintDate>2026-11-24T08:00:00</ConstraintDate>
             <LevelAssignments>0</LevelAssignments>
             <LevelingCanSplit>0</LevelingCanSplit>
             <LevelingDelay>0</LevelingDelay>
@@ -11533,8 +11533,8 @@
             <OutlineNumber>8.41</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
-            <Start>2026-11-19T08:00:00</Start>
-            <Finish>2026-11-20T17:00:00</Finish>
+            <Start>2026-11-25T08:00:00</Start>
+            <Finish>2026-11-26T17:00:00</Finish>
             <Duration>PT19H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -11554,7 +11554,7 @@
             <RemainingDuration>PT19H0M0S</RemainingDuration>
             <ConstraintType>4</ConstraintType>
             <CalendarUID>-1</CalendarUID>
-            <ConstraintDate>2026-11-19T08:00:00</ConstraintDate>
+            <ConstraintDate>2026-11-25T08:00:00</ConstraintDate>
             <LevelAssignments>0</LevelAssignments>
             <LevelingCanSplit>0</LevelingCanSplit>
             <LevelingDelay>0</LevelingDelay>
@@ -11597,8 +11597,8 @@
             <OutlineNumber>8.42</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
-            <Start>2026-11-18T08:00:00</Start>
-            <Finish>2026-11-18T17:00:00</Finish>
+            <Start>2026-11-24T08:00:00</Start>
+            <Finish>2026-11-24T17:00:00</Finish>
             <Duration>PT11H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -11618,7 +11618,7 @@
             <RemainingDuration>PT11H0M0S</RemainingDuration>
             <ConstraintType>4</ConstraintType>
             <CalendarUID>-1</CalendarUID>
-            <ConstraintDate>2026-11-18T08:00:00</ConstraintDate>
+            <ConstraintDate>2026-11-24T08:00:00</ConstraintDate>
             <LevelAssignments>0</LevelAssignments>
             <LevelingCanSplit>0</LevelingCanSplit>
             <LevelingDelay>0</LevelingDelay>
@@ -11671,8 +11671,8 @@
             <OutlineNumber>8.43</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
-            <Start>2026-11-19T08:00:00</Start>
-            <Finish>2026-11-19T17:00:00</Finish>
+            <Start>2026-11-25T08:00:00</Start>
+            <Finish>2026-11-25T17:00:00</Finish>
             <Duration>PT8H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -11692,7 +11692,7 @@
             <RemainingDuration>PT8H0M0S</RemainingDuration>
             <ConstraintType>4</ConstraintType>
             <CalendarUID>-1</CalendarUID>
-            <ConstraintDate>2026-11-19T08:00:00</ConstraintDate>
+            <ConstraintDate>2026-11-25T08:00:00</ConstraintDate>
             <LevelAssignments>0</LevelAssignments>
             <LevelingCanSplit>0</LevelingCanSplit>
             <LevelingDelay>0</LevelingDelay>
@@ -11720,8 +11720,8 @@
             <OutlineNumber>8.44</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
-            <Start>2026-11-19T08:00:00</Start>
-            <Finish>2026-11-19T17:00:00</Finish>
+            <Start>2026-11-25T08:00:00</Start>
+            <Finish>2026-11-25T17:00:00</Finish>
             <Duration>PT1H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -11741,7 +11741,7 @@
             <RemainingDuration>PT1H0M0S</RemainingDuration>
             <ConstraintType>4</ConstraintType>
             <CalendarUID>-1</CalendarUID>
-            <ConstraintDate>2026-11-19T08:00:00</ConstraintDate>
+            <ConstraintDate>2026-11-25T08:00:00</ConstraintDate>
             <LevelAssignments>0</LevelAssignments>
             <LevelingCanSplit>0</LevelingCanSplit>
             <LevelingDelay>0</LevelingDelay>
@@ -11769,8 +11769,8 @@
             <OutlineNumber>8.45</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
-            <Start>2026-11-19T08:00:00</Start>
-            <Finish>2026-11-19T17:00:00</Finish>
+            <Start>2026-11-25T08:00:00</Start>
+            <Finish>2026-11-25T17:00:00</Finish>
             <Duration>PT0H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -11789,7 +11789,7 @@
             <PercentWorkComplete>0</PercentWorkComplete>
             <ConstraintType>4</ConstraintType>
             <CalendarUID>-1</CalendarUID>
-            <ConstraintDate>2026-11-19T08:00:00</ConstraintDate>
+            <ConstraintDate>2026-11-25T08:00:00</ConstraintDate>
             <LevelAssignments>0</LevelAssignments>
             <LevelingCanSplit>0</LevelingCanSplit>
             <LevelingDelay>0</LevelingDelay>
@@ -11817,8 +11817,8 @@
             <OutlineNumber>8.46</OutlineNumber>
             <OutlineLevel>2</OutlineLevel>
             <Priority>500</Priority>
-            <Start>2026-11-19T08:00:00</Start>
-            <Finish>2026-11-20T17:00:00</Finish>
+            <Start>2026-11-25T08:00:00</Start>
+            <Finish>2026-11-26T17:00:00</Finish>
             <Duration>PT15H0M0S</Duration>
             <DurationFormat>7</DurationFormat>
             <ResumeValid>0</ResumeValid>
@@ -11838,7 +11838,7 @@
             <RemainingDuration>PT15H0M0S</RemainingDuration>
             <ConstraintType>4</ConstraintType>
             <CalendarUID>-1</CalendarUID>
-            <ConstraintDate>2026-11-19T08:00:00</ConstraintDate>
+            <ConstraintDate>2026-11-25T08:00:00</ConstraintDate>
             <LevelAssignments>0</LevelAssignments>
             <LevelingCanSplit>0</LevelingCanSplit>
             <LevelingDelay>0</LevelingDelay>

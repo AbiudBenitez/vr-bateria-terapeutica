@@ -28,10 +28,27 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import rc257 as R
 import rc_recorte as RC
 
-ARRANQUE = D.date(2026, 11, 12)   # primer dia habil disponible
+# LA FECHA DE ESTADO SE DECLARA UNA VEZ, AQUI, y el arranque sale de ella.
+#
+# Vive en este modulo y no en rebaselinear porque rebaselinear importa a este: al contrario
+# seria un ciclo de importacion, y lo fue durante un rato.
+#
+# Escribir el arranque aparte es exactamente como el cronograma acabo programando trabajo
+# pendiente en el pasado: la fecha de estado avanzaba y el plan se quedaba donde estaba.
+CORTE = D.date(2026, 11, 18)      # fecha de estado: la del cierre mas reciente
 COMPROMETIDA = D.date(2026, 11, 13)
 RESERVA = D.date(2026, 11, 20)    # fin de la reserva de gestion
 EXAMENES = D.date(2026, 11, 23)
+META = RESERVA                    # contra que fecha se juzga este plan
+
+
+def _primer_habil(d):
+    while d.weekday() >= 5:
+        d += D.timedelta(days=1)
+    return d
+
+
+ARRANQUE = _primer_habil(CORTE)
 
 # --- traslapes declarados ------------------------------------------------------------------
 #
@@ -91,6 +108,14 @@ TRASLAPES = {
 PENDIENTES = list(RC.PENDIENTES)
 PRE = RC.REMANENTE["pre"]
 
+# TRASLAPES QUE YA NO APLICAN porque su antecedente se cerro. No se borran de la tabla: la
+# razon por la que se declararon sigue siendo cierta y volveria a hacer falta si la actividad
+# se reabriera. Se separan para que una prueba pueda exigir que los VIVOS apunten a enlaces
+# que existen, sin que un cierre normal deje la tabla en falso.
+MOOT = {k: v for k, v in TRASLAPES.items()
+        if k[0] not in PENDIENTES or k[1] not in PENDIENTES}
+VIVOS = {k: v for k, v in TRASLAPES.items() if k not in MOOT}
+
 
 def _topo():
     grado = {k: len(PRE[k]) for k in PENDIENTES}
@@ -120,7 +145,7 @@ def resolver():
     for k in ORDEN:
         inicios = []
         for p in PRE[k]:
-            tipo, demora, _ = TRASLAPES.get((k, p), ("FS", 0, ""))
+            tipo, demora, _ = VIVOS.get((k, p), ("FS", 0, ""))
             base = ES[p] if tipo == "SS" else EF[p]
             inicios.append(base + demora)
         ES[k] = max(inicios, default=0.0)
@@ -170,7 +195,20 @@ def _dias_habiles(a, b):
             yield d
 
 
-HOLGURA_DIAS = len(list(_dias_habiles(CIERRE, RESERVA)))
+HOLGURA_DIAS = len(list(_dias_habiles(CIERRE, META))) if CIERRE <= META else 0
+
+# SI EL PLAN NO CABE, LO DICE. Es la unica salida honesta: un replan que se recorta solo para
+# dar la fecha comprometida es como se llega a un cronograma que nadie puede cumplir y que
+# nadie puede desmentir, porque sus numeros cuadran.
+DESBORDA = CIERRE > META
+DIAS_DE_DESBORDE = len(list(_dias_habiles(META, CIERRE))) if DESBORDA else 0
+AVISO = ("" if not DESBORDA else
+         "EL PLAN NO CABE. Cierra el %s, %d dias habiles despues del %s, que es el fin de la "
+         "reserva de gestion. Arranca el %s porque esa es la fecha de estado declarada en "
+         "replan.CORTE: si el trabajo ya avanzo y no esta registrado, hay que registrarlo "
+         "y volver a correr esto; si no avanzo, la fecha de cierre del proyecto se movio y eso "
+         "es lo que hay que reportar."
+         % (CIERRE, DIAS_DE_DESBORDE, META, ARRANQUE))
 
 
 if __name__ == "__main__":
@@ -182,6 +220,12 @@ if __name__ == "__main__":
     print("  comprometida  %s   reserva %s   examenes %s"
           % (COMPROMETIDA, RESERVA, EXAMENES))
     print("  holgura contra el fin de la reserva: %d dias habiles" % HOLGURA_DIAS)
+    if MOOT:
+        print("  traslapes que ya no aplican (su antecedente cerro): %s"
+              % ", ".join("%s<-%s" % k for k in sorted(MOOT)))
+    if DESBORDA:
+        print()
+        print("  " + AVISO)
     print()
     pordia = {}
     for k, (i, f) in CALENDARIO.items():
