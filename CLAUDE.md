@@ -940,3 +940,90 @@ los comandos decían «Sin conexión». Corregido.
 | Fecha | Tarea | Carpeta |
 |---|---|---|
 | 4-sep-2026 | Ejemplo de ruta crítica (aceites esenciales), desarrollo completo hasta ruta crítica | `tareas-individuales/2026-09-04-ejemplo-ruta-critica/` |
+
+## Lista de verificación de compromisos — documento 19, 18-nov-2026
+
+A medio curso se entregó a la docente una lista de las 257 tareas de la hoja de control,
+agrupadas por responsable, con marca de hecho y espacio para firmar. **Falta firmarla**, y
+desde entonces el alcance cambió: firmar las recortadas como pendientes sería comprometerse
+a trabajo que el proyecto decidió no hacer.
+
+| | |
+|---|---|
+| Documento | `entregables/19_Lista_de_Verificacion_Compromisos.docx` — 7 408 palabras, 14 tablas |
+| Datos | `scripts/verificacion.py` |
+| Generador | `scripts/gen_verificacion.py` |
+| Pruebas | `scripts/test_verificacion.py` — 28 |
+| Papel entregado | `referencia/Lista_de_verificacion_compromisos_medio_curso.docx` |
+
+### El cotejo contra la hoja de control: las 257 coinciden
+
+Mismas claves, mismo texto, mismo agrupamiento. **Cuatro diferencias**, todas del papel
+entregado y no del original:
+
+- `AL.1` figuraba con **Sarai**; la hoja la asigna a **Kimberly**, que es coherente con el
+  área. Sarai baja a 31 tareas, Kimberly sube a 32.
+- `EB.3` llevaba la fecha `7/09/f2a0lt2a6 sust`: la fecha se interleó con la observación
+  «falta sustentar mas la investagacion sobre los juegos de ritmo».
+- `ML.1` llevaba `7/09/2026 1`, con un 1 de sobra.
+- Cuatro fechas con el día en dos formatos (`DP.1 EB.1 EO.1 JA.1`).
+
+### Los cuatro estados, y por qué son cuatro
+
+```
+Hecho (fecha real)                137
+Pendiente                          17
+Hecho · después fuera de alcance   32
+Fuera de alcance                   71
+                                  ---
+                                  257
+```
+
+**32 de las 103 recortadas estaban marcadas como hechas en el papel entregado.** El Audio
+Mixer se construyó y luego se descartó para no remedir la latencia; el agarre de baquetas se
+implementó y murió cuando quedaron solidarias al control; la investigación musical se
+completó antes de que el alcance bajara a una pista. Conservan la marca de hechas **con el
+recorte declarado al lado**: marcarlas solo como fuera de alcance haría que el documento
+nuevo retirara 32 tareas que el anterior ya reportó, y eso se ve al cruzar los dos papeles.
+`test_ninguna_hecha_a_medio_curso_pierde_su_marca` lo impide.
+
+Las 17 pendientes **son todas de Diana** y todas de QA. Las siete áreas técnicas cerraron lo
+que les quedaba dentro del alcance.
+
+### La columna `Estado` del xlsx está muerta: no se lee
+
+Quedó congelada en septiembre. **235 de 257 dicen «Bloqueada»** y solo 9 «Completado»,
+cuando el proyecto lleva 137 cerradas de las 257. `DP.1` —crear el proyecto de Unity— dice
+«Sin empezar». El estado se **deriva** de `recorte.RECORTADAS` y `cierres.CIERRES`.
+
+### El papel entregado es evidencia, no un borrador
+
+Es el **único registro** de que esas 32 se hicieron: `cierres.CIERRES` solo cubre las 155
+vivas, por construcción. Por eso se copió a `referencia/` y hay una prueba que exige que siga
+ahí. Sin él, el estado de esas 32 no se puede derivar de nada.
+
+### Las razones del recorte no se sostenían solas
+
+`recorte.RECORTADAS` se escribió para leerse **en orden**, agrupada por área bajo un
+encabezado que ya trae el criterio: ahí «Misma razón» y «Depende de AB.1» funcionan. El anexo
+del documento 19 va **alfabético** y cada fila se lee sola.
+
+Se arregla sin tocar `recorte.py`, que es la fuente del documento 10:
+
+- `REMITE_A` — 18 que apuntan a otra actividad. Se pega la razón de aquella. `IS.3` decía
+  «Depende de SC», que no es una clave: es `SC.1`. `AC.2` decía «ese documento» sin decir cuál.
+- `RAZON_AMPLIADA` — 12 que solo repetían el nombre de la tarea. Se les **añade** el motivo;
+  una prueba exige que la razón original siga contenida en la ampliada.
+- `R14` se explica una vez en el anexo, porque ocho razones lo nombran sin explicarlo.
+
+La prueba **no mide por largo**: «Combo. Recortada en R14» son 23 caracteres y dice todo,
+«Sonidos de interfaz» son 19 y no dice nada. Exige que haya un motivo **además** del nombre
+de la tarea.
+
+### Alcance vigente: 154 aquí, 155 en el cronograma
+
+La diferencia es `DM.1`, la única actividad **añadida** después del recorte, que no está en
+la hoja de control. El documento 19 es espejo de las 257 originales y no la incluye; hay una
+prueba que declara esa diferencia para que no parezca un descuadre.
+
+221 pruebas de documentación, 0 fallidas.
