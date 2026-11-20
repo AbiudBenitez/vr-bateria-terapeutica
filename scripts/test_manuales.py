@@ -7,6 +7,7 @@ que ninguno, porque el lector lo sigue y falla sin entender por que.
 La prueba que compara la cache contra el repo Unity SE SALTA cuando el repo no esta clonado.
 Es el unico caso: las demas valen siempre, porque leen la cache commiteada.
 """
+import hashlib
 import os
 import re
 import sys
@@ -16,6 +17,7 @@ import pytest
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import capturas
+import gen_manual_tecnico as GT
 import manual_datos
 
 from docx import Document
@@ -163,6 +165,58 @@ def test_desinstalar_dice_que_datos_se_pierden():
     assert "quest.sh pull" in TEC
     for pista in ("Mediciones de sesión", "tutorial_visto", "Screenshots"):
         assert pista in TEC, "la sección de desinstalar no menciona %r" % pista
+
+
+# ------------------------------------------------------------------ el release
+
+def test_el_tag_del_release_es_la_version_interna_del_apk():
+    """UN TAG QUE NO COINCIDE CON EL APK deja a quien lo baja sin saber que instalo.
+
+    Y renombrar el tag no lo arregla: la version vive dentro del binario, asi que cuadrarlos
+    obliga a recompilar. Por eso el tag se deriva de `version` en vez de teclearse, y esto es
+    lo que impide que alguien lo escriba a mano la proxima vez.
+    """
+    assert GT.RELEASE_TAG == "v%s" % D["version"], \
+        "el tag %r no es la version del APK (%s)" % (GT.RELEASE_TAG, D["version"])
+    assert GT.RELEASE_URL.startswith("https://github.com/AbiudBenitez/BateriaVR/releases/")
+    assert GT.RELEASE_URL.endswith(GT.RELEASE_TAG), \
+        "la URL del release no apunta al tag: %r" % GT.RELEASE_URL
+    assert re.fullmatch(r"[0-9a-f]{64}", GT.RELEASE_SHA256), \
+        "el SHA-256 publicado no tiene forma de SHA-256: %r" % GT.RELEASE_SHA256
+
+
+def test_el_manual_tecnico_dice_de_donde_bajar_el_apk():
+    """INSTALAR NO DEBE EXIGIR COMPILAR. El manual es tambien para quien solo va a usar la app.
+
+    La seccion 1 pide Unity, el modulo de Android y una cuenta con dos paquetes del Asset
+    Store. Nada de eso hace falta para instalar un APK ya compilado, y si el manual no dice
+    de donde bajarlo, el lector cree que si.
+    """
+    assert any("release de GitHub" in h for _, h in encabezados(TECNICO)), \
+        "el manual tecnico no tiene seccion de como bajar el APK publicado"
+    for pista in (GT.RELEASE_URL, GT.RELEASE_TAG, GT.RELEASE_SHA256,
+                  "adb install -r", "shasum -a 256"):
+        assert pista in TEC, "la seccion del release no menciona %r" % pista
+    # LAS DOS ADVERTENCIAS. El repo es privado, asi que el enlace no basta: hay que pedir
+    # acceso. Y QB.2 sigue abierta, asi que el APK no esta probado en hardware; callarlo
+    # haria pasar por validada una build que nadie se ha puesto en la cabeza.
+    assert "privado" in TEC, "no avisa de que el repositorio es privado"
+    assert "QB.2" in TEC, "no dice que la build no esta probada en el visor"
+
+
+def test_el_sha256_publicado_es_el_del_apk_compilado():
+    """SE SALTA cuando no hay APK: el repo Unity se clona sin su carpeta Builds."""
+    r = manual_datos.repo()
+    apk = os.path.join(r, "Builds", "bateria.apk") if r else None
+    if not apk or not os.path.isfile(apk):
+        pytest.skip("no hay APK compilado con el que comparar")
+    h = hashlib.sha256()
+    with open(apk, "rb") as f:
+        for trozo in iter(lambda: f.read(1 << 20), b""):
+            h.update(trozo)
+    assert h.hexdigest() == GT.RELEASE_SHA256, \
+        ("el APK de Builds no es el publicado en %s.\n  publicado: %s\n  en disco:  %s"
+         % (GT.RELEASE_TAG, GT.RELEASE_SHA256, h.hexdigest()))
 
 
 # ------------------------------------------------------------------ el manual de usuario

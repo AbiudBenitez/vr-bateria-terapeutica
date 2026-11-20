@@ -1027,3 +1027,42 @@ la hoja de control. El documento 19 es espejo de las 257 originales y no la incl
 prueba que declara esa diferencia para que no parezca un descuadre.
 
 221 pruebas de documentación, 0 fallidas.
+
+## Release del prototipo — v0.1.0, 20-nov-2026
+
+La build de `QB.1` está publicada como release del repo Unity, con el APK adjunto. Es la vía
+de instalación de quien no va a compilar: no necesita Unity, ni clonar, ni los dos paquetes
+del Asset Store.
+
+| | |
+|---|---|
+| Release | `https://github.com/AbiudBenitez/BateriaVR/releases/tag/v0.1.0` |
+| Adjuntos | `bateria.apk` (65.1 MB) · `14_Manual_Tecnico.docx` · `15_Manual_Usuario.docx` |
+| SHA-256 | `66b601854a5ad3053134ac75238294a3d0a62b35ba57201ebd3531c4f457effb` |
+| Tag | `v0.1.0` en `f602068`, anotado |
+| Documentado en | manual técnico §5.1, y `README.md` del repo Unity |
+
+### El tag se deriva de la versión interna del APK
+
+`RELEASE_TAG = "v%s" % D["version"]` en `gen_manual_tecnico.py`, **nunca tecleado**. Un tag
+`v1.0.0` sobre un APK que por dentro dice `0.1.0` deja a quien lo baja sin saber qué instaló,
+y renombrar el tag no lo arregla: la versión vive en el binario, así que cuadrarlos obliga a
+**recompilar**. `test_el_tag_del_release_es_la_version_interna_del_apk` lo vigila.
+
+Si la entrega final quiere `v1.0.0`, el orden es: subir `bundleVersion`, recompilar, volver a
+calcular el SHA-256, y entonces el tag.
+
+### Marcado como previo, y el repo es privado
+
+`prerelease` mientras `QB.2` siga abierta: el APK está verificado por dentro —`boot.config`
+con `xrsdk-pre-init-library=UnityOpenXR`, `libUnityOpenXR.so`, `libopenxr_loader.so`— pero
+nadie se lo ha puesto en la cabeza. Y el repositorio es **privado**: el enlace no basta, hay
+que tener acceso. Las dos cosas están dichas en el manual y hay una prueba que las exige.
+
+### El SHA-256 se publica y se compara
+
+`test_el_sha256_publicado_es_el_del_apk_compilado` rehace el hash del APK de `Builds/` y lo
+compara con el publicado. **Se salta** cuando el APK no está, porque `Builds/` está ignorado
+y un clon limpio no lo trae. Si alguien recompila y no republica, la prueba lo dice.
+
+224 pruebas de documentación, 0 fallidas.

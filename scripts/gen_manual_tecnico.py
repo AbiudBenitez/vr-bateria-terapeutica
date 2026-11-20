@@ -18,6 +18,18 @@ DOC = os.path.join(SALIDA, "14_Manual_Tecnico.docx")
 D = manual_datos.DATOS
 FECHA = "18 de noviembre de 2026"
 
+# EL RELEASE DEL REPO UNITY. La build compilada se publica como release con el APK adjunto, y
+# esa es la via de instalacion de quien no va a compilar: no necesita Unity ni los paquetes del
+# Asset Store.
+#
+# EL TAG SE DERIVA DE LA VERSION INTERNA DEL APK, no se teclea. Un tag `v1.0.0` sobre un APK que
+# por dentro dice 0.1.0 deja a quien lo baja sin saber que instalo, y renombrar el tag no lo
+# arregla: habria que recompilar. Hay una prueba que exige que sigan coincidiendo.
+RELEASE_TAG = "v%s" % D["version"]
+RELEASE_URL = "https://github.com/AbiudBenitez/BateriaVR/releases/tag/%s" % RELEASE_TAG
+RELEASE_APK = "bateria.apk"
+RELEASE_SHA256 = "66b601854a5ad3053134ac75238294a3d0a62b35ba57201ebd3531c4f457effb"
+
 
 def doc():
     d = neutro.nuevo()
@@ -63,6 +75,10 @@ def doc():
         "El modo de desarrollador del visor se activa desde la aplicación móvil de Meta, en los "
         "ajustes del dispositivo. Sin él, adb no ve el visor y no se puede instalar nada que no "
         "venga de la tienda.")
+    neutro.P(d,
+        "Si lo único que quieres es instalar la aplicación y usarla, de esta lista solo hacen "
+        "falta las dos primeras líneas —el visor en modo de desarrollador y adb—: el APK ya "
+        "compilado se baja del release de GitHub. Está en la sección 5.1.")
 
     # ------------------------------------------------------------------ 2
     neutro.H(d, "2. Instalar el proyecto desde cero", 1)
@@ -132,11 +148,17 @@ def doc():
         ["Dónde cae el APK", "Builds/bateria.apk"],
     ], widths=[5.0, 10.0], fs=9, negritas_col0=True)
     neutro.P(d,
-        "El APK no está en el repositorio: son unos 60 MB de binario que cambian en cada "
-        "compilación. Hay que compilarlo o pedírselo a quien lo tenga.")
+        "El APK no está en el árbol del repositorio: son unos 65 MB de binario que cambian en "
+        "cada compilación, y versionarlo haría crecer el historial sin que nadie pueda leer el "
+        "cambio. Lo que sí está publicado es el APK compilado, como archivo adjunto del release "
+        "%s del repositorio (sección 5.1). O se compila, o se baja de ahí." % RELEASE_TAG)
 
     # ------------------------------------------------------------------ 5
     neutro.H(d, "5. Instalar en el visor", 1)
+    neutro.P(d,
+        "Dos caminos, y el APK que se instala es el mismo: el que acabas de compilar, con "
+        "quest.sh, o el que está publicado en el release de GitHub, que no exige Unity ni "
+        "clonar el repositorio. Lo segundo está en la sección 5.1.")
     neutro.P(d,
         "La primera vez hace falta el cable, solo para decirle al visor que acepte conexiones "
         "inalámbricas. Después se trabaja sin cable.")
@@ -151,6 +173,37 @@ def doc():
         "quest.sh lee el identificador del paquete de ProjectSettings y no lo lleva escrito. "
         "Estuvo escrito a mano, con el valor de la plantilla de Unity, y la recogida de "
         "mediciones apuntaba a una carpeta que no existía.")
+
+    neutro.H(d, "5.1 Bajar el APK ya compilado, del release de GitHub", 2)
+    neutro.P(d,
+        "La build está publicada como release del repositorio del prototipo, con el APK como "
+        "archivo adjunto. Es la vía de quien solo va a instalar y usar la aplicación: no hace "
+        "falta Unity, ni clonar el repositorio, ni los dos paquetes del Asset Store de la "
+        "sección 2.")
+    neutro.table(d, ["Qué", "Cuál"], [
+        ["Release", RELEASE_TAG],
+        ["Dónde", RELEASE_URL],
+        ["Archivo adjunto", "%s, unos 65 MB" % RELEASE_APK],
+        ["Versión interna del APK", D["version"]],
+        ["SHA-256 del archivo", RELEASE_SHA256],
+    ], widths=[4.0, 11.0], fs=9, negritas_col0=True)
+    neutro.P(d,
+        "Bajado el archivo, comprobar que es el publicado antes de instalarlo, y después "
+        "instalarlo con el visor conectado por cable o por red:")
+    bloque(d, "shasum -a 256 %s          # debe dar el SHA-256 de la tabla\n"
+              "adb install -r %s         # instala sin borrar datos de sesión"
+              % (RELEASE_APK, RELEASE_APK))
+    neutro.P(d,
+        "El tag del release es la versión interna del APK con una v delante, y no es una "
+        "coincidencia: se deriva de ella. Así, quien tenga un APK suelto puede saber de qué "
+        "release salió leyendo la versión que la propia aplicación declara.")
+    neutro.P(d,
+        "Dos cosas que hay que saber antes de bajarlo. El repositorio es privado, así que el "
+        "release solo lo puede descargar quien tenga acceso al repositorio; pedirlo es parte "
+        "del trámite. Y el release está marcado como previo —prerelease—, porque la actividad "
+        "QB.2, probar la build en el visor, sigue abierta: el APK está verificado por dentro "
+        "(lleva las bibliotecas de OpenXR y el boot.config que las carga) pero no hay todavía "
+        "una corrida completa en hardware que lo respalde.")
 
     # ------------------------------------------------------------------ 6
     neutro.H(d, "6. Desinstalar", 1)
