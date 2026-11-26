@@ -3,6 +3,7 @@ import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from neutro import *
 import pdm, edt, costos
+import nota_enfoque
 
 doc = nuevo()
 portada(doc,
@@ -16,6 +17,11 @@ portada(doc,
   ("Equipo","Equipo A"),
   ("Periodo del proyecto","1 de septiembre al 13 de noviembre de 2026"),
   ("Presupuesto total","$%s MXN" % format(round(costos.PRESUPUESTO), ",d"))])
+
+# --------------------------------------------------- nota de revisión del enfoque
+# Antes del control del documento: es lo primero que tiene que leer quien abra el acta, y el
+# cuerpo de abajo NO se modifica. Ver nota_enfoque.py.
+print("nota de enfoque: %d pasajes" % nota_enfoque.poner(doc, "Acta constitutiva"))
 
 # ---------------------------------------------------------------- control
 H(doc,"Control del documento",1)

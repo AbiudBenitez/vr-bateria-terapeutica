@@ -77,5 +77,52 @@ class Coherencia(unittest.TestCase):
                                "El motivo %r es una afirmación, no un argumento" % titulo)
 
 
+class NotaEnLosOriginales(unittest.TestCase):
+    """La nota tiene que estar DENTRO de los documentos originales, no solo en el 11.
+
+    Es el defecto que esta clase existe para que no vuelva: la revisión estaba escrita desde
+    octubre y ni la carta ni el acta la mencionaban, así que quien leyera uno de los dos no
+    encontraba rastro de que el encuadre había cambiado. Se detectó al revisar el cierre, el
+    25 de noviembre, dos días antes de entregar la documentación.
+    """
+
+    DOCS = {"Carta sponsor": "01_Carta_Sponsor.docx",
+            "Acta constitutiva": "02_Acta_Constitutiva.docx"}
+
+    def test_la_nota_encabeza_los_dos_documentos(self):
+        for doc, archivo in self.DOCS.items():
+            t = texto(archivo)
+            self.assertIn(re.sub(r"\s+", " ", enfoque.NOTA_TITULO), t,
+                          "%s se regeneró sin la nota de revisión" % archivo)
+
+    def test_la_nota_dice_donde_esta_el_registro_del_cambio(self):
+        """Una nota que avisa del cambio y no dice dónde leerlo deja al lector a medias."""
+        for archivo in self.DOCS.values():
+            t = texto(archivo)
+            for registro, _ in enfoque.REVISIONES:
+                self.assertIn(registro, t,
+                              "%s no remite a %s" % (archivo, registro))
+
+    def test_cada_documento_lista_sus_propios_pasajes(self):
+        for doc, archivo in self.DOCS.items():
+            mios = enfoque.pasajes_de(doc)
+            self.assertGreater(len(mios), 0,
+                               "%s no tiene ningún pasaje sustituido: o la tabla está "
+                               "incompleta o el documento no debería llevar nota" % doc)
+            t = texto(archivo)
+            for _, seccion, _, despues in mios:
+                self.assertIn(re.sub(r"\s+", " ", despues).strip(), t,
+                              "%s no muestra el texto nuevo de %s" % (archivo, seccion))
+
+    def test_el_acta_no_se_queda_corta_frente_a_lo_que_afirma(self):
+        """El acta afirmaba el marco motriz en cinco sitios y la tabla cubría uno.
+
+        Sin esto, la nota del acta remitía a una tabla que explicaba el perfil del asesor y
+        callaba el resumen ejecutivo, la visión y el objetivo específico, que son los que de
+        verdad declaran el fin del proyecto.
+        """
+        self.assertGreaterEqual(len(enfoque.pasajes_de("Acta constitutiva")), 5)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
