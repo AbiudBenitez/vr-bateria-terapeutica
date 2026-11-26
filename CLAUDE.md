@@ -15,14 +15,16 @@ Doble entregable:
 
 ## Enfoque terapéutico
 
-**Motriz primario, emocional secundario.** Decidido el 31-ago-2026.
+**Regulación emocional por medio del ritmo.** Es el marco VIGENTE. Sustituyó al de rehabilitación motriz, que el equipo retiró antes del corte de medio curso y quedó registrado el 18-oct-2026 en `11_Cambio_de_Enfoque.docx`.
 
-- Objetivo medible principal: coordinación óculo-manual y precisión rítmica.
-- Beneficio secundario reportado: relajación y reducción de estrés.
-- Marco de referencia: Neurologic Music Therapy (RAS, TIMP, PSE) y el iso-principio.
-- Protocolo de sesión: mide el tempo espontáneo del usuario, arranca ahí, desciende a 60 BPM, cierra con fase respiratoria a 6 resp/min.
+- Objetivo medible: **precisión temporal y constancia del pulso**. Es una observación de ejecución musical y no necesita respaldo clínico.
+- Marco de referencia: **solo PSE** (Patterned Sensory Enhancement) se sostiene entero. La auditoría del 18-nov (`18_Revision_Fundamentacion.docx`) dejó, de las 8 afirmaciones del marco teórico, **3 sostenidas, 3 acotadas y 2 retiradas**: RAS queda sin la rampa de tempo, TIMP se retira con el marco motriz y el iso-principio se retira completo.
+- El protocolo de sesión que el acta describía —arrancar en el tempo espontáneo del usuario, descender a 60 BPM, cerrar con fase respiratoria a 6 resp/min— **nunca llegó a ser una actividad del cronograma**. No está implementado y no entra en este alcance.
+- **Lo que NO se puede afirmar:** que alguien gradúe con esto una dificultad terapéutica, que mida amplitud de movimiento, ni que exista validación clínica. Nunca hubo asesor: la medida de éxito 8 está retirada y la 9 perdió la amplitud.
 
-Ver `docs/specs/2026-08-29-vr-percusion-terapeutica-design.md` para el diseño técnico completo.
+**Historia, porque hace falta para leer los documentos.** El marco motriz se decidió el 31-ago-2026 y con él se aprobaron la carta sponsor y el acta. Los dos **conservan su texto original a propósito** —reescribirlo borraría la evidencia de que hubo una revisión, y `test_enfoque.py` lo impide— y desde el 25-nov llevan al principio una nota que dice qué dejó de valer y dónde está el registro. Ver `scripts/nota_enfoque.py` y `enfoque.PASAJES`.
+
+Ver `docs/specs/2026-08-29-vr-percusion-terapeutica-design.md` para el diseño técnico, con el aviso de que describe el marco retirado.
 
 ## Decisiones técnicas cerradas
 
@@ -495,8 +497,28 @@ Una actividad borrada no deja rastro de por qué se quitó.
 
 ### Ojo con regenerar la carta de validación
 
-`gen_validacion.py` **sigue produciendo la sección 3.1**, que el equipo decidió retirar el
-21-sep. Correrlo sobrescribe esa decisión. Hay un aviso en el propio script.
+**Lo de la sección 3.1 está resuelto desde el 21-oct** (`9637e44`), y esta nota decía lo
+contrario hasta el 25-nov. `gen_validacion.py` ya NO la produce: el equipo retiró el 21-sep
+la nota que conciliaba las cifras del documento de medio curso con las del cronograma, y
+además su premisa caducó cuando `sincronizar_crono.py` pasó a sincronizar los dos
+cronogramas. Un generador que contradice una decisión del equipo y lo compensa con un
+comentario es una trampa: funciona hasta que la pisa quien no leyó el comentario.
+
+**Lo que sigue en pie es otra cosa, y es más importante.** Los documentos 07 y 08 llevan
+fecha del 21-sep y corte del 18-sep, con líneas de firma, pero sus cifras se LEEN del
+cronograma, que avanza. El 07 entregado declara 77 de 257 (30 %); hoy el mismo generador
+produciría 137 de 154 (89 %) bajo una fecha de hace dos meses. Eso no es actualizar un
+documento, es fabricar uno incoherente con una firma debajo.
+
+Por eso `gen_validacion.py` exige `--regenerar` y, sin ese argumento, explica los tres pasos:
+copiar los actuales a `entregables/superados/`, cambiar `HOY` y el corte, y volver a correrlo.
+El avance vigente se publica en `12_Estado_del_Proyecto.docx`, que para eso existe.
+
+**Consecuencia que hay que conocer:** el bloque de firmas del 07 entregado tiene una sola
+fila, la de la docente, mientras el generador produce cuatro —gerente, coordinadora, director
+y docente, leídas de `equipo.py`—. El documento está congelado en su fecha de entrega, así que
+esa diferencia no se cierra regenerándolo: se cierra emitiendo una carta nueva si el equipo
+decide que la entrega final necesita una.
 
 ## Ruta crítica v3 — recalculada tras el recorte, 22-oct-2026
 
@@ -580,16 +602,43 @@ alguien toca a tiempo es una observación de ejecución musical.
 Además del resumen va el arreglo completo de desfases. Un informe que solo lleva promedios no
 se puede reanalizar, y el informe final (`QI.1`) va a necesitar gráficas.
 
-### DEUDA: el enfoque del proyecto cambió y los documentos no
+### DEUDA: el enfoque del proyecto cambió y los documentos no — CERRADA el 25-nov-2026
 
 El equipo retiró el marco de **rehabilitación motriz** y se quedó con el **emocional**, antes
-del corte de medio curso. Ocho documentos siguen afirmando lo contrario: la carta sponsor con
-41 menciones, el acta con 48, y este mismo `CLAUDE.md` en «Motriz primario, emocional
-secundario».
+del corte de medio curso, y los documentos originales no lo mencionaban. No fue un cambio
+nuevo: fue que los documentos nunca alcanzaron una decisión ya tomada.
 
-No es un cambio nuevo — es que los documentos nunca alcanzaron una decisión ya tomada.
-**Pendiente de redactar.** Si la docente cruza la carta sponsor con lo que el equipo presenta,
-encuentra la contradicción sin explicación.
+**Cómo se cerró, y por qué así.** La carta sponsor y el acta **no se reescribieron**: llevan
+al principio una nota de revisión que dice qué dejó de valer, qué pasajes quedan sustituidos y
+en qué documento está el registro. Reescribir el original habría dejado dos documentos
+coherentes y ningún rastro de que el proyecto cambió de encuadre a mitad del camino, que es
+información de gestión y no un descuido que convenga esconder. Además `test_enfoque.py` exige
+que el texto citado en `enfoque.PASAJES` siga existiendo en el documento citado: reescribir el
+original vuelve inverificable la tabla de sustituciones.
+
+- Nota generada por `scripts/nota_enfoque.py`, con el dato en `enfoque.nota_de_revision`.
+  Encabeza `01_Carta_Sponsor.docx` y `02_Acta_Constitutiva.docx`.
+- La tabla de sustituciones pasó de **7 pasajes a 12**: cubría seis de la carta y UNO del acta,
+  cuando el acta afirmaba el marco motriz en cinco sitios más —resumen ejecutivo, visión,
+  objetivo específico y su criterio de aceptación—. Una tabla incompleta deja al lector del
+  acta sin saber qué de lo que lee sigue valiendo.
+- Cuatro pruebas nuevas en `test_enfoque.py` (12 en total) impiden que la nota desaparezca al
+  regenerar, que deje de remitir a los documentos del registro, o que el acta vuelva a quedarse
+  con menos de cinco pasajes.
+
+**Las cifras de la versión anterior de esta nota eran falsas.** Decía «la carta sponsor con 41
+menciones, el acta con 48». Medido sobre los `.docx`: **17 y 18** con patrón amplio —motriz,
+motor, rehabilitación, amplitud de movimiento, óculo-manual, miembro superior, goniometría— u
+**11 y 8** con patrón estricto. Nunca se contaron; se estimaron y se citaron como dato.
+
+**Lo que queda, y no es de los entregables.** Los documentos 04 a 07 dan positivo al buscar
+«motor», pero son todos el **motor de juego** —«dominio de motor, física e integración»,
+«versión del motor y del kit»—: falsos positivos. La única mención real fuera de la carta y el
+acta está en el documento 10 y es legítima: explica qué pedía la medida 9 antes de perder la
+amplitud. Sigue sin revisar el marco retirado en documentación interna, que no se entrega:
+`docs/specs/2026-08-29-vr-percusion-terapeutica-design.md`,
+`docs/superpowers/specs/2026-10-18-metricas-de-sesion-design.md` y
+`docs/superpowers/plans/2026-10-18-metricas-de-sesion.md`.
 
 ## Rebaseline del cronograma — 11-nov-2026
 

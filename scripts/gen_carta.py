@@ -2,6 +2,7 @@
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from neutro import *
+import nota_enfoque
 
 doc = nuevo()
 portada(doc,
@@ -15,6 +16,11 @@ portada(doc,
      ("Equipo","Equipo A"),
      ("Periodo del proyecto","1 de septiembre al 13 de noviembre de 2026")],
     sub2="Revisión 2  —  reorientación del proyecto a un fin terapéutico")
+
+# --------------------------------------------------- nota de revisión del enfoque
+# Va aquí, antes del cuerpo, porque el defecto que arregla es que alguien leyera esta carta
+# sin enterarse de que el encuadre se cambió en septiembre. El texto de abajo NO se toca.
+print("nota de enfoque: %d pasajes" % nota_enfoque.poner(doc, "Carta sponsor"))
 
 # ---------------------------------------------------------------- 1
 H(doc,"1. Motivo de la revisión",1)

@@ -82,6 +82,38 @@ PASAJES = [
      "experiencia en rehabilitación de miembro superior.",
      "Rol retirado. La medida de éxito 8 quedó formalmente retirada en el documento 10, "
      "Recorte de alcance."),
+
+    # AÑADIDOS EL 25-NOV. La tabla cubría seis pasajes de la carta y UNO del acta, y el acta
+    # afirma el marco motriz en cinco sitios más: el resumen ejecutivo, la visión, un objetivo
+    # específico y su criterio de aceptación. Una tabla de sustituciones incompleta deja al
+    # lector del acta sin saber qué de lo que lee sigue valiendo, que es justo lo que esta
+    # tabla existe para evitar.
+    ("Acta constitutiva", "1. Resumen ejecutivo",
+     "concebido como herramienta de apoyo a la rehabilitación motriz de miembro superior",
+     "concebido como herramienta de apoyo a la regulación emocional por medio del ritmo"),
+
+    ("Acta constitutiva", "1. Resumen ejecutivo",
+     "El fin principal es motriz: trabajar amplitud, coordinación y sincronización del "
+     "movimiento del miembro superior.",
+     "El fin principal es emocional: ofrecer una vía de descarga y de regulación por medio de "
+     "la ejecución rítmica. Lo que el sistema mide es la ejecución —precisión temporal y "
+     "constancia del pulso—, que es una observación musical y no una valoración clínica."),
+
+    ("Acta constitutiva", "1. Visión",
+     "Que una persona en proceso de rehabilitación motriz de miembro superior realice sus "
+     "ejercicios tocando una batería en realidad virtual",
+     "Que una persona sin experiencia musical previa toque una batería en realidad virtual "
+     "como actividad rítmica de bajo estrés"),
+
+    ("Acta constitutiva", "2. Objetivo específico",
+     "Registrar métricas objetivas del desempeño motriz.",
+     "Registrar métricas objetivas de la ejecución rítmica."),
+
+    ("Acta constitutiva", "2. Criterio de aceptación",
+     "El sistema exporta precisión temporal, amplitud de movimiento y constancia del pulso "
+     "por sesión.",
+     "El sistema exporta precisión temporal y constancia del pulso por sesión, con los "
+     "desfases crudos de cada golpe."),
 ]
 
 # Lo que NO cambia. Vale tanto como lo que cambia: acota el alcance del cambio y evita que
@@ -135,3 +167,103 @@ ACCIONES = [
     ("Verificar que el prototipo no exporte amplitud de movimiento",
      "Desarrollo VR", "Hecho: SessionStats no la calcula"),
 ]
+
+
+# --------------------------------------------------------------------- nota de revisión
+#
+# POR QUE UNA NOTA Y NO REESCRIBIR LOS ORIGINALES. La carta sponsor y el acta se aprobaron
+# en septiembre afirmando el marco motriz. Reescribirlas ahora borraría la evidencia de que
+# hubo una revisión: quedarían dos documentos coherentes y ningún rastro de que el proyecto
+# cambió de encuadre a mitad del camino, que es informacion de gestion y no un descuido que
+# conviene esconder. Tambien lo impide `test_enfoque.py`, que exige que el texto citado en
+# `PASAJES` siga existiendo en el documento que se cita: si el original se reescribe, la
+# tabla de sustituciones se vuelve inverificable.
+#
+# LO QUE SI FALTABA es que el original DIJERA que fue revisado. Hasta el 25 de noviembre de
+# 2026 ni la carta ni el acta mencionaban el cambio ni los documentos que lo registran, asi
+# que quien leyera solo uno de los dos no encontraba rastro de la revision. Eso es lo que
+# esta nota arregla, y por eso encabeza los dos documentos en lugar de ir en un apendice.
+
+FECHA_NOTA = "25 de noviembre de 2026"
+
+NOTA_TITULO = "Nota de revisión · el enfoque de este documento fue modificado"
+
+# Donde vive el detalle. (archivo, que contiene)
+REVISIONES = [
+    ("11_Cambio_de_Enfoque.docx",
+     "Solicitud de cambio del marco terapéutico, conforme a PMBOK 4.6. Lleva la tabla de "
+     "pasajes sustituidos, cada uno con su texto anterior y su texto nuevo, más los motivos, "
+     "las renuncias y lo que no cambia."),
+    ("18_Revision_Fundamentacion.docx",
+     "Revisión de la fundamentación terapéutica. Audita una por una las afirmaciones del "
+     "marco teórico contra lo que el prototipo hace de verdad."),
+]
+
+
+def pasajes_de(documento):
+    """Los pasajes sustituidos que pertenecen a un documento."""
+    return [p for p in PASAJES if p[0] == documento]
+
+
+def nota_de_revision(documento):
+    """Título, párrafos y filas de la nota que encabeza un documento alcanzado por el cambio.
+
+    Devuelve `(titulo, parrafos, filas)`. Las filas son `(seccion, texto nuevo)`: la seccion
+    del documento y lo que pasa a decir, para que el lector sepa al leerla qué de lo que
+    tiene delante quedó sustituido, sin tener que abrir otro archivo.
+
+    LAS CIFRAS SE CUENTAN, NO SE ESCRIBEN. El numero de pasajes sale de `PASAJES` y el
+    recuento de la fundamentacion de `fundamentacion.AFIRMACIONES`. Son las dos cosas que
+    cambian cuando alguien revisa un pasaje mas, y escribirlas a mano es como la nota
+    acabaria diciendo «siete pasajes» el dia que sean doce.
+    """
+    mios = pasajes_de(documento)
+
+    try:
+        import fundamentacion as FU
+        cuenta = {}
+        for a in FU.AFIRMACIONES:
+            cuenta[a[3]] = cuenta.get(a[3], 0) + 1
+        auditoria = ("De las %d afirmaciones del marco teórico, %d se sostienen, %d quedaron "
+                     "acotadas y %d se retiraron."
+                     % (len(FU.AFIRMACIONES), cuenta.get("sostenida", 0),
+                        cuenta.get("acotada", 0), cuenta.get("retirada", 0)))
+        fecha_auditoria = FU.FECHA_ET2
+    except ImportError:          # el documento se puede generar sin el módulo de la revisión
+        auditoria = ""
+        fecha_auditoria = ""
+
+    parrafos = [
+        "El texto que sigue es el que se aprobó en su fecha y NO se ha modificado. Se conserva "
+        "tal cual a propósito: reescribirlo borraría la evidencia de que el proyecto cambió de "
+        "encuadre, y esa evidencia es información de gestión. Esta nota dice qué dejó de valer "
+        "y dónde está el registro del cambio.",
+
+        "El equipo retiró el marco de rehabilitación motriz y se quedó con el de regulación "
+        "emocional. La decisión se tomó %s. Se registró el %s. El prototipo entregado es el "
+        "mismo: fue un cambio de encuadre, no de producto. Lo que cambió es lo que el proyecto "
+        "puede afirmar sobre sí mismo, porque sin asesor terapéutico no hay quien valide "
+        "clínicamente una rutina, y la amplitud de movimiento de miembro superior se mide con "
+        "goniometría o captura corporal y no con la posición de un control de mano."
+        % (FECHA_DECISION, FECHA_REGISTRO),
+    ]
+
+    if mios:
+        parrafos.append(
+            "De este documento quedan sustituidos %d pasaje%s, listados abajo. La medida de "
+            "éxito 8, pertinencia terapéutica dictaminada por un asesor externo, quedó "
+            "formalmente retirada en el documento 10, Recorte de alcance; la medida 9 perdió "
+            "la amplitud de movimiento y conserva precisión temporal y constancia del pulso."
+            % (len(mios), "" if len(mios) == 1 else "s"))
+
+    if auditoria:
+        parrafos.append(
+            "La fundamentación terapéutica se auditó aparte, el %s. %s El detalle, con qué "
+            "comprueba cada una, está en el documento 18." % (fecha_auditoria, auditoria))
+
+    parrafos.append(
+        "Esta nota se añadió el %s, antes de la entrega de la documentación. Es la acción que "
+        "el cierre del proyecto dejó pendiente: la revisión existía desde octubre y los "
+        "documentos originales no la mencionaban." % FECHA_NOTA)
+
+    return NOTA_TITULO, parrafos, [(p[1], p[3]) for p in mios]

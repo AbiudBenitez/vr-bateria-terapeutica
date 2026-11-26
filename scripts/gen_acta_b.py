@@ -2,6 +2,7 @@
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from neutro import *
+import equipo
 from docx import Document
 import pdm, edt
 
@@ -20,16 +21,19 @@ table(doc,["Parte","Interés en el proyecto","Influencia"],[
  ("Facultad de Ingeniería Mecánica y Eléctrica","Disponer de un proyecto demostrable con aplicación real.","Baja durante la ejecución."),
 ],widths=[4.4,7.2,4.4],fs=9.5)
 
+# LOS NOMBRES SE LEEN DE `equipo.py`. Esta tabla tenia tres equivocados hasta el
+# 25-nov-2026: nombraba director a Abiud Misael Benitez con el apellido mal, gerente a
+# una persona que no esta en el equipo y coordinador a otra tampoco. Ver ese modulo.
 H(doc,"3.2 Roles y responsabilidades",2)
 table(doc,["Rol","Responsabilidad principal","Integrante"],[
- ("Director de proyecto","Aprobar decisiones de alcance, presupuesto y hitos. Resolver bloqueos.","Abiud Misael Benítez Muñoz"),
- ("Gerente de proyecto","Mantener el plan, el cronograma y el registro de riesgos. Controlar el avance.","Ricardo Alejandro Rodríguez Ríos"),
- ("Coordinador","Coordinar al equipo, gestionar al asesor externo y las sesiones de prueba.","Jesús Eduardo Rodríguez Salinas"),
- ("Desarrollador de realidad virtual","Interacción, físicas, integración y build.","María Fernanda Montoya Valdez"),
- ("Diseñador de interacción y experiencia en realidad extendida","Ergonomía, interfaz, menús y, en esta versión, el modelado de baquetas y entorno.","Diana Laura Tello Salinas"),
- ("Artista y modelador tridimensional","Modelado de la batería, texturizado y optimización de geometría.","Christian Salvador Valadez Gallegos"),
- ("Diseñador de audio","Librería de muestras, capas de intensidad e integración con las físicas.","Javier Alejandro Hernández Caloca"),
- ("Analista de métricas","Investigación terapéutica, definición de métricas, protocolo de sesión e informe de resultados.","Kimberly González Sepúlveda"),
+ ("Director de proyecto","Aprobar decisiones de alcance, presupuesto y hitos. Resolver bloqueos.",equipo.NOMBRE["Director de proyecto"]),
+ ("Gerente de proyecto","Mantener el plan, el cronograma y el registro de riesgos. Controlar el avance.",equipo.NOMBRE["Gerente de proyecto"]),
+ ("Coordinador","Coordinar al equipo, gestionar al asesor externo y las sesiones de prueba.",equipo.NOMBRE["Coordinador"]),
+ ("Desarrollador de realidad virtual","Interacción, físicas, integración y build.",equipo.NOMBRE["Desarrollador VR"]),
+ ("Diseñador de interacción y experiencia en realidad extendida","Ergonomía, interfaz, menús y, en esta versión, el modelado de baquetas y entorno.",equipo.NOMBRE["Diseñador UX-XR"]),
+ ("Artista y modelador tridimensional","Modelado de la batería, texturizado y optimización de geometría.",equipo.NOMBRE["Artista 3D"]),
+ ("Diseñador de audio","Librería de muestras, capas de intensidad e integración con las físicas.",equipo.NOMBRE["Diseñador de audio"]),
+ ("Analista de métricas","Investigación terapéutica, definición de métricas, protocolo de sesión e informe de resultados.",equipo.NOMBRE["Analista de métricas"]),
  ("Asesor terapéutico externo","Validar rutinas, métricas y protocolo. Emitir el dictamen de pertinencia.","Externo. Gestión en curso."),
 ],widths=[4.6,7.4,4.0],fs=9.5)
 
