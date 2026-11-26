@@ -9,9 +9,9 @@ doc = nuevo()
 portada(doc,
  "ACTA CONSTITUTIVA DEL PROYECTO",
  "Simulación de batería en realidad virtual\ncon enfoque de musicoterapia",
- [("Versión","4.0"),
-  ("Fecha","22 de octubre de 2026"),
-  ("Sustituye a","Versión 3.0 del 3 de septiembre de 2026"),
+ [("Versión","4.1"),
+  ("Fecha","25 de noviembre de 2026"),
+  ("Sustituye a","Versión 4.0 del 22 de octubre de 2026"),
   ("Unidad de aprendizaje","Administración de Proyectos de Software"),
   ("Docente y patrocinadora","Dra. Leticia Amalia Neira Tovar"),
   ("Equipo","Equipo A"),
@@ -30,6 +30,17 @@ table(doc,["Versión","Fecha","Autor","Descripción del cambio"],[
  ("2.0","31 ago 2026","Equipo A","Incorporación del enfoque terapéutico, perfiles requeridos, desglose del presupuesto, diagrama de Gantt y trabajo simultáneo."),
  ("3.0","3 sep 2026","Equipo A","Estructura de desglose del trabajo con criterios de aceptación por paquete. Reasignación del paquete 3.3 y adelanto del 3.1. Corrección de la ruta crítica declarada. Actualización del riesgo del asesor terapéutico. Anexo de asignación por paquete."),
  ("4.0","22 oct 2026","Equipo A","Plan financiero rehecho sobre el modelo de costos vigente: tarifa anclada al salario mínimo por tratarse de practicantes, sin costos no laborales y sin reserva monetaria. El presupuesto baja de $384,201 a $%s. El plan financiero deja de ser una tabla escrita a mano y se deriva del módulo de costos." % format(round(costos.PRESUPUESTO), ",d")),
+ # LA 4.1 EXISTE PORQUE LAS DOS CORRECCIONES SON POSTERIORES A LA ENTREGA DEL PROYECTO, y un
+ # cambio en un documento que se firma tiene que verse. Es el mismo criterio que justifica la
+ # nota de revisión del enfoque: lo que modifica algo ya escrito entra con su fecha.
+ ("4.1","25 nov 2026","Equipo A","Dos correcciones, ninguna de contenido del plan. Se añade al "
+  "principio la nota de revisión del enfoque: el marco de rehabilitación motriz se retiró y el "
+  "documento no lo mencionaba, así que quien leyera solo el acta no encontraba rastro del "
+  "cambio. El cuerpo del acta NO se modifica —reescribirlo borraría la evidencia de que hubo "
+  "revisión—; la nota dice qué dejó de valer y en qué documento está el registro. Y se corrige "
+  "la plantilla: la tabla de roles, el bloque de aprobación y las 42 filas del anexo A "
+  "nombraban a dos personas ajenas al equipo y asignaban al gerente el rol de director con el "
+  "apellido equivocado. Los nombres pasan a leerse de un módulo único."),
 ],widths=[1.8,2.4,2.6,9.2],fs=9.5)
 
 H(doc,"Cambios respecto de la versión 3.0",2)
