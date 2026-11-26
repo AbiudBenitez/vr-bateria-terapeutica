@@ -497,8 +497,28 @@ Una actividad borrada no deja rastro de por qué se quitó.
 
 ### Ojo con regenerar la carta de validación
 
-`gen_validacion.py` **sigue produciendo la sección 3.1**, que el equipo decidió retirar el
-21-sep. Correrlo sobrescribe esa decisión. Hay un aviso en el propio script.
+**Lo de la sección 3.1 está resuelto desde el 21-oct** (`9637e44`), y esta nota decía lo
+contrario hasta el 25-nov. `gen_validacion.py` ya NO la produce: el equipo retiró el 21-sep
+la nota que conciliaba las cifras del documento de medio curso con las del cronograma, y
+además su premisa caducó cuando `sincronizar_crono.py` pasó a sincronizar los dos
+cronogramas. Un generador que contradice una decisión del equipo y lo compensa con un
+comentario es una trampa: funciona hasta que la pisa quien no leyó el comentario.
+
+**Lo que sigue en pie es otra cosa, y es más importante.** Los documentos 07 y 08 llevan
+fecha del 21-sep y corte del 18-sep, con líneas de firma, pero sus cifras se LEEN del
+cronograma, que avanza. El 07 entregado declara 77 de 257 (30 %); hoy el mismo generador
+produciría 137 de 154 (89 %) bajo una fecha de hace dos meses. Eso no es actualizar un
+documento, es fabricar uno incoherente con una firma debajo.
+
+Por eso `gen_validacion.py` exige `--regenerar` y, sin ese argumento, explica los tres pasos:
+copiar los actuales a `entregables/superados/`, cambiar `HOY` y el corte, y volver a correrlo.
+El avance vigente se publica en `12_Estado_del_Proyecto.docx`, que para eso existe.
+
+**Consecuencia que hay que conocer:** el bloque de firmas del 07 entregado tiene una sola
+fila, la de la docente, mientras el generador produce cuatro —gerente, coordinadora, director
+y docente, leídas de `equipo.py`—. El documento está congelado en su fecha de entrega, así que
+esa diferencia no se cierra regenerándolo: se cierra emitiendo una carta nueva si el equipo
+decide que la entrega final necesita una.
 
 ## Ruta crítica v3 — recalculada tras el recorte, 22-oct-2026
 

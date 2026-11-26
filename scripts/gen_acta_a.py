@@ -43,8 +43,12 @@ table(doc,["Versión","Fecha","Autor","Descripción del cambio"],[
   "apellido equivocado. Los nombres pasan a leerse de un módulo único."),
 ],widths=[1.8,2.4,2.6,9.2],fs=9.5)
 
-H(doc,"Cambios respecto de la versión 3.0",2)
-P(doc,"Esta versión corrige una sola cosa, y la corrige de raíz: el presupuesto. El costeo detallado que "
+# LOS DOS TITULOS NOMBRAN LA VERSION QUE DESCRIBEN, no solo la anterior. Decian «Cambios
+# respecto de la version 3.0» y «respecto de la 2.0», que se leia bien mientras la portada
+# decia 4.0: se entendia que el primero eran los cambios de la version en curso. Con la 4.1
+# en la portada deja de entenderse, porque los cambios del presupuesto no son de la 4.1.
+H(doc,"Cambios de la versión 4.0 respecto de la 3.0: el presupuesto",2)
+P(doc,"La versión 4.0 corrigió una sola cosa, y la corrigió de raíz: el presupuesto. El costeo detallado que "
   "el equipo realizó el 14 de septiembre dejó obsoleta la cifra del acta, y el acta no se actualizó. "
   "Durante cinco semanas los dos documentos declararon presupuestos distintos para el mismo proyecto.")
 table(doc,["#","Cambio","Razón"],[
@@ -58,8 +62,8 @@ table(doc,["#","Cambio","Razón"],[
   "La cifra vivía copiada en dos lugares y por eso se separó. Ahora el acta lee el mismo dato que el documento de costos: si uno cambia, el otro cambia al regenerarse."),
 ],widths=[0.8,7.4,7.8],fs=9)
 
-H(doc,"Cambios respecto de la versión 2.0",2)
-P(doc,"Los cambios de esta versión provienen de dos fuentes: las observaciones de la patrocinadora sobre la "
+H(doc,"Cambios de la versión 3.0 respecto de la 2.0",2)
+P(doc,"Los cambios de la versión 3.0 provinieron de dos fuentes: las observaciones de la patrocinadora sobre la "
   "versión 2.0 y el cálculo formal de la ruta crítica, que reveló una inconsistencia en la programación.")
 table(doc,["#","Cambio","Razón"],[
  ("1","La estructura de desglose del trabajo pasa de una lista de paquetes a un cuadro completo con criterio de aceptación, responsable, recursos y duración por paquete.",
