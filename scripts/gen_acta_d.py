@@ -4,6 +4,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from neutro import *
 from docx import Document
 import pdm, edt, costos
+import equipo
 
 doc = Document('/tmp/_acta_c.docx')
 
@@ -189,21 +190,18 @@ H(doc,"6. Apéndice",1)
 H(doc,"6.1 Anexo A. Asignación nominal por paquete de trabajo",2)
 P(doc,"Este anexo verifica que cada uno de los 42 paquetes tenga responsable nominal asignado. Se incluye "
   "porque un paquete sin responsable identificado es un paquete que nadie ejecuta.")
-NOMB={"Gerente de proyecto":"Ricardo Alejandro Rodríguez Ríos","Director de proyecto":"Abiud Misael Benítez Muñoz",
- "Coordinador":"Jesús Eduardo Rodríguez Salinas","Desarrollador VR":"María Fernanda Montoya Valdez",
- "Diseñador UX-XR":"Diana Laura Tello Salinas","Artista 3D":"Christian Salvador Valadez Gallegos",
- "Diseñador de audio":"Javier Alejandro Hernández Caloca","Analista de métricas":"Kimberly González Sepúlveda",
- "Asesor terapéutico":"Externo, por confirmar"}
+# LOS NOMBRES SE LEEN DE `equipo.py`, NO SE ESCRIBEN AQUI. Hasta el 25-nov-2026 este archivo
+# tenia su propia copia y estaba mal: nombraba gerente a «Ricardo Alejandro Rodriguez Rios» y
+# coordinador a «Jesus Eduardo Rodriguez Salinas» -ninguno del equipo- y daba a Abiud Misael
+# Benitez el rol de director con el apellido equivocado. El anexo de abajo tiene 42 filas y
+# el bloque de firmas lo repetia, asi que el error salia 42 veces en el documento que se firma.
 def nominal(res):
     partes=[p.strip() for p in res.replace(" / ","/").split("/")]
-    mapa={"Gerente":"Ricardo A. Rodríguez","Director":"Abiud M. Benítez","Coordinador":"Jesús E. Rodríguez",
-     "Dev RV":"M. Fernanda Montoya","UX-XR":"Diana L. Tello","Artista 3D":"Christian S. Valadez",
-     "Audio":"Javier A. Hernández","Métricas":"Kimberly González","Asesor":"Externo","QA":"rotativo entre el equipo"}
     out=[]
     for p in partes:
-        for k,v in mapa.items():
+        for k,v in equipo.CLAVES_CORTAS:
             if k.lower() in p.lower(): out.append(v); break
-        else: out.append(NOMB.get(p,p))
+        else: out.append(equipo.NOMBRE_CON_ASESOR.get(p,p))
     vistos=[]
     for o in out:
         if o not in vistos: vistos.append(o)
@@ -239,11 +237,9 @@ table(doc,["Documento","Contenido"],[
 
 H(doc,"6.4 Aprobación",2)
 doc.add_paragraph()
-table(doc,["Nombre","Rol","Firma","Fecha"],[
- ("Dra. Leticia Amalia Neira Tovar","Patrocinadora",""," "),
- ("Abiud Misael Benítez Muñoz","Director de proyecto","",""),
- ("Ricardo Alejandro Rodríguez Ríos","Gerente de proyecto","",""),
-],widths=[5.4,4.2,3.8,2.6],fs=10)
+table(doc,["Nombre","Rol","Firma","Fecha"],
+ [(nombre,rol,"","") for nombre,rol in equipo.APROBACION],
+ widths=[5.4,4.2,3.8,2.6],fs=10)
 
 out="/Users/abiudbenitez/Documents/Claude/Projects/vr-bateria-terapeutica/entregables/02_Acta_Constitutiva.docx"
 doc.save(out); print("OK",out)

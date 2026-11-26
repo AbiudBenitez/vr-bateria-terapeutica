@@ -11,6 +11,7 @@ import sys
 import datetime
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import equipo
 import neutro
 import validacion
 
@@ -228,10 +229,12 @@ def carta():
     neutro.table(
         doc,
         ["Rol", "Nombre", "Firma"],
-        [["Gerente de proyecto", "Abiud Misael Benítez Franco", "_" * 30],
-         ["Coordinadora", "Sarai Galindo García", "_" * 30],
-         ["Director de proyecto", "Benjamín Ignacio Villalón Bobadilla", "_" * 30],
-         ["Docente", "Dra. Leticia Amalia Neira Tovar", "_" * 30]],
+        # Los nombres se leen de `equipo.py`: tres generadores tenían su propia copia y la
+        # del acta estaba equivocada. Ver la cabecera de ese módulo.
+        [["Gerente de proyecto", equipo.NOMBRE["Gerente de proyecto"], "_" * 30],
+         ["Coordinadora", equipo.NOMBRE["Coordinador"], "_" * 30],
+         ["Director de proyecto", equipo.NOMBRE["Director de proyecto"], "_" * 30],
+         ["Docente", equipo.PATROCINADORA, "_" * 30]],
         widths=[4.4, 6.6, 5.0], fs=9.5,
     )
     neutro.P(doc)
